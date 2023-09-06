@@ -9,7 +9,7 @@
   },
   "scripts": {
     "bundle": "esbuild ./dist/js/index.js style.css --bundle --minify --platform=browser --outdir=./dist --format=esm --allow-overwrite --splitting --entry-names=[ext]/[name]",
-    "bundledev": "esbuild index.ts style.css --bundle --platform=browser --outdir=./dist --format=esm --allow-overwrite --splitting --entry-names=[ext]/[name] --watch",
+    "bundledev": "esbuild index.ts style.css --bundle --minify --platform=browser --outdir=./dist --format=esm --allow-overwrite --splitting --entry-names=[ext]/[name] --watch",
     "build": "rimraf dist && npx tsc && npm run bundle",
     "dev": "rimraf dist && npm run bundledev"
   },
@@ -26,5 +26,9 @@
     "lua"
   ],
   "author": "mopsfl",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@types/materialize-css": "^1.0.11",
+    "monaco-editor": "^0.41.0"
+  }
 }

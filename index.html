@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GoofyLuaUglifier</title>
+        <link rel="stylesheet" href="/dist/css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script type="module" src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/loader.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
+        <script>
+            require.config({
+                paths: {
+                    vs: 'https://unpkg.com/monaco-editor@latest/min/vs'
+                }
+            });
+            require(['vs/editor/editor.main'], function (monaco) {
+                var editor = monaco.editor.create(document.querySelector('.monaco'), {
+                    value: "",
+                    language: 'lua',
+                    theme: 'vs-dark',
+                    wordWrap: 'on',
+                    wordBreak: 'off',
+                    automaticLayout: true,
+                    maxTokenizationLineLength: 1000000,
+                    minimap: {
+                        enabled: true
+                    }
+                });
+                window.monaco_editor = monaco.editor
+            });
+        </script>
+        <script type="module" src="/dist/js/index.js" defer></script>
+    </head>
+    <body>
+        <!-- Loading Text -->
+        <span class="loadingtext hide">Loading...</span>
+        <div
+            class="main">
+            <!-- Monaco Editor Container -->
+            <div class="code-area monaco"></div>
+            <!-- Toolbox Sidebar -->
+            <div class="sidebar">
+                <p class="sidebar-title">GoofyLuaUglifier</p>
+                <div class="sidebar-buttons">
+                    <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green" data-function="uglify" data-tooltip="Uglify your script with the default options." data-position="left">
+                        <i class="material-icons center">draw</i>Quick Uglify</button>
+                    <div class="seperator"></div>
+                    <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green" data-function="encryptstrings" data-tooltip="Encrypts string constants.<br><br>e.g.: <code>'Hello'</code> &equals; <code>func('\100\180\180\144')</code>" data-position="left">
+                        <i class="material-icons center">tag</i>Encrypt Strings</button>
+                    <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green" data-function="transformnums" data-tooltip="Transforms numbers into mathematical expressions.<br><br>e.g.: <code>100</code> &equals; <code>(369 - 169) / 2</code>" data-position="left">
+                        <i class="material-icons center">looks_one</i>Transform Numbers</button>
+                    <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green" data-function="transformbooleans" data-tooltip="Transforms all booleans into mathematical expressions.<br><br>e.g.: <code>false</code> &equals; <code>100 < ( 100 - 5 )</code>" data-position="left">
+                        <i class="material-icons center">check_box</i>Transform Booleans</button>
+                    <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green" data-function="constantchunk" data-tooltip="Converts all string constants into a custom byte chunk.<br><br>e.g.: <code>['Hello World', 'Lol']</code> &equals; <code>'MYLXM0...7F8800'</code>" data-position="left">
+                        <i class="material-icons center">feed</i>Constant Chunk</button>
+                    <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green" data-function="deadcode" data-tooltip="Adds random dead code to your script.<br><br>e.g.: <code class='multiline'>...<br>abcdefg = (369 - 169) / 2<br>...</code>" data-position="left">
+                        <i class="material-icons center">code_off
+                        </i>Add Dead Code</button>
+                    <div class="seperator"></div>
+                    <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green modal-trigger" href="#settingsmodal" data-tooltip=" Settings" data-position=" left">
+                        <i class="material-icons center">settings
+                        </i>Settings</button>
+                </div>
+            </div>
+            <!-- Info Modal Button -->
+            <button class="waves-effect waves-light btn-floating modal-trigger btn-small transparent infomodal-openbtn tooltipped" data-position="left" data-tooltip="Info" href="#infomodal">
+                <i class="material-icons center">info</i>
+            </button>
+            <!-- Info Modal -->
+            <div id="infomodal" class="modal">
+                <div class="modal-content">
+                    <h4>Info</h4>
+                    <p>GoofyLuaUglifier is currently only optimized for Lua 5.3+. Any other versions below might not be fully compatible.</p>
+                </p>
+            </div>
+        </body>
+        <!-- Settings Modal -->
+        <div id="settingsmodal" class="modal bottom-sheet modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Settings</h4>
+                <div class="settings-grid">
+                    <div class="setting">
+                        <span class="setting-name">Dead Code Injection (unstable)</span>
+                        <label>
+                            <input type="checkbox" class="filled-in" id="deadcodeinjection" checked="true"/>
+                            <span></span>
+                        </label>
+                    </div>
+                    <div class="setting">
+                        <span class="setting-name">Dead Code Chance (%)</span>
+                        <label class="slider-setting">
+                            <p class="range-field">
+                                <input type="range" id="deadcodechance" min="0" max="100" value="50"/>
+                            </p>
+                            <span class="slider-value">50%</span>
+                        </label>
+                    </div>
+                    <div class="setting">
+                        <span class="setting-name">Random Chinese Quotes (bigger output)</span>
+                        <label>
+                            <input type="checkbox" class="filled-in" id="chinesequotes" checked="false"/>
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="modal-footer">
+                <!--<button href="#!" class="modal-close waves-red waves-effect btn-flat white-text" id="discard">Discard</button>-->
+                <button href="#!" class="modal-close waves-green waves-effect btn-flat  white-text" id="save">Save</button>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="left bottom info-version">v.1.0.0</p>
+            <button href="#!" class="modal-close waves-light waves-effect btn green">OK</button>
+        </div>
+    </body>
+</html></body></html></div></body></html>
