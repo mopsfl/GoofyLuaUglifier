@@ -18,11 +18,21 @@ jQuery(() => {
 
             if (_request instanceof (Response)) {
                 let _response_body = ""
-                if (_request.ok) _response_body = await _request.text()
-                Editor.SetValue(_response_body)
-                Editor.ToggleLoading("")
-                self.default.block_requests = false
+                if (_request.ok) {
+                    _response_body = await _request.text()
+                    Editor.SetValue(_response_body)
+                } else {
+                    const error_message = `--[[
+                        ┌ GoofyLuaUglifier - Error (${crypto.randomUUID()})
+                        |
+                        ├ ${_request.url}
+                        └ ${_request.statusText} - ${_request.status}
+                    ]]${Editor.GetValue().replace(/--\[\[(.|\n)*]]/gm, "")}\n\n\n`.replace(/^\s+/gm, "")
+                    Editor.SetValue(error_message)
+                }
             }
+            Editor.ToggleLoading()
+            self.default.block_requests = false
         })
     })
 
@@ -34,13 +44,14 @@ jQuery(() => {
 export default {
     block_requests: false,
     options: {
-        api_url: location.hostname == "localhost" ? "http://localhost:6969/api/goofyuglifier/" : "https://mopsflgithubio.mopsfl.repl.co/api/goofyuglifier/"
+        api_url: () => (location.hostname == "localhost" && !window.forceProduction) ? "http://localhost:6969/api/goofyuglifier/" : "https://mopsflgithubio.mopsfl.repl.co/api/goofyuglifier/"
     }
 }
 
 declare let M: Materialbox
 declare global {
     interface Window {
+        forceProduction: boolean,
         modules: Object,
         monaco_editor: {
             getEditors: Function
