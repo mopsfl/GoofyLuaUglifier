@@ -1,3 +1,3 @@
 # GoofyLuaUglifier - Website
 
-### Lua Uglifier made in Typescript
+### Website for GoofyLuaUglifier
