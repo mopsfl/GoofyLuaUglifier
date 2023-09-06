@@ -20,7 +20,7 @@
             });
             require(['vs/editor/editor.main'], function (monaco) {
                 var editor = monaco.editor.create(document.querySelector('.monaco'), {
-                    value: "",
+                    value: `print("Hello World!")`,
                     language: 'lua',
                     theme: 'vs-dark',
                     wordWrap: 'on',
@@ -47,18 +47,18 @@
             <div class="sidebar">
                 <p class="sidebar-title">GoofyLuaUglifier</p>
                 <div class="sidebar-buttons">
-                    <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green" data-function="uglify" data-tooltip="Uglify your script with the default options." data-position="left">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="uglify" data-tooltip="Uglify your script with the default options." data-position="left">
                         <i class="material-icons center">draw</i>Quick Uglify</button>
                     <div class="seperator"></div>
-                    <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green" data-function="encryptstrings" data-tooltip="Encrypts string constants.<br><br>e.g.: <code>'Hello'</code> &equals; <code>func('\100\180\180\144')</code>" data-position="left">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="encryptstrings" data-tooltip="Encrypts string constants.<br><br>e.g.: <code>'Hello'</code> &equals; <code>func('\x5c\x62\x32')</code>" data-position="left">
                         <i class="material-icons center">tag</i>Encrypt Strings</button>
-                    <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green" data-function="transformnums" data-tooltip="Transforms numbers into mathematical expressions.<br><br>e.g.: <code>100</code> &equals; <code>(369 - 169) / 2</code>" data-position="left">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="transformnums" data-tooltip="Transforms numbers into mathematical expressions.<br><br>e.g.: <code>100</code> &equals; <code>(369 - 169) / 2</code>" data-position="left">
                         <i class="material-icons center">looks_one</i>Transform Numbers</button>
-                    <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green" data-function="transformbooleans" data-tooltip="Transforms all booleans into mathematical expressions.<br><br>e.g.: <code>false</code> &equals; <code>100 < ( 100 - 5 )</code>" data-position="left">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="transformbooleans" data-tooltip="Transforms all booleans into mathematical expressions.<br><br>e.g.: <code>false</code> &equals; <code>100 < ( 100 - 5 )</code>" data-position="left">
                         <i class="material-icons center">check_box</i>Transform Booleans</button>
-                    <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green" data-function="constantchunk" data-tooltip="Converts all string constants into a custom byte chunk.<br><br>e.g.: <code>['Hello World', 'Lol']</code> &equals; <code>'MYLXM0...7F8800'</code>" data-position="left">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="constantchunk" data-tooltip="Converts all string constants into a custom byte chunk.<br><br>e.g.: <code>['Hello World', 'Lol']</code> &equals; <code>'MYLXM0...7F8800'</code>" data-position="left">
                         <i class="material-icons center">feed</i>Constant Chunk</button>
-                    <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green" data-function="deadcode" data-tooltip="Adds random dead code to your script.<br><br>e.g.: <code class='multiline'>...<br>abcdefg = (369 - 169) / 2<br>...</code>" data-position="left">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="deadcode" data-tooltip="Adds random dead code to your script.<br><br>e.g.: <code class='multiline'>...<br>abcdefg = (369 - 169) / 2<br>...</code>" data-position="left">
                         <i class="material-icons center">code_off
                         </i>Add Dead Code</button>
                     <div class="seperator"></div>
