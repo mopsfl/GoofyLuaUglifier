@@ -50,7 +50,7 @@
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="uglify" data-tooltip="Uglify your script with the default options." data-position="left">
                         <i class="material-icons center">draw</i>Quick Uglify</button>
                     <div class="seperator"></div>
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="encryptstrings" data-tooltip="Encrypts string constants.<br><br>e.g.: <code>'Hello'</code> &equals; <code>func('\x5c\x62\x32')</code>" data-position="left">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="encryptstrings" data-tooltip="Encrypts string constants.<br><br>e.g.: <code>'Hello'</code> &equals; <code>func('\x5c\x62\x32...')</code>" data-position="left">
                         <i class="material-icons center">tag</i>Encrypt Strings</button>
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="transformnums" data-tooltip="Transforms numbers into mathematical expressions.<br><br>e.g.: <code>100</code> &equals; <code>(369 - 169) / 2</code>" data-position="left">
                         <i class="material-icons center">looks_one</i>Transform Numbers</button>
@@ -72,52 +72,47 @@
                 <i class="material-icons center">info</i>
             </button>
             <!-- Info Modal -->
-            <div id="infomodal" class="modal">
-                <div class="modal-content">
-                    <h4>Info</h4>
-                    <p>GoofyLuaUglifier is currently only optimized for Lua 5.3+. Any other versions below might not be fully compatible.</p>
-                </p>
-            </div>
-        </body>
-        <!-- Settings Modal -->
-        <div id="settingsmodal" class="modal bottom-sheet modal-fixed-footer">
-            <div class="modal-content">
-                <h4>Settings</h4>
-                <div class="settings-grid">
-                    <div class="setting">
-                        <span class="setting-name">Dead Code Injection (unstable)</span>
-                        <label>
-                            <input type="checkbox" class="filled-in" id="deadcodeinjection" checked="true"/>
-                            <span></span>
-                        </label>
-                    </div>
-                    <div class="setting">
-                        <span class="setting-name">Dead Code Chance (%)</span>
-                        <label class="slider-setting">
-                            <p class="range-field">
-                                <input type="range" id="deadcodechance" min="0" max="100" value="50"/>
-                            </p>
-                            <span class="slider-value">50%</span>
-                        </label>
-                    </div>
-                    <div class="setting">
-                        <span class="setting-name">Random Chinese Quotes (bigger output)</span>
-                        <label>
-                            <input type="checkbox" class="filled-in" id="chinesequotes" checked="false"/>
-                            <span></span>
-                        </label>
-                    </div>
+            <div>
+                <div id="infomodal" class="modal">
+                    <div class="modal-content">
+                        <h4>Info</h4>
+                        <p>GoofyLuaUglifier is currently only optimized for Lua 5.3+. Any other versions below might not be fully compatible.</p>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <p class="left bottom info-version">v.1.0.0</p>
+                    <button href="#!" class="modal-close waves-light waves-effect btn green">OK</button>
                 </div>
             </div>
-            <div
-                class="modal-footer">
-                <!--<button href="#!" class="modal-close waves-red waves-effect btn-flat white-text" id="discard">Discard</button>-->
-                <button href="#!" class="modal-close waves-green waves-effect btn-flat  white-text" id="save">Save</button>
+            <!-- Settings Modal -->
+            <div id="settingsmodal" class="modal bottom-sheet modal-fixed-footer">
+                <div class="modal-content">
+                    <h4>Settings</h4>
+                    <div class="settings-grid">
+                        <div class="setting">
+                            <span class="setting-name">checkbox</span>
+                            <label>
+                                <input type="checkbox" class="filled-in" id="deadcodeinjection" checked="true"/>
+                                <span></span>
+                            </label>
+                        </div>
+                        <div class="setting">
+                            <span class="setting-name">slider</span>
+                            <label class="slider-setting">
+                                <p class="range-field">
+                                    <input type="range" id="deadcodechance" min="0" max="100" value="50"/>
+                                </p>
+                                <span class="slider-value">50%</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="modal-footer">
+                    <!--<button href="#!" class="modal-close waves-red waves-effect btn-flat white-text" id="discard">Discard</button>-->
+                    <button href="#!" class="modal-close waves-green waves-effect btn-flat  white-text" id="save">Save</button>
+                </div>
             </div>
-        </div>
-        <div class="modal-footer">
-            <p class="left bottom info-version">v.1.0.0</p>
-            <button href="#!" class="modal-close waves-light waves-effect btn green">OK</button>
-        </div>
+        </body>
     </body>
-</html></body></html></div></body></html>
+</html>
