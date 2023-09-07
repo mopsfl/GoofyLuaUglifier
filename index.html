@@ -20,7 +20,7 @@
             });
             require(['vs/editor/editor.main'], function (monaco) {
                 var editor = monaco.editor.create(document.querySelector('.monaco'), {
-                    value: `print("Hello World!")`,
+                    value: `print("Hello", 100, true, false)`,
                     language: 'lua',
                     theme: 'vs-dark',
                     wordWrap: 'on',
@@ -84,35 +84,50 @@
                     <button href="#!" class="modal-close waves-light waves-effect btn green">OK</button>
                 </div>
             </div>
-            <!-- Settings Modal -->
-            <div id="settingsmodal" class="modal bottom-sheet modal-fixed-footer">
-                <div class="modal-content">
-                    <h4>Settings</h4>
-                    <div class="settings-grid">
+        </div>
+        <!-- Settings Modal -->
+        <div id="settingsmodal" class="modal bottom-sheet modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Settings</h4>
+                <div class="settings-grid">
+                    <div class="setting">
+                        <span class="setting-name">checkbox</span>
+                        <label>
+                            <input type="checkbox" class="filled-in" id="checkbox" checked="true"/>
+                            <span></span>
+                        </label>
+                    </div>
+                    <div class="setting">
+                        <span class="setting-name">slider</span>
+                        <label class="slider-setting">
+                            <p class="range-field">
+                                <input type="range" id="slider" min="0" max="100" value="50"/>
+                            </p>
+                            <span class="slider-value">50%</span>
+                        </label>
+                    </div>
+                    <div class="setting-section">
                         <div class="setting">
-                            <span class="setting-name">checkbox</span>
-                            <label>
-                                <input type="checkbox" class="filled-in" id="deadcodeinjection" checked="true"/>
-                                <span></span>
-                            </label>
+                            <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds a watermark to your script. (keep empty to disable)">Watermark</span>
+                            <div class="input-field">
+                                <input placeholder="Watermark" id="watermark" type="text" class="validate">
+                            </div>
                         </div>
                         <div class="setting">
-                            <span class="setting-name">slider</span>
-                            <label class="slider-setting">
-                                <p class="range-field">
-                                    <input type="range" id="deadcodechance" min="0" max="100" value="50"/>
-                                </p>
-                                <span class="slider-value">50%</span>
+                            <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds protection to the watermark string to prevent it from being edited or deleted.">Protect Watermark</span>
+                            <label>
+                                <input type="checkbox" class="filled-in" id="protectwatermark" checked="true"/>
+                                <span></span>
                             </label>
                         </div>
                     </div>
                 </div>
-                <div
-                    class="modal-footer">
-                    <!--<button href="#!" class="modal-close waves-red waves-effect btn-flat white-text" id="discard">Discard</button>-->
-                    <button href="#!" class="modal-close waves-green waves-effect btn-flat  white-text" id="save">Save</button>
-                </div>
             </div>
-        </body>
+            <div
+                class="modal-footer">
+                <!--<button href="#!" class="modal-close waves-red waves-effect btn-flat white-text" id="discard">Discard</button>-->
+                <button href="#!" class="modal-close waves-green waves-effect btn-flat  white-text" id="save">Save</button>
+            </div>
+        </div>
     </body>
-</html>
+</html></body></html>

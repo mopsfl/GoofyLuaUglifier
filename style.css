@@ -162,6 +162,15 @@ body.light~.select-dropdown {
     left: 0 !important;
 }
 
+.setting>.input-field {
+    margin: 0;
+    margin-left: auto !important;
+}
+
+.setting>.input-field>input {
+    height: 2.5rem !important;
+}
+
 .material-icons {
     margin-right: 5px;
     pointer-events: none;
@@ -207,6 +216,24 @@ body.light~.select-dropdown {
 
 .setting:first-child {
     margin-top: 25px;
+}
+
+.setting:not(:first-child) {
+    margin-top: 15px;
+}
+
+.setting-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.setting-info {
+    font-size: 17px !important;
+    margin-left: 5px;
+    background-color: #333333;
+    border-radius: 1em;
+    padding: 1px;
 }
 
 .setting>label {

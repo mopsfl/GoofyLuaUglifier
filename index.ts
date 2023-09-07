@@ -22,13 +22,7 @@ jQuery(() => {
                     _response_body = await _request.text()
                     Editor.SetValue(_response_body)
                 } else {
-                    const error_message = `--[[
-                        ┌ GoofyLuaUglifier - Error (${crypto.randomUUID()})
-                        |
-                        ├ ${_request.url}
-                        └ ${_request.statusText} - ${_request.status}
-                    ]]${Editor.GetValue().replace(/--\[\[(.|\n)*]]/gm, "")}\n\n\n`.replace(/^\s+/gm, "")
-                    Editor.SetValue(error_message)
+                    Editor.SetValue(Request.CreateResponseError("lua", `${_request.statusText} - ${_request.status}`, Editor.GetValue()))
                 }
             }
             Editor.ToggleLoading()
