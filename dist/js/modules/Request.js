@@ -28,7 +28,7 @@ exports.default = {
             case "lua": {
                 message = `--[[
                   ┌ GoofyLuaUglifier - Error (${crypto.randomUUID()})
-                  |
+                  │
                   └ ${error}
                 ]]${code ? `\n\n\n${code}` : ""}`.replace(/^\s+/gm, "");
                 break;

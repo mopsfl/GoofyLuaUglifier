@@ -14,15 +14,15 @@ jQuery(() => {
             self.default.block_requests = true
             Editor.ToggleLoading("Processing")
             const func = e.target.attributes.getNamedItem("data-function"),
-                _request = await Request.new(func, Editor.GetValue(), self.default.options)
+                _response = await Request.new(func, Editor.GetValue(), self.default.options)
 
-            if (_request instanceof (Response)) {
+            if (_response instanceof (Response)) {
                 let _response_body = ""
-                if (_request.ok) {
-                    _response_body = await _request.text()
+                if (_response.ok) {
+                    _response_body = await _response.text()
                     Editor.SetValue(_response_body)
                 } else {
-                    Editor.SetValue(Request.CreateResponseError("lua", `${_request.statusText} - ${_request.status}`, Editor.GetValue()))
+                    Editor.SetValue(Request.CreateResponseError("lua", `${_response.statusText} - ${_response.status}`, Editor.GetValue()))
                 }
             }
             Editor.ToggleLoading()
