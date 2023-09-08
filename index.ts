@@ -1,11 +1,19 @@
+/**
+ * TODO:
+ * > finish settings system
+ */
+
 import jQuery from "jquery";
 import { Materialbox } from "materialize-css";
 import Request from "./modules/Request";
 import Editor from "./modules/Editor";
-import * as self from "./index"
+import Settings from "./modules/Settings";
+import * as self from "./index";
 
 jQuery(() => {
+    const settings = new Settings()
     M.AutoInit()
+    settings.init()
 
     const sidebar_buttons = document.querySelectorAll(".function-btn")
     sidebar_buttons.forEach(btn => {
@@ -31,7 +39,7 @@ jQuery(() => {
     })
 
     window.modules = {
-        jQuery, Request, Editor, self
+        jQuery, Request, Editor, self, settings
     }
 })
 
@@ -49,6 +57,10 @@ declare global {
         modules: Object,
         monaco_editor: {
             getEditors: Function
-        }
+        },
+        stringEncode: {
+            str2buffer: Function,
+            buffer2str: Function
+        },
     }
 }

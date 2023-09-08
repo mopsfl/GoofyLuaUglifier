@@ -208,18 +208,20 @@ body.light~.select-dropdown {
 }
 
 .setting {
+    height: 29px !important;
     display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
 }
 
-.setting:first-child {
-    margin-top: 25px;
+.setting {
+    margin-top: 15px;
 }
 
-.setting:not(:first-child) {
-    margin-top: 15px;
+.setting>.input-field>input {
+    height: 29px !important;
+    font-size: 15px !important;
 }
 
 .setting-name {
@@ -280,7 +282,6 @@ ul.dropdown-content.select-dropdown li span {
 
 .settings-grid {
     display: grid;
-    gap: 10px;
 }
 
 .sidebar-buttons>.seperator {

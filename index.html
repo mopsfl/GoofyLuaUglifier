@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script type="module" src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="module" src="https://unpkg.com/string-encode"></script>
         <script type="text/javascript" src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/loader.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
         <script>
@@ -106,23 +107,21 @@
                             <p class="range-field">
                                 <input type="range" id="slider" min="0" max="100" value="50"/>
                             </p>
-                            <span class="slider-value">50%</span>
+                            <span class="slider-value" value-type="%"></span>
                         </label>
                     </div>
-                    <div class="setting-section">
-                        <div class="setting">
-                            <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds a watermark to your script. (keep empty to disable)">Watermark</span>
-                            <div class="input-field">
-                                <input placeholder="Watermark" id="watermark" type="text" class="validate">
-                            </div>
+                    <div class="setting">
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds a watermark to your script. (keep empty to disable)">Watermark</span>
+                        <div class="input-field">
+                            <input placeholder="Watermark" id="watermark" type="text" class="validate">
                         </div>
-                        <div class="setting">
-                            <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds protection to the watermark string to prevent it from being edited or deleted.">Protect Watermark</span>
-                            <label>
-                                <input type="checkbox" class="filled-in" id="protectwatermark" checked="true"/>
-                                <span></span>
-                            </label>
-                        </div>
+                    </div>
+                    <div class="setting">
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds protection to the watermark string to prevent it from being edited or deleted.">Protect Watermark</span>
+                        <label>
+                            <input type="checkbox" class="filled-in" id="protectwatermark" checked="true"/>
+                            <span></span>
+                        </label>
                     </div>
                 </div>
             </div>
