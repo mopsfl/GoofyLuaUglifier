@@ -241,6 +241,14 @@ ul.dropdown-content.select-dropdown li span {
   height: 1px;
   background-color: #6b6b6b;
 }
+.sidebar-buttons > .seperator.text {
+  height: auto;
+  background-color: transparent;
+  border-bottom: solid 1px #6b6b6b;
+  text-align: center;
+  font-size: 13px;
+  user-select: none;
+}
 .sidebar-title {
   margin-top: 0;
   text-align: center;
