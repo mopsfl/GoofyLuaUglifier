@@ -10,7 +10,6 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script type="module" src="/bower_components/jquery/dist/jquery.min.js"></script>
-        <script type="module" src="https://unpkg.com/string-encode"></script>
         <script type="text/javascript" src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/loader.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
         <script>
@@ -21,13 +20,13 @@
             });
             require(['vs/editor/editor.main'], function (monaco) {
                 var editor = monaco.editor.create(document.querySelector('.monaco'), {
-                    value: `print("Hello", 100, true, false)`,
+                    value: `print("Hello".." World", 100, true, false)`,
                     language: 'lua',
                     theme: 'vs-dark',
                     wordWrap: 'on',
                     wordBreak: 'off',
                     automaticLayout: true,
-                    maxTokenizationLineLength: 1000000,
+                    maxTokenizationLineLength: 1e5,
                     minimap: {
                         enabled: true
                     }
@@ -63,9 +62,9 @@
                         <i class="material-icons center">code_off
                         </i>Add Dead Code</button>
                     <div class="seperator text tooltipped" data-tooltip="Functions that are in work. They might be broken or won't work." data-position="left">
-                        <span>Test Functions</span>
+                        <span>Tester Functions</span>
                     </div>
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="testfunc" data-tooltip="Tries to solve all binary expressions.<br><br>e.g.: <code>(69 / (10*2)) + 100 - 3.45</code> &equals; <code>100</code>" data-position="left">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="solveBinaryExp" data-tooltip="Solves all binary expressions.<br><br>e.g.: <code>(69 / (10*2)) + 100 - 3.45</code> &equals; <code>100</code>" data-position="left">
                         <i class="material-icons center">bug_report
                         </i>solve binaryexp</button>
                     <div class="seperator"></div>
@@ -98,21 +97,22 @@
                 <h4>Settings</h4>
                 <div class="settings-grid">
                     <div class="setting">
-                        <span class="setting-name">checkbox</span>
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Beautifies the output code after the uglification.">Beautify Output</span>
                         <label>
-                            <input type="checkbox" class="filled-in" id="checkbox" checked="true"/>
+                            <input type="checkbox" class="filled-in" id="beautify_output" checked="true"/>
                             <span></span>
                         </label>
                     </div>
                     <div class="setting">
-                        <span class="setting-name">slider</span>
+                        <span class="setting-name">test slider</span>
                         <label class="slider-setting">
                             <p class="range-field">
-                                <input type="range" id="slider" min="0" max="100" value="50"/>
+                                <input type="range" id="test_slider" min="0" max="100" value="50"/>
                             </p>
                             <span class="slider-value" value-type="%"></span>
                         </label>
                     </div>
+                    <div class="seperator"></div>
                     <div class="setting">
                         <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds a watermark to your script. (keep empty to disable)">Watermark</span>
                         <div class="input-field">
@@ -122,16 +122,21 @@
                     <div class="setting">
                         <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds protection to the watermark string to prevent it from being edited or deleted.">Protect Watermark</span>
                         <label>
-                            <input type="checkbox" class="filled-in" id="protectwatermark" checked="true"/>
+                            <input type="checkbox" class="filled-in" id="protect_watermark" checked="true"/>
                             <span></span>
                         </label>
                     </div>
+                    <div class="seperator"></div>
+                    <div class="setting">
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Your Tester access key.<br>Only given to some people.">Tester Access Key</span>
+                        <div class="input-field">
+                            <input placeholder="Tester Access Key" id="tester_access_key" type="password" class="validate">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div
-                class="modal-footer">
-                <!--<button href="#!" class="modal-close waves-red waves-effect btn-flat white-text" id="discard">Discard</button>-->
-                <button href="#!" class="modal-close waves-green waves-effect btn-flat  white-text" id="save">Save</button>
+            <div class="modal-footer">
+                <button href="#!" class="modal-close waves-light waves-effect btn-flat white-text" id="close">Close</button>
             </div>
         </div>
     </body>

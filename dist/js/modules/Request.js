@@ -6,13 +6,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Editor_1 = __importDefault(require("./Editor"));
 const Request_1 = __importDefault(require("./Request"));
 exports.default = {
-    async new(func, code, options) {
+    async new(func, code, options, uglifier_options) {
         if (!(func instanceof (Attr)))
             return Promise.reject("invalid arguments");
         const start_tick = new Date().getTime();
         console.log(`new function request`, func);
         const function_name = func.value;
-        return await fetch(`${options.api_url()}${function_name}`, { method: "POST", body: code }).catch(error => {
+        return await fetch(`${options.api_url()}${function_name}`, { method: "POST", body: code, headers: { "uglifier-options": JSON.stringify(uglifier_options) } }).catch(error => {
             const _error = error;
             Editor_1.default.SetValue(Request_1.default.CreateResponseError("lua", _error.message, Editor_1.default.GetValue()));
             throw error;

@@ -1,6 +1,5 @@
 /**
  * TODO:
- * > finish settings system
  */
 
 import jQuery from "jquery";
@@ -8,6 +7,7 @@ import { Materialbox } from "materialize-css";
 import Request from "./modules/Request";
 import Editor from "./modules/Editor";
 import Settings from "./modules/Settings";
+import LocalStorage from "./modules/LocalStorage";
 import * as self from "./index";
 
 jQuery(() => {
@@ -22,7 +22,7 @@ jQuery(() => {
             self.default.block_requests = true
             Editor.ToggleLoading("Processing")
             const func = e.target.attributes.getNamedItem("data-function"),
-                _response = await Request.new(func, Editor.GetValue(), self.default.options)
+                _response = await Request.new(func, Editor.GetValue(), self.default.options, LocalStorage.GetKey(settings.config.storage_key, "settings"))
 
             if (_response instanceof (Response)) {
                 let _response_body = ""
@@ -39,7 +39,7 @@ jQuery(() => {
     })
 
     window.modules = {
-        jQuery, Request, Editor, self, settings
+        jQuery, Request, Editor, self, settings, LocalStorage
     }
 })
 

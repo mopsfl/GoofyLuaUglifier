@@ -2,13 +2,13 @@ import Editor from "./Editor";
 import Request from "./Request"
 
 export default {
-    async new(func: Attr, code: string, options: RequestOptions): Promise<Response | void> {
+    async new(func: Attr, code: string, options: RequestOptions, uglifier_options?: Object): Promise<Response | void> {
         if (!(func instanceof (Attr))) return Promise.reject("invalid arguments")
         const start_tick = new Date().getTime()
         console.log(`new function request`, func);
         const function_name = func.value
 
-        return await fetch(`${options.api_url()}${function_name}`, { method: "POST", body: code }).catch(error => {
+        return await fetch(`${options.api_url()}${function_name}`, { method: "POST", body: code, headers: { "uglifier-options": JSON.stringify(uglifier_options) } }).catch(error => {
             const _error: Error = error
             Editor.SetValue(Request.CreateResponseError("lua", _error.message, Editor.GetValue()))
             throw error
