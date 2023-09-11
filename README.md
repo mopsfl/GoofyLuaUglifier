@@ -2,4 +2,4 @@
 
 ### Website for GoofyLuaUglifier
 
-##### Production is currently not available. Still in development
+##### currently still in development. means you can't use it rn
