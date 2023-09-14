@@ -49,15 +49,17 @@
                 <div class="sidebar-buttons">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="uglify" data-tooltip="Uglify your script with the default methods." data-position="left">
                         <i class="material-icons center">draw</i>Quick Uglify</button>
-                    <div class="seperator text tooltipped" data-tooltip="Functions that are in work. They might be broken or won't work." data-position="left">
+                    <div class="seperator text tooltipped" data-tooltip="Uglification methods" data-position="left">
                         <span>Methods</span>
                     </div>
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="encryptstrings" data-tooltip="Encrypts string constants.<br><br>e.g.: <code>'Hello'</code> &equals; <code>func('\x5c\x62\x32...')</code>" data-position="left">
-                        <i class="material-icons center">tag</i>Encrypt Strings</button>
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="bytestrings" data-tooltip="Encrypts string constants to encrypted byte strings.<br><br>e.g.: <code>'Hello'</code> &equals; <code>function('\x5c\x62\x32...')</code>" data-position="left">
+                        <i class="material-icons center">tag</i>Bytestrings</button>
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="numberstrings" data-tooltip="Encodes string constants into number tables.<br><br>e.g.: <code>'Hello'</code> &equals; <code>function({{176,4576,832}, {161,3381,2100}, ...})</code>" data-position="left">
+                        <i class="material-icons center">tag</i>Numberstrings</button>
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="transformnums" data-tooltip="Transforms numbers into mathematical expressions.<br><br>e.g.: <code>100</code> &equals; <code>(369 - 169) / 2</code>" data-position="left">
-                        <i class="material-icons center">looks_one</i>Transform Numbers</button>
+                        <i class="material-icons center">looks_one</i>Numbers</button>
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="transformbooleans" data-tooltip="Transforms all booleans into mathematical expressions.<br><br>e.g.: <code>false</code> &equals; <code>100 < ( 100 - 5 )</code>" data-position="left">
-                        <i class="material-icons center">check_box</i>Transform Booleans</button>
+                        <i class="material-icons center">check_box</i>Booleans</button>
                     <div class="seperator text tooltipped" data-tooltip="Functions that are in work. They might be broken or won't work." data-position="left">
                         <span>Tester Functions</span>
                     </div>
@@ -67,7 +69,7 @@
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="deadcode" data-tooltip="Adds random dead code to your script.<br><br>e.g.: <code class='multiline'>...<br>abcdefg = (369 - 169) / 2<br>...</code>" data-position="left">
                         <i class="material-icons center">code_off
                         </i>Add Dead Code</button>
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="constantchunk" data-tooltip="Converts all string constants into a custom byte chunk.<br><br>e.g.: <code>['Hello World', 'Lol']</code> &equals; <code>'MYLXM0...7F8800'</code>" data-position="left">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="constantchunk" data-tooltip="Converts all constants (strings, numbers) into a custom byte chunk.<br><br>e.g.: <code>['Hello World', 'Lol', 69]</code> &equals; <code>'MYLXM0...7F8800'</code>" data-position="left">
                         <i class="material-icons center">feed</i>Constant Chunk</button>
                     <div class="seperator"></div>
                     <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green modal-trigger" href="#settingsmodal" data-tooltip=" Settings" data-position=" left">
@@ -84,7 +86,8 @@
                 <div id="infomodal" class="modal">
                     <div class="modal-content">
                         <h4>Info</h4>
-                        <p>GoofyLuaUglifier is currently only optimized for Lua 5.3+. Any other versions below might not be fully compatible.</p>
+                        <p>GoofyLuaUglifier is currently only optimized for
+                            <b>Lua 5.3</b>. Any other versions below might not be fully compatible.</p>
                     </p>
                 </div>
                 <div class="modal-footer">

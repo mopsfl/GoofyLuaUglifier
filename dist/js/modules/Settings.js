@@ -10,12 +10,11 @@ class Settings {
         storage_key: "_goofyuglifier",
         default_settings: {
             ["settings"]: {
-                ["test_checkbox"]: false,
+                ["beautify_output"]: false,
                 ["test_slider"]: "50",
                 ["watermark"]: "",
                 ["protect_watermark"]: false,
-                ["tester_access_key"]: "",
-                ["beautify_output"]: false,
+                ["tester_access_key"]: ""
             }
         }
     }) {
@@ -32,7 +31,7 @@ class Settings {
                 const [setting_name, setting_id, value] = this.HandleInput(e, setting);
                 this.UpdateSetting(setting_name, setting_id, value);
             });
-            if (_settings[setting_id]) {
+            if (setting_id) {
                 const value = _settings[setting_id];
                 switch (input.type) {
                     case "checkbox":
