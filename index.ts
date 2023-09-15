@@ -8,6 +8,7 @@ import Request from "./modules/Request";
 import Editor from "./modules/Editor";
 import Settings from "./modules/Settings";
 import LocalStorage from "./modules/LocalStorage";
+import QuickActions from "./modules/QuickActions";
 import * as self from "./index";
 
 jQuery(() => {
@@ -15,8 +16,14 @@ jQuery(() => {
     M.AutoInit()
     settings.init()
 
-    const sidebar_buttons = document.querySelectorAll(".function-btn")
-    sidebar_buttons.forEach(btn => {
+    const function_buttons = document.querySelectorAll(".function-btn"),
+        sidebar_buttons = document.querySelectorAll(".sidebar-btn")
+
+    const quick_actions = {
+        ["copy"]: QuickActions.CopyScript
+    }
+
+    function_buttons.forEach(btn => {
         $(btn).on("click", async (e) => {
             if (self.default.block_requests) return
             self.default.block_requests = true
@@ -35,6 +42,17 @@ jQuery(() => {
             }
             Editor.ToggleLoading()
             self.default.block_requests = false
+        })
+    })
+
+    sidebar_buttons.forEach(btn => {
+        $(btn).on("click", async (e) => {
+            const func = e.target.attributes.getNamedItem("data-function").value
+            if (func && quick_actions[func]) {
+                try {
+                    quick_actions[func]()
+                } catch (error) { console.error(`[Quick Action Error]: ${error}`) }
+            }
         })
     })
 
