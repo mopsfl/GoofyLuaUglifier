@@ -2,4 +2,4 @@
 
 ### Website for GoofyLuaUglifier
 
-##### currently still in development. means you can't use it rn
+##### currently still in development. means some things dont work yet or might be broken
