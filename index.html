@@ -20,7 +20,8 @@
             });
             require(['vs/editor/editor.main'], function (monaco) {
                 var editor = monaco.editor.create(document.querySelector('.monaco'), {
-                    value: `print("Hello".." World", 100, true, false)`,
+                    // value: `print("Hello".." World", 100, true, false)`,
+                    value: `print(100, 100-50, true, false, "Hello World")`.trim(),
                     language: 'lua',
                     theme: 'vs-dark',
                     wordWrap: 'on',
@@ -52,9 +53,11 @@
                     </div>
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="uglify" data-tooltip="Uglify your script with the default methods." data-position="left">
                         <i class="material-icons center">draw</i>Quick Uglify</button>
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="minify" data-tooltip="Minifies your script by renaming variables / globals and removing whitespaces." data-position="left">
+                        <i class="material-icons center">close_fullscreen
+                        </i>Minify</button>
                     <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green" data-function="copy" data-tooltip="Copies the current editor script." data-position="left">
                         <i class="material-icons center">content_copy
-
                         </i>Copy</button>
                     <div class="seperator text tooltipped" data-tooltip="Uglification methods" data-position="left">
                         <span>Methods</span>
