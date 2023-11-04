@@ -21,7 +21,7 @@
             require(['vs/editor/editor.main'], function (monaco) {
                 var editor = monaco.editor.create(document.querySelector('.monaco'), {
                     // value: `print("Hello".." World", 100, true, false)`,
-                    value: `print(table.concat({"Hello", " ", "World"}))`.trim(),
+                    value: `print(100, 100-50, true, false, "Hello World", table.concat({"Hello", " ", "World"}))`.trim(),
                     language: 'lua',
                     theme: 'vs-dark',
                     wordWrap: 'on',
