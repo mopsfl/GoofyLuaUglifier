@@ -22,9 +22,9 @@
                 var editor = monaco.editor.create(document.querySelector('.monaco'), {
                     // value: `print("Hello".." World", 100, true, false)`,
                     value: `-- (This is an example script)
-                    
+
 math.randomseed(os.time())
-                    
+
 -- Function to create a new character with randomized stats
 local function createCharacter(name)
     local health = math.random(80, 120)  -- Random health between 80 and 120
@@ -160,11 +160,13 @@ print("nobody won:", false)`.trim(),
                         <i class="material-icons center">content_copy
                         </i>Copy</button>
                         <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green" data-function="download" data-tooltip="Downloads the current editor script." data-position="left">
-                            <i class="material-icons center">download
-                            </i>Download</button>
+                        <i class="material-icons center">download
+                        </i>Download</button>
+
                     <div class="seperator text tooltipped" data-tooltip="Uglification methods" data-position="left">
                         <span>Methods</span>
                     </div>
+
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="bytestrings" data-tooltip="Encrypts string constants to encrypted byte strings.<br><br>e.g.: <code>'Hello'</code> &equals; <code>function('\x5c\x62\x32...')</code>" data-position="left">
                         <i class="material-icons center">tag</i>Bytestrings</button>
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="numberstrings" data-tooltip="Encodes string constants into number tables.<br><br>e.g.: <code>'Hello'</code> &equals; <code>function({{176,4576,832}, {161,3381,2100}, ...})</code>" data-position="left">
@@ -180,11 +182,13 @@ print("nobody won:", false)`.trim(),
                         <i class="material-icons center">looks_two</i>Hex Numbers</button>
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="numbertable" data-tooltip="Converts all numbers into tables containing random numbers.<br><br>e.g.: <code>print(100)</code> &equals; <code>print(table.concat({194+22})-table.concat({94+22}))</code><br><br>(might slow down the script)" data-position="left">
                         <i class="material-icons center">data_object</i>Number Tables</button>
-                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="bracketnumbers" data-tooltip="Puts all number into a random amount of brackets.<br><br>e.g.: <code>69</code> &equals; <code>((((((69))))))</code>" data-position="left">
-                            <i class="material-icons center">data_array</i>Bracket Numbers</button>
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="bracketnumbers" data-tooltip="Puts all number into a random amount of brackets.<br><br>e.g.: <code>69</code> &equals; <code>((((((69))))))</code>" data-position="left">
+                        <i class="material-icons center">data_array</i>Bracket Numbers</button>
+                    
                     <div class="seperator text tooltipped" data-tooltip="Functions that are in work. They might be broken or won't work." data-position="left">
                         <span>Tester Functions</span>
                     </div>
+
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="deadcode" data-tooltip="Adds random dead code to your script.<br><br>e.g.: <code class='multiline'>...<br>abcdefg = (369 - 169) / 2<br>...</code>" data-position="left">
                         <i class="material-icons center">code_off
                         </i>Add Dead Code</button>
@@ -192,9 +196,13 @@ print("nobody won:", false)`.trim(),
                         <i class="material-icons center">feed</i>Constant Chunk</button>
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="glookup" data-tooltip="Makes all global variables get called by <code>_G</code>, wich will hide<br>the actual variable / function, that's being called.<br><br>e.g.: <code>math.randomseed(69)</code> &equals; <code>_G[...][...](69)</code><br><br>(Currently only works with max. 2 index expressions)" data-position="left">
                         <i class="material-icons center">g_mobiledata</i>_G Lookup</button>
-                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="renameidentifiers" data-tooltip="Renames all identifiers to the smallest name possible.<br><br>e.g.: <code class='multiline'>...<br>local test1 = 60<br>local test2 = 69</code> &equals;<br><code class='multiline'>...<br>local a = 60<br>local b = 69<br>...</code>" data-position="left">
-                            <i class="material-icons center">fingerprint</i>Rename Identifiers</button>
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="renameidentifiers" data-tooltip="Renames all identifiers to the smallest name possible.<br><br>e.g.: <code class='multiline'>...<br>local test1 = 60<br>local test2 = 69</code> &equals;<br><code class='multiline'>...<br>local a = 60<br>local b = 69<br>...</code>" data-position="left">
+                        <i class="material-icons center">fingerprint</i>Rename Identifiers</button>
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="tablelennumbers" data-tooltip="Transforms all numbers into emtpy tables using the length of the base table. (does that make sense?) <br><br>e.g.: <code>5</code> &equals; <code>#{{},{},{},{},{}}</code><br><br>(might slow down the script)" data-position="left">
+                        <i class="material-icons center">table_chart</i>Table Len Numbers</button>
+                    
                     <div class="seperator"></div>
+                    
                     <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green modal-trigger" href="#settingsmodal" data-tooltip=" Settings" data-position=" left">
                         <i class="material-icons center">settings
                         </i>Settings</button>

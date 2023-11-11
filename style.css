@@ -61,11 +61,18 @@ main {
 
 .sidebar {
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 10px;
     width: 250px;
     text-align: left;
     background-color: transparent;
     border-left: solid 1px #393939;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
 }
 
 .sidebar-buttons {
