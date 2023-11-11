@@ -20,7 +20,8 @@ jQuery(() => {
         sidebar_buttons = document.querySelectorAll(".sidebar-btn")
 
     const quick_actions = {
-        ["copy"]: QuickActions.CopyScript
+        ["copy"]: QuickActions.CopyScript,
+        ["download"]: QuickActions.Download
     }
 
     function_buttons.forEach(btn => {
