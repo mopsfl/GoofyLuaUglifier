@@ -223,6 +223,13 @@ print("nobody won:", false)`.trim(),
                             <i class="material-icons center">settings</i>
                         </button>
                     </div>
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="tablelennumbers" data-tooltip="Transforms all numbers into tables, containing empty tables and using the length of <br>the base table. (does that make sense?) <br><br>e.g.: <code>5</code> &equals; <code>#{{},{},{},{},{}}</code><br><br>(might slow down the script)" data-position="left">
+                            <i class="material-icons center">table_chart</i>Table Length</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
                     
                     <div class="seperator text tooltipped" data-tooltip="Functions that are in work. They might be broken or won't work." data-position="left">
                         <span>Tester Functions</span>
@@ -236,7 +243,7 @@ print("nobody won:", false)`.trim(),
                         </button>
                     </div>
                     <div class="sidebar-double-button">
-                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="constantchunk" data-tooltip="Converts all constants (strings, numbers, booleans) into some kind of bytecode? but not really<br><br>e.g.: <code>['Hello World', 69, true]</code> &equals; <code>'MYLXM0...7F8800'</code>" data-position="left">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="constantchunk" data-tooltip="Converts all constants (strings, numbers, booleans) into some kind of bytecode? but not really<br><br>e.g.: <code>['Hello World', 69, true]</code> &equals; <code>'A115B7...22B74C'</code>" data-position="left">
                             <i class="material-icons center">feed</i>Constant Chunk</button>
                         <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
                             <i class="material-icons center">settings</i>
@@ -257,15 +264,12 @@ print("nobody won:", false)`.trim(),
                         </button>
                     </div>
                     <div class="sidebar-double-button">
-                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="tablelennumbers" data-tooltip="Transforms all numbers into tables, containing empty tables and using the length of <br>the base table. (does that make sense?) <br><br>e.g.: <code>5</code> &equals; <code>#{{},{},{},{},{}}</code><br><br>(might slow down the script)" data-position="left">
-                            <i class="material-icons center">table_chart</i>Table Length</button>
-                        <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="tablelookup" data-tooltip='Turns all member expression identifiers into an index expression, aka a table lookup.<br><br>e.g.: <code>x.y()</code> &equals; <code>x["y"]()</code>'' data-position="left">
+                            <i class="material-icons center">data_object</i>Table Lookup</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="tablelookup" data-position="left">
                             <i class="material-icons center">settings</i>
                         </button>
                     </div>
-                    
-                    
-                    
                     
                     <div class="seperator"></div>
                     
@@ -341,7 +345,7 @@ print("nobody won:", false)`.trim(),
                     <div class="seperator"></div>
 
                     <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Your Tester access key.<br>Only given to some people.">Tester Access Key</span>
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Your Tester access key.<br>Only given to a few people.">Tester Access Key</span>
                         <div class="input-field">
                             <input placeholder="Tester Access Key" id="tester_access_key" type="password" class="validate">
                         </div>
