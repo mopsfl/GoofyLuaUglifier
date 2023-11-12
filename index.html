@@ -167,39 +167,105 @@ print("nobody won:", false)`.trim(),
                         <span>Methods</span>
                     </div>
 
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="bytestrings" data-tooltip="Encrypts string constants to encrypted byte strings.<br><br>e.g.: <code>'Hello'</code> &equals; <code>function('\x5c\x62\x32...')</code>" data-position="left">
-                        <i class="material-icons center">tag</i>Bytestrings</button>
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="numberstrings" data-tooltip="Encodes string constants into number tables.<br><br>e.g.: <code>'Hello'</code> &equals; <code>function({{176,4576,832}, {161,3381,2100}, ...})</code>" data-position="left">
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="bytestrings" data-tooltip="Encrypts string constants to encrypted byte strings using one key and <code>bit32.bxor</code>.<br><br>e.g.: <code>'Hello'</code> &equals; <code>function('\x5c\x62\x32...')</code>" data-position="left">
+                            <i class="material-icons center">tag</i>Bytestrings</button>
+                            <button class="function-settings btn green waves-effect waves-light" id="bytestrings" data-position="left">
+                                <i class="material-icons center">settings</i>
+                            </button>
+                        </div>
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="numberstrings" data-tooltip="Encodes string constants into number tables that will be decoded by a implemented function.<br><br>e.g.: <code>'Hello'</code> &equals; <code>function({{176,4576,832}, {161,3381,2100}, ...})</code>" data-position="left">
                         <i class="material-icons center">tag</i>Numberstrings</button>
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="transformnums" data-tooltip="Transforms numbers into binary expression.<br><br>e.g.: <code>100</code> &equals; <code>(369 - 169) / 2</code>" data-position="left">
-                        <i class="material-icons center">looks_one</i>Numbers</button>
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="transformbooleans" data-tooltip="Transforms all booleans into binary expressions.<br><br>e.g.: <code>false</code> &equals; <code>100 < ( 100 - 5 )</code>" data-position="left">
-                        <i class="material-icons center">check_box</i>Booleans</button>
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="solveBinaryExp" data-tooltip="Solves all binary expressions.<br><br>e.g.: <code>(69 / (10*2)) + 100 - 3.45</code> &equals; <code>100</code>" data-position="left">
-                        <i class="material-icons center">bug_report
-                        </i>solve binaryexp</button>
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="hexnumbers" data-tooltip="Transforms numbers into hex numbers.<br><br>e.g.: <code>100.123</code> &equals; <code>0x64.1f7ced916874</code><br><br>(Decimal numbers do not work for LuaU)" data-position="left">
-                        <i class="material-icons center">looks_two</i>Hex Numbers</button>
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="numbertable" data-tooltip="Converts all numbers into tables containing random numbers.<br><br>e.g.: <code>print(100)</code> &equals; <code>print(table.concat({194+22})-table.concat({94+22}))</code><br><br>(might slow down the script)" data-position="left">
-                        <i class="material-icons center">data_object</i>Number Tables</button>
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="bracketnumbers" data-tooltip="Puts all number into a random amount of brackets.<br><br>e.g.: <code>69</code> &equals; <code>((((((69))))))</code>" data-position="left">
-                        <i class="material-icons center">data_array</i>Bracket Numbers</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="numberstrings" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="transformnums" data-tooltip="Transforms numbers into binary expression.<br><br>e.g.: <code>100</code> &equals; <code>(369 - 169) / 2</code>" data-position="left">
+                            <i class="material-icons center">looks_one</i>Numbers</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="transformnums" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="transformbooleans" data-tooltip="Transforms all booleans into binary expressions.<br><br>e.g.: <code>false</code> &equals; <code>100 < ( 100 - 5 )</code>" data-position="left">
+                            <i class="material-icons center">check_box</i>Booleans</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="transformbooleans" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="solveBinaryExp" data-tooltip="Solves all binary expressions.<br><br>e.g.: <code>(69 / (10*2)) + 100 - 3.45</code> &equals; <code>100</code>" data-position="left">
+                            <i class="material-icons center">bug_report</i>solve binaryexp</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="solveBinaryExp" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="hexnumbers" data-tooltip="Transforms numbers into hex numbers.<br><br>e.g.: <code>100.123</code> &equals; <code>0x64.1f7ced916874</code><br><br>(Decimal numbers do not work for LuaU)" data-position="left">
+                            <i class="material-icons center">looks_two</i>Hex Numbers</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="hexnumbers" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="numbertable" data-tooltip="Converts all numbers into tables containing random numbers.<br><br>e.g.: <code>print(100)</code> &equals; <code>print(table.concat({194+22})-table.concat({94+22}))</code><br><br>(might slow down the script)" data-position="left">
+                            <i class="material-icons center">data_object</i>Number Tables</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="numbertable" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="bracketnumbers" data-tooltip="Puts all number into a random amount of brackets.<br><br>e.g.: <code>69</code> &equals; <code>((((((69))))))</code>" data-position="left">
+                            <i class="material-icons center">data_array</i>Bracket Numbers</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
                     
                     <div class="seperator text tooltipped" data-tooltip="Functions that are in work. They might be broken or won't work." data-position="left">
                         <span>Tester Functions</span>
                     </div>
 
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="deadcode" data-tooltip="Adds random dead code to your script.<br><br>e.g.: <code class='multiline'>...<br>abcdefg = (369 - 169) / 2<br>...</code>" data-position="left">
-                        <i class="material-icons center">code_off
-                        </i>Add Dead Code</button>
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="constantchunk" data-tooltip="Converts all constants (strings, numbers, booleans) into some kind of bytecode? but not really<br><br>e.g.: <code>['Hello World', 69, true]</code> &equals; <code>'MYLXM0...7F8800'</code>" data-position="left">
-                        <i class="material-icons center">feed</i>Constant Chunk</button>
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="glookup" data-tooltip="Makes all global variables get called by <code>_G</code>, wich will hide<br>the actual variable / function, that's being called.<br><br>e.g.: <code>math.randomseed(69)</code> &equals; <code>_G[...][...](69)</code><br><br>(Currently only works with max. 2 index expressions)" data-position="left">
-                        <i class="material-icons center">g_mobiledata</i>_G Lookup</button>
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="renameidentifiers" data-tooltip="Renames all identifiers to the smallest name possible.<br><br>e.g.: <code class='multiline'>...<br>local test1 = 60<br>local test2 = 69</code> &equals;<br><code class='multiline'>...<br>local a = 60<br>local b = 69<br>...</code>" data-position="left">
-                        <i class="material-icons center">fingerprint</i>Rename Identifiers</button>
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="tablelennumbers" data-tooltip="Transforms all numbers into emtpy tables using the length of the base table. (does that make sense?) <br><br>e.g.: <code>5</code> &equals; <code>#{{},{},{},{},{}}</code><br><br>(might slow down the script)" data-position="left">
-                        <i class="material-icons center">table_chart</i>Table Len Numbers</button>
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="deadcode" data-tooltip="Adds random dead code to your script.<br><br>e.g.: <code class='multiline'>...<br>abcdefg = (369 - 169) / 2<br>...</code>" data-position="left">
+                            <i class="material-icons center">code_off</i>Add Dead Code</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="constantchunk" data-tooltip="Converts all constants (strings, numbers, booleans) into some kind of bytecode? but not really<br><br>e.g.: <code>['Hello World', 69, true]</code> &equals; <code>'MYLXM0...7F8800'</code>" data-position="left">
+                            <i class="material-icons center">feed</i>Constant Chunk</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="glookup" data-tooltip="Makes all global variables get called by <code>_G</code>, wich will hide<br>the actual variable / function, that's being called.<br><br>e.g.: <code>math.randomseed(69)</code> &equals; <code>_G[...][...](69)</code><br><br>(Currently only works with max. 2 index expressions)" data-position="left">
+                            <i class="material-icons center">g_mobiledata</i>_G Lookup</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="renameidentifiers" data-tooltip="Renames all identifiers to the smallest name possible.<br><br>e.g.: <code class='multiline'>...<br>local test1 = 60<br>local test2 = 69</code> &equals;<br><code class='multiline'>...<br>local a = 60<br>local b = 69<br>...</code>" data-position="left">
+                            <i class="material-icons center">fingerprint</i>Identifiers</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="tablelennumbers" data-tooltip="Transforms all numbers into tables, containing empty tables and using the length of <br>the base table. (does that make sense?) <br><br>e.g.: <code>5</code> &equals; <code>#{{},{},{},{},{}}</code><br><br>(might slow down the script)" data-position="left">
+                            <i class="material-icons center">table_chart</i>Table Length</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
+                    
+                    
+                    
                     
                     <div class="seperator"></div>
                     
@@ -209,7 +275,7 @@ print("nobody won:", false)`.trim(),
                 </div>
             </div>
             <!-- Info Modal Button -->
-            <button class="waves-effect waves-light btn-floating modal-trigger btn-small transparent infomodal-openbtn tooltipped" data-position="left" data-tooltip="Info" href="#infomodal">
+            <button class="waves-effect waves-light btn-floating modal-trigger btn-small transparent infomodal-openbtn tooltipped" data-position="right" data-tooltip="Info" href="#infomodal">
                 <i class="material-icons center">info</i>
             </button>
             <!-- Info Modal -->

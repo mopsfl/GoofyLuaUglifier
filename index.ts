@@ -1,5 +1,8 @@
 /**
  * TODO:
+ * quick uglify config
+ * custom configs
+ * method settings
  */
 
 import jQuery from "jquery";
