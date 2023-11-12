@@ -8,6 +8,7 @@ export default class Settings {
                 ["settings"]: {
                     ["beautify_output"]: false,
                     ["test_slider"]: "50",
+                    ["target_lua_version"]: "Lua 5.3",
                     ["watermark"]: "",
                     ["protect_watermark"]: false,
                     ["tester_access_key"]: ""
@@ -26,12 +27,13 @@ export default class Settings {
             const input: HTMLInputElement = setting.querySelector("input"),
                 setting_id = $(input).attr("id")
 
-            input.addEventListener("input", (e) => {
-                const [setting_name, setting_id, value] = this.HandleInput(e, setting)
-                this.UpdateSetting(setting_name, setting_id, value)
-            })
             if (setting_id) {
-                const value = _settings[setting_id]
+                input.addEventListener("input", (e) => {
+                    const [setting_name, setting_id, value] = this.HandleInput(e, setting)
+                    this.UpdateSetting(setting_name, setting_id, value)
+                })
+                let value = _settings[setting_id]
+                if (!value) { value = this.config.default_settings.settings[setting_id]; _settings[setting_id] = value }
                 switch (input.type) {
                     case "checkbox":
                         input.checked = value
@@ -52,13 +54,28 @@ export default class Settings {
                         console.warn(`Invalid input type <${input.type}>`)
                         break;
                 }
+            } else {
+                if (input.classList.contains("select-dropdown")) {
+                    let _dropdown_select = $(input).parent()[0].querySelector("select"),
+                        setting_id = _dropdown_select.getAttribute("id"),
+                        value = _settings[setting_id]
+                    if (!value) { value = this.config.default_settings.settings[setting_id]; _settings[setting_id] = value }
+
+                    input.value = value
+                    _dropdown_select.value = value
+                    _dropdown_select.addEventListener("change", (e) => {
+                        const [setting_name, setting_id, value] = this.HandleInput(e, setting)
+                        this.UpdateSetting(setting_name, setting_id, value)
+                    })
+                }
             }
         })
     }
 
     HandleInput(e: Event, setting: Element): [string, string, boolean | string | number] {
+        console.log(setting);
         const name: HTMLElement = setting.querySelector(".setting-name"),
-            setting_id = $(setting.querySelector("input")).attr("id"),
+            setting_id = $(setting.querySelector("input")).attr("id") || $(setting).children(".select-wrapper").children("select").attr("id"),
             input: HTMLInputElement = setting.querySelector("input")
 
         let new_value: boolean | string | number
@@ -80,5 +97,6 @@ export default class Settings {
 
     UpdateSetting(name: string, id: string, value: boolean | string | number) {
         LocalStorage.Edit(this.config.storage_key, "settings", id, value)
+        console.log(`Saved '${name}' setting to localStorage > ${value}`);
     }
 }

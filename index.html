@@ -178,7 +178,7 @@ print("nobody won:", false)`.trim(),
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="solveBinaryExp" data-tooltip="Solves all binary expressions.<br><br>e.g.: <code>(69 / (10*2)) + 100 - 3.45</code> &equals; <code>100</code>" data-position="left">
                         <i class="material-icons center">bug_report
                         </i>solve binaryexp</button>
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="hexnumbers" data-tooltip="Transforms numbers into hex numbers.<br><br>e.g.: <code>100.123</code> &equals; <code>0x64.1f7ced916874</code>" data-position="left">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="hexnumbers" data-tooltip="Transforms numbers into hex numbers.<br><br>e.g.: <code>100.123</code> &equals; <code>0x64.1f7ced916874</code><br><br>(Decimal numbers do not work for LuaU)" data-position="left">
                         <i class="material-icons center">looks_two</i>Hex Numbers</button>
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="numbertable" data-tooltip="Converts all numbers into tables containing random numbers.<br><br>e.g.: <code>print(100)</code> &equals; <code>print(table.concat({194+22})-table.concat({94+22}))</code><br><br>(might slow down the script)" data-position="left">
                         <i class="material-icons center">data_object</i>Number Tables</button>
@@ -239,7 +239,16 @@ print("nobody won:", false)`.trim(),
                             <span></span>
                         </label>
                     </div>
-                    <div class="setting">
+                    <div class="setting input-field col s12" >
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="For what lua version your script should be optimized for.">Target Lua Version</span>
+                        <select id="target_lua_version">
+                          <option value="0" selected>Lua 5.3</option>
+                          <option value="1">Lua 5.4</option>
+                          <option value="2">LuaU (Roblox)</option>
+                        </select>
+                        <label>Materialize Select</label>
+                      </div>
+                    <!--<div class="setting">
                         <span class="setting-name">test slider</span>
                         <label class="slider-setting">
                             <p class="range-field">
@@ -247,7 +256,7 @@ print("nobody won:", false)`.trim(),
                             </p>
                             <span class="slider-value" value-type="%"></span>
                         </label>
-                    </div>
+                    </div>-->
                     <div class="seperator"></div>
                     <div class="setting">
                         <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds a watermark to your script. (keep empty to disable)">Watermark</span>
@@ -262,7 +271,9 @@ print("nobody won:", false)`.trim(),
                             <span></span>
                         </label>
                     </div>
+
                     <div class="seperator"></div>
+
                     <div class="setting">
                         <span class="setting-name tooltipped" data-position="right" data-tooltip="Your Tester access key.<br>Only given to some people.">Tester Access Key</span>
                         <div class="input-field">

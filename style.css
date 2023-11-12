@@ -179,6 +179,18 @@ body.light~.select-dropdown {
     height: 2.5rem !important;
 }
 
+.setting.input-field>.select-wrapper {
+    margin-left: auto !important;
+}
+
+.setting.input-field {
+    margin-bottom: 5px;
+}
+
+.input-field>label {
+    display: none;
+}
+
 .material-icons {
     margin-right: 5px;
     pointer-events: none;
