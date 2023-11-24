@@ -39,7 +39,10 @@ jQuery(() => {
                 let _response_body = ""
                 if (_response.ok) {
                     _response_body = await _response.text()
-                    Editor.SetValue(_response_body)
+                    const _start_tick_decomp = new Date().getTime()
+                    const _binData = new Uint8Array(atob(_response_body).split('').map(function (x) { return x.charCodeAt(0) }))
+                    Editor.SetValue(String.fromCharCode.apply(null, new Uint16Array(window.pako.inflate(_binData))))
+                    console.log(`Decompressed response. (took ${new Date().getTime() - _start_tick_decomp}ms)`);
                 } else {
                     Editor.SetValue(Request.CreateResponseError("lua", `${_response.statusText} - ${_response.status}`, Editor.GetValue()))
                 }
@@ -84,5 +87,9 @@ declare global {
             str2buffer: Function,
             buffer2str: Function
         },
+        pako: {
+            inflate: Function,
+            ungzip: Function,
+        }
     }
 }
