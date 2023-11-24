@@ -33,14 +33,15 @@ jQuery(() => {
             self.default.block_requests = true
             Editor.ToggleLoading("Processing")
             const func = e.target.attributes.getNamedItem("data-function"),
-                _response = await Request.new(func, Editor.GetValue(), self.default.options, LocalStorage.GetKey(settings.config.storage_key, "settings"))
+                _response = await Request.new(func, btoa(String.fromCharCode.apply(null, new Uint16Array(window.pako.gzip(Editor.GetValue())))), self.default.options, LocalStorage.GetKey(settings.config.storage_key, "settings"))
 
             if (_response instanceof (Response)) {
                 let _response_body = ""
                 if (_response.ok) {
                     _response_body = await _response.text()
-                    const _start_tick_decomp = new Date().getTime()
-                    const _binData = new Uint8Array(atob(_response_body).split('').map(function (x) { return x.charCodeAt(0) }))
+                    const _start_tick_decomp = new Date().getTime(),
+                        _binData = new Uint8Array(atob(_response_body).split('').map(function (x) { return x.charCodeAt(0) }))
+                    console.log(_binData);
                     Editor.SetValue(String.fromCharCode.apply(null, new Uint16Array(window.pako.inflate(_binData))))
                     console.log(`Decompressed response. (took ${new Date().getTime() - _start_tick_decomp}ms)`);
                 } else {
@@ -89,6 +90,8 @@ declare global {
         },
         pako: {
             inflate: Function,
+            deflate: Function,
+            gzip: Function,
             ungzip: Function,
         }
     }
