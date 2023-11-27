@@ -5,7 +5,6 @@
 - improved & fixed error handling
 - implemented TableKeyStrings to <code>TableLookup</code> method <code>{ index: ... } > { ["index"]: ... }</code>
 - improved settings handler
-- 
 
 ## 12.11.2023:
 - Added new setting for lua version support, that optimizes small things for the chosen version (such as LuaU for roblox)
