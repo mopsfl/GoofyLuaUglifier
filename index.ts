@@ -41,7 +41,7 @@ jQuery(() => {
                     _response_body = await _response.text()
                     const _start_tick_decomp = new Date().getTime(),
                         _binData = new Uint8Array(atob(_response_body).split('').map(function (x) { return x.charCodeAt(0) }))
-                    console.log(_binData);
+                    console.log(_binData, _binData.buffer);
                     Editor.SetValue(String.fromCharCode.apply(null, new Uint16Array(window.pako.inflate(_binData))))
                     console.log(`Decompressed response. (took ${new Date().getTime() - _start_tick_decomp}ms)`);
                 } else {
