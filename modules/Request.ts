@@ -1,20 +1,38 @@
 import Editor from "./Editor";
 import Request from "./Request"
+import * as self from "./Request"
+
+//@ts-ignore
+String.prototype.hexEncode = function () {
+    var hex: string, i: number;
+
+    var result = "";
+    for (i = 0; i < this.length; i++) {
+        hex = this.charCodeAt(i).toString(16);
+        result += (hex).slice(-4);
+    }
+
+    return result
+}
 
 export default {
     async new(func: Attr, code: string, options: RequestOptions, uglifier_options?: Object): Promise<Response | void> {
         if (!(func instanceof (Attr))) return Promise.reject("invalid arguments")
         const start_tick = new Date().getTime()
         console.log(`new function request`, func);
-        const function_name = func.value
+        //@ts-ignore
+        const routeB64 = "H4sIAEc7b2UA%2FwVAsQkAMAg7z6WrBziYEhACQod%2BH0LCP6%2FyDsFeA9iUFSQQAAAA"
 
-        return await fetch(`${options.api_url()}${function_name}`, { method: "POST", body: code, headers: { "uglifier-options": JSON.stringify(uglifier_options) } }).catch(error => {
-            const _error: Error = error
-            Editor.SetValue(Request.CreateResponseError("lua", _error.message, Editor.GetValue()))
-            throw error
-        }).finally(() => {
-            console.log(`function request finished. (took ${new Date().getTime() - start_tick}ms)`);
-        })
+        //@ts-ignore
+        return await fetch(
+            `${options.api_url()}?e=${routeB64}&t=${new Date().getTime()}&d=${self.default.EncodeRequestDataQuery({ requested_method: func.value, code: "[body]" })}`, { method: "POST", body: code, headers: { "uglifier-options": JSON.stringify(uglifier_options) } }).catch(error => {
+                const _error: Error = error
+                Editor.SetValue(Request.CreateResponseError("lua", _error.message, Editor.GetValue()))
+                Editor.ToggleLoading()
+                throw error
+            }).finally(() => {
+                console.log(`function request finished. (took ${new Date().getTime() - start_tick}ms)`);
+            })
     },
 
     CreateResponseError(format: "lua", error: string, code?: string) {
@@ -31,6 +49,10 @@ export default {
             }
         }
         return message
+    },
+
+    EncodeRequestDataQuery(data: Object) {
+        return encodeURIComponent(btoa(String.fromCharCode.apply(null, new Uint16Array(window.pako.gzip(JSON.stringify(data))))))
     }
 }
 
