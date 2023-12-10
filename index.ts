@@ -72,7 +72,7 @@ jQuery(() => {
 export default {
     block_requests: false,
     options: {
-        api_url: () => (location.hostname == "localhost" && !window.forceProduction) ? "http://localhost:6969/api/GoofyLuaUglifier/" : "https://mopsflgithubio.mopsfl.repl.co/api/goofyuglifier/"
+        api_url: () => (location.hostname == "localhost" && !window.forceProduction) ? "http://localhost:6969/api/GoofyLuaUglifier/" : "https://mopsflgithubio.mopsfl.repl.co/api/GoofyLuaUglifier/"
     }
 }
 
