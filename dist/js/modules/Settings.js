@@ -13,6 +13,8 @@ class Settings {
                 ["beautify_output"]: false,
                 ["test_slider"]: "50",
                 ["target_lua_version"]: "Lua 5.3",
+                ["ignore_bytecode"]: false,
+                ["ignore_bytestring"]: true,
                 ["watermark"]: "",
                 ["protect_watermark"]: false,
                 ["tester_access_key"]: ""
@@ -34,9 +36,11 @@ class Settings {
                     this.UpdateSetting(setting_name, setting_id, value);
                 });
                 let value = _settings[setting_id];
-                if (!value) {
+                if (value === undefined) {
                     value = this.config.default_settings.settings[setting_id];
                     _settings[setting_id] = value;
+                    this.UpdateSetting(setting_id, setting_id, value);
+                    console.warn(`[Settings]: added missing setting > ${setting_id} = ${_settings[setting_id]}`);
                 }
                 switch (input.type) {
                     case "checkbox":
@@ -61,9 +65,10 @@ class Settings {
             else {
                 if (input.classList.contains("select-dropdown")) {
                     let _dropdown_select = $(input).parent()[0].querySelector("select"), setting_id = _dropdown_select.getAttribute("id"), value = _settings[setting_id];
-                    if (!value) {
+                    if (value === undefined) {
                         value = this.config.default_settings.settings[setting_id];
                         _settings[setting_id] = value;
+                        console.warn(`[Settings]: added missing setting > ${setting_id}`);
                     }
                     input.value = value;
                     _dropdown_select.value = value;

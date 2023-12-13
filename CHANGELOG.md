@@ -1,3 +1,10 @@
+## 13.12.2023
+- new settings > <code>Ignore Bytecode</code> & <code>Ignore Bytestring</code>
+- added multiple values for <code>TableLenNumbers</code>
+- fixed client decompression broke at specific chunk size
+- improved client decompression error handler
+- other small bug fixes & changes
+
 ## 28.11.2023:
 - implemented response compression (gzip)
 - added local function definitions for uglifier functions (i think thats how it's called)

@@ -18,5 +18,9 @@ exports.default = {
         document.querySelector(".main").classList.toggle("blur");
         loadingTextElement.innerText = `${loadingText}...`;
         loadingTextElement.classList.toggle("hide");
+    },
+    SetLoadingText(loadingText = "Loading") {
+        const loadingTextElement = document.querySelector(".loadingtext");
+        loadingTextElement.innerText = `${loadingText}...`;
     }
 };

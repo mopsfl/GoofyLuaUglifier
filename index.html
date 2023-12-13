@@ -330,8 +330,26 @@ print("nobody won:", false)`.trim(),
                         </label>
                     </div>-->
                     <div class="seperator"></div>
+
                     <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds a watermark to your script. (keep empty to disable)">Watermark</span>
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Ignore any Bytecode like string. (e.g. string encryption)">Ignore Bytecode</span>
+                        <label>
+                            <input type="checkbox" class="filled-in" id="ignore_bytecode" checked="false"/>
+                            <span></span>
+                        </label>
+                    </div>
+                    <div class="setting">
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Ignore any encrypted byte like string. (e.g. bytestring encryption)">Ignore Bytestring</span>
+                        <label>
+                            <input type="checkbox" class="filled-in" id="ignore_bytestring" checked="false"/>
+                            <span></span>
+                        </label>
+                    </div>
+
+                    <div class="seperator"></div>
+
+                    <div class="setting">
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds a watermark to your script. (keep empty to disable)<br><br><b>! This is buggy and not finished yet !</b>">Watermark</span>
                         <div class="input-field">
                             <input placeholder="Watermark" id="watermark" type="text" class="validate">
                         </div>

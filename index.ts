@@ -27,6 +27,7 @@ jQuery(() => {
         ["download"]: QuickActions.Download
     }
 
+    console.log(window.pako);
     function_buttons.forEach(btn => {
         $(btn).on("click", async (e) => {
             if (self.default.block_requests) return
@@ -41,9 +42,14 @@ jQuery(() => {
                     _response_body = await _response.text()
                     const _start_tick_decomp = new Date().getTime(),
                         _binData = new Uint8Array(atob(_response_body).split('').map(function (x) { return x.charCodeAt(0) }))
-                    console.log(_binData, _binData.buffer);
-                    Editor.SetValue(String.fromCharCode.apply(null, new Uint16Array(window.pako.inflate(_binData))))
-                    console.log(`Decompressed response. (took ${new Date().getTime() - _start_tick_decomp}ms)`);
+                    try {
+                        console.log(_binData, _binData.buffer);
+                        Editor.SetValue(Utf8ArrayToStr(window.pako.inflate(_binData)))
+                        console.log(`Decompressed response. (took ${new Date().getTime() - _start_tick_decomp}ms)`);
+                    } catch (error) {
+                        console.error(`[Decompression Error]: `, error)
+                        Editor.SetValue(Request.CreateResponseError("lua", `${error.message} - Decompression Error`, Editor.GetValue()))
+                    }
                 } else {
                     Editor.SetValue(Request.CreateResponseError("lua", `${_response.statusText} - ${_response.status}`, Editor.GetValue()))
                 }
@@ -68,6 +74,36 @@ jQuery(() => {
         jQuery, Request, Editor, self, settings, LocalStorage
     }
 })
+
+function Utf8ArrayToStr(array) {
+    var out, i, len, c;
+    var char2, char3;
+
+    out = "";
+    len = array.length;
+    i = 0;
+    while (i < len) {
+        c = array[i++];
+        switch (c >> 4) {
+            case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
+                out += String.fromCharCode(c);
+                break;
+            case 12: case 13:
+                char2 = array[i++];
+                out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
+                break;
+            case 14:
+                char2 = array[i++];
+                char3 = array[i++];
+                out += String.fromCharCode(((c & 0x0F) << 12) |
+                    ((char2 & 0x3F) << 6) |
+                    ((char3 & 0x3F) << 0));
+                break;
+        }
+    }
+
+    return out;
+}
 
 export default {
     block_requests: false,

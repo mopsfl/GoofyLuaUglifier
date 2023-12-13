@@ -9,9 +9,9 @@ exports.default = {
         await navigator.clipboard.writeText(Editor_1.default.GetValue() || "");
         return console.log(`Copied editor content to clipboard.`);
     },
-    Download() {
+    Download(content) {
         var element = document.createElement('a');
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(Editor_1.default.GetValue() || ""));
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(!content ? Editor_1.default.GetValue() : content || ""));
         element.setAttribute('download', `GoofyLuaUglifier_${new Date().getTime()}.lua`);
         element.style.display = 'none';
         document.body.appendChild(element);
