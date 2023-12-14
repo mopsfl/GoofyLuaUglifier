@@ -1,7 +1,8 @@
 # GoofyLuaUglifier - Website
 
-### Website for GoofyLuaUglifier
+### Known Issues:
+- LOADK very slow when using default methods
 
-##### currently still in development. means some things dont work yet or might be broken
+###### Still in development, means some things dont work yet or might be broken!
+###### The source code of the actual uglifier is not open source. Maybe I'll make it in the future.
 
-##### the source code of the actual uglifier is not open source. maybe i'll make it in the future
