@@ -1,3 +1,7 @@
+## 14.12.2023
+- fixed glookup breaking colon functions aka ignoring it (e.G. <code>func:x()</code>)
+- added tester function <code>Control Flow</code> (in work)
+
 ## 13.12.2023
 - new settings > <code>Ignore Bytecode</code> & <code>Ignore Bytestring</code>
 - added multiple values for <code>TableLenNumbers</code>
