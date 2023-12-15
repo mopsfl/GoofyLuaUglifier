@@ -1,6 +1,7 @@
 ## 15.12.2023
 - updated <code>Control Flow</code> (still very bugy and testers only)
 - added reset settings button
+- <code>Constant Chunk</code> now ignores <code>boolean</code> & <code>number</code> duplicates
 - 
 
 ## 14.12.2023
