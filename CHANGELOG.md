@@ -1,3 +1,8 @@
+## 15.12.2023
+- updated <code>Control Flow</code> (still very bugy and testers only)
+- added reset settings button
+- 
+
 ## 14.12.2023
 - fixed glookup breaking colon functions aka ignoring it (e.G. <code>func:x()</code>)
 - added tester function <code>Control Flow</code> (in work)
