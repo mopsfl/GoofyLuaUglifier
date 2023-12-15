@@ -27,5 +27,9 @@ export default {
 
     Exists(key: string) {
         return localStorage.getItem(key)
+    },
+
+    Clear(key: string) {
+        return localStorage.removeItem(key)
     }
 }

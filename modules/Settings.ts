@@ -8,7 +8,7 @@ export default class Settings {
                 ["settings"]: {
                     ["beautify_output"]: false,
                     ["test_slider"]: "50",
-                    ["target_lua_version"]: "Lua 5.3",
+                    ["target_lua_version"]: "5.3",
                     ["ignore_bytecode"]: false,
                     ["ignore_bytestring"]: true,
                     ["watermark"]: "",
@@ -23,8 +23,15 @@ export default class Settings {
         }
     }
 
-    init() {
-        const _settings = LocalStorage.GetKey(this.config.storage_key, "settings")
+    init(reset?: boolean) {
+        let _settings: any
+
+        if (reset) {
+            LocalStorage.Clear(this.config.storage_key)
+            LocalStorage.Create(this.config.storage_key, this.config.default_settings)
+        }
+
+        _settings = LocalStorage.GetKey(this.config.storage_key, "settings")
         document.querySelectorAll(".setting").forEach(setting => {
             const input: HTMLInputElement = setting.querySelector("input"),
                 setting_id = $(input).attr("id")
@@ -80,6 +87,11 @@ export default class Settings {
                     })
                 }
             }
+        })
+
+        document.querySelector("#resetdefault").addEventListener("click", (e) => {
+            this.init(true)
+            console.log("Reseted settings to default", this.config.default_settings);
         })
     }
 

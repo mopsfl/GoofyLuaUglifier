@@ -50,5 +50,8 @@ exports.default = {
     },
     Exists(key) {
         return localStorage.getItem(key);
+    },
+    Clear(key) {
+        return localStorage.removeItem(key);
     }
 };

@@ -12,7 +12,7 @@ class Settings {
             ["settings"]: {
                 ["beautify_output"]: false,
                 ["test_slider"]: "50",
-                ["target_lua_version"]: "Lua 5.3",
+                ["target_lua_version"]: "5.3",
                 ["ignore_bytecode"]: false,
                 ["ignore_bytestring"]: true,
                 ["watermark"]: "",
@@ -26,8 +26,13 @@ class Settings {
             LocalStorage_1.default.Create(this.config.storage_key, this.config.default_settings);
         }
     }
-    init() {
-        const _settings = LocalStorage_1.default.GetKey(this.config.storage_key, "settings");
+    init(reset) {
+        let _settings;
+        if (reset) {
+            LocalStorage_1.default.Clear(this.config.storage_key);
+            LocalStorage_1.default.Create(this.config.storage_key, this.config.default_settings);
+        }
+        _settings = LocalStorage_1.default.GetKey(this.config.storage_key, "settings");
         document.querySelectorAll(".setting").forEach(setting => {
             const input = setting.querySelector("input"), setting_id = $(input).attr("id");
             if (setting_id) {
@@ -78,6 +83,10 @@ class Settings {
                     });
                 }
             }
+        });
+        document.querySelector("#resetdefault").addEventListener("click", (e) => {
+            this.init(true);
+            console.log("Reseted settings to default", this.config.default_settings);
         });
     }
     HandleInput(e, setting) {

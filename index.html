@@ -23,22 +23,31 @@
             require(['vs/editor/editor.main'], function (monaco) {
                 var editor = monaco.editor.create(document.querySelector('.monaco'), {
                     // value: `print("Hello".." World", 100, true, false)`,
-                    value: `function test()
+                    value: `function test(callback)
+  local _table = {}
   for i = 1, 5 do
-      print(i)
+      table.insert(_table, i)
   end
   for i = 6, 10 do
-      print(i)
+      table.insert(_table, i)
   end
   for i = 11, 50 do
-      print(i)
+      table.insert(_table, i)
   end
   for i = 51, 100 do
-      print(i)
+      table.insert(_table, i)
   end
+  
+  for _,v in pairs(_table) do print(_,v) end
+
+  callback()
 end
 
-test()`.trim(),
+function test2()
+  print("done")
+end
+
+test(test2)`.trim(),
                     language: 'lua',
                     theme: 'vs-dark',
                     wordWrap: 'on',
@@ -243,9 +252,9 @@ test()`.trim(),
                     <div class="setting input-field col s12" >
                         <span class="setting-name tooltipped" data-position="right" data-tooltip="For what lua version your script should be optimized for.">Target Lua Version</span>
                         <select id="target_lua_version">
-                          <option value="0" selected>Lua 5.3</option>
-                          <option value="1">Lua 5.4</option>
-                          <option value="2">LuaU (Roblox)</option>
+                          <option value="0" selected>5.3</option>
+                          <option value="1">5.4</option>
+                          <option value="2">LuaU</option>
                         </select>
                         <label>Materialize Select</label>
                       </div>
@@ -302,6 +311,7 @@ test()`.trim(),
                 </div>
             </div>
             <div class="modal-footer">
+                <button href="#!" class="waves-red waves-effect btn-flat red-text tooltipped" id="resetdefault" data-position="top" data-tooltip="Resets all settings to default. (This may fix some errors)">Reset to Default</button>
                 <button href="#!" class="modal-close waves-light waves-effect btn-flat white-text" id="close">Close</button>
             </div>
         </div>
