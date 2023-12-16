@@ -1,8 +1,12 @@
+## 16.12.2023
+- added new setting <code>Rename Global Functions</code> (default: <code>false</code>)
+- <code>Identifiers</code> method now can rename functions but it needs to be enabled in settings first
+- rewrote <code>Identifiers</code> logic & fixed non local function variable renaming (<code>local x = function() ... end</code>)
+
 ## 15.12.2023
 - updated <code>Control Flow</code> (still very bugy and testers only)
 - added reset settings button
 - <code>Constant Chunk</code> now ignores <code>boolean</code> & <code>number</code> duplicates
-- 
 
 ## 14.12.2023
 - fixed glookup breaking colon functions aka ignoring it (e.G. <code>func:x()</code>)
