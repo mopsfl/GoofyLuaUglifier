@@ -17,7 +17,8 @@ class Settings {
                 ["ignore_bytestring"]: true,
                 ["watermark"]: "",
                 ["protect_watermark"]: false,
-                ["tester_access_key"]: ""
+                ["tester_access_key"]: "",
+                ["rename_global_functions"]: false,
             }
         }
     }) {

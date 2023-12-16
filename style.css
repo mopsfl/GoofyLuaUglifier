@@ -123,6 +123,10 @@ main {
     z-index: 99;
 }
 
+.material-tooltip {
+    line-height: 140% !important;
+}
+
 .tooltip {
     overflow: hidden;
     font-size: 25px;

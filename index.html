@@ -23,31 +23,16 @@
             require(['vs/editor/editor.main'], function (monaco) {
                 var editor = monaco.editor.create(document.querySelector('.monaco'), {
                     // value: `print("Hello".." World", 100, true, false)`,
-                    value: `function test(callback)
+                    value: `function test()
   local _table = {}
   for i = 1, 5 do
       table.insert(_table, i)
   end
-  for i = 6, 10 do
-      table.insert(_table, i)
-  end
-  for i = 11, 50 do
-      table.insert(_table, i)
-  end
-  for i = 51, 100 do
-      table.insert(_table, i)
-  end
   
   for _,v in pairs(_table) do print(_,v) end
-
-  callback()
 end
 
-function test2()
-  print("done")
-end
-
-test(test2)`.trim(),
+test()`.trim(),
                     language: 'lua',
                     theme: 'vs-dark',
                     wordWrap: 'on',
@@ -79,7 +64,7 @@ test(test2)`.trim(),
                     </div>
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="uglify" data-tooltip="Uglify your script with the default methods." data-position="left">
                         <i class="material-icons center">draw</i>Quick Uglify</button>
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="minify" data-tooltip="Minifies your script by renaming variables / globals and removing whitespaces.<br><br>(Using <code>luamin.js</code> package)" data-position="left">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="minify" data-tooltip="Minifies your script by renaming variables / globals and removing whitespaces.<br>It is recommended to use <code>Identifiers</code> instead of this.<br><br>(Using <code>luamin.js</code> package)" data-position="left">
                         <i class="material-icons center">close_fullscreen
                         </i>Minify</button>
                     <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green" data-function="copy" data-tooltip="Copies the current editor script." data-position="left">
@@ -213,7 +198,7 @@ test(test2)`.trim(),
                     
                     <div class="seperator"></div>
                     
-                    <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green modal-trigger" href="#settingsmodal" data-tooltip=" Settings" data-position=" left">
+                    <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green modal-trigger" href="#settingsmodal" data-tooltip=" Settings" data-position="left">
                         <i class="material-icons center">settings
                         </i>Settings</button>
                 </div>
@@ -280,6 +265,16 @@ test(test2)`.trim(),
                         <span class="setting-name tooltipped" data-position="right" data-tooltip="Ignore any encrypted byte like string. (e.g. bytestring encryption)">Ignore Bytestring</span>
                         <label>
                             <input type="checkbox" class="filled-in" id="ignore_bytestring" checked="false"/>
+                            <span></span>
+                        </label>
+                    </div>
+
+                    <div class="seperator"></div>
+
+                    <div class="setting">
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="If global function names should be renamed by the <code>Identifiers</code> method.<br><br>Turning this on, might break the script when using string encryptions & GLookup!">Rename Global Variables</span>
+                        <label>
+                            <input type="checkbox" class="filled-in" id="rename_global_functions" checked="false"/>
                             <span></span>
                         </label>
                     </div>
