@@ -24,15 +24,22 @@
                 var editor = monaco.editor.create(document.querySelector('.monaco'), {
                     // value: `print("Hello".." World", 100, true, false)`,
                     value: `function test()
-  local _table = {}
-  for i = 1, 5 do
-      table.insert(_table, i)
-  end
-  
-  for _,v in pairs(_table) do print(_,v) end
+    print("Test 1")
 end
 
-test()`.trim(),
+test()
+
+function test2()
+    print("Test 2")
+end
+
+test2()
+
+function test3()
+    print("Test 3")
+end
+
+test3()`.trim(),
                     language: 'lua',
                     theme: 'vs-dark',
                     wordWrap: 'on',
@@ -189,8 +196,22 @@ test()`.trim(),
                         </button>
                     </div>
                     <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="functiontransform" data-tooltip='Puts all functions into a table and gets defined by an <code>IndexExpression</code>, to hide its name.<br>(not working when used _GLookup first)<br><br>e.g.: <code class="multiline">function x() print("69") end<br>x()</code> &equals;<br><code class="multiline">local a = {}<br>a["x"] = function() print("69") end<br><br>a["x"]()</code>' data-position="left">
+                            <i class="material-icons center">functions</i>Function</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
+                    <div class="sidebar-double-button">
                         <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="test_a1f3f945673de" data-tooltip="testing function: <code>a1f3f945673de</code>" data-position="left">
-                            Test</button>
+                            TLN Solver Test</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="test_aed2bdfc69f" data-tooltip="testing function: <code>aed2bdfc69f</code>" data-position="left">
+                            CFF Solver Test</button>
                         <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
                             <i class="material-icons center">settings</i>
                         </button>
