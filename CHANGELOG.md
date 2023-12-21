@@ -1,3 +1,7 @@
+## 21.12.2023
+- fixed <code>Identifiers</code> breaking CChunk & string encode methods 
+- added new tester method <code>Function</code>. Transforms functions into table index? (<code>function x() print("69") end x()</code> > <code>local a = {} a["x"] = function() print("69") end a\["x"]()</code>)
+
 ## 16.12.2023
 - added new setting <code>Rename Global Functions</code> (default: <code>false</code>)
 - <code>Identifiers</code> method now can rename functions but it needs to be enabled in settings first
