@@ -1,3 +1,11 @@
+## 22.12.2023
+- fixed <code>Constant Chunk</code> breaking on empty strings (e.g: <code>print("")</code>)
+- fixed <code>Dead Code</code> being very slow on bigger scripts
+- <code>Control Flow</code> can now be used 2 times. Using it more than 2 times, will break it. (full fix in future)
+- fixed <code>Control Flow</code> adding 2 <code>BreakStatements</code> in a single <code>IfStatement</code>
+- added new setting <code>Table Length Number Rate</code> to modify the size of table values for the <code>Table Length</code> method
+- fixed <code>DeadCode</code> being added under <code>ReturnStatements</code> & <code>BreakStatements</code>
+
 ## 21.12.2023
 - fixed <code>Identifiers</code> breaking CChunk & string encode methods 
 - added new tester method <code>Function</code>. Transforms functions into table index? (<code>function x() print("69") end x()</code> > <code>local a = {} a["x"] = function() print("69") end a\["x"]()</code>)
@@ -14,7 +22,7 @@
 
 ## 14.12.2023
 - fixed glookup breaking colon functions aka ignoring it (e.G. <code>func:x()</code>)
-- added tester function <code>Control Flow</code> (in work)
+- added tester method <code>Control Flow</code> (in work)
 
 ## 13.12.2023
 - new settings > <code>Ignore Bytecode</code> & <code>Ignore Bytestring</code>
@@ -26,7 +34,7 @@
 ## 28.11.2023:
 - implemented response compression (gzip)
 - added local function definitions for uglifier functions (i think thats how it's called)
-- updated default uglifier functions (quick uglify)
+- updated default uglifier methods (quick uglify)
 - improved & fixed error handling
 - implemented TableKeyStrings to <code>TableLookup</code> method <code>{ index: ... } > { ["index"]: ... }</code>
 - improved settings handler
