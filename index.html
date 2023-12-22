@@ -99,6 +99,7 @@ test3()`.trim(),
                             <i class="material-icons center">settings</i>
                         </button>
                     </div>
+                    <div class="seperator"></div>
                     <div class="sidebar-double-button">
                         <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="transformnums" data-tooltip="Transforms numbers into binary expression.<br><br>e.g.: <code>100</code> &equals; <code>(369 - 169) / 2</code>" data-position="left">
                             <i class="material-icons center">looks_one</i>Numbers</button>
@@ -114,9 +115,9 @@ test3()`.trim(),
                         </button>
                     </div>
                     <div class="sidebar-double-button">
-                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="solveBinaryExp" data-tooltip="Solves all binary expressions.<br><br>e.g.: <code>(69 / (10*2)) + 100 - 3.45</code> &equals; <code>100</code>" data-position="left">
-                            <i class="material-icons center">bug_report</i>solve binaryexp</button>
-                        <button class="function-settings btn green waves-effect waves-light" id="solveBinaryExp" data-position="left">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="functiontransform" data-tooltip='Puts all functions into a table and gets defined by an <code>IndexExpression</code>, to hide its name.<br>(not working when used _GLookup first)<br><br>e.g.: <code class="multiline">function x() print("69") end<br>x()</code> &equals;<br><code class="multiline">local a = {}<br>a["x"] = function() print("69") end<br><br>a["x"]()</code>' data-position="left">
+                            <i class="material-icons center">functions</i>Functions</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
                             <i class="material-icons center">settings</i>
                         </button>
                     </div>
@@ -127,6 +128,17 @@ test3()`.trim(),
                             <i class="material-icons center">settings</i>
                         </button>
                     </div>
+
+                    <div class="seperator"></div>
+
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="solveBinaryExp" data-tooltip="Solves all binary expressions.<br><br>e.g.: <code>(69 / (10*2)) + 100 - 3.45</code> &equals; <code>100</code>" data-position="left">
+                            <i class="material-icons center">bug_report</i>solve binaryexp</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="solveBinaryExp" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
+                    
                     <div class="sidebar-double-button">
                         <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="numbertable" data-tooltip="Converts all numbers into tables containing random numbers.<br><br>e.g.: <code>print(100)</code> &equals; <code>print(table.concat({194+22})-table.concat({94+22}))</code><br><br>(might slow down the script)" data-position="left">
                             <i class="material-icons center">data_object</i>Number Tables</button>
@@ -148,6 +160,9 @@ test3()`.trim(),
                             <i class="material-icons center">settings</i>
                         </button>
                     </div>
+                    
+                    <div class="seperator"></div>
+
                     <div class="sidebar-double-button">
                         <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="tablelookup" data-tooltip='Turns all member expression identifiers into an index expression, aka a table lookup.<br><br>e.g.: <code>math.randomseed(69)</code> &equals; <code>math["randomseed"](69)</code><br>or<br>e.g.: <code>{ index: ... }</code> &equals; <code>{ ["index"]: ... }</code>' data-position="left">
                             <i class="material-icons center">data_object</i>Table Lookup</button>
@@ -191,13 +206,6 @@ test3()`.trim(),
                     <div class="sidebar-double-button">
                         <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="controlflow" data-tooltip="controlflow<br><br>currently only works for <code>ForNumericStatements</code>" data-position="left">
                             <i class="material-icons center">quiz</i>Control Flow</button>
-                        <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
-                            <i class="material-icons center">settings</i>
-                        </button>
-                    </div>
-                    <div class="sidebar-double-button">
-                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="functiontransform" data-tooltip='Puts all functions into a table and gets defined by an <code>IndexExpression</code>, to hide its name.<br>(not working when used _GLookup first)<br><br>e.g.: <code class="multiline">function x() print("69") end<br>x()</code> &equals;<br><code class="multiline">local a = {}<br>a["x"] = function() print("69") end<br><br>a["x"]()</code>' data-position="left">
-                            <i class="material-icons center">functions</i>Function</button>
                         <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
                             <i class="material-icons center">settings</i>
                         </button>
@@ -297,6 +305,18 @@ test3()`.trim(),
                         <label>
                             <input type="checkbox" class="filled-in" id="rename_global_functions" checked="false"/>
                             <span></span>
+                        </label>
+                    </div>
+
+                    <div class="seperator"></div>
+
+                    <div class="setting">
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Rate of the random table values for the <code>Table Length</code> method.">Table Length Number Rate</span>
+                        <label class="slider-setting">
+                            <p class="range-field">
+                                <input type="range" id="table_length_number_rate" min="0" max="100" value="25"/>
+                            </p>
+                            <span class="slider-value" value-type="%"></span>
                         </label>
                     </div>
 

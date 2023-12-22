@@ -19,6 +19,7 @@ class Settings {
                 ["protect_watermark"]: false,
                 ["tester_access_key"]: "",
                 ["rename_global_functions"]: false,
+                ["table_length_number_rate"]: 25
             }
         }
     }) {
