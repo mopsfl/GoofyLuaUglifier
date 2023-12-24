@@ -1,5 +1,8 @@
 ## 24.12.2023
 - <code>Table Lookup</code> now transforms <code>Colon Functions</code> for object-oriented calls
+- <code>CChunk</code> now supports Byte Strings. still has to be enabled in the settings! (e.g.: <code>"\x5c\x78\x64\x38\x5c\x78\x66\x63"</code>)
+- temporary disabled <code>Dead Code</code> random recursion (performance issues)
+- added variable check for <code>Number Tables</code> to prevent duplicates
 
 ## 22.12.2023
 - fixed <code>Constant Chunk</code> breaking on empty strings (e.g: <code>print("")</code>)
