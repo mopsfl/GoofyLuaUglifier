@@ -24,22 +24,9 @@
                 var editor = monaco.editor.create(document.querySelector('.monaco'), {
                     // value: `print("Hello".." World", 100, true, false)`,
                     value: `function test()
-    print("Test 1")
+    print(string.gsub("1Hello","1",""))
 end
-
-test()
-
-function test2()
-    print("Test 2")
-end
-
-test2()
-
-function test3()
-    print("Test 3")
-end
-
-test3()`.trim(),
+test()                    `.trim(),
                     language: 'lua',
                     theme: 'vs-dark',
                     wordWrap: 'on',
@@ -164,7 +151,7 @@ test3()`.trim(),
                     <div class="seperator"></div>
 
                     <div class="sidebar-double-button">
-                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="tablelookup" data-tooltip='Turns all member expression identifiers into an index expression, aka a table lookup.<br><br>e.g.: <code>math.randomseed(69)</code> &equals; <code>math["randomseed"](69)</code><br>or<br>e.g.: <code>{ index: ... }</code> &equals; <code>{ ["index"]: ... }</code>' data-position="left">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="tablelookup" data-tooltip='Turns all member expression identifiers into an index expression, aka a table lookup.<br><br>e.g.: <code>math.randomseed(69)</code> &equals; <code>math["randomseed"](69)</code><br>or<br>e.g.: <code>{ index: ... }</code> &equals; <code>{ ["index"]: ... }</code><br>or<br>e.g.: <code>x:gsub(y, z)</code> &equals; <code>x["gsub"](x, y, z)</code>' data-position="left">
                             <i class="material-icons center">data_object</i>Table Lookup</button>
                         <button class="function-settings btn green waves-effect waves-light" id="tablelookup" data-position="left">
                             <i class="material-icons center">settings</i>

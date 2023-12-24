@@ -1,3 +1,6 @@
+## 24.12.2023
+- <code>Table Lookup</code> now transforms <code>Colon Functions</code> for object-oriented calls
+
 ## 22.12.2023
 - fixed <code>Constant Chunk</code> breaking on empty strings (e.g: <code>print("")</code>)
 - fixed <code>Dead Code</code> being very slow on bigger scripts
