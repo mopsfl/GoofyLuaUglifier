@@ -1,3 +1,7 @@
+## 26.12.2023
+- added new tester method <code>Fake Arguments</code>
+- added new tester preset with the currently best protection
+
 ## 24.12.2023
 - <code>Table Lookup</code> now transforms <code>Colon Functions</code> for object-oriented calls
 - <code>CChunk</code> now supports Byte Strings. still has to be enabled in the settings! (e.g.: <code>"\x5c\x78\x64\x38\x5c\x78\x66\x63"</code>)
