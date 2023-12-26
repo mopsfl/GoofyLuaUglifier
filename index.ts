@@ -48,7 +48,7 @@ jQuery(() => {
                         console.log(`Decompressed response. (took ${new Date().getTime() - _start_tick_decomp}ms)`);
                     } catch (error) {
                         console.error(`[Decompression Error]: `, error)
-                        Editor.SetValue(Request.CreateResponseError("lua", `${error.message} - Decompression Error`, Editor.GetValue()))
+                        Editor.SetValue(Request.CreateResponseError("lua", `${error.message || error} - Decompression Error`, Editor.GetValue()))
                     }
                 } else {
                     Editor.SetValue(Request.CreateResponseError("lua", `${_response.statusText} - ${_response.status}`, Editor.GetValue()))
