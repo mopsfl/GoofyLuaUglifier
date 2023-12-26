@@ -1,4 +1,5 @@
 ## 26.12.2023
+- fixed <code>Function</code> method not transforming function identifiers (e.g.: <code>function test() end; print(test)</code>)
 - added new tester method <code>Fake Arguments</code>
 - added new tester preset with the currently best protection
 
