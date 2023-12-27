@@ -1,3 +1,7 @@
+## 27.12.2023
+- added new setting <code>Table Length Number Memestrings</code> to add memestrings for the <code>Table Length</code> method
+- added fake <code>Assignment Statements</code> for the <code>Fake Arguments</code> method
+
 ## 26.12.2023
 - fixed <code>Function</code> method not transforming function identifiers (e.g.: <code>function test() end; print(test)</code>)
 - added new tester method <code>Fake Arguments</code>
