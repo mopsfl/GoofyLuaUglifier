@@ -1,3 +1,6 @@
+## 29.12.2023
+- added new <code>Constant Chunk</code> method (in work so for testers only)
+
 ## 28.12.2023
 - temporary removed variable check for <code>Number Tables</code> method due to caused errors
 - fixed <code>Dead Code</code> method values not being randomized anymore

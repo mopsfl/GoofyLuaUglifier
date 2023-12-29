@@ -27,7 +27,7 @@
     print(string.gsub("1Hello","1",""))
 end
 test()
-print(test)`.trim(),
+print(test, true, false)`.trim(),
                     language: 'lua',
                     theme: 'vs-dark',
                     wordWrap: 'on',
@@ -225,6 +225,13 @@ print(test)`.trim(),
                     <div class="sidebar-double-button">
                         <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="test_a6a1a9ec6a1cd" data-tooltip="testing function: <code>a6a1a9ec6a1cd</code><br><br>constant protection test against concat hooking<br>(<code>Ignore Bytestring</code> setting must be turned off)" data-position="left">
                             concat hook prot</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="test_newcchunk" data-tooltip="testing function: <code>newcchunk</code><br><br>new constant chunk version (in work)" data-position="left">
+                            Constant Chunk 2</button>
                         <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
                             <i class="material-icons center">settings</i>
                         </button>
