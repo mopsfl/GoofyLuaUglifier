@@ -1,3 +1,9 @@
+## 28.12.2023
+- temporary removed variable check for <code>Number Tables</code> method due to caused errors
+- fixed <code>Dead Code</code> method values not being randomized anymore
+- implemented sessions (work in progress, doesnt really do anything yet)
+- backend api fixes and improvements
+
 ## 27.12.2023
 - added new setting <code>Table Length Number Memestrings</code> to add memestrings for the <code>Table Length</code> method
 - added fake <code>Assignment Statements</code> for the <code>Fake Arguments</code> method
@@ -11,7 +17,7 @@
 - <code>Table Lookup</code> now transforms <code>Colon Functions</code> for object-oriented calls
 - <code>CChunk</code> now supports Byte Strings. still has to be enabled in the settings! (e.g.: <code>"\x5c\x78\x64\x38\x5c\x78\x66\x63"</code>)
 - temporary disabled <code>Dead Code</code> random recursion (performance issues)
-- added variable check for <code>Number Tables</code> to prevent duplicates
+- added variable check for <code>Number Tables</code> method to prevent duplicates
 
 ## 22.12.2023
 - fixed <code>Constant Chunk</code> breaking on empty strings (e.g: <code>print("")</code>)

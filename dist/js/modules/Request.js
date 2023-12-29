@@ -40,7 +40,7 @@ String.prototype.hexEncode = function () {
     return result;
 };
 exports.default = {
-    async new(func, code, options, uglifier_options) {
+    async new(func, code, options, uglifier_options, clientSession) {
         if (!(func instanceof (Attr)))
             return Promise.reject("invalid arguments");
         const start_tick = new Date().getTime();
@@ -48,13 +48,13 @@ exports.default = {
         //@ts-ignore
         const routeB64 = "H4sIAEc7b2UA%2FwVAsQkAMAg7z6WrBziYEhACQod%2BH0LCP6%2FyDsFeA9iUFSQQAAAA";
         //@ts-ignore
-        return await fetch(`${options.api_url()}?e=${routeB64}&t=${new Date().getTime()}&d=${self.default.EncodeRequestDataQuery({ requested_method: func.value, code: "[body]" })}`, { method: "POST", body: code, headers: { "uglifier-options": JSON.stringify(uglifier_options) } }).catch(error => {
+        return await fetch(`${options.api_url()}?e=${routeB64}&t=${new Date().getTime()}&d=${self.default.EncodeRequestDataQuery({ requested_method: func.value, code: "[body]" })}`, { method: "POST", body: code, headers: { "uglifier-options": JSON.stringify(uglifier_options), "uglifier-session": clientSession } }).catch(error => {
             const _error = error;
             Editor_1.default.SetValue(Request_1.default.CreateResponseError("lua", _error.message, Editor_1.default.GetValue()));
             Editor_1.default.ToggleLoading();
             throw error;
         }).finally(() => {
-            console.log(`function request finished. (took ${new Date().getTime() - start_tick}ms)`);
+            console.log(`Function request finished. (took ${new Date().getTime() - start_tick}ms)`);
         });
     },
     CreateResponseError(format, error, code) {
@@ -75,5 +75,5 @@ exports.default = {
     },
     EncodeRequestDataQuery(data) {
         return encodeURIComponent(btoa(String.fromCharCode.apply(null, new Uint16Array(window.pako.gzip(JSON.stringify(data))))));
-    }
+    },
 };

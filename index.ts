@@ -7,12 +7,14 @@
 
 import jQuery from "jquery";
 import { Materialbox } from "materialize-css";
-import Request from "./modules/Request";
+import Request, { UglifierHeaders } from "./modules/Request";
 import Editor from "./modules/Editor";
 import Settings from "./modules/Settings";
 import LocalStorage from "./modules/LocalStorage";
 import QuickActions from "./modules/QuickActions";
 import * as self from "./index";
+
+let clientSession = undefined
 
 jQuery(() => {
     const settings = new Settings()
@@ -34,7 +36,10 @@ jQuery(() => {
             self.default.block_requests = true
             Editor.ToggleLoading("Processing")
             const func = e.target.attributes.getNamedItem("data-function"),
-                _response = await Request.new(func, btoa(String.fromCharCode.apply(null, new Uint16Array(window.pako.gzip(Editor.GetValue())))), self.default.options, LocalStorage.GetKey(settings.config.storage_key, "settings"))
+                _response = await Request.new(func, btoa(String.fromCharCode.apply(null, new Uint16Array(window.pako.gzip(Editor.GetValue())))), self.default.options, LocalStorage.GetKey(settings.config.storage_key, "settings"), clientSession),
+                _headers = _response.headers,
+                _session = _headers.get("uglifier-session"),
+                _mstime = _headers.get("uglifier-ms-time")
 
             if (_response instanceof (Response)) {
                 let _response_body = ""
@@ -42,6 +47,8 @@ jQuery(() => {
                     _response_body = await _response.text()
                     const _start_tick_decomp = new Date().getTime(),
                         _binData = new Uint8Array(atob(_response_body).split('').map(function (x) { return x.charCodeAt(0) }))
+                    clientSession = _session
+                    console.log(`Uglification process took ${_mstime}ms. (session: ${clientSession})`);
                     try {
                         console.log(_binData, _binData.buffer);
                         Editor.SetValue(Utf8ArrayToStr(window.pako.inflate(_binData)))
