@@ -1,3 +1,7 @@
+## 30.12.2023
+- added new example of the new beta <code>Constant Chunk</code> method
+- fixed <code>Constant Chunk (v2)</code> not supporting whitespaces
+
 ## 29.12.2023
 - added new <code>Constant Chunk</code> method (in work so for testers only)
 
