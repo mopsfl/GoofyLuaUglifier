@@ -1,3 +1,7 @@
+## 02.01.2023
+- added fake constants for <code>Dead Code</code> and <code>Fake Arguments</code> (setting soon)
+- added <code>Function</code> methods now using random names
+
 ## 30.12.2023
 - added new example of the new beta <code>Constant Chunk</code> method
 - fixed <code>Constant Chunk (v2)</code> not supporting whitespaces
