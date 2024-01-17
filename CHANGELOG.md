@@ -1,3 +1,9 @@
+## 17.01.2024
+- added <code>Anti Beautify</code> (it's bad, i'm just bored)
+- fixed <code>Fake Arguments</code> adding args after a <code>VarArg</code>
+- fixed <code>Constant Chunk</code> functions not adding if using it multiple times.
+- other minor bug fixes and improvements 
+
 ## 02.01.2023
 - added fake constants for <code>Dead Code</code> and <code>Fake Arguments</code> (setting soon)
 - added <code>Function</code> methods now using random names

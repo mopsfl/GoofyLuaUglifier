@@ -82,7 +82,7 @@ jQuery(() => {
     }
 })
 
-function Utf8ArrayToStr(array) {
+function Utf8ArrayToStr(array: Array<number>) {
     var out, i, len, c;
     var char2, char3;
 
@@ -115,7 +115,7 @@ function Utf8ArrayToStr(array) {
 export default {
     block_requests: false,
     options: {
-        api_url: () => (location.hostname == "localhost" && !window.forceProduction) ? "http://localhost:6969/api/GoofyLuaUglifier/" : "https://f5c32026-fbe1-4f26-a96e-6401c2443a99-00-e5akeq4yyd30.spock.replit.dev/api/GoofyLuaUglifier/"
+        api_url: () => (location.hostname == "localhost" && !window.forceProduction) ? "http://localhost:6969/api/GoofyLuaUglifier/" : "https://mopsflgithubio.mopsfl.repl.co/api/GoofyLuaUglifier/"
     }
 }
 

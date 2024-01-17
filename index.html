@@ -23,11 +23,20 @@
             require(['vs/editor/editor.main'], function (monaco) {
                 var editor = monaco.editor.create(document.querySelector('.monaco'), {
                     // value: `print("Hello".." World", 100, true, false)`,
-                    value: `function test()
-    print(string.gsub("1Hello","1",""))
+                    value: `local a = 123
+local b = 100
+local c = "Hello World!"
+local d = true
+local e = false
+local f = function() return {a, b, c, d, e} end
+
+function _func(...)
+    local args = {...}
+    for _,v in pairs(f()) do print(_,v) end
+    return args[1] - args[2]
 end
-test()
-print(test, true, false, "hello world")`.trim(),
+
+print(_func(a, b))`.trim(),
                     language: 'lua',
                     theme: 'vs-dark',
                     wordWrap: 'on',
@@ -232,6 +241,13 @@ print(test, true, false, "hello world")`.trim(),
                     <div class="sidebar-double-button">
                         <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="test_newcchunk" data-tooltip="testing function: <code>newcchunk</code><br><br>new constant chunk version (in work)" data-position="left">
                             Constant Chunk 2</button>
+                        <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                            <i class="material-icons center">settings</i>
+                        </button>
+                    </div>
+                    <div class="sidebar-double-button">
+                        <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="test_antibeautify" data-tooltip="testing function: <code>test_antibeautify</code>" data-position="left">
+                            anti beautify</button>
                         <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
                             <i class="material-icons center">settings</i>
                         </button>
