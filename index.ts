@@ -115,7 +115,7 @@ function Utf8ArrayToStr(array: Array<number>) {
 export default {
     block_requests: false,
     options: {
-        api_url: () => (location.hostname == "localhost" && !window.forceProduction) ? "http://localhost:6969/api/GoofyLuaUglifier/" : "https://mopsflgithubio.mopsfl.repl.co/api/GoofyLuaUglifier/"
+        api_url: () => (location.hostname == "localhost" && !window.forceProduction) ? "http://localhost:6969/api/GoofyLuaUglifier/" : "https://api.mopsfl.de/api/GoofyLuaUglifier/"
     }
 }
 
