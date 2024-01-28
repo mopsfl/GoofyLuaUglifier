@@ -1,14 +1,11 @@
 <div align="center">
   
-__GoofyLuaUglifier - Website__
-
-<div align="center">
-  
-```
-This is some kind of Lua Uglifier and also bit Obfuscator, idk.
-I'm just bored and doing some "obfuscation methods" or whatever you could call it.
-```
-</div>
+  <span>__GoofyLuaUglifier - Website__</span>
+    
+  ```
+  This is some kind of Lua Uglifier and also bit Obfuscator, idk.
+  I'm just bored and doing some "obfuscation methods" or whatever you could call it.
+  ```
 </div>
 
 # Try Out
