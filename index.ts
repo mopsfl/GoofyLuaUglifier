@@ -120,6 +120,7 @@ export default {
     }
 }
 
+
 declare let M: Materialbox
 declare global {
     interface Window {
