@@ -10,10 +10,7 @@
 
 # Try Out
 - You can try it out on [my Website](https://mopsfl.de/GoofyLuaUglifier/)
-- Or you can use my [API (soon)](https://mopsfl.de)
-
-# Important
-- Website not working right now because repl.it decided to be a dickhead and remove free hosting. Now I have to buy a VPS. 😢 (i will somewhere in the future)
+- Or you can use my [API (soon)](https://api.mopsfl.de)
 
 # Notes
 ###### Still in development, means some things dont work yet or might be broken!
