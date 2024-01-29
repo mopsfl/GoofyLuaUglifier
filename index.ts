@@ -14,6 +14,7 @@ import LocalStorage from "./modules/LocalStorage";
 import QuickActions from "./modules/QuickActions";
 import * as self from "./index";
 
+window.forceProduction = true
 let clientSession = undefined
 
 jQuery(() => {
@@ -115,7 +116,7 @@ function Utf8ArrayToStr(array: Array<number>) {
 export default {
     block_requests: false,
     options: {
-        api_url: () => (location.hostname == "localhost" && !window.forceProduction) ? "http://localhost:6969/api/GoofyLuaUglifier/" : "https://api.mopsfl.de/v1/GoofyLuaUglifier/"
+        api_url: () => (location.hostname == "localhost" && !window.forceProduction) ? "http://localhost:6969/v1/GoofyLuaUglifier/" : "https://goofyluauglifier.mopsfl.de/api/goofyuglifier/"
     }
 }
 

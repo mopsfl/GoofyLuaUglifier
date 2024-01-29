@@ -24,8 +24,17 @@ export default {
         const routeB64 = "H4sIAEc7b2UA%2FwVAsQkAMAg7z6WrBziYEhACQod%2BH0LCP6%2FyDsFeA9iUFSQQAAAA"
 
         //@ts-ignore
-        return await fetch(
+        /*return await fetch(
             `${options.api_url()}?e=${routeB64}&t=${new Date().getTime()}&d=${self.default.EncodeRequestDataQuery({ requested_method: func.value, code: "[body]" })}`, { method: "POST", body: code, headers: { "uglifier-options": JSON.stringify(uglifier_options), "uglifier-session": clientSession } }).catch(error => {
+                const _error: Error = error
+                Editor.SetValue(Request.CreateResponseError("lua", _error.message, Editor.GetValue()))
+                Editor.ToggleLoading()
+                throw error
+            }).finally(() => {
+                console.log(`Function request finished. (took ${new Date().getTime() - start_tick}ms)`);
+            })*/
+        return await fetch(
+            `${options.api_url()}${func.value}`, { method: "POST", body: code, headers: { "uglifier-options": JSON.stringify(uglifier_options), "uglifier-session": clientSession } }).catch(error => {
                 const _error: Error = error
                 Editor.SetValue(Request.CreateResponseError("lua", _error.message, Editor.GetValue()))
                 Editor.ToggleLoading()
