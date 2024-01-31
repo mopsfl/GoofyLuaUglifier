@@ -12,6 +12,9 @@
 - You can try it out on [my Website](https://mopsfl.de/GoofyLuaUglifier/)
 - Or you can use my [API (soon)](https://api.mopsfl.de)
 
+# Website not working?
+- Check out the [Status](https://mopsfl.de/status) page
+
 # Notes
 ###### Still in development, means some things dont work yet or might be broken!
 ###### The source code of the actual "uglifier" is not open source. Maybe I'll make it in the future.
