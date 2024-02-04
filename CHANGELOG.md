@@ -1,3 +1,9 @@
+## 04.02.2024
+- updated Roblox fake constants (for <code>Dead Code</code> and <code>Fake Arguments</code>)
+- fixed anonymous function
+- added IgnoreByteCode setting to <code>Constant Chunk (v2)</code>
+- added button to update roblox constants (via info modal)
+
 ## 17.01.2024
 - added <code>Anti Beautify</code> (it's bad, i'm just bored)
 - fixed <code>Fake Arguments</code> adding args after a <code>VarArg</code>

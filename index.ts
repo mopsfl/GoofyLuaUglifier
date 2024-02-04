@@ -14,10 +14,10 @@ import LocalStorage from "./modules/LocalStorage";
 import QuickActions from "./modules/QuickActions";
 import * as self from "./index";
 
-window.forceProduction = true
-let clientSession = undefined
+let clientSession = undefined,
+    RobloxConstants_LastUpdated = null
 
-jQuery(() => {
+jQuery(async () => {
     const settings = new Settings()
     M.AutoInit()
     settings.init()
@@ -78,8 +78,34 @@ jQuery(() => {
         })
     })
 
+    async function UpdateRobloxConstantsLastUpdated() {
+        await fetch(`${self.default.options.api_url()}cache/RobloxConstants:LastUpdated`).then(res => res.json()).then(res => {
+            LocalStorage.Set(settings.config.storage_key, "RobloxConstants:LastUpdated", res)
+            RobloxConstants_LastUpdated = res
+        }).catch(error => {
+            console.error(error)
+            const _cached = LocalStorage.GetKey(settings.config.storage_key, "RobloxConstants:LastUpdated")
+            RobloxConstants_LastUpdated = _cached
+        }).finally(() => {
+            $("#rbxc_lastupdated").text(new Intl.RelativeTimeFormat(navigator.language, { style: 'long' }).format(-(new Date().getTime() - RobloxConstants_LastUpdated) / 60000, "minutes"))
+        })
+    }
+
+    await UpdateRobloxConstantsLastUpdated()
+    $(".rbxc_update").on("click", async () => {
+        $(".rbxc_update").addClass("disabled").text("Requesting...")
+        await fetch(`${self.default.options.api_url()}constants/update/roblox`, { method: "POST" }).then(res => res.json()).then(async res => {
+            M.toast({ html: `Server Response: ${res.message} - ${res.code}${res.error ? `<br>Error: ${res.error}` : ""}` })
+            console.log(res);
+            await UpdateRobloxConstantsLastUpdated()
+        }).finally(() => {
+            $(".rbxc_update").removeClass("disabled").text("Update now")
+        })
+    })
+
+
     window.modules = {
-        jQuery, Request, Editor, self, settings, LocalStorage
+        jQuery, Request, Editor, self, settings, LocalStorage, RobloxConstants_LastUpdated
     }
 })
 
@@ -116,7 +142,7 @@ function Utf8ArrayToStr(array: Array<number>) {
 export default {
     block_requests: false,
     options: {
-        api_url: () => (location.hostname == "localhost" && !window.forceProduction) ? "http://localhost:6969/v1/GoofyLuaUglifier/" : "https://goofyluauglifier.mopsfl.de/v1/"
+        api_url: () => (location.hostname == "localhost" && !window.forceProduction) ? "http://localhost:6968/v1/" : "https://goofyluauglifier.mopsfl.de/v1/"
     }
 }
 
