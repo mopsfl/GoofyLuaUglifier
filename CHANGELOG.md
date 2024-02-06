@@ -1,3 +1,7 @@
+## 06.02.2023
+- improvements to roblox constants
+- added <code>Clear</code> button to quick actions
+
 ## 04.02.2024
 - updated Roblox fake constants (for <code>Dead Code</code> and <code>Fake Arguments</code>)
 - fixed anonymous function
