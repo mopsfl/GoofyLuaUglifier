@@ -7,12 +7,13 @@
 
 import jQuery from "jquery";
 import { Materialbox } from "materialize-css";
-import Request, { UglifierHeaders } from "./modules/Request";
+import Request from "./modules/Request";
 import Editor from "./modules/Editor";
 import Settings from "./modules/Settings";
 import LocalStorage from "./modules/LocalStorage";
 import QuickActions from "./modules/QuickActions";
 import * as self from "./index";
+import TimeAgo from "./modules/Time";
 
 let clientSession = undefined,
     RobloxConstants_LastUpdated = null
@@ -27,7 +28,8 @@ jQuery(async () => {
 
     const quick_actions = {
         ["copy"]: QuickActions.CopyScript,
-        ["download"]: QuickActions.Download
+        ["download"]: QuickActions.Download,
+        ["clear"]: Editor.Clear,
     }
 
     console.log(window.pako);
@@ -86,8 +88,10 @@ jQuery(async () => {
             console.error(error)
             const _cached = LocalStorage.GetKey(settings.config.storage_key, "RobloxConstants:LastUpdated")
             RobloxConstants_LastUpdated = _cached
+            M.toast({ html: `Error: ${error}` })
         }).finally(() => {
-            $("#rbxc_lastupdated").text(new Intl.RelativeTimeFormat(navigator.language, { style: 'long' }).format(-(new Date().getTime() - RobloxConstants_LastUpdated) / 60000, "minutes"))
+            //$("#rbxc_lastupdated").text(new Intl.RelativeTimeFormat(navigator.language, { style: 'long' }).format(-(new Date().getTime() - RobloxConstants_LastUpdated) / 60000, "minutes"))
+            $("#rbxc_lastupdated").text(TimeAgo(RobloxConstants_LastUpdated))
         })
     }
 
@@ -100,6 +104,9 @@ jQuery(async () => {
             await UpdateRobloxConstantsLastUpdated()
         }).finally(() => {
             $(".rbxc_update").removeClass("disabled").text("Update now")
+        }).catch(error => {
+            console.error(error)
+            M.toast({ html: `Error: ${error}` })
         })
     })
 
