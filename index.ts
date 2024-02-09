@@ -116,21 +116,22 @@ jQuery(async () => {
     })
 
     fetch(`${self.default.options.api_url()}discord/oauth/get`, { method: "POST", credentials: 'include' }).then(res => {
+        console.log(res.ok);
+    }).catch((err) => {
+        $(".acc_logout").hide()
+        $("#account_username").text("Not logged in")
+        $("#account_id").text("N/A")
+    }).finally(() => {
         const _account: DiscordAccount = JSON.parse(atob(Cookie.GetCookie("GLF_acc")))
         $("#account_username").text(_account.username)
         $("#account_id").text(_account.id)
         $(".acc_login").hide()
         $(".acc_logout").show()
-
         $(".acc_logout").on("click", () => {
             Cookie.DeleteCookie("GLF_acc")
             Cookie.DeleteCookie("GLF_rt")
             window.location.reload()
         })
-    }).catch((err) => {
-        $(".acc_logout").hide()
-        $("#account_username").text("Not logged in")
-        $("#account_id").text("N/A")
     })
 
     window.modules = {
