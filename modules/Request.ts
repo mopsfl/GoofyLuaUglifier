@@ -34,7 +34,7 @@ export default {
                 console.log(`Function request finished. (took ${new Date().getTime() - start_tick}ms)`);
             })*/
         return await fetch(
-            `${options.api_url()}${func.value}`, { method: "POST", body: code, credentials: "omit", headers: { "uglifier-options": JSON.stringify(uglifier_options), "uglifier-session": clientSession } }).catch(error => {
+            `${options.api_url()}${func.value}`, { method: "POST", body: code, credentials: "same-origin", headers: { "uglifier-options": JSON.stringify(uglifier_options), "uglifier-session": clientSession } }).catch(error => {
                 const _error: Error = error
                 Editor.SetValue(Request.CreateResponseError("lua", _error.message, Editor.GetValue()))
                 Editor.ToggleLoading()
