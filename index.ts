@@ -112,7 +112,7 @@ jQuery(async () => {
     })
 
     $(".acc_login").on("click", async () => {
-        location.replace("http://localhost:6968/v1/discord/oauth/login")
+        location.replace(`${self.default.options.api_url()}discord/oauth/login`)
     })
 
     fetch(`${self.default.options.api_url()}discord/oauth/get`, { method: "POST", credentials: 'include' }).then(res => {
