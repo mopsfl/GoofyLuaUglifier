@@ -350,7 +350,9 @@ ul.dropdown-content.select-dropdown li span {
     position: relative;
 }
 
-.rbxc_update {
+.rbxc_update,
+.acc_login,
+.acc_logout {
     height: 20px !important;
     line-height: 20px !important;
     font-size: 13px !important;

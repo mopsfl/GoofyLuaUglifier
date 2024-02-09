@@ -33,7 +33,7 @@ exports.default = {
             }).finally(() => {
                 console.log(`Function request finished. (took ${new Date().getTime() - start_tick}ms)`);
             })*/
-        return await fetch(`${options.api_url()}${func.value}`, { method: "POST", body: code, headers: { "uglifier-options": JSON.stringify(uglifier_options), "uglifier-session": clientSession } }).catch(error => {
+        return await fetch(`${options.api_url()}${func.value}`, { method: "POST", body: code, credentials: 'include', headers: { "uglifier-options": JSON.stringify(uglifier_options), "uglifier-session": clientSession } }).catch(error => {
             const _error = error;
             Editor_1.default.SetValue(Request_1.default.CreateResponseError("lua", _error.message, Editor_1.default.GetValue()));
             Editor_1.default.ToggleLoading();

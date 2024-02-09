@@ -14,6 +14,7 @@ import LocalStorage from "./modules/LocalStorage";
 import QuickActions from "./modules/QuickActions";
 import * as self from "./index";
 import TimeAgo from "./modules/Time";
+import Cookie from "./modules/Cookie";
 
 let clientSession = undefined,
     RobloxConstants_LastUpdated = null
@@ -110,6 +111,27 @@ jQuery(async () => {
         })
     })
 
+    $(".acc_login").on("click", async () => {
+        location.replace("http://localhost:6968/v1/discord/oauth/login")
+    })
+
+    fetch(`${self.default.options.api_url()}discord/oauth/get`, { method: "POST", credentials: 'include' }).then(res => {
+        const _account: DiscordAccount = JSON.parse(atob(Cookie.GetCookie("GLF_acc")))
+        $("#account_username").text(_account.username)
+        $("#account_id").text(_account.id)
+        $(".acc_login").hide()
+        $(".acc_logout").show()
+
+        $(".acc_logout").on("click", () => {
+            Cookie.DeleteCookie("GLF_acc")
+            Cookie.DeleteCookie("GLF_rt")
+            window.location.reload()
+        })
+    }).catch((err) => {
+        $(".acc_logout").hide()
+        $("#account_username").text("Not logged in")
+        $("#account_id").text("N/A")
+    })
 
     window.modules = {
         jQuery, Request, Editor, self, settings, LocalStorage, RobloxConstants_LastUpdated
@@ -153,7 +175,10 @@ export default {
     }
 }
 
-
+export interface DiscordAccount {
+    id: string,
+    username: string
+}
 declare let M: Materialbox
 declare global {
     interface Window {
