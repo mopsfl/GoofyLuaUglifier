@@ -1,4 +1,7 @@
-## 06.02.2023
+## 09.02.2024
+- replaced tester key with discord oauth
+
+## 06.02.2024
 - improvements to roblox constants
 - added <code>Clear</code> button to quick actions
 
