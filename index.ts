@@ -115,7 +115,7 @@ jQuery(async () => {
         location.replace(`${self.default.options.api_url()}discord/oauth/login`)
     })
 
-    fetch(`${self.default.options.api_url()}discord/oauth/get`, { method: "POST", credentials: 'include' }).then(res => {
+    fetch(`${self.default.options.api_url()}discord/oauth/get`, { method: "POST", credentials: 'omit' }).then(res => {
         const _account: DiscordAccount = JSON.parse(atob(Cookie.GetCookie("GLF_acc")))
         $("#account_username").text(_account.username)
         $("#account_id").text(_account.id)
