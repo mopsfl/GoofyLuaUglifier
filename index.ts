@@ -139,6 +139,7 @@ jQuery(async () => {
                 $("#account_id").text(_account.id)
                 $("#discord-avatar").attr("src", window.discordAvatar)
                 $(".acc_login").hide()
+                $("#discord-avatar").show()
                 $(".acc_logout").show()
                 $(".acc_logout").on("click", () => {
                     Cookie.DeleteCookie("GLU_acc")
