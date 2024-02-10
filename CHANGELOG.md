@@ -1,3 +1,7 @@
+## 11.02.2024
+- discord oauth improvements & fixes
+- added field to check if you have tester access (info tab on top left)
+
 ## 09.02.2024
 - replaced tester key with discord oauth
 
