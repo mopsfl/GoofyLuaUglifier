@@ -49,18 +49,19 @@ jQuery(async () => {
                 let _response_body = ""
                 if (_response.ok) {
                     _response_body = await _response.text()
-                    const _start_tick_decomp = new Date().getTime(),
+                    /*const _start_tick_decomp = new Date().getTime(),
                         _binData = new Uint8Array(atob(_response_body).split('').map(function (x) { return x.charCodeAt(0) }))
+                        try {
+                            console.log(_binData, _binData.buffer);
+                            Editor.SetValue(Utf8ArrayToStr(window.pako.inflate(_binData)))
+                            console.log(`Decompressed response. (took ${new Date().getTime() - _start_tick_decomp}ms)`);
+                        } catch (error) {
+                            console.error(`[Decompression Error]: `, error)
+                            Editor.SetValue(Request.CreateResponseError("lua", `${error.message || error} - Decompression Error`, Editor.GetValue()))
+                        }*/
                     clientSession = _session
                     console.log(`Uglification process took ${_mstime}ms. (session: ${clientSession})`);
-                    try {
-                        console.log(_binData, _binData.buffer);
-                        Editor.SetValue(Utf8ArrayToStr(window.pako.inflate(_binData)))
-                        console.log(`Decompressed response. (took ${new Date().getTime() - _start_tick_decomp}ms)`);
-                    } catch (error) {
-                        console.error(`[Decompression Error]: `, error)
-                        Editor.SetValue(Request.CreateResponseError("lua", `${error.message || error} - Decompression Error`, Editor.GetValue()))
-                    }
+                    Editor.SetValue(_response_body)
                 } else {
                     Editor.SetValue(Request.CreateResponseError("lua", `${_response.statusText} - ${_response.status}`, Editor.GetValue()))
                 }
@@ -121,17 +122,27 @@ jQuery(async () => {
         $(".acc_logout").hide()
         $("#account_username").text("Not logged in")
         $("#account_id").text("N/A")
+        console.error(err)
     }).finally(() => {
-        const _account: DiscordAccount = JSON.parse(atob(Cookie.GetCookie("GLF_acc")))
-        $("#account_username").text(_account.username)
-        $("#account_id").text(_account.id)
-        $(".acc_login").hide()
-        $(".acc_logout").show()
-        $(".acc_logout").on("click", () => {
-            Cookie.DeleteCookie("GLF_acc")
-            Cookie.DeleteCookie("GLF_rt")
-            window.location.reload()
-        })
+        if (!Cookie.GetCookie("GLF_acc")) {
+            $(".acc_logout").hide()
+            $("#account_username").text("Not logged in")
+            $("#account_id").text("N/A")
+        } else {
+            const _account: DiscordAccount = JSON.parse(atob(Cookie.GetCookie("GLF_acc")))
+            if (_account) {
+                $("#account_username").text(_account.username)
+                $("#account_id").text(_account.id)
+                $(".acc_login").hide()
+                $(".acc_logout").show()
+                $(".acc_logout").on("click", () => {
+                    Cookie.DeleteCookie("GLF_acc")
+                    Cookie.DeleteCookie("GLF_rt")
+                    Cookie.DeleteCookie("GLF_ses")
+                    window.location.reload()
+                })
+            }
+        }
     })
 
     window.modules = {
