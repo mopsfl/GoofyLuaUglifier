@@ -373,6 +373,7 @@ ul.dropdown-content.select-dropdown li span {
 #discord-avatar {
     width: 20px;
     margin-left: 5px;
+    border-radius: 1em;
 }
 
 .info-content {
