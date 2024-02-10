@@ -276,15 +276,19 @@ print(_func(a, b))`.trim(),
                     <p>GoofyLuaUglifier is currently only optimized for
                         <b>Lua 5.3</b>. Any other versions below might not be fully compatible.
                     </p>
-                    <div>
+                    <div class="info-content">
                         <small style="font-family: monospace;">Roblox Constants Last Updated: <span id="rbxc_lastupdated">Loading...</span>
                             <div class="btn btn-small rbxc_update waves-effect waves-light tooltipped green" data-position="right" data-tooltip="Requests an update of the Roblox constants list to the server.">Update now</div>
                         </small>
                     </div>
-                    <div>
-                        <small style="font-family: monospace;">Account: <span id="account_username">Loading...</span> (<span id="account_id">N/A</span>)
+                    <div class="info-content">
+                        <small style="font-family: monospace; display: flex;">Account: <img src="" alt="" id="discord-avatar"><span id="account_username">Loading...</span> (<span id="account_id">N/A</span>)
                             <div class="btn btn-small waves-effect waves-light green acc_login">Login</div>
                             <div class="btn btn-small waves-effect waves-light green acc_logout">Logout</div>
+                        </small>
+                    </div>
+                    <div class="info-content">
+                        <small style="font-family: monospace;">Tester Access: <span id="tester_access">No</span>
                         </small>
                     </div>
                 </div>

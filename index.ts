@@ -122,63 +122,45 @@ jQuery(async () => {
         $(".acc_logout").hide()
         $("#account_username").text("Not logged in")
         $("#account_id").text("N/A")
+        $("#discord-avatar").hide()
         console.error(err)
     }).finally(() => {
-        if (!Cookie.GetCookie("GLF_acc")) {
+        if (!Cookie.GetCookie("GLU_acc")) {
             $(".acc_logout").hide()
             $("#account_username").text("Not logged in")
             $("#account_id").text("N/A")
+            $("#discord-avatar").hide()
         } else {
-            const _account: DiscordAccount = JSON.parse(atob(Cookie.GetCookie("GLF_acc")))
+            const _account: DiscordAccount = JSON.parse(atob(decodeURIComponent(Cookie.GetCookie("GLU_acc"))))
             if (_account) {
+                window.discordAccount = _account
+                window.discordAvatar = `https://cdn.discordapp.com/avatars/${_account.id}/${_account.avatar}`
                 $("#account_username").text(_account.username)
                 $("#account_id").text(_account.id)
+                $("#discord-avatar").attr("src", window.discordAvatar)
                 $(".acc_login").hide()
                 $(".acc_logout").show()
                 $(".acc_logout").on("click", () => {
-                    Cookie.DeleteCookie("GLF_acc")
-                    Cookie.DeleteCookie("GLF_rt")
-                    Cookie.DeleteCookie("GLF_ses")
+                    Cookie.DeleteCookie("GLU_acc")
+                    Cookie.DeleteCookie("GLU_rt")
+                    Cookie.DeleteCookie("GLU_ses")
                     window.location.reload()
                 })
+
+                console.log(_account);
             }
         }
+    })
+
+    fetch(`${self.default.options.api_url()}discord/oauth/isTester`, { method: "POST", credentials: 'include' }).then(res => res.json()).then(res => {
+        console.log(res);
+        $("#tester_access").text(res == true ? "Yes" : "No")
     })
 
     window.modules = {
         jQuery, Request, Editor, self, settings, LocalStorage, RobloxConstants_LastUpdated
     }
 })
-
-function Utf8ArrayToStr(array: Array<number>) {
-    var out, i, len, c;
-    var char2, char3;
-
-    out = "";
-    len = array.length;
-    i = 0;
-    while (i < len) {
-        c = array[i++];
-        switch (c >> 4) {
-            case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
-                out += String.fromCharCode(c);
-                break;
-            case 12: case 13:
-                char2 = array[i++];
-                out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
-                break;
-            case 14:
-                char2 = array[i++];
-                char3 = array[i++];
-                out += String.fromCharCode(((c & 0x0F) << 12) |
-                    ((char2 & 0x3F) << 6) |
-                    ((char3 & 0x3F) << 0));
-                break;
-        }
-    }
-
-    return out;
-}
 
 export default {
     block_requests: false,
@@ -189,12 +171,15 @@ export default {
 
 export interface DiscordAccount {
     id: string,
-    username: string
+    username: string,
+    avatar: string
 }
 declare let M: Materialbox
 declare global {
     interface Window {
         forceProduction: boolean,
+        discordAccount: DiscordAccount,
+        discordAvatar: string,
         modules: Object,
         monaco_editor: {
             getEditors: Function

@@ -360,6 +360,25 @@ ul.dropdown-content.select-dropdown li span {
     padding-right: 5px !important;
 }
 
+.acc_logout {
+    margin-left: 5px;
+}
+
+#account_username,
+.acc_login {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+#discord-avatar {
+    width: 20px;
+    margin-left: 5px;
+}
+
+.info-content {
+    margin-bottom: 5px
+}
+
 code {
     background: #202020;
     border-radius: 3px;
