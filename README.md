@@ -18,9 +18,6 @@
 # Changelog
 - All changes / updates can you find [here](https://github.com/mopsfl/GoofyLuaUglifier/blob/main/CHANGELOG.md)
 
-# Current Bugs
-- OAuth token fails refreshing
-
 # Notes
 ###### Still in development, means some things dont work yet or might be broken!
 ###### The source code of the actual "uglifier" is not open source. Maybe I'll make it in the future.
