@@ -33,7 +33,6 @@ jQuery(async () => {
         ["clear"]: Editor.Clear,
     }
 
-    console.log(window.pako);
     function_buttons.forEach(btn => {
         $(btn).on("click", async (e) => {
             if (self.default.block_requests) return
@@ -112,6 +111,7 @@ jQuery(async () => {
         })
     })
 
+    /*
     $(".acc_login").on("click", async () => {
         location.replace(`${self.default.options.api_url()}discord/oauth/login`)
     })
@@ -156,30 +156,98 @@ jQuery(async () => {
     fetch(`${self.default.options.api_url()}discord/oauth/isTester`, { method: "POST", credentials: 'include' }).then(res => res.json()).then(res => {
         console.log(res);
         $("#tester_access").text(res == true ? "Yes" : "No")
+    })*/
+
+    /** OAUTH LOGIN - NEW */
+
+    function ToggleLoginState(state: boolean) {
+        if (state === true) {
+            $(".acc_login").hide()
+            $("#discord-avatar").show()
+            $(".acc_logout").show()
+            $("#account_username").text(window.discordAccount.username)
+            $("#account_id").text(window.discordAccount.id)
+            $("#discord-avatar").attr("src", window.discordAvatar)
+        } else {
+            $(".acc_logout").hide()
+            $(".acc_login").show()
+            $("#account_username").text("Not logged in")
+            $("#account_id").text("N/A")
+            $("#discord-avatar").hide()
+        }
+    }
+
+    $(".acc_login").on("click", async () => {
+        location.replace(`${self.default.options.mopsfl_api_url()}oauth/login/discord`)
     })
 
-    window.modules = {
+    $(".acc_logout").on("click", () => {
+        $(".acc_logout").text("...").attr("disabled", "disabled")
+        fetch(`${self.default.options.mopsfl_api_url()}oauth/account/logout`, { credentials: "include" }).then(res => {
+            ToggleLoginState(false)
+            $(".acc_logout").text("Logout").removeAttr("disabled")
+        })
+    })
+
+    if (Cookie.GetCookie("_ASID")) {
+        fetch(`${self.default.options.mopsfl_api_url()}oauth/account/get`, { credentials: 'include' }).then(res => res.json()).then(async (res: OAuthGetResponse) => {
+            if (res.code === 0) {
+                $(".acc_logout").hide()
+                $("#account_username").text("Not logged in")
+                $("#account_id").text("N/A")
+                $("#discord-avatar").hide()
+            } else if (res.oauth === "discord") {
+                await fetch(`${self.default.options.api_url()}oauth/account/isTester`, { credentials: "include" }).then(res => res.json()).then(res => {
+                    $("#tester_access").text(res == true ? "Yes" : "No")
+                })
+                window.discordAccount = res.user
+                window.discordAvatar = `https://cdn.discordapp.com/avatars/${res.user.id}/${res.user.avatar}`
+                ToggleLoginState(true)
+            }
+        })
+    } else ToggleLoginState(false)
+
+    /** END */
+    /*window.modules = {
         jQuery, Request, Editor, self, settings, LocalStorage, RobloxConstants_LastUpdated
-    }
+    }*/
 })
 
 export default {
     block_requests: false,
     options: {
-        api_url: () => (location.hostname == "localhost" && !window.forceProduction) ? "http://localhost:6968/v1/" : "https://goofyluauglifier.mopsfl.de/v1/"
+        api_url: () => (location.hostname == "localhost" && !window.forceProduction) ? "http://localhost:6968/v1/" : "https://goofyluauglifier.mopsfl.de/v1/",
+        mopsfl_api_url: () => (location.hostname == "localhost" && !window.forceProduction) ? "http://localhost:6969/v1/" : "https://api.mopsfl.de/v1/"
     }
 }
 
-export interface DiscordAccount {
+export interface DiscordOAuthUserInfo {
     id: string,
     username: string,
     avatar: string
 }
+
+export interface RobloxOAuthUserInfo {
+    sub: number,
+    name: string,
+    nickname: string,
+    preferred_username: string,
+    created_at: number,
+    profile: string,
+    picture: string
+}
+
+export interface OAuthGetResponse {
+    code?: number,
+    oauth: "discord" | "roblox",
+    user: DiscordOAuthUserInfo
+}
+
 declare let M: Materialbox
 declare global {
     interface Window {
         forceProduction: boolean,
-        discordAccount: DiscordAccount,
+        discordAccount: DiscordOAuthUserInfo,
         discordAvatar: string,
         modules: Object,
         monaco_editor: {
