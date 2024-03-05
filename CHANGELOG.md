@@ -1,3 +1,7 @@
+## 04.03.2024
+- updated oauth system wich is more reliable
+- new indexing for <code>Constant Chunk (v2)</code>
+
 ## 11.02.2024
 - discord oauth improvements & fixes
 - added field to check if you have tester access (info tab on top left)
