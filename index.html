@@ -87,7 +87,7 @@ print(_func(a, b))`.trim(),
                 </div>
 
                 <div class="sidebar-double-button">
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="bytestrings" data-tooltip="Encrypts string constants to encrypted byte strings using one key and <code>bit32.bxor</code>.<br><br>e.g.: <code>'Hello'</code> &equals; <code>function('\x5c\x62\x32...')</code>" data-position="left">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="bytestrings" data-tooltip="Encrypts string constants to encrypted byte strings using one key and <code>bit32.bxor</code>.<br><br>e.g.: <code>'Hello'</code> &equals; <code>function('\\x5c\\x62\\x32...')</code>" data-position="left">
                         <i class="material-icons center">tag</i>Bytestrings</button>
                     <button class="function-settings btn green waves-effect waves-light" id="bytestrings" data-position="left">
                         <i class="material-icons center">settings</i>
@@ -256,7 +256,13 @@ print(_func(a, b))`.trim(),
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
-
+                <div class="sidebar-double-button">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="test_strenc_cchunk3" data-tooltip="testing function: <code>test_strenc_cchunk3</code>" data-position="left">
+                        test_strenc_cchunk3</button>
+                    <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                        <i class="material-icons center">settings</i>
+                    </button>
+                </div>
                 <div class="seperator"></div>
 
                 <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green modal-trigger" href="#settingsmodal" data-tooltip=" Settings" data-position="left">
