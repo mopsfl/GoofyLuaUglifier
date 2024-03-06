@@ -16,7 +16,7 @@ import * as self from "./index";
 import TimeAgo from "./modules/Time";
 import Cookie from "./modules/Cookie";
 
-let clientSession = undefined,
+let clientSession = Cookie.GetCookie("_GLUSES") || undefined,
     RobloxConstants_LastUpdated = null
 
 jQuery(async () => {
@@ -48,18 +48,8 @@ jQuery(async () => {
                 let _response_body = ""
                 if (_response.ok) {
                     _response_body = await _response.text()
-                    /*const _start_tick_decomp = new Date().getTime(),
-                        _binData = new Uint8Array(atob(_response_body).split('').map(function (x) { return x.charCodeAt(0) }))
-                        try {
-                            console.log(_binData, _binData.buffer);
-                            Editor.SetValue(Utf8ArrayToStr(window.pako.inflate(_binData)))
-                            console.log(`Decompressed response. (took ${new Date().getTime() - _start_tick_decomp}ms)`);
-                        } catch (error) {
-                            console.error(`[Decompression Error]: `, error)
-                            Editor.SetValue(Request.CreateResponseError("lua", `${error.message || error} - Decompression Error`, Editor.GetValue()))
-                        }*/
                     clientSession = _session
-                    console.log(`Uglification process took ${_mstime}ms. (session: ${clientSession})`);
+                    console.log(`[Server] Uglification process took ${_mstime}ms. (session: ${clientSession})`);
                     Editor.SetValue(_response_body)
                 } else {
                     Editor.SetValue(Request.CreateResponseError("lua", `${_response.statusText} - ${_response.status}`, Editor.GetValue()))
@@ -110,53 +100,6 @@ jQuery(async () => {
             M.toast({ html: `Error: ${error}` })
         })
     })
-
-    /*
-    $(".acc_login").on("click", async () => {
-        location.replace(`${self.default.options.api_url()}discord/oauth/login`)
-    })
-
-    fetch(`${self.default.options.api_url()}discord/oauth/get`, { method: "POST", credentials: 'include' }).then(res => {
-        console.log(res.ok);
-    }).catch((err) => {
-        $(".acc_logout").hide()
-        $("#account_username").text("Not logged in")
-        $("#account_id").text("N/A")
-        $("#discord-avatar").hide()
-        console.error(err)
-    }).finally(() => {
-        if (!Cookie.GetCookie("GLU_acc")) {
-            $(".acc_logout").hide()
-            $("#account_username").text("Not logged in")
-            $("#account_id").text("N/A")
-            $("#discord-avatar").hide()
-        } else {
-            const _account: DiscordAccount = JSON.parse(atob(decodeURIComponent(Cookie.GetCookie("GLU_acc"))))
-            if (_account) {
-                window.discordAccount = _account
-                window.discordAvatar = `https://cdn.discordapp.com/avatars/${_account.id}/${_account.avatar}`
-                $("#account_username").text(_account.username)
-                $("#account_id").text(_account.id)
-                $("#discord-avatar").attr("src", window.discordAvatar)
-                $(".acc_login").hide()
-                $("#discord-avatar").show()
-                $(".acc_logout").show()
-                $(".acc_logout").on("click", () => {
-                    Cookie.DeleteCookie("GLU_acc")
-                    Cookie.DeleteCookie("GLU_rt")
-                    Cookie.DeleteCookie("GLU_ses")
-                    window.location.reload()
-                })
-
-                console.log(_account);
-            }
-        }
-    })
-
-    fetch(`${self.default.options.api_url()}discord/oauth/isTester`, { method: "POST", credentials: 'include' }).then(res => res.json()).then(res => {
-        console.log(res);
-        $("#tester_access").text(res == true ? "Yes" : "No")
-    })*/
 
     /** OAUTH LOGIN - NEW */
 
