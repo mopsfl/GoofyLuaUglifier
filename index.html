@@ -118,7 +118,7 @@ print(_func(a, b))`.trim(),
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="functiontransform" data-tooltip='Puts all functions into a table and gets defined by an <code>IndexExpression</code>, to hide its name.<br>(not working when used _GLookup first)<br><br>e.g.: <code class="multiline">function x() print("69") end<br>x()</code> &equals;<br><code class="multiline">local a = {}<br>a["x"] = function() print("69") end<br><br>a["x"]()</code>' data-position="left">
                         <i class="material-icons center">functions</i>Functions</button>
-                    <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
@@ -150,14 +150,14 @@ print(_func(a, b))`.trim(),
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="bracketnumbers" data-tooltip="Puts all number into a random amount of brackets.<br><br>e.g.: <code>69</code> &equals; <code>((((((69))))))</code>" data-position="left">
                         <i class="material-icons center">data_array</i>Bracket Numbers</button>
-                    <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="tablelennumbers" data-tooltip="Transforms all numbers into tables, containing empty tables and using the length of <br>the base table. (does that make sense?) <br><br>e.g.: <code>5</code> &equals; <code>#{{},{},{},{},{}}</code><br><br>(might slow down the script)" data-position="left">
                         <i class="material-icons center">table_chart</i>Table Length</button>
-                    <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
@@ -174,7 +174,7 @@ print(_func(a, b))`.trim(),
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="glookup" data-tooltip="Makes all global variables get called by <code>_G</code>, wich will hide<br>the actual variable / function, that's being called.<br><br>e.g.: <code>math.randomseed(69)</code> &equals; <code>_G[...][...](69)</code><br><br>(Currently only works with max. 2 index expressions)" data-position="left">
                         <i class="material-icons center">g_mobiledata</i>_G Lookup</button>
-                    <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
@@ -186,35 +186,35 @@ print(_func(a, b))`.trim(),
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="deadcode" data-tooltip="Adds random dead code to your script.<br><br>e.g.: <code class='multiline'>...<br>abcdefg = (369 - 169) / 2<br>...</code>" data-position="left">
                         <i class="material-icons center">code_off</i>Dead Code</button>
-                    <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="constantchunk" data-tooltip="Converts all constants (strings, numbers, booleans) into some kind of bytecode? but not really<br><br>e.g.: <code>['Hello World', 69, true]</code> &equals; <code>'A115B7...22B74C'</code>" data-position="left">
                         <i class="material-icons center">feed</i>Constant Chunk</button>
-                    <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="renameidentifiers" data-tooltip="Renames all identifiers to the smallest name possible.<br><br>e.g.: <code class='multiline'>...<br>local test1 = 60<br>local test2 = 69</code> &equals;<br><code class='multiline'>...<br>local a = 60<br>local b = 69<br>...</code>" data-position="left">
                         <i class="material-icons center">fingerprint</i>Identifiers</button>
-                    <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="controlflow" data-tooltip="controlflow<br><br>currently only works for <code>ForNumericStatements</code>" data-position="left">
                         <i class="material-icons center">quiz</i>Control Flow</button>
-                    <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="fakeargs" data-tooltip="fakeargs" data-position="left">
                         <i class="material-icons center">format_list_bulleted</i>Fake Args</button>
-                    <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
@@ -224,49 +224,49 @@ print(_func(a, b))`.trim(),
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="test_a1f3f945673de" data-tooltip="testing function: <code>a1f3f945673de</code>" data-position="left">
                         TLN Solver Test</button>
-                    <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="test_aed2bdfc69f" data-tooltip="testing function: <code>aed2bdfc69f</code>" data-position="left">
                         CFF Solver Test</button>
-                    <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="test_a6a1a9ec6a1cd" data-tooltip="testing function: <code>a6a1a9ec6a1cd</code><br><br>constant protection test against concat hooking<br>(<code>Ignore Bytestring</code> setting must be turned off)" data-position="left">
                         concat hook prot</button>
-                    <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
                 <div class="sidebar-double-button">
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="test_newcchunk" data-tooltip="testing function: <code>newcchunk</code><br><br>new constant chunk version (in work)" data-position="left">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="test_newcchunk" data-tooltip="Converts all constants (strings, numbers, booleans) into a bytecode?<br><br>e.g.: <code>['Hello World', 69, true]</code> &equals; <code>'1H1I1...I1010'</code>" data-position="left">
                         Constant Chunk 2</button>
-                    <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="test_antibeautify" data-tooltip="testing function: <code>test_antibeautify</code>" data-position="left">
                         anti beautify</button>
-                    <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="test_strenc_cchunk3" data-tooltip="testing function: <code>test_strenc_cchunk3</code>" data-position="left">
                         test_strenc_cchunk3</button>
-                    <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="test_strenc_nobytes" data-tooltip="testing function: <code>test_strenc_nobytes</code>" data-position="left">
                         test_strenc_nobytes</button>
-                    <button class="function-settings btn green waves-effect waves-light" id="bracketnumbers" data-position="left">
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>

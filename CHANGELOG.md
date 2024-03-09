@@ -1,6 +1,6 @@
 ## 07.03.2024
 - new byte string generation for <code>Bytestrings</code>
-- fixed <code>Constant Chunk (v2)</code> breaking with byte <code>Bytestrings</code> function
+- fixed <code>Constant Chunk (v2)</code> breaking with byte <code>Bytestrings</code> function | update: this is still not 100% fixed
  
 ## 04.03.2024
 - updated oauth system wich is more reliable
