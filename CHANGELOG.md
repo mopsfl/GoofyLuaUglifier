@@ -1,3 +1,6 @@
+## 12.03.2024
+- removed constantindex from the IndexExpression for <code>Constant Chunk (v2)</code>
+
 ## 11.03.2024
 - added function locals to <code>Constant Chunk (v2)</code>
 - added <code>Anti Beautify V2</code> (still in work, not really working yet)
