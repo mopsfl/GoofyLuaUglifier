@@ -1,3 +1,7 @@
+## 11.03.2024
+- added function locals to <code>Constant Chunk (v2)</code>
+- added <code>Anti Beautify V2</code> (still in work, not really working yet)
+
 ## 07.03.2024
 - new byte string generation for <code>Bytestrings</code>
 - fixed <code>Constant Chunk (v2)</code> breaking with byte <code>Bytestrings</code> function | update: this is still not 100% fixed
