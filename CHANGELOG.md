@@ -1,3 +1,7 @@
+## 25.03.2024
+- added new setting <code>ByteEncrypt All Constants</code>
+- <code>ByteStrings</code> function now can encrypt boolean and numbers. recommended when using <code>Constant Chunk (v2)</code> (you need to enable it in settings first & numbers currently don't work)
+
 ## 12.03.2024
 - removed constantindex from the IndexExpression for <code>Constant Chunk (v2)</code>
 

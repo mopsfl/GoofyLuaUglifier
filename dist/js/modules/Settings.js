@@ -18,6 +18,7 @@ class Settings {
                 ["watermark"]: "",
                 ["protect_watermark"]: false,
                 ["tester_access_key"]: "",
+                ["byte_encrypt_all_constants"]: false,
                 ["rename_global_functions"]: false,
                 ["table_length_number_rate"]: 25,
                 ["table_length_number_memestrings"]: ""
