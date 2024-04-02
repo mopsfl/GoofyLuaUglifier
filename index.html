@@ -100,6 +100,13 @@ print(_func(a, b))`.trim(),
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
+                <div class="sidebar-double-button">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="nonsensestrings" data-tooltip="Turns strings into random non sense.<br><br>e.g.: <code>'Hello World'</code> &equals; <code>'?ƒ*/涮в+%癉ц飴'</code><br><br><small><b>EXPERIMENTAL</b> - Might break the script</small>" data-position="left">
+                        <i class="material-icons center">question_mark</i>NonSense Strings</button>
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
+                        <i class="material-icons center">settings</i>
+                    </button>
+                </div>
                 <div class="seperator"></div>
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="transformnums" data-tooltip="Transforms numbers into binary expression.<br><br>e.g.: <code>100</code> &equals; <code>(369 - 169) / 2</code>" data-position="left">
@@ -270,13 +277,6 @@ print(_func(a, b))`.trim(),
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
-                <div class="sidebar-double-button">
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="test_strenc_nobytes" data-tooltip="testing function: <code>test_strenc_nobytes</code>" data-position="left">
-                        test_strenc_nobytes</button>
-                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
-                        <i class="material-icons center">settings</i>
-                    </button>
-                </div>
                 <div class="seperator"></div>
 
                 <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green modal-trigger" href="#settingsmodal" data-tooltip=" Settings" data-position="left">
@@ -360,6 +360,16 @@ print(_func(a, b))`.trim(),
                         <span class="setting-name tooltipped" data-position="right" data-tooltip="Ignore any encrypted byte like string. (e.g. bytestring encryption)">Ignore Bytestring</span>
                         <label>
                             <input type="checkbox" class="filled-in" id="ignore_bytestring" checked="false" />
+                            <span></span>
+                        </label>
+                    </div>
+
+                    <div class="seperator"></div>
+
+                    <div class="setting">
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="If the <code>Nonsense Strings</code> function should use chinese characters.">Chinese Nonsense Characters</span>
+                        <label>
+                            <input type="checkbox" class="filled-in" id="chinese_nonsense_characters" checked="false" />
                             <span></span>
                         </label>
                     </div>

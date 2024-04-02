@@ -1,3 +1,7 @@
+## 02.04.2024
+- added new function <code>Nonsense Strings</code>
+- other minor bug fixes and improvements 
+
 ## 25.03.2024
 - added new setting <code>ByteEncrypt All Constants</code>
 - <code>ByteStrings</code> function now can encrypt boolean and numbers. recommended when using <code>Constant Chunk (v2)</code> (you need to enable it in settings first & numbers currently don't work)
