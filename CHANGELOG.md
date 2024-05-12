@@ -1,3 +1,7 @@
+## 12.05.2024
+- new tester function <code>Split String</code> (experimental, might break your script)
+- fixed discord oauth
+
 ## 02.04.2024
 - added new function <code>Nonsense Strings</code>
 - other minor bug fixes and improvements 

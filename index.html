@@ -225,6 +225,13 @@ print(_func(a, b))`.trim(),
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
+                <div class="sidebar-double-button">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="stringsplit" data-tooltip="Splits strings into a big block of expressions." data-position="left">
+                        <i class="material-icons center">format_list_bulleted</i>Split Strings</button>
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
+                        <i class="material-icons center">settings</i>
+                    </button>
+                </div>
 
                 <div class="seperator"></div>
 
@@ -332,9 +339,12 @@ print(_func(a, b))`.trim(),
                     <div class="setting input-field col s12">
                         <span class="setting-name tooltipped" data-position="right" data-tooltip="For what lua version your script should be optimized for.">Target Lua Version</span>
                         <select id="target_lua_version">
-                            <option value="0" selected>5.3</option>
-                            <option value="1">5.4</option>
-                            <option value="2">LuaU</option>
+                            <option value="0">5.1</option>
+                            <option value="1">5.2</option>
+                            <option value="2" selected>5.3</option>
+                            <option value="3">5.4</option>
+                            <option value="4">LuaU</option>
+                            <option value="5">LuaJIT</option>
                         </select>
                         <label>Materialize Select</label>
                     </div>
