@@ -1,3 +1,6 @@
+## 24.05.2024
+- fixed empty string turning into incorrect bytes when using <code>Bytestring & CChunk3</code>
+
 ## 12.05.2024
 - new tester function <code>Split String</code> (experimental, might break your script)
 - fixed discord oauth
