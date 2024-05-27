@@ -1,3 +1,9 @@
+## 27.05.2024
+- new binary expression generation for <code>Numbers</code> function 
+- fixed <code>Bytestring</code> function always having the same encoding key
+- <code>Bytestring</code> function now encrypts all numbers when <code>ByteEncrypt All Constants</code> setting is turned on
+- other minor bug fixes and improvements
+
 ## 24.05.2024
 - fixed empty string turning into incorrect bytes when using <code>Bytestring & CChunk3</code>
 
