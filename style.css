@@ -380,6 +380,25 @@ ul.dropdown-content.select-dropdown li span {
     margin-bottom: 5px
 }
 
+.presetsbtn {
+    margin-left: 10px !important;
+}
+
+.preset>code {
+    display: block;
+    background: none;
+    width: 100%;
+}
+
+.preset-name {
+    text-decoration: underline;
+}
+
+.preset-funcs {
+    width: 100%;
+    text-align: right;
+}
+
 code {
     background: #202020;
     border-radius: 3px;

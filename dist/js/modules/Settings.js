@@ -22,7 +22,8 @@ class Settings {
                 ["byte_encrypt_all_constants"]: false,
                 ["rename_global_functions"]: false,
                 ["table_length_number_rate"]: 25,
-                ["table_length_number_memestrings"]: ""
+                ["table_length_number_memestrings"]: "",
+                ["number_transform_offset_length"]: 999999
             }
         }
     }) {

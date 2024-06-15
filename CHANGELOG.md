@@ -1,5 +1,7 @@
 ## 15.06.2024
 - fixed incorrect constant type declaration for <code>ByteStrings</code> function (sorry, i didnt notice this bug for a long time)
+- added <code>number_transform_offset_length</code> setting to <code>Numbers</code> function
+- added new function <code>Globals To Locals</code> (experimental, might break your script)
 
 ## 27.05.2024
 - new binary expression generation for <code>Numbers</code> function 

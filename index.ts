@@ -62,7 +62,7 @@ jQuery(async () => {
 
     sidebar_buttons.forEach(btn => {
         $(btn).on("click", async (e) => {
-            const func = e.target.attributes.getNamedItem("data-function").value
+            const func = e.target.attributes.getNamedItem("data-function")?.value
             if (func && quick_actions[func]) {
                 try {
                     quick_actions[func]()
@@ -86,7 +86,6 @@ jQuery(async () => {
         })
     }
 
-    await UpdateRobloxConstantsLastUpdated()
     $(".rbxc_update").on("click", async () => {
         $(".rbxc_update").addClass("disabled").text("Requesting...")
         await fetch(`${self.default.options.api_url()}constants/update/roblox`, { method: "POST" }).then(res => res.json()).then(async res => {
@@ -100,6 +99,29 @@ jQuery(async () => {
             M.toast({ html: `Error: ${error}` })
         })
     })
+
+    async function UpdatePresets() {
+        await fetch(`${self.default.options.api_url()}uglifier/preset`).then(res => res.json()).then((presets: {}) => {
+            Object.keys(presets).forEach(presetname => {
+                let presetTemplateClone = document.querySelector(".preset").cloneNode(true),
+                    presetfuncs = ""
+                $(presetTemplateClone).removeClass("hide")
+                $(presetTemplateClone).find(".preset-name").text(presetname)
+                document.querySelector(".presets-content").append(presetTemplateClone)
+
+                presets[presetname].forEach((_func: string, idx: number) => {
+                    presetfuncs += _func + (idx === presets[presetname].length - 1 ? "" : ", ")
+                })
+
+                $(presetTemplateClone).find(".preset-funcs").text(presetfuncs)
+            })
+
+        })
+    }
+
+    //await UpdatePresets()
+    await UpdateRobloxConstantsLastUpdated()
+
 
     /** OAUTH LOGIN - NEW */
 

@@ -185,6 +185,13 @@ print(_func(a, b))`.trim(),
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
+                <div class="sidebar-double-button">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="globals_to_locals" data-tooltip="Turns all global usages into local declarations or puts all globals into a table.<br><br>e.g.: <code  class='multiline'>print(math.random(1, 5))</code> <br>&equals;<br> <code class='multiline'>local _random = math.random<br>local _print = print<br><br>_print(_random(1, 5))</code><br><br><small><b>EXPERIMENTAL</b> - Might break the script</small>" data-position="left">
+                        <i class="material-icons center">transform</i>GlobalsToLocals</button>
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
+                        <i class="material-icons center">settings</i>
+                    </button>
+                </div>
 
                 <div class="seperator text tooltipped" data-tooltip="Functions that are in work. They might be broken or won't work." data-position="left">
                     <span>Tester Functions</span>
@@ -284,6 +291,14 @@ print(_func(a, b))`.trim(),
                         <i class="material-icons center">settings</i>
                     </button>
                 </div>
+                <div class="sidebar-double-button">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="decode_bytestring" data-tooltip="Decodes a bytestring." data-position="left">
+                        Decode Bytestring</button>
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
+                        <i class="material-icons center">settings</i>
+                    </button>
+                </div>
+
                 <div class="seperator"></div>
 
                 <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green modal-trigger" href="#settingsmodal" data-tooltip=" Settings" data-position="left">
@@ -320,7 +335,22 @@ print(_func(a, b))`.trim(),
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button class="modal-close modal-trigger waves-light waves-effect btn green left btn-small presetsbtn" href="#presetsmodal">PRESETS</button>
                     <button href="#!" class="modal-close waves-light waves-effect btn green">OK</button>
+                </div>
+            </div>
+        </div>
+        <!-- Presets Info Modal -->
+        <div>
+            <div id="presetsmodal" class="modal">
+                <div class="modal-content">
+                    <h4>Presets</h4>
+                    <div class="info-content presets-content">
+                        <div class="preset hide"><code><span class="preset-name">bytestrings</span>: <span class="preset-funcs"></span></code></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button href="#!" class="modal-close waves-light waves-effect btn green">CLOSE</button>
                 </div>
             </div>
         </div>
@@ -417,6 +447,15 @@ print(_func(a, b))`.trim(),
                             </p>
                             <span class="slider-value" value-type="%"></span>
                         </label>
+                    </div>
+
+                    <div class="seperator"></div>
+
+                    <div class="setting">
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="The length of the random transform offset number.">Number Transform Offset Length</span>
+                        <div class="input-field">
+                            <input placeholder="Length" id="number_transform_offset_length" type="text" class="validate">
+                        </div>
                     </div>
 
                     <div class="seperator"></div>
