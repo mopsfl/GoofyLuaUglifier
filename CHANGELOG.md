@@ -1,3 +1,6 @@
+## 15.06.2024
+- fixed incorrect constant type declaration for <code>ByteStrings</code> function (sorry, i didnt notice this bug for a long time)
+
 ## 27.05.2024
 - new binary expression generation for <code>Numbers</code> function 
 - fixed <code>Bytestring</code> function always having the same encoding key
