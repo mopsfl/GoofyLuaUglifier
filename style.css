@@ -390,6 +390,10 @@ ul.dropdown-content.select-dropdown li span {
     width: 100%;
 }
 
+.marignleftcode {
+    margin-left: 5px !important;
+}
+
 .preset-name {
     text-decoration: underline;
 }
