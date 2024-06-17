@@ -1,3 +1,8 @@
+## 17.06.2024
+- fixed minifer removing required brackets on <code>LogicalExpressions<code> and some other cases
+- updated <code>bit32.bxor</code> local definition to support other lua versions (bit & bit32)
+- made decoder functions local
+
 ## 15.06.2024
 - fixed incorrect constant type declaration for <code>ByteStrings</code> function (sorry, i didnt notice this bug for a long time)
 - added <code>number_transform_offset_length</code> setting to <code>Numbers</code> function
