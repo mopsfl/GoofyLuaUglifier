@@ -7,6 +7,7 @@
 - <code>number_transform_offset_length</code> setting now also applies to <code>Booleans</code> transform function
 - added new setting <code>use_all_mathoperators_number_transform</code> to enable <code>/</code> and <code>*</code> math operators for <code>Numbers</code> transform function
 - fixed incorrect parsing of request headers for the public api
+- added support for a function chain in an api call. e.g: <code>/v1/api/bytestrings,minify</code>
 - other minor bug fixes and improvements
 
 ## 17.06.2024
