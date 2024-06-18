@@ -1,3 +1,13 @@
+## 18.06.2024
+- <code>SplitStrings</code> now using supported anonymous functions (currently doesnt even split strings. just puts constants in a anonymous functions. will finish soon)
+- performance fix for <code>_stringchar</code> local (credits: lifestorm)
+- fixed anonymous functions not being handled correctly by the minifer when declaring them with a <code>LocalStatement</code>
+- added new function <code>Remove LuaU Types</code>
+- fixed missing local for <code>CChunk V1</code>
+- <code>number_transform_offset_length</code> setting now also applies to <code>Booleans</code> transform function
+- fixed incorrect parsing of request headers for the public api
+- other minor bug fixes and improvements
+
 ## 17.06.2024
 - fixed minifer removing required brackets on <code>LogicalExpressions</code> and some other cases
 - updated <code>bit32.bxor</code> local definition to support other lua versions (bit & bit32)
