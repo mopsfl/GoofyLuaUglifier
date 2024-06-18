@@ -5,6 +5,7 @@
 - added new function <code>Remove LuaU Types</code>
 - fixed missing local for <code>CChunk V1</code>
 - <code>number_transform_offset_length</code> setting now also applies to <code>Booleans</code> transform function
+- added new setting <code>use_all_mathoperators_number_transform</code> to enable <code>/</code> and <code>*</code> math operators for <code>Numbers</code> transform function
 - fixed incorrect parsing of request headers for the public api
 - other minor bug fixes and improvements
 

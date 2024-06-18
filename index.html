@@ -62,6 +62,7 @@ print(_func(a, b))`.trim(),
         <div class="code-area monaco"></div>
         <!-- Toolbox Sidebar -->
         <div class="sidebar">
+            <!-- Functions -->
             <p class="sidebar-title">GoofyLuaUglifier</p>
             <div class="sidebar-buttons">
                 <div class="seperator text tooltipped" data-tooltip="Quick actions to make life easier I guess." data-position="left">
@@ -458,6 +459,14 @@ print(_func(a, b))`.trim(),
                     </div>
 
                     <div class="seperator"></div>
+
+                    <div class="setting">
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Use all math operators on for number transform instead of just '+' & '-'. <b>(very unstable)</b>">All Number Transform Math Operators</span>
+                        <label>
+                            <input type="checkbox" class="filled-in" id="use_all_mathoperators_number_transform" checked="false" />
+                            <span></span>
+                        </label>
+                    </div>
 
                     <div class="setting">
                         <span class="setting-name tooltipped" data-position="right" data-tooltip="The length of the random transform offset number.">Number Transform Offset Length</span>
