@@ -8,9 +8,9 @@
     "typescript": "^5.1.6"
   },
   "scripts": {
-    "bundle": "esbuild ./dist/js/index.js style.css --bundle --minify --platform=browser --outdir=./dist --format=esm --allow-overwrite --splitting --entry-names=[ext]/[name]",
+    "bundle": "esbuild ./dist/js/index.js ./dist/js/Docs.js style.css --bundle --minify --platform=browser --outdir=./dist --format=esm --allow-overwrite --splitting --entry-names=[ext]/[name]",
     "bundledev": "esbuild index.ts Docs.ts style.css --bundle --platform=browser --outdir=./dist --format=esm --allow-overwrite --splitting --entry-names=[ext]/[name] --watch",
-    "build": "rimraf dist && npx tsc && npm run bundle && git add . && git commit -a -m \\\"commited via auto build\\\"",
+    "build": "rimraf dist && npx tsc && npm run bundle",
     "dev": "rimraf dist && npm run bundledev"
   },
   "name": "goofyluauglifier-client",
