@@ -1,5 +1,7 @@
 ## 19.06.2024
 - added new setting <code>minify_output</code>
+- fixed <code>GLookup</code> not working for local declarations
+- added new setting <code>memoize_function_calls</code> (experimental)
 
 ## 18.06.2024
 - <code>SplitStrings</code> now using supported anonymous functions (currently doesnt even split strings. just puts constants in a anonymous functions. will finish soon)

@@ -21,7 +21,8 @@ export default class Settings {
                     ["table_length_number_rate"]: 25,
                     ["table_length_number_memestrings"]: "",
                     ["number_transform_offset_length"]: 999999,
-                    ["use_all_mathoperators_number_transform"]: false
+                    ["use_all_mathoperators_number_transform"]: false,
+                    ["memoize_function_calls"]: false,
                 }
             }
         }
