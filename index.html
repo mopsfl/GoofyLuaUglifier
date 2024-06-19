@@ -484,7 +484,7 @@ print(_func(a, b))`.trim(),
 
                     <div class="seperator"></div>
 
-                    <div class="setting">
+                    <!--<div class="setting">
                         <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds a watermark to your script. (keep empty to disable)<br><br><b>! This is buggy and not finished yet !</b>">Watermark</span>
                         <div class="input-field">
                             <input placeholder="Watermark" id="watermark" type="text" class="validate">
@@ -496,12 +496,18 @@ print(_func(a, b))`.trim(),
                             <input type="checkbox" class="filled-in" id="protect_watermark" checked="true" />
                             <span></span>
                         </label>
+                    </div>-->
+                    <div class="setting">
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds a watermark to your bytecode when using <code>CChunk3</code>. (keep empty to disable) <b>(EXPERIMENTAL)</b>">Bytecode Watermark</span>
+                        <div class="input-field">
+                            <input placeholder="Watermark" id="bytecode_watermark" type="text" class="validate">
+                        </div>
                     </div>
 
                     <div class="seperator"></div>
 
                     <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Memoizes expensive function calls and caches them to avoid redundant computations.">Memoize Functions Calls</span>
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Memoizes expensive function calls and caches them to avoid redundant computations. <b>(EXPERIMENTAL)</b>">Memoize Functions Calls</span>
                         <label>
                             <input type="checkbox" class="filled-in" id="memoize_function_calls" checked="true" />
                             <span></span>
