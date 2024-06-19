@@ -1,3 +1,6 @@
+## 19.06.2024
+- added new setting <code>minify_output</code>
+
 ## 18.06.2024
 - <code>SplitStrings</code> now using supported anonymous functions (currently doesnt even split strings. just puts constants in a anonymous functions. will finish soon)
 - performance fix for <code>_stringchar</code> local (credits: lifestorm)
