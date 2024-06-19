@@ -1,4 +1,7 @@
 <div align="center">
+  <img src="https://badgen.net/github/last-commit/mopsfl/GoofyLuaUglifier">
+  
+  <br/><br/>
   
   <span>__GoofyLuaUglifier - Website__</span>
     
