@@ -122,7 +122,6 @@ jQuery(async () => {
     //await UpdatePresets()
     await UpdateRobloxConstantsLastUpdated()
 
-
     /** OAUTH LOGIN - NEW */
 
     function ToggleLoginState(state: boolean) {

@@ -13,7 +13,7 @@
 
 # Try Out
 - You can try it out on [my Website](https://mopsfl.de/GoofyLuaUglifier/)
-- Or you can use my [API (soon)](https://api.mopsfl.de)
+- Or you can use my [API (soon)](https://goofyluauglifier.mopsfl.de)
 
 # Website not working?
 - Check out the [Status](https://mopsfl.de/status) page

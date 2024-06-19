@@ -5,3 +5,4 @@ bower_components/jquery/src
 bower_components/jquery/*
 !bower_components/jquery/dist
 test.lua
+.vscode

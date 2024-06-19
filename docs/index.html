@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoofyLuaUglifier - API Docs</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script type="module" src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="module" src="/dist/js/Docs.js"></script>
+</head>
+
+<body>
+    <div class="sidenavbtn-container">
+        <a href="#" data-target="slide-out" class="sidenav-trigger btn-floating transparent waves-effect waves-circle waves-light"><i class="material-icons">menu</i></a>
+    </div>
+    <div class="main container">
+        <header class="header left-align">
+            <img class="responsive-img headerlogo" src="/images/icons/icon-72x72.png">
+            <h5>GoofyLuaUglifier - API Documentation</h5>
+        </header>
+
+        <main class="docs">
+            <ul id="slide-out" class="sidenav white-text">
+                <li><a class="subheader white-text sidenav-headertext">
+                        <h5>GoofyLuaUglifier</h5>
+                    </a></li>
+                <li>
+                    <div class="divider"></div>
+                </li>
+                <li><a class="waves-effect white-text waves-light sidenav-hrefbutton" href="#endpoints">Endpoints</a></li>
+                <li><a class="waves-effect white-text waves-light sidenav-hrefbutton" href="#functions">Functions</a></li>
+                <li><a class="waves-effect white-text waves-light sidenav-hrefbutton" href="#uglifier-options">Uglifier Options</a></li>
+            </ul>
+
+            <ul class="collapsible docs-collapsible-item no-border" id="endpoints">
+                <li class="active">
+                    <div class="collapsible-header transparent no-border">
+                        <span class="collapsible-item"><i class="material-icons collapsible-icon">chevron_right</i><span class="collapsible-item-text">Endpoints</span></span>
+                    </div>
+                    <div class="collapsible-body no-border">
+                        <p class="docs-endpoint-header">Uglify:</p>
+                        <p class="docs-endpoint-desc">Uglififes your script with the given function name / function chain.</p>
+                        <div class="docs-endpoint">
+                            <span class="docs-endpoint-method green">POST</span>
+                            <span class="docs-endpoint-path">/v1/api/uglify/&lt;function_name&gt;,...</span>
+                        </div>
+                        <p class="divider"></p>
+                        <ul class="collapsible docs-collapsible-item no-border">
+                            <li class="active">
+                                <div class="collapsible-header transparent no-border">
+                                    <span class="collapsible-item"><i class="material-icons collapsible-icon">chevron_right</i><span class="collapsible-item-text">Headers</span></span>
+                                </div>
+                                <div class="collapsible-body no-border">
+                                    <ul class="collapsible docs-collapsible-item no-border">
+                                        <li>
+                                            <div class="collapsible-header transparent no-border">
+                                                <span class="collapsible-item"><i class="material-icons collapsible-icon">chevron_right</i><span class="collapsible-item-text">Request Headers</span></span>
+                                            </div>
+                                            <div class="collapsible-body no-border">
+                                                <div class="docs-endpoint">
+                                                    <span class="docs-endpoint-method green">string</span>
+                                                    <span class="docs-endpoint-path">uglifier-options?: <a href="#uglifier-options">&lt;UglifierOptions&gt;</a></span>
+                                                    <span class="docs-endpoint-desc">The options you want to used for this uglification. (optional)</span>
+                                                </div>
+                                                <div class="docs-endpoint">
+                                                    <span class="docs-endpoint-method green">string</span>
+                                                    <span class="docs-endpoint-path">api-key?: &lt;string&gt;</span>
+                                                    <span class="docs-endpoint-desc">Your API key, required to fulfill and identify your request. (optional)</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <ul class="collapsible docs-collapsible-item no-border">
+                                        <li>
+                                            <div class="collapsible-header transparent no-border">
+                                                <span class="collapsible-item"><i class="material-icons collapsible-icon">chevron_right</i><span class="collapsible-item-text">Response Headers</span></span>
+                                            </div>
+                                            <div class="collapsible-body no-border">
+                                                <div class="docs-endpoint">
+                                                    <span class="docs-endpoint-method green">string</span>
+                                                    <span class="docs-endpoint-path">uglifier-function: &lt;string&gt;</span>
+                                                    <span class="docs-endpoint-desc">The used function / function chain for this uglification.</span>
+                                                </div>
+                                                <div class="docs-endpoint">
+                                                    <span class="docs-endpoint-method green">object</span>
+                                                    <span class="docs-endpoint-path">uglifier-options: <a href="#uglifier-options">&lt;UglifierOptions&gt;</a></span>
+                                                    <span class="docs-endpoint-desc">The options that were used for this uglification.</span>
+                                                </div>
+                                                <div class="docs-endpoint">
+                                                    <span class="docs-endpoint-method green">number</span>
+                                                    <span class="docs-endpoint-path">uglifier-ms-time: &lt;number&gt;</span>
+                                                    <span class="docs-endpoint-desc">How long the uglification took on the server.</span>
+                                                </div>
+                                                <div class="docs-endpoint">
+                                                    <span class="docs-endpoint-method green">number</span>
+                                                    <span class="docs-endpoint-path">x-ratelimit-limit: &lt;number&gt;</span>
+                                                    <span class="docs-endpoint-desc">The rate limit ceiling that is applicable for the current request.</span>
+                                                </div>
+                                                <div class="docs-endpoint">
+                                                    <span class="docs-endpoint-method green">number</span>
+                                                    <span class="docs-endpoint-path">x-ratelimit-remaining: &lt;number&gt;</span>
+                                                    <span class="docs-endpoint-desc">The number of requests left for the current rate-limit window.</span>
+                                                </div>
+                                                <div class="docs-endpoint">
+                                                    <span class="docs-endpoint-method green">number</span>
+                                                    <span class="docs-endpoint-path">x-ratelimit-reset: &lt;number&gt;</span>
+                                                    <span class="docs-endpoint-desc">The time at which the rate limit resets. (UTC epoch time in seconds)</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="collapsible docs-collapsible-item no-border">
+                            <li>
+                                <div class="collapsible-header transparent no-border">
+                                    <span class="collapsible-item"><i class="material-icons collapsible-icon">chevron_right</i><span class="collapsible-item-text">Function Examples</span></span>
+                                </div>
+                                <div class="collapsible-body no-border">
+                                    <blockquote>
+                                        <p class="docs-endpoint-desc">Uglify your script with one function.</p>
+                                        <div class="docs-endpoint">
+                                            <span class="docs-endpoint-method green">POST</span>
+                                            <span class="docs-endpoint-path">/v1/api/uglify/bytestrings</span>
+                                        </div>
+                                    </blockquote>
+
+                                    <blockquote>
+                                        <p class="docs-endpoint-desc">You can also specify a function chain to uglify your script with multiple functions at once. (functions are applied by order from left to right)</p>
+                                        <div class="docs-endpoint">
+                                            <span class="docs-endpoint-method green">POST</span>
+                                            <span class="docs-endpoint-path">/v1/api/uglify/bytestrings,transformnums,minify</span>
+                                        </div>
+                                    </blockquote>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
+            <p class="divider"></p>
+
+            <ul class="collapsible docs-collapsible-item no-border" id="uglifier-options">
+                <li>
+                    <div class="collapsible-header transparent no-border">
+                        <span class="collapsible-item"><i class="material-icons collapsible-icon">chevron_right</i><span class="collapsible-item-text">Functions</span></span>
+                    </div>
+                    <div class="collapsible-body no-border"><span>Lorem ipsum dolor sit amet.</span></div>
+                </li>
+            </ul>
+
+            <p class="divider"></p>
+
+            <ul class="collapsible docs-collapsible-item no-border" id="functions">
+                <li>
+                    <div class="collapsible-header transparent no-border">
+                        <span class="collapsible-item"><i class="material-icons collapsible-icon">chevron_right</i><span class="collapsible-item-text">Uglifier Options</span></span>
+                    </div>
+                    <div class="collapsible-body no-border"><span>Lorem ipsum dolor sit amet.</span></div>
+                </li>
+            </ul>
+        </main>
+    </div>
+</body>
+
+</html>
