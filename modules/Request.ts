@@ -16,7 +16,7 @@ export default {
                 throw error
             }).finally(() => {
                 console.log(`[Client] Function request finished. (took ${new Date().getTime() - start_tick}ms)`);
-                fetch(`${self.default.options.mopsfl_api_url()}logs/glu_responsetime`, {
+                /*fetch(`${self.default.options.mopsfl_api_url()}logs/glu_responsetime`, {
                     method: "POST", body: JSON.stringify({
                         f: func.value,
                         u: options.api_url(),
@@ -24,7 +24,14 @@ export default {
                         s: clientSession || null,
                         o: Object.values(uglifier_options)
                     })
-                })
+                })*/
+                console.log({
+                    f: func.value,
+                    u: options.api_url(),
+                    t: new Date().getTime() - start_tick,
+                    s: clientSession || null,
+                    o: Object.values(uglifier_options)
+                });
             })
     },
 
