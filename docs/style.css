@@ -144,7 +144,7 @@ blockquote {
     margin-top: 0;
 }
 
-.docs-endpoint-desc {
+.docs-endpoint-desc-right {
     float: right !important;
     margin-right: 5px;
 }
