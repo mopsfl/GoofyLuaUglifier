@@ -123,7 +123,6 @@ jQuery(async () => {
     await UpdateRobloxConstantsLastUpdated()
 
     /** OAUTH LOGIN - NEW */
-
     function ToggleLoginState(state: boolean) {
         if (state === true) {
             $(".acc_login").hide()
