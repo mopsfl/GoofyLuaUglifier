@@ -1,3 +1,3 @@
-Examples of GoofyLuaUglifier with different methods used.
+## Examples of GoofyLuaUglifier with different function used.
 
-# These are all outdated. I will replace them all with update ones soon
+> ###### Lua Version: 5.3

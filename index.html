@@ -23,13 +23,13 @@
         });
         require(['vs/editor/editor.main'], function (monaco) {
             var editor = monaco.editor.create(document.querySelector('.monaco'), {
-                // value: `print("Hello".." World", 100, true, false)`,
                 value: `local a = 123
 local b = 100
 local c = "Hello World!"
 local d = true
 local e = false
 local f = function() return {a, b, c, d, e} end
+local g = 100
 
 function _func(...)
     local args = {...}
@@ -37,7 +37,8 @@ function _func(...)
     return args[1] - args[2]
 end
 
-print(_func(a, b))`.trim(),
+print(_func(a, b))
+print(b-g)`.trim(),
                 language: 'lua',
                 theme: 'vs-dark',
                 wordWrap: 'on',
