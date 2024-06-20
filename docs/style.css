@@ -30,7 +30,7 @@ body {
 }
 
 body {
-    background-image: url(/images/code-background.PNG);
+    background-image: url(../images/code-background.PNG);
     backdrop-filter: blur(2px);
     background-repeat: no-repeat;
     background-position: center;
