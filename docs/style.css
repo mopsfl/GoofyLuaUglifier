@@ -141,10 +141,19 @@ blockquote {
     padding-left: 5px;
     padding-right: 5px;
     width: auto;
+    min-width: 75px;
     text-align: center;
     border-radius: 2px;
     height: auto;
     display: inline-block;
+}
+
+.docs-endpoint-method {
+    user-select: none;
+}
+
+.docs-endpoint-path {
+    margin-left: 10px;
 }
 
 .docs-endpoint-copy {

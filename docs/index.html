@@ -18,15 +18,17 @@
 </head>
 
 <body>
-    <div class="sidenavbtn-container">
+    <!--<div class="sidenavbtn-container">
         <a href="#" data-target="slide-out" class="sidenav-trigger btn-floating transparent waves-effect waves-circle waves-light"><i class="material-icons">menu</i></a>
-    </div>
+    </div>-->
+    <!--Container-->
     <div class="main container">
         <header class="header left-align">
             <img class="responsive-img headerlogo" src="/images/icons/icon-72x72.png">
             <h5>GoofyLuaUglifier - API Documentation <small style="font-size: 10px; font-weight: bold;">IN WORK</small></h5>
         </header>
 
+        <!--Main-->
         <main class="docs">
             <ul id="slide-out" class="sidenav white-text">
                 <li><a class="subheader white-text sidenav-headertext">
@@ -40,17 +42,17 @@
                 <li><a class="waves-effect white-text waves-light sidenav-hrefbutton" href="#uglifier-options">Uglifier Options</a></li>
             </ul>
 
+            <!--Endpoints-->
             <ul class="collapsible docs-collapsible-item no-border" id="endpoints">
                 <li>
                     <div class="collapsible-header transparent no-border">
-                        <span class="collapsible-item"><i class="material-icons collapsible-icon">chevron_right</i><span class="collapsible-item-text">Endpoints</span></span>
+                        <span class="collapsible-item"><i class="material-icons collapsible-icon">chevron_right</i><span class="collapsible-item-text">API Endpoints</span></span>
                     </div>
                     <div class="collapsible-body no-border">
                         <p class="docs-endpoint-header">Uglify:</p>
                         <p class="docs-endpoint-desc">Uglififes your script with the given function name / function chain.</p>
                         <div class="docs-endpoint">
-                            <span class="docs-endpoint-method green">POST</span>
-                            <span class="docs-endpoint-path" data-copycontent="https://goofyluauglifier.mopsfl.de/v1/api/uglify/&lt;function_name/chain&gt;">/v1/api/uglify/&lt;function_name&gt;,...</span>
+                            <span class="docs-endpoint-method green">POST</span><span class="docs-endpoint-path" data-copycontent="https://goofyluauglifier.mopsfl.de/v1/api/uglify/&lt;function_name/chain&gt;">/v1/api/uglify/&lt;function_name&gt;,...</span>
                             <span class="docs-endpoint-copy green copyhide">Copy</span>
                         </div>
                         <p class="divider"></p>
@@ -67,13 +69,11 @@
                                             </div>
                                             <div class="collapsible-body no-border">
                                                 <div class="docs-endpoint">
-                                                    <span class="docs-endpoint-method green">object</span>
-                                                    <span class="docs-endpoint-path">uglifier-options?: <a href="#uglifier-options">&lt;UglifierOptions&gt;</a></span>
+                                                    <span class="docs-endpoint-method green">object</span><span class="docs-endpoint-path">uglifier-options?: <a href="#uglifier-options">&lt;UglifierOptions&gt;</a></span>
                                                     <span class="docs-endpoint-desc-right">The options you want to used for this uglification. (optional)</span>
                                                 </div>
                                                 <div class="docs-endpoint">
-                                                    <span class="docs-endpoint-method green">string</span>
-                                                    <span class="docs-endpoint-path">api-key?</span>
+                                                    <span class="docs-endpoint-method green">string</span><span class="docs-endpoint-path">api-key?</span>
                                                     <span class="docs-endpoint-desc-right">Your API key, required to fulfill and identify your request. (optional)</span>
                                                 </div>
                                             </div>
@@ -86,33 +86,27 @@
                                             </div>
                                             <div class="collapsible-body no-border">
                                                 <div class="docs-endpoint">
-                                                    <span class="docs-endpoint-method green">object</span>
-                                                    <span class="docs-endpoint-path">uglifier-options: <a href="#uglifier-options">&lt;UglifierOptions&gt;</a></span>
+                                                    <span class="docs-endpoint-method green">object</span><span class="docs-endpoint-path">uglifier-options: <a href="#uglifier-options">&lt;UglifierOptions&gt;</a></span>
                                                     <span class="docs-endpoint-desc-right">The options that were used for this uglification.</span>
                                                 </div>
                                                 <div class="docs-endpoint">
-                                                    <span class="docs-endpoint-method green">string</span>
-                                                    <span class="docs-endpoint-path">uglifier-function</span>
+                                                    <span class="docs-endpoint-method green">string</span><span class="docs-endpoint-path">uglifier-function</span>
                                                     <span class="docs-endpoint-desc-right">The used function / function chain for this uglification.</span>
                                                 </div>
                                                 <div class="docs-endpoint">
-                                                    <span class="docs-endpoint-method green">number</span>
-                                                    <span class="docs-endpoint-path">uglifier-ms-time</span>
+                                                    <span class="docs-endpoint-method green">number</span><span class="docs-endpoint-path">uglifier-ms-time</span>
                                                     <span class="docs-endpoint-desc-right">How long the uglification took on the server.</span>
                                                 </div>
                                                 <div class="docs-endpoint">
-                                                    <span class="docs-endpoint-method green">number</span>
-                                                    <span class="docs-endpoint-path">x-ratelimit-limit</span>
+                                                    <span class="docs-endpoint-method green">number</span><span class="docs-endpoint-path">x-ratelimit-limit</span>
                                                     <span class="docs-endpoint-desc-right">The rate limit ceiling that is applicable for the current request.</span>
                                                 </div>
                                                 <div class="docs-endpoint">
-                                                    <span class="docs-endpoint-method green">number</span>
-                                                    <span class="docs-endpoint-path">x-ratelimit-remaining</span>
+                                                    <span class="docs-endpoint-method green">number</span><span class="docs-endpoint-path">x-ratelimit-remaining</span>
                                                     <span class="docs-endpoint-desc-right">The number of requests left for the current rate-limit window.</span>
                                                 </div>
                                                 <div class="docs-endpoint">
-                                                    <span class="docs-endpoint-method green">number</span>
-                                                    <span class="docs-endpoint-path">x-ratelimit-reset</span>
+                                                    <span class="docs-endpoint-method green">number</span><span class="docs-endpoint-path">x-ratelimit-reset</span>
                                                     <span class="docs-endpoint-desc-right">The time at which the rate limit resets. (UTC epoch time in seconds)</span>
                                                 </div>
                                             </div>
@@ -130,8 +124,7 @@
                                     <blockquote>
                                         <p class="docs-endpoint-desc">Uglify your script with one function.</p>
                                         <div class="docs-endpoint">
-                                            <span class="docs-endpoint-method green">POST</span>
-                                            <span class="docs-endpoint-path" data-copycontent="https://goofyluauglifier.mopsfl.de/v1/api/uglify/bytestrings">/v1/api/uglify/bytestrings</span>
+                                            <span class="docs-endpoint-method green">POST</span><span class="docs-endpoint-path" data-copycontent="https://goofyluauglifier.mopsfl.de/v1/api/uglify/bytestrings">/v1/api/uglify/bytestrings</span>
                                             <span class="docs-endpoint-copy green copyhide">Copy</span>
                                         </div>
                                     </blockquote>
@@ -139,8 +132,7 @@
                                     <blockquote>
                                         <p class="docs-endpoint-desc">You can also specify a function chain to uglify your script with multiple functions at once. (functions are applied by order from left to right)</p>
                                         <div class="docs-endpoint">
-                                            <span class="docs-endpoint-method green">POST</span>
-                                            <span class="docs-endpoint-path" data-copycontent="https://goofyluauglifier.mopsfl.de/v1/api/uglify/bytestrings,transformnums,minify">/v1/api/uglify/bytestrings,transformnums,minify</span>
+                                            <span class="docs-endpoint-method green">POST</span><span class="docs-endpoint-path" data-copycontent="https://goofyluauglifier.mopsfl.de/v1/api/uglify/bytestrings,transformnums,minify">/v1/api/uglify/bytestrings,transformnums,minify</span>
                                             <span class="docs-endpoint-copy green copyhide">Copy</span>
                                         </div>
                                     </blockquote>
@@ -153,21 +145,84 @@
 
             <p class="divider"></p>
 
-            <ul class="collapsible docs-collapsible-item no-border" id="uglifier-options">
-                <li>
+            <!--Uglifier Options-->
+            <ul class="collapsible docs-collapsible-item no-border" id="functions">
+                <li class="active">
                     <div class="collapsible-header transparent no-border">
-                        <span class="collapsible-item"><i class="material-icons collapsible-icon">chevron_right</i><span class="collapsible-item-text">Functions</span></span>
+                        <span class="collapsible-item"><i class="material-icons collapsible-icon">chevron_right</i><span class="collapsible-item-text">Uglifier Options</span></span>
                     </div>
-                    <div class="collapsible-body no-border"><span>Lorem ipsum dolor sit amet.</span></div>
+                    <div class="collapsible-body no-border">
+                        <div class="docs-endpoint">
+                            <span class="docs-endpoint-method green">boolean</span><span class="docs-endpoint-path">beautify_output</span>
+                            <span class="docs-endpoint-desc-right">Beautifies the output code after the uglification.</span>
+                        </div>
+                        <div class="docs-endpoint">
+                            <span class="docs-endpoint-method green">boolean</span><span class="docs-endpoint-path">minify_output</span>
+                            <span class="docs-endpoint-desc-right">Minifies the output code after the uglification.</span>
+                        </div>
+                        <div class="docs-endpoint">
+                            <span class="docs-endpoint-method green">boolean</span><span class="docs-endpoint-path">chinese_nonsense_characters</span>
+                            <span class="docs-endpoint-desc-right">If the <code>Nonsense Strings</code> function should use chinese characters.</span>
+                        </div>
+                        <div class="docs-endpoint">
+                            <span class="docs-endpoint-method green">boolean</span><span class="docs-endpoint-path">ignore_bytecode</span>
+                            <span class="docs-endpoint-desc-right">Ignore any bytecode string. (e.g. when using <code>Bytestrings</code>)</span>
+                        </div>
+                        <div class="docs-endpoint">
+                            <span class="docs-endpoint-method green">boolean</span><span class="docs-endpoint-path">ignore_bytestring</span>
+                            <span class="docs-endpoint-desc-right">Ignore any encrypted byte string.</span>
+                        </div>
+                        <div class="docs-endpoint">
+                            <span class="docs-endpoint-method green">boolean</span><span class="docs-endpoint-path">byte_encrypt_all_constants</span>
+                            <span class="docs-endpoint-desc-right">If the <code>Bytestrings</code> function should also encrypt booleans and numbers.</span>
+                        </div>
+                        <div class="docs-endpoint">
+                            <span class="docs-endpoint-method green">boolean</span><span class="docs-endpoint-path">rename_global_functions</span>
+                            <span class="docs-endpoint-desc-right">If global function names should be renamed by the <code>Identifiers</code> function.</span>
+                        </div>
+                        <div class="docs-endpoint">
+                            <span class="docs-endpoint-method green">boolean</span><span class="docs-endpoint-path">use_all_mathoperators_number_transform</span>
+                            <span class="docs-endpoint-desc-right">Use all math operators for the number transform (<code>/</code> and <code>*</code>).</b></span>
+                        </div>
+                        <div class="docs-endpoint">
+                            <span class="docs-endpoint-method green">boolean</span><span class="docs-endpoint-path">memoize_function_calls</span>
+                            <span class="docs-endpoint-desc-right">Memoizes expensive function calls and caches them to avoid redundant computations.</span>
+                        </div>
+                        <div class="docs-endpoint">
+                            <span class="docs-endpoint-method green">string</span><span class="docs-endpoint-path">target_lua_version</span>
+                            <span class="docs-endpoint-desc-right">For what lua version your script should be optimized for.</span>
+                        </div>
+                        <div class="docs-endpoint">
+                            <span class="docs-endpoint-method green">string</span><span class="docs-endpoint-path">watermark</span>
+                            <span class="docs-endpoint-desc-right">Adds a useless watermark to your script.</span>
+                        </div>
+                        <div class="docs-endpoint">
+                            <span class="docs-endpoint-method green">string</span><span class="docs-endpoint-path">bytecode_watermark</span>
+                            <span class="docs-endpoint-desc-right">Adds a protected watermark to your bytecode when using <code>Constant Chunk 2</code> function.</span>
+                        </div>
+                        <div class="docs-endpoint">
+                            <span class="docs-endpoint-method green">string</span><span class="docs-endpoint-path">table_length_number_memestrings</span>
+                            <span class="docs-endpoint-desc-right">Adds your given strings into the <code>Table Length</code> function values.</span>
+                        </div>
+                        <div class="docs-endpoint">
+                            <span class="docs-endpoint-method green">number</span><span class="docs-endpoint-path">table_length_number_rate</span>
+                            <span class="docs-endpoint-desc-right">Rate of the random table values for the <code>Table Length</code> function.</span>
+                        </div>
+                        <div class="docs-endpoint">
+                            <span class="docs-endpoint-method green">number</span><span class="docs-endpoint-path">number_transform_offset_length</span>
+                            <span class="docs-endpoint-desc-right">The length of the random transform offset number when using <code>Numbers</code> or <code>Booleans</code>.</span>
+                        </div>
+                    </div>
                 </li>
             </ul>
 
             <p class="divider"></p>
 
-            <ul class="collapsible docs-collapsible-item no-border" id="functions">
+            <!--Functions-->
+            <ul class="collapsible docs-collapsible-item no-border" id="uglifier-options">
                 <li>
                     <div class="collapsible-header transparent no-border">
-                        <span class="collapsible-item"><i class="material-icons collapsible-icon">chevron_right</i><span class="collapsible-item-text">Uglifier Options</span></span>
+                        <span class="collapsible-item"><i class="material-icons collapsible-icon">chevron_right</i><span class="collapsible-item-text">Functions</span></span>
                     </div>
                     <div class="collapsible-body no-border"><span>Lorem ipsum dolor sit amet.</span></div>
                 </li>

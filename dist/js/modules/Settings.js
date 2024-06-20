@@ -12,7 +12,6 @@ class Settings {
             ["settings"]: {
                 ["beautify_output"]: false,
                 ["minify_output"]: false,
-                ["test_slider"]: "50",
                 ["target_lua_version"]: "5.3",
                 ["chinese_nonsense_characters"]: true,
                 ["ignore_bytecode"]: false,

@@ -42,5 +42,4 @@ jQuery(async () => {
             _el.addEventListener("mouseleave", () => _copybtn.classList.add("copyhide"))
         }
     })
-
 })
