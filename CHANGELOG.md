@@ -1,5 +1,6 @@
 ## 21.06.2024
 - added new setting <code>byte_string_type</code>
+- fixed <code>Constant Chunk 2</code> not able to parse decimal byte strings
 
 ## 19.06.2024
 - added new setting <code>minify_output</code>
