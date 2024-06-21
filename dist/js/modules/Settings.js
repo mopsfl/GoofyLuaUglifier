@@ -27,6 +27,7 @@ class Settings {
                 ["use_all_mathoperators_number_transform"]: false,
                 ["memoize_function_calls"]: false,
                 ["bytecode_watermark"]: "",
+                ["byte_string_type"]: "Hexadecimal"
             }
         }
     }) {

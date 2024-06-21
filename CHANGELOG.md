@@ -1,3 +1,6 @@
+## 21.06.2024
+- added new setting <code>byte_string_type</code>
+
 ## 19.06.2024
 - added new setting <code>minify_output</code>
 - fixed <code>GLookup</code> not working for local declarations
