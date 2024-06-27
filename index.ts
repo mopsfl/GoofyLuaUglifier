@@ -17,7 +17,8 @@ import TimeAgo from "./modules/Time";
 import Cookie from "./modules/Cookie";
 
 let clientSession = Cookie.GetCookie("_GLUSES") || undefined,
-    RobloxConstants_LastUpdated = null
+    RobloxConstants_LastUpdated = null,
+    accountStateFetched = false
 
 jQuery(async () => {
     const settings = new Settings()
@@ -72,7 +73,7 @@ jQuery(async () => {
     })
 
     async function UpdateRobloxConstantsLastUpdated() {
-        await fetch(`${self.default.options.api_url()}cache/RobloxConstants:LastUpdated`).then(res => res.json()).then(res => {
+        await fetch(`${self.default.options.api_url()}cache/RobloxConstants:LastUpdated`, { cache: "no-store" }).then(res => res.json()).then(res => {
             LocalStorage.Set(settings.config.storage_key, "RobloxConstants:LastUpdated", res)
             RobloxConstants_LastUpdated = res
         }).catch(error => {
@@ -119,8 +120,34 @@ jQuery(async () => {
         })
     }
 
-    //await UpdatePresets()
-    await UpdateRobloxConstantsLastUpdated()
+    async function UpdateStats() {
+        await fetch(`${self.default.options.api_url()}uglifier/stats`, { cache: "no-store" }).then(res => res.json()).then((stats: UglifierStats) => {
+            $("#total_requests").text(stats.total_requests)
+            $("#total_functions_called").text(stats.total_functions_called)
+        })
+    }
+
+    async function UpdateAccoutState() {
+        if (accountStateFetched === true) return
+        accountStateFetched = true
+        if (Cookie.GetCookie("_ASID")) {
+            fetch(`${self.default.options.mopsfl_api_url()}oauth/account/get`, { credentials: 'include' }).then(res => res.json()).then(async (res: OAuthGetResponse) => {
+                if (res.code === 0) {
+                    $(".acc_logout").hide()
+                    $("#account_username").text("Not logged in")
+                    $("#account_id").text("N/A")
+                    $("#discord-avatar").hide()
+                } else if (res.oauth === "discord") {
+                    await fetch(`${self.default.options.api_url()}oauth/account/isTester`, { credentials: "include" }).then(res => res.json()).then(res => {
+                        $("#tester_access").text(res == true ? "Yes" : "No")
+                    })
+                    window.discordAccount = res.user
+                    window.discordAvatar = `https://cdn.discordapp.com/avatars/${res.user.id}/${res.user.avatar}`
+                    ToggleLoginState(true)
+                }
+            })
+        } else ToggleLoginState(false)
+    }
 
     /** OAUTH LOGIN - NEW */
     function ToggleLoginState(state: boolean) {
@@ -152,23 +179,13 @@ jQuery(async () => {
         })
     })
 
-    if (Cookie.GetCookie("_ASID")) {
-        fetch(`${self.default.options.mopsfl_api_url()}oauth/account/get`, { credentials: 'include' }).then(res => res.json()).then(async (res: OAuthGetResponse) => {
-            if (res.code === 0) {
-                $(".acc_logout").hide()
-                $("#account_username").text("Not logged in")
-                $("#account_id").text("N/A")
-                $("#discord-avatar").hide()
-            } else if (res.oauth === "discord") {
-                await fetch(`${self.default.options.api_url()}oauth/account/isTester`, { credentials: "include" }).then(res => res.json()).then(res => {
-                    $("#tester_access").text(res == true ? "Yes" : "No")
-                })
-                window.discordAccount = res.user
-                window.discordAvatar = `https://cdn.discordapp.com/avatars/${res.user.id}/${res.user.avatar}`
-                ToggleLoginState(true)
-            }
-        })
-    } else ToggleLoginState(false)
+
+    M.Modal.getInstance(document.querySelector("#infomodal")).options.onOpenStart = async () => {
+        //UpdatePresets()
+        UpdateAccoutState().catch(console.error)
+        UpdateRobloxConstantsLastUpdated().catch(console.error)
+        UpdateStats().catch(console.error)
+    }
 
     /** END */
     /*window.modules = {
@@ -204,6 +221,12 @@ export interface OAuthGetResponse {
     code?: number,
     oauth: "discord" | "roblox",
     user: DiscordOAuthUserInfo
+}
+
+export interface UglifierStats {
+    total_requests: number,
+    total_functions_called: number,
+    functions: { [_: string]: number }
 }
 
 declare let M: Materialbox
