@@ -1,3 +1,6 @@
+## 04.07.2024
+- added new function <code>Number Combine</code>
+
 ## 27.06.2024
 - added uglifier stats to info modal
 - added new function <code>TableConcat Strings</code>
