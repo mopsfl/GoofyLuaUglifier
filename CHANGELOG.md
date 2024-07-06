@@ -1,3 +1,6 @@
+## 06.07.2024
+- performance improvement for memoize function call (credits: lifestorm)
+
 ## 04.07.2024
 - added new function <code>Number Combine</code>
 
