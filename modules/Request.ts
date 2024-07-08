@@ -35,7 +35,6 @@ export default {
             })
     },
 
-
     CreateResponseError(format: "lua", error: string, code?: string) {
         let message = error
         if (code) code = code.replace(/--\[\[(.|\n)*]]/gm, "")

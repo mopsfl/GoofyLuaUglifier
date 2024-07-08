@@ -73,7 +73,7 @@ jQuery(async () => {
     })
 
     async function UpdateRobloxConstantsLastUpdated() {
-        await fetch(`${self.default.options.api_url()}cache/RobloxConstants:LastUpdated`, { cache: "no-store" }).then(res => res.json()).then(res => {
+        await fetch(`${self.default.options.api_url()}api/cache/RobloxConstants:LastUpdated`, { cache: "no-store" }).then(res => res.json()).then(res => {
             LocalStorage.Set(settings.config.storage_key, "RobloxConstants:LastUpdated", res)
             RobloxConstants_LastUpdated = res
         }).catch(error => {
@@ -89,7 +89,7 @@ jQuery(async () => {
 
     $(".rbxc_update").on("click", async () => {
         $(".rbxc_update").addClass("disabled").text("Requesting...")
-        await fetch(`${self.default.options.api_url()}constants/update/roblox`, { method: "POST" }).then(res => res.json()).then(async res => {
+        await fetch(`${self.default.options.api_url()}api/constants/update/roblox`, { method: "POST" }).then(res => res.json()).then(async res => {
             M.toast({ html: `Server Response: ${res.message} - ${res.code}${res.error ? `<br>Error: ${res.error}` : ""}` })
             console.log(res);
             await UpdateRobloxConstantsLastUpdated()
@@ -102,7 +102,7 @@ jQuery(async () => {
     })
 
     async function UpdatePresets() {
-        await fetch(`${self.default.options.api_url()}uglifier/preset`).then(res => res.json()).then((presets: {}) => {
+        await fetch(`${self.default.options.api_url()}api/uglifier/preset`).then(res => res.json()).then((presets: {}) => {
             Object.keys(presets).forEach(presetname => {
                 let presetTemplateClone = document.querySelector(".preset").cloneNode(true),
                     presetfuncs = ""
@@ -121,7 +121,7 @@ jQuery(async () => {
     }
 
     async function UpdateStats() {
-        await fetch(`${self.default.options.api_url()}uglifier/stats`, { cache: "no-store" }).then(res => res.json()).then((stats: UglifierStats) => {
+        await fetch(`${self.default.options.api_url()}api/uglifier/stats`, { cache: "no-store" }).then(res => res.json()).then((stats: UglifierStats) => {
             $("#total_requests").text(stats.total_requests)
             $("#total_functions_called").text(stats.total_functions_called)
         })
