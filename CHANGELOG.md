@@ -1,3 +1,9 @@
+## 11.07.2024
+- rewrote whole TableLookup function
+- ├ fixed invalid transformation of <code>FunctionDeclarations</code> and its <code>MemberExpression</code> identifier
+- └ current issue: <code>AssignmentStatements</code> with more than 3 assinged <code>Identifiers</code> will be ignored
+- other small improvements on the api endpoints
+
 ## 06.07.2024
 - performance improvement for memoize function call (credits: lifestorm)
 
