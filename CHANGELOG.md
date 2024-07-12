@@ -1,3 +1,6 @@
+## 12.07.2024
+- added new function <code>Args To Vararg</code> (experimental)
+
 ## 11.07.2024
 - rewrote whole TableLookup function
 - ├ fixed invalid transformation of <code>FunctionDeclarations</code> and its <code>MemberExpression</code> identifier
