@@ -23,16 +23,22 @@
         });
         require(['vs/editor/editor.main'], function (monaco) {
             var editor = monaco.editor.create(document.querySelector('.monaco'), {
-                value: `function _func1(a,b,c)
-    return a,b,c
+                value: `local a = 123
+local b = 100
+local c = "Hello World!"
+local d = true
+local e = false
+local f = function() return {a, b, c, d, e} end
+local g = 100
+
+function _func(...)
+    local args = {...}
+    for _,v in pairs(f()) do print(_,v) end
+    return args[1] - args[2]
 end
 
-function _func2(b,c,a)
-    return a,b,c
-end
-
-print(_func1(1,2,3))
-print(_func2(1,2,3))`.trim(),
+print(_func(a, b))
+print(b-g)`.trim(),
                 language: 'lua',
                 theme: 'vs-dark',
                 wordWrap: 'on',
