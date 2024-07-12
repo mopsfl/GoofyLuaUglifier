@@ -1,5 +1,6 @@
 ## 12.07.2024
 - added new function <code>Args To Vararg</code> (experimental)
+- fixed function names being declared as local declarations when using <code>Globals To Locals</code> function
 
 ## 11.07.2024
 - rewrote whole TableLookup function
