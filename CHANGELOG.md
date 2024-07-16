@@ -1,3 +1,7 @@
+## 16.07.2024
+- _env local is now using <code>_G or _ENV</code> instead of just <code>_ENV</code>
+- fixed some minor bugs on the api
+
 ## 12.07.2024
 - added new function <code>Args To Vararg</code> (experimental)
 - fixed function names being declared as local declarations when using <code>Globals To Locals</code> function
