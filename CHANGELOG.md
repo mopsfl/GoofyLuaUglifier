@@ -1,3 +1,6 @@
+## 17.07.2024
+- added new function <code>AnonymousDeclarations</code>
+
 ## 16.07.2024
 - _env local is now using <code>_G or _ENV</code> instead of just <code>_ENV</code>
 - fixed some minor bugs on the api

@@ -23,22 +23,11 @@
         });
         require(['vs/editor/editor.main'], function (monaco) {
             var editor = monaco.editor.create(document.querySelector('.monaco'), {
-                value: `local a = 123
-local b = 100
-local c = "Hello World!"
-local d = true
-local e = false
-local f = function() return {a, b, c, d, e} end
-local g = 100
+                value: `local dummy = {};
 
-function _func(...)
-    local args = {...}
-    for _,v in pairs(f()) do print(_,v) end
-    return args[1] - args[2]
-end
-
-print(_func(a, b))
-print(b-g)`.trim(),
+function Dummy() end
+function dummy.Dummy(a, b) return a,b end
+function dummy:Puppet(a, b) return a,b end`.trim(),
                 language: 'lua',
                 theme: 'vs-dark',
                 wordWrap: 'on',
@@ -324,6 +313,13 @@ print(b-g)`.trim(),
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="argstovararg" data-tooltip="Turns all arguments in a function to a vararg call statement.<br><br>e.g.: <code class='multiline'>function _func(a,b,c) return a,b,c end</code> &equals; <code class='multiline'>function _func(...) return ({...})[1],({...})[2],({...})[3] end</code><br><br><small><b>EXPERIMENTAL</b> - Might break the script</small><br><small><b>Note:</b> AssignmentStatements to an argument won't work.</small>" data-position="left">
                         Args To Vararg</button>
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
+                        <i class="material-icons center">settings</i>
+                    </button>
+                </div>
+                <div class="sidebar-double-button">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="anonymousdeclarations" data-tooltip="Transforms and anonymizes function declarations by using string-based keys and table lookups.<br><br>e.g.: <code class='multiline'>function x.y(a, b) return a,b end</code> &equals; <code class='multiline'>x['y'] = function(self, a, b) return self,a,b end</code><br><br><small><b>EXPERIMENTAL</b> - Might break the script</small>" data-position="left">
+                        AnonDecls</button>
                     <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
