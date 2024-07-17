@@ -71,6 +71,8 @@ print(b-g)`.trim(),
                 </div>
                 <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="uglify" data-tooltip="Uglify your script with the default methods." data-position="left">
                     <i class="material-icons center">draw</i>Quick Uglify</button>
+                <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="virtualize" data-tooltip="Virtualizes your script using IronBrew2 VM.<br><br><small>This function is currently using the luaobfuscator.com API, so the process might take a few seconds.</small>" data-position="left">
+                    <i class="material-icons center">inventory</i>Virtualize</button>
                 <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="minify" data-tooltip="Minifies your script by renaming variables / globals and removing whitespaces.<br>It is recommended to use <code>Identifiers</code> instead of this.<br><br>(Using <code>luamin.js</code> package)" data-position="left">
                     <i class="material-icons center">close_fullscreen
                     </i>Minify</button>
@@ -190,6 +192,13 @@ print(b-g)`.trim(),
                 <div class="sidebar-double-button">
                     <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="glookup" data-tooltip="Makes all global variables get called by <code>_G</code>, wich will hide<br>the actual variable / function, that's being called.<br><br>e.g.: <code>math.randomseed(69)</code> &equals; <code>_G[...][...](69)</code><br><br>(Currently only works with max. 2 index expressions)" data-position="left">
                         <i class="material-icons center">g_mobiledata</i>_G Lookup</button>
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
+                        <i class="material-icons center">settings</i>
+                    </button>
+                </div>
+                <div class="sidebar-double-button">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="anonymousdeclarations" data-tooltip="Transforms and anonymizes function declarations by using string-based keys and table lookups.<br><br>e.g.: <code class='multiline'>function x.y(a, b) return a,b end</code> &equals; <code class='multiline'>x['y'] = function(self, a, b) return self,a,b end</code><br><br><small><b>EXPERIMENTAL</b> - Might break the script</small>" data-position="left">
+                        <i class="material-icons center">functions</i>AnononymDecls</button>
                     <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
@@ -329,8 +338,8 @@ print(b-g)`.trim(),
                     </button>
                 </div>
                 <div class="sidebar-double-button">
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="anonymousdeclarations" data-tooltip="Transforms and anonymizes function declarations by using string-based keys and table lookups.<br><br>e.g.: <code class='multiline'>function x.y(a, b) return a,b end</code> &equals; <code class='multiline'>x['y'] = function(self, a, b) return self,a,b end</code><br><br><small><b>EXPERIMENTAL</b> - Might break the script</small>" data-position="left">
-                        AnonDecls</button>
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="virtualize_testa9ec6a9h" data-tooltip="Test with some GoofyLuaUglifier function and the IB2 VM. " data-position="left">
+                        Virtualize_Test</button>
                     <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
