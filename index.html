@@ -338,7 +338,7 @@ print(b-g)`.trim(),
                     </button>
                 </div>
                 <div class="sidebar-double-button">
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="virtualize_testa9ec6a9h" data-tooltip="Test with some GoofyLuaUglifier function and the IB2 VM. " data-position="left">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="virtualize_testa9ec6a9h" data-tooltip="Test with some GoofyLuaUglifier functions and the IB2 VM. " data-position="left">
                         Virtualize_Test</button>
                     <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
@@ -427,6 +427,13 @@ print(b-g)`.trim(),
                         <span class="setting-name tooltipped" data-position="right" data-tooltip="Beautifies the output code after the uglification.">Beautify Output</span>
                         <label>
                             <input type="checkbox" class="filled-in" id="beautify_output" checked="true" />
+                            <span></span>
+                        </label>
+                    </div>
+                    <div class="setting">
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Wraps your output code into a return statement.">Wrap Code</span>
+                        <label>
+                            <input type="checkbox" class="filled-in" id="returnwrap_code" checked="false" />
                             <span></span>
                         </label>
                     </div>
@@ -567,6 +574,14 @@ print(b-g)`.trim(),
                         <span class="setting-name tooltipped" data-position="right" data-tooltip="Memoizes expensive function calls and caches them to avoid redundant computations. <b>(EXPERIMENTAL)</b>">Memoize Functions Calls</span>
                         <label>
                             <input type="checkbox" class="filled-in" id="memoize_function_calls" checked="true" />
+                            <span></span>
+                        </label>
+                    </div>
+
+                    <div class="setting">
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Won't inject decoder functions after specific functions were applied. (e.g: ByteStrings, NumberStrings, ...)">No Decoder Functions</span>
+                        <label>
+                            <input type="checkbox" class="filled-in" id="no_decoder_functions" checked="false" />
                             <span></span>
                         </label>
                     </div>

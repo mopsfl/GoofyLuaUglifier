@@ -1,6 +1,10 @@
 ## 17.07.2024
 - added new function <code>AnonymousDeclarations</code>
 - added new function <code>Virtualize</code> using IronBrew2 VM (luaobfuscator.com api)
+- added new setting <code>WrapReturn</code>
+- added new setting <code>No Decoder Functions</code>
+- renamed <code>FakeArgs</code> local names
+- other minor bug fixes and improvements
 
 ## 16.07.2024
 - _env local is now using <code>_G or _ENV</code> instead of just <code>_ENV</code>
