@@ -23,11 +23,22 @@
         });
         require(['vs/editor/editor.main'], function (monaco) {
             var editor = monaco.editor.create(document.querySelector('.monaco'), {
-                value: `local dummy = {};
+                value: `local a = 123
+local b = 100
+local c = "Hello World!"
+local d = true
+local e = false
+local f = function() return {a, b, c, d, e} end
+local g = 100
 
-function Dummy() end
-function dummy.Dummy(a, b) return a,b end
-function dummy:Puppet(a, b) return a,b end`.trim(),
+function _func(...)
+    local args = {...}
+    for _,v in pairs(f()) do print(_,v) end
+    return args[1] - args[2]
+end
+
+print(_func(a, b))
+print(b-g)`.trim(),
                 language: 'lua',
                 theme: 'vs-dark',
                 wordWrap: 'on',
