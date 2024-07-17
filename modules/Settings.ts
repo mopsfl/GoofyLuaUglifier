@@ -1,3 +1,4 @@
+import { UglifierSettings } from "..";
 import LocalStorage from "./LocalStorage";
 
 export default class Settings {
@@ -9,6 +10,7 @@ export default class Settings {
                     ["beautify_output"]: false,
                     ["minify_output"]: false,
                     ["target_lua_version"]: "5.3",
+                    ["save_editor_code"]: false,
                     ["chinese_nonsense_characters"]: true,
                     ["ignore_bytecode"]: false,
                     ["ignore_bytestring"]: true,
@@ -25,10 +27,11 @@ export default class Settings {
                     ["bytecode_watermark"]: "",
                     ["byte_string_type"]: "Hexadecimal",
                     ["no_decoder_functions"]: false,
-                    ["returnwrap_code"]: false
+                    ["returnwrap_code"]: false,
                 }
-            }
-        }
+            },
+        },
+        public _settings?: UglifierSettings
     ) {
         if (!LocalStorage.Exists(this.config.storage_key)) {
             LocalStorage.Create(this.config.storage_key, this.config.default_settings)
@@ -36,14 +39,11 @@ export default class Settings {
     }
 
     init(reset?: boolean) {
-        let _settings: any
-
         if (reset) {
             LocalStorage.Clear(this.config.storage_key)
             LocalStorage.Create(this.config.storage_key, this.config.default_settings)
         }
-
-        _settings = LocalStorage.GetKey(this.config.storage_key, "settings")
+        this._settings = LocalStorage.GetKey(this.config.storage_key, "settings")
         document.querySelectorAll(".setting").forEach(setting => {
             const input: HTMLInputElement = setting.querySelector("input"),
                 setting_id = $(input).attr("id")
@@ -53,12 +53,12 @@ export default class Settings {
                     const [setting_name, setting_id, value] = this.HandleInput(e, setting)
                     this.UpdateSetting(setting_name, setting_id, value)
                 })
-                let value = _settings[setting_id]
+                let value = this._settings[setting_id]
                 if (value === undefined) {
                     value = this.config.default_settings.settings[setting_id];
-                    _settings[setting_id] = value
+                    this._settings[setting_id] = value
                     this.UpdateSetting(setting_id, setting_id, value)
-                    console.warn(`[Settings]: added missing setting > ${setting_id} = ${_settings[setting_id]}`);
+                    console.warn(`[Settings]: added missing setting > ${setting_id} = ${this._settings[setting_id]}`);
                 }
                 switch (input.type) {
                     case "checkbox":
@@ -84,10 +84,10 @@ export default class Settings {
                 if (input.classList.contains("select-dropdown")) {
                     let _dropdown_select = $(input).parent()[0].querySelector("select"),
                         setting_id = _dropdown_select.getAttribute("id"),
-                        value = _settings[setting_id]
+                        value = this._settings[setting_id]
                     if (value === undefined) {
                         value = this.config.default_settings.settings[setting_id];
-                        _settings[setting_id] = value
+                        this._settings[setting_id] = value
                         console.warn(`[Settings]: added missing setting > ${setting_id}`);
                     }
 

@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const LocalStorage_1 = __importDefault(require("./LocalStorage"));
 class Settings {
     config;
+    _settings;
     constructor(config = {
         storage_key: "_goofyuglifier",
         default_settings: {
@@ -13,6 +14,7 @@ class Settings {
                 ["beautify_output"]: false,
                 ["minify_output"]: false,
                 ["target_lua_version"]: "5.3",
+                ["save_editor_code"]: false,
                 ["chinese_nonsense_characters"]: true,
                 ["ignore_bytecode"]: false,
                 ["ignore_bytestring"]: true,
@@ -29,22 +31,22 @@ class Settings {
                 ["bytecode_watermark"]: "",
                 ["byte_string_type"]: "Hexadecimal",
                 ["no_decoder_functions"]: false,
-                ["returnwrap_code"]: false
+                ["returnwrap_code"]: false,
             }
-        }
-    }) {
+        },
+    }, _settings) {
         this.config = config;
+        this._settings = _settings;
         if (!LocalStorage_1.default.Exists(this.config.storage_key)) {
             LocalStorage_1.default.Create(this.config.storage_key, this.config.default_settings);
         }
     }
     init(reset) {
-        let _settings;
         if (reset) {
             LocalStorage_1.default.Clear(this.config.storage_key);
             LocalStorage_1.default.Create(this.config.storage_key, this.config.default_settings);
         }
-        _settings = LocalStorage_1.default.GetKey(this.config.storage_key, "settings");
+        this._settings = LocalStorage_1.default.GetKey(this.config.storage_key, "settings");
         document.querySelectorAll(".setting").forEach(setting => {
             const input = setting.querySelector("input"), setting_id = $(input).attr("id");
             if (setting_id) {
@@ -52,12 +54,12 @@ class Settings {
                     const [setting_name, setting_id, value] = this.HandleInput(e, setting);
                     this.UpdateSetting(setting_name, setting_id, value);
                 });
-                let value = _settings[setting_id];
+                let value = this._settings[setting_id];
                 if (value === undefined) {
                     value = this.config.default_settings.settings[setting_id];
-                    _settings[setting_id] = value;
+                    this._settings[setting_id] = value;
                     this.UpdateSetting(setting_id, setting_id, value);
-                    console.warn(`[Settings]: added missing setting > ${setting_id} = ${_settings[setting_id]}`);
+                    console.warn(`[Settings]: added missing setting > ${setting_id} = ${this._settings[setting_id]}`);
                 }
                 switch (input.type) {
                     case "checkbox":
@@ -81,10 +83,10 @@ class Settings {
             }
             else {
                 if (input.classList.contains("select-dropdown")) {
-                    let _dropdown_select = $(input).parent()[0].querySelector("select"), setting_id = _dropdown_select.getAttribute("id"), value = _settings[setting_id];
+                    let _dropdown_select = $(input).parent()[0].querySelector("select"), setting_id = _dropdown_select.getAttribute("id"), value = this._settings[setting_id];
                     if (value === undefined) {
                         value = this.config.default_settings.settings[setting_id];
-                        _settings[setting_id] = value;
+                        this._settings[setting_id] = value;
                         console.warn(`[Settings]: added missing setting > ${setting_id}`);
                     }
                     input.value = value;

@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Editor_1 = __importDefault(require("./Editor"));
 const Request_1 = __importDefault(require("./Request"));
+const pako_1 = __importDefault(require("pako"));
 exports.default = {
     async new(func, code, options, uglifier_options, clientSession) {
         if (!(func instanceof (Attr)))
@@ -53,6 +54,6 @@ exports.default = {
         return message;
     },
     EncodeRequestDataQuery(data) {
-        return encodeURIComponent(btoa(String.fromCharCode.apply(null, new Uint16Array(window.pako.gzip(JSON.stringify(data))))));
+        return encodeURIComponent(btoa(String.fromCharCode.apply(null, new Uint16Array(pako_1.default.gzip(JSON.stringify(data))))));
     },
 };

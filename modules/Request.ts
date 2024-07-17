@@ -1,5 +1,6 @@
 import Editor from "./Editor";
 import Request from "./Request"
+import pako from "pako"
 import * as self from ".."
 
 export default {
@@ -52,7 +53,7 @@ export default {
     },
 
     EncodeRequestDataQuery(data: Object) {
-        return encodeURIComponent(btoa(String.fromCharCode.apply(null, new Uint16Array(window.pako.gzip(JSON.stringify(data))))))
+        return encodeURIComponent(btoa(String.fromCharCode.apply(null, new Uint16Array(pako.gzip(JSON.stringify(data))))))
     },
 }
 

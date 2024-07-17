@@ -29,6 +29,8 @@
   "license": "ISC",
   "dependencies": {
     "@types/materialize-css": "^1.0.11",
-    "monaco-editor": "^0.41.0"
+    "@types/pako": "^2.0.3",
+    "monaco-editor": "^0.41.0",
+    "pako": "^2.1.0"
   }
 }

@@ -15,10 +15,12 @@ import QuickActions from "./modules/QuickActions";
 import * as self from "./index";
 import TimeAgo from "./modules/Time";
 import Cookie from "./modules/Cookie";
+import Utils from "./modules/Utils";
 
 let clientSession = Cookie.GetCookie("_GLUSES") || undefined,
     RobloxConstants_LastUpdated = null,
     accountStateFetched = false
+
 
 jQuery(async () => {
     const settings = new Settings()
@@ -187,6 +189,23 @@ jQuery(async () => {
         UpdateStats().catch(console.error)
     }
 
+    function WaitForEditor() {
+        if (typeof window.monaco_editor !== "undefined") {
+            if (settings._settings.save_editor_code === true) {
+                window.monaco_editor.getEditors()[0].getModel().onDidChangeContent(() => {
+                    LocalStorage.Set(settings.config.storage_key, "mEditorValue", Utils.CompressData(Editor.GetValue()))
+                })
+                const mEditorValue = Utils.UncompressData(LocalStorage.GetKey("_goofyuglifier", "mEditorValue"))
+                if (mEditorValue !== "%save_editor_code_DISABLED%") Editor.SetValue(mEditorValue)
+            } else {
+                LocalStorage.Set(settings.config.storage_key, "mEditorValue", Utils.CompressData("%save_editor_code_DISABLED%"))
+            }
+        }
+        else {
+            setTimeout(WaitForEditor, 250);
+        }
+    }; WaitForEditor()
+    window["ls"] = LocalStorage
     /** END */
     /*window.modules = {
         jQuery, Request, Editor, self, settings, LocalStorage, RobloxConstants_LastUpdated
@@ -242,12 +261,42 @@ declare global {
         stringEncode: {
             str2buffer: Function,
             buffer2str: Function
-        },
-        pako: {
-            inflate: Function,
-            deflate: Function,
-            gzip: Function,
-            ungzip: Function,
         }
     }
+}
+
+export interface UglifierSettings {
+    test_checkbox: boolean
+    beautify_output: boolean
+    minify_output: boolean,
+    returnwrap_code: boolean,
+
+    save_editor_code: boolean,
+
+    ignore_bytecode: boolean,
+    ignore_bytestring: boolean,
+
+    chinese_nonsense_characters: boolean,
+    byte_string_type: "Hexadecimal" | "Decimal",
+
+    byte_encrypt_all_constants: boolean,
+    rename_global_functions: boolean,
+
+    table_length_number_memestrings: string,
+    table_length_number_rate: number,
+
+    protect_watermark: boolean
+    target_lua_version: "5.1" | "5.2" | "5.3" | "LuaJIT"
+
+    test_slider: number
+
+    number_transform_offset_length: number,
+    use_all_mathoperators_number_transform: boolean,
+
+    watermark: string
+    tester_access_key: string,
+    bytecode_watermark: string,
+
+    memoize_function_calls: boolean,
+    no_decoder_functions: boolean
 }
