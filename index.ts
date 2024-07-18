@@ -205,7 +205,6 @@ jQuery(async () => {
             setTimeout(WaitForEditor, 250);
         }
     }; WaitForEditor()
-    window["ls"] = LocalStorage
     /** END */
     /*window.modules = {
         jQuery, Request, Editor, self, settings, LocalStorage, RobloxConstants_LastUpdated

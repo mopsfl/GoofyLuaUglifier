@@ -1,3 +1,7 @@
+## 18.07.2024
+- fixed <code>AnonymousDeclarations</code> incorrectly transforming local declarations into global ones
+- fixed <code>AntiBeautify2</code> (finally lol)
+
 ## 17.07.2024
 - added new function <code>AnonymousDeclarations</code>
 - added new function <code>Virtualize</code> using IronBrew2 VM (luaobfuscator.com api)
