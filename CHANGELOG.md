@@ -1,3 +1,6 @@
+## 19.07.2024
+- fixed a server-side unhandled promise rejection for the <code>Virtualize</code> function, causing the server to crash
+
 ## 18.07.2024
 - fixed <code>AnonymousDeclarations</code> incorrectly transforming local declarations into global ones
 - fixed <code>AntiBeautify2</code> (finally lol)
