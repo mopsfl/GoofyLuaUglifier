@@ -1,3 +1,7 @@
+## 20.07.2024
+- improvement for the minifier to handle table indexing <code>({})[x]</code> & <code>({...})[x]</code>
+- fixed minifier putting double parens around anonymous call statements
+
 ## 19.07.2024
 - fixed a server-side unhandled promise rejection for the <code>Virtualize</code> function, causing the server to crash
 
