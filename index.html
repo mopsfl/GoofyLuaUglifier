@@ -69,8 +69,10 @@ print(b-g)`.trim(),
                 <div class="seperator text tooltipped" data-tooltip="Quick actions to make life easier I guess." data-position="left">
                     <span>Quick Actions</span>
                 </div>
-                <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="uglify" data-tooltip="Uglify your script with the default methods." data-position="left">
+                <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="uglify" data-tooltip="Uglify your script with the default functions." data-position="left">
                     <i class="material-icons center">draw</i>Quick Uglify</button>
+                <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="virtualize_testa9ec6a9h" data-tooltip="Obfuscates your script with many GoofyLuaUglifier functions and virtualizes it with the IronBrew2 VM at the end." data-position="left">
+                    <i class="material-icons center">draw</i>Obfuscate</button>
                 <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="virtualize" data-tooltip="Virtualizes your script using IronBrew2 VM.<br><br><small>This function is currently using the luaobfuscator.com API, so the process might take a few seconds.</small>" data-position="left">
                     <i class="material-icons center">inventory</i>Virtualize</button>
                 <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="minify" data-tooltip="Minifies your script by renaming variables / globals and removing whitespaces.<br>It is recommended to use <code>Identifiers</code> instead of this.<br><br>(Using <code>luamin.js</code> package)" data-position="left">
@@ -338,8 +340,15 @@ print(b-g)`.trim(),
                     </button>
                 </div>
                 <div class="sidebar-double-button">
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="virtualize_testa9ec6a9h" data-tooltip="Test with some GoofyLuaUglifier functions and the IB2 VM. " data-position="left">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="virtualize_testa9ec6a9h" data-tooltip="Test with some GoofyLuaUglifier functions and the IB2 VM." data-position="left">
                         Virtualize_Test</button>
+                    <button class="function-settings btn green waves-effect waves-light" data-position="left">
+                        <i class="material-icons center">settings</i>
+                    </button>
+                </div>
+                <div class="sidebar-double-button">
+                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-function="controlflow2" data-tooltip="controlflow2<br><small><b>EXPERIMENTAL</b> - Might break the script</small>" data-position="left">
+                        Control Flow 2</button>
                     <button class="function-settings btn green waves-effect waves-light" data-position="left">
                         <i class="material-icons center">settings</i>
                     </button>
@@ -347,7 +356,7 @@ print(b-g)`.trim(),
 
                 <div class="seperator"></div>
 
-                <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green modal-trigger" href="#settingsmodal" data-tooltip=" Settings" data-position="left">
+                <button class="sidebar-btn waves-effect waves-light btn no-padding tooltipped green modal-trigger" href="#settingsmodal" data-tooltip="Settings" data-position="left">
                     <i class="material-icons center">settings
                     </i>Settings</button>
             </div>
