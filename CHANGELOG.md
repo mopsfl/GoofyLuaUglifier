@@ -1,3 +1,6 @@
+## 21.07.2024
+- added Lua 5.4 support for the bit32.bxor function (this caused the <code>ByteStrings</code> function to not work at all on Lua 5.4)
+
 ## 20.07.2024
 - improvement for the minifier to handle table indexing <code>({})[x]</code> & <code>({...})[x]</code>
 - fixed minifier putting double parens around anonymous call statements
