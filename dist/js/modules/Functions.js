@@ -14,13 +14,16 @@ const functionButtons = new Map;
 exports.default = {
     blockFunctionTrigger: false,
     Init() {
+        console.log("init functions");
         const _functionBtnTemplate = $(".function-btn-template"), _functionCategoryTitleTemplate = $(".function-category-title-template"), _sideBarButtons = $(".sidebar-buttons");
         Object.keys(Functions_1.default.List).forEach((categoryName) => {
+            console.log(categoryName);
             const categoryFunctions = Functions_1.default.List[categoryName];
             const _functionCategoryTitle = _functionCategoryTitleTemplate.contents().clone();
             _functionCategoryTitle.text(categoryName);
             _functionCategoryTitle.appendTo(_sideBarButtons);
             categoryFunctions.forEach(categoryFunction => {
+                console.log(categoryFunction);
                 if (!categoryFunction.divider) {
                     const functionBtn = _functionBtnTemplate.contents().clone(), functionBtnIcon = functionBtn.find("#function-icon"), functionBtnName = functionBtn.find("#function-name"), functionBtnHtmlElement = functionBtn.get(1);
                     functionBtnName.text(categoryFunction.name);

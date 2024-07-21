@@ -10,17 +10,20 @@ const functionButtons = new Map<string, { element: JQuery<any>, func: CategoryFu
 export default {
     blockFunctionTrigger: false,
     Init() {
+        console.log("init functions");
         const _functionBtnTemplate = $(".function-btn-template"),
             _functionCategoryTitleTemplate = $(".function-category-title-template"),
             _sideBarButtons = $(".sidebar-buttons")
 
         Object.keys(self.List).forEach((categoryName) => {
+            console.log(categoryName);
             const categoryFunctions: CategoryFunction[] = self.List[categoryName]
             const _functionCategoryTitle = _functionCategoryTitleTemplate.contents().clone()
             _functionCategoryTitle.text(categoryName)
             _functionCategoryTitle.appendTo(_sideBarButtons)
 
             categoryFunctions.forEach(categoryFunction => {
+                console.log(categoryFunction);
                 if (!categoryFunction.divider) {
                     const functionBtn = _functionBtnTemplate.contents().clone(),
                         functionBtnIcon = functionBtn.find("#function-icon"),
