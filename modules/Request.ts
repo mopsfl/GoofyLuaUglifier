@@ -1,38 +1,20 @@
 import Editor from "./Editor";
 import Request from "./Request"
 import pako from "pako"
-import * as self from ".."
 
 export default {
-    async new(func: Attr, code: string, options: RequestOptions, uglifier_options?: Object, clientSession?: string): Promise<Response> {
-        if (!(func instanceof (Attr))) return Promise.reject("invalid arguments")
+    async new(func: string, code: string, options: RequestOptions, uglifier_options?: Object, clientSession?: string): Promise<Response> {
         const start_tick = new Date().getTime()
         console.log(`new function request`, func);
 
         return await fetch(
-            `${options.api_url()}${func.value}`, { method: "POST", body: code, credentials: "include", headers: { "uglifier-options": JSON.stringify(uglifier_options), "uglifier-session": clientSession } }).catch(error => {
+            `${options.api_url()}${func}`, { method: "POST", body: code, credentials: "include", headers: { "uglifier-options": JSON.stringify(uglifier_options), "uglifier-session": clientSession } }).catch(error => {
                 const _error: Error = error
                 Editor.SetValue(Request.CreateResponseError("lua", _error.message, Editor.GetValue()))
                 Editor.ToggleLoading()
                 throw error
             }).finally(() => {
                 console.log(`[Client] Function request finished. (took ${new Date().getTime() - start_tick}ms)`);
-                /*fetch(`${self.default.options.mopsfl_api_url()}logs/glu_responsetime`, {
-                    method: "POST", body: JSON.stringify({
-                        f: func.value,
-                        u: options.api_url(),
-                        t: new Date().getTime() - start_tick,
-                        s: clientSession || null,
-                        o: Object.values(uglifier_options)
-                    })
-                })*/
-                console.log({
-                    f: func.value,
-                    u: options.api_url(),
-                    t: new Date().getTime() - start_tick,
-                    s: clientSession || null,
-                    o: Object.values(uglifier_options)
-                });
             })
     },
 

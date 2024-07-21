@@ -45,6 +45,12 @@ main {
     background-color: black;
 }
 
+.pageinit_error {
+    box-shadow: #000 0 10px 50px 0;
+    padding: 20px;
+    background: rgb(104, 0, 0);
+}
+
 .main {
     display: flex;
     width: 100%;
