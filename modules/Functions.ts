@@ -92,6 +92,7 @@ export default {
     List: {
         ["Quick Actions"]: [
             { name: "Quick Uglify", id: "uglify", icon_id: "draw", tooltip: "Uglify your script with the default methods.", quickActionsOverride: true },
+            { name: "Obfuscate", id: "virtualize_testa9ec6a9h", icon_id: "draw", tooltip: "Obfuscates your script with many GoofyLuaUglifier functions and the IronBrew2 VM.", quickActionsOverride: true },
             { name: "Virtualize", id: "virtualize", icon_id: "inventory", tooltip: "Virtualizes your script using IronBrew2 VM.<br><br><small>This function is currently using the luaobfuscator.com API, so the process might take a few seconds.</small>", quickActionsOverride: true },
             { name: "Minify", id: "minify", icon_id: "close_fullscreen", tooltip: "Minifies your script by renaming variables / globals and removing whitespaces.", quickActionsOverride: true },
             { name: "Copy", id: "copy", icon_id: "content_copy", tooltip: "Copies the current editor script." },
@@ -303,12 +304,6 @@ export default {
                 "id": "argstovararg",
                 "icon_id": "",
                 "tooltip": "Turns all arguments in a function to a vararg call statement.<br><br>e.g.: <code class='multiline'>function _func(a,b,c) return a,b,c end</code> &equals; <code class='multiline'>function _func(...) return ({...})[1],({...})[2],({...})[3] end</code><br><br><small><b>EXPERIMENTAL</b> - Might break the script</small><br><small><b>Note:</b> AssignmentStatements to an argument won't work.</small>"
-            },
-            {
-                "name": "Virtualize_Test",
-                "id": "virtualize_testa9ec6a9h",
-                "icon_id": "",
-                "tooltip": "Test with some GoofyLuaUglifier functions and the IB2 VM."
             },
             {
                 "name": "Control Flow 2",
