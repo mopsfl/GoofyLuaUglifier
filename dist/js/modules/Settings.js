@@ -82,7 +82,7 @@ class Settings {
                 }
             }
             else {
-                if (input.classList.contains("select-dropdown")) {
+                if (input?.classList.contains("select-dropdown")) {
                     let _dropdown_select = $(input).parent()[0].querySelector("select"), setting_id = _dropdown_select.getAttribute("id"), value = this._settings[setting_id];
                     if (value === undefined) {
                         value = this.config.default_settings.settings[setting_id];

@@ -1,5 +1,9 @@
 ## 21.07.2024
 - added Lua 5.4 support for the bit32.bxor function (this caused the <code>ByteStrings</code> function to not work at all on Lua 5.4)
+- added no string encrypt macro
+- fixed <code>AntiBeautify2</code> watermark comment issue
+- made <code>DeadCode</code> variables more randomized
+- other small fixes & improvements 
 
 ## 20.07.2024
 - improvement for the minifier to handle table indexing <code>({})[x]</code> & <code>({...})[x]</code>
