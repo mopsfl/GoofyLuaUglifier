@@ -1,6 +1,6 @@
 ## 22.07.2024
 - frontend rework & performance and load time improvements
-- fixed </code>TableLookup</code> fimctopm not transforming <code>CallExpression</code> on a <code>MemberExpression</code> base. (e.g: <code>getgenv().xyz</code>)
+- fixed </code>TableLookup</code> function not transforming <code>CallExpression</code> on a <code>MemberExpression</code> base. (e.g: <code>getgenv().xyz</code>)
 - fixed <code>Bytestrings</code> function bug with <code>>255</code> byte chars
 
 ## 21.07.2024
