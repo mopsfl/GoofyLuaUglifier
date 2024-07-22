@@ -1,3 +1,8 @@
+## 22.07.2024
+- frontend rework & performance and load time improvements
+- fixed </code>TableLookup</code> fimctopm not transforming <code>CallExpression</code> on a <code>MemberExpression</code> base. (e.g: <code>getgenv().xyz</code>)
+- fixed <code>Bytestrings</code> function bug with <code>>255</code> byte chars
+
 ## 21.07.2024
 - added Lua 5.4 support for the bit32.bxor function (this caused the <code>ByteStrings</code> function to not work at all on Lua 5.4)
 - added no string encrypt macro
