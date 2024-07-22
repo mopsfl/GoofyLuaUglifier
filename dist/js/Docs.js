@@ -1,1 +1,43 @@
-import{a as s,b as i}from"../chunk-ZIMNNZGL.js";var u=s(c=>{var a=c&&c.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(c,"__esModule",{value:!0});var r=a(i());(0,r.default)(async()=>{M.AutoInit(),document.querySelectorAll(".docs-collapsible-item").forEach(e=>{let t=M.Collapsible.getInstance(e);if(t.el.querySelector("li").classList.contains("active")){let o=t.el.querySelector(".collapsible-icon");o&&o.classList.add("collopen")}t.options.onOpenStart=o=>{let l=o.querySelector(".collapsible-icon");l&&l.classList.add("collopen")},t.options.onCloseStart=o=>{let l=o.querySelector(".collapsible-icon");l&&l.classList.remove("collopen")}}),document.querySelectorAll(".docs-endpoint").forEach(e=>{let t=e.querySelector(".docs-endpoint-copy");t&&(t.addEventListener("click",n=>{let o=e.querySelector(".docs-endpoint-path")?.attributes["data-copycontent"]?.value;o&&navigator.clipboard.writeText(o).then(()=>{t.textContent="COPIED!",setTimeout(()=>{t.textContent="COPY"},1e3)}).catch(console.error)}),e.addEventListener("mouseenter",()=>t.classList.remove("copyhide")),e.addEventListener("mouseleave",()=>t.classList.add("copyhide")))})})});export default u();
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const jquery_1 = __importDefault(require("jquery"));
+(0, jquery_1.default)(async () => {
+    M.AutoInit();
+    document.querySelectorAll(".docs-collapsible-item").forEach(_coll => {
+        const _collapsible = M.Collapsible.getInstance(_coll);
+        const _collapsibleLI = _collapsible.el.querySelector("li");
+        if (_collapsibleLI.classList.contains("active")) {
+            const _collapsibleIcon = _collapsible.el.querySelector(".collapsible-icon");
+            _collapsibleIcon && _collapsibleIcon.classList.add("collopen");
+        }
+        _collapsible.options.onOpenStart = (el) => {
+            const _collapsibleIcon = el.querySelector(".collapsible-icon");
+            _collapsibleIcon && _collapsibleIcon.classList.add("collopen");
+        };
+        _collapsible.options.onCloseStart = (el) => {
+            const _collapsibleIcon = el.querySelector(".collapsible-icon");
+            _collapsibleIcon && _collapsibleIcon.classList.remove("collopen");
+        };
+    });
+    document.querySelectorAll(".docs-endpoint").forEach(_el => {
+        const _copybtn = _el.querySelector(".docs-endpoint-copy");
+        if (_copybtn) {
+            _copybtn.addEventListener("click", (e) => {
+                const _content = _el.querySelector(".docs-endpoint-path")?.attributes["data-copycontent"]?.value;
+                if (_content) {
+                    navigator.clipboard.writeText(_content).then(() => {
+                        _copybtn.textContent = "COPIED!";
+                        setTimeout(() => {
+                            _copybtn.textContent = "COPY";
+                        }, 1000);
+                    }).catch(console.error);
+                }
+            });
+            _el.addEventListener("mouseenter", () => _copybtn.classList.remove("copyhide"));
+            _el.addEventListener("mouseleave", () => _copybtn.classList.add("copyhide"));
+        }
+    });
+});

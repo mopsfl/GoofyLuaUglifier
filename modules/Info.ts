@@ -1,3 +1,4 @@
+import $ from "jquery";
 import index, { OAuthGetResponse, UglifierStats } from "../index"
 import self from "./Info"
 import Utils from "./Utils"
@@ -22,6 +23,8 @@ export default {
                 $(".acc_logout").text("Logout").removeAttr("disabled")
             })
         })
+
+        console.log(`[Client]: Loaded Info Modal (took ${new Date().getTime() - index.pageTime}ms).`)
     },
 
     async UpdateStats() {

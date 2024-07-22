@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const jquery_1 = __importDefault(require("jquery"));
 const Editor_1 = __importDefault(require("./Editor"));
 const Functions_1 = __importDefault(require("./Functions"));
 const index_1 = __importDefault(require("../index"));
@@ -14,7 +15,7 @@ const functionButtons = new Map;
 exports.default = {
     blockFunctionTrigger: false,
     Init() {
-        const _functionBtnTemplate = $(".function-btn-template"), _functionCategoryTitleTemplate = $(".function-category-title-template"), _sideBarButtons = $(".sidebar-buttons");
+        const _functionBtnTemplate = (0, jquery_1.default)(".function-btn-template"), _functionCategoryTitleTemplate = (0, jquery_1.default)(".function-category-title-template"), _sideBarButtons = (0, jquery_1.default)(".sidebar-buttons");
         Object.keys(Functions_1.default.List).forEach((categoryName) => {
             const categoryFunctions = Functions_1.default.List[categoryName];
             const _functionCategoryTitle = _functionCategoryTitleTemplate.contents().clone();
@@ -33,7 +34,7 @@ exports.default = {
                 else {
                     const divider = document.createElement("div");
                     divider.classList.add("seperator");
-                    $(divider).appendTo(_sideBarButtons);
+                    (0, jquery_1.default)(divider).appendTo(_sideBarButtons);
                 }
             });
         });
@@ -78,6 +79,7 @@ exports.default = {
                 }
             });
         });
+        console.log(`[Client]: Loaded Functions (took ${new Date().getTime() - index_1.default.pageTime}ms).`);
     },
     List: {
         ["Quick Actions"]: [
@@ -102,13 +104,13 @@ exports.default = {
                 "icon_id": "tag",
                 "tooltip": "Encodes string constants into number tables that will be decoded by a implemented function.<br><br>e.g.: <code>'Hello'</code> &equals; <code>function({{176,4576,832}, {161,3381,2100}, ...})</code>"
             },
-            { divider: true },
             {
                 "name": "NonSense Strings",
                 "id": "nonsensestrings",
                 "icon_id": "question_mark",
                 "tooltip": "Turns strings into random non sense.<br><br>e.g.: <code>'Hello World'</code> &equals; <code>'?ƒ*/涮в+%癉ц飴'</code><br><br><small><b>EXPERIMENTAL</b> - Might break the script</small>"
             },
+            { divider: true },
             {
                 "name": "Numbers",
                 "id": "transformnums",

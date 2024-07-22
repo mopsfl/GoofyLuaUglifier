@@ -1,30 +1,31 @@
 // todo: fully move settings to automated thing so i dont have to copy paste elements everytime i wanna make a new setting
 
-import jQuery from "jquery";
+import $ from "jquery";
 import Editor from "./modules/Editor";
 import Settings from "./modules/Settings";
 import Functions from "./modules/Functions";
 import Utils from "./modules/Utils";
 import Info from "./modules/Info";
-import { Materialbox } from "materialize-css";
+import M from "materialize-css"
+import * as monaco from "monaco-editor"
 
 const settings = new Settings()
 
-jQuery(() => {
-    settings.init()
+$(() => {
+    settings.Init()
     Functions.Init()
     Editor.Init()
     Info.Init()
-
     M.AutoInit()
 })
 
-jQuery.readyException = (err => {
+$.readyException = (err => {
     console.error(err)
     Editor.ToggleLoading(`<div class="pageinit_error"><h5>Application error: a client-side exception has occurred!</h5><br><br><span>${err.name}: ${err.message}<br>Stack:<br>${err.stack.replace(/\s/gm, "<br>")}</span></div>`, true, true)
 })
 
 export default {
+    editor: monaco.editor.CodeEditor,
     options: {
         api_url: () => (location.hostname == "localhost" && !window.forceProduction) ? "http://localhost:6968/v1/" : "https://goofyluauglifier.mopsfl.de/v1/",
         mopsfl_api_url: () => (location.hostname == "localhost" && !window.forceProduction) ? "http://localhost:6969/v1/" : "https://api.mopsfl.de/v1/"
@@ -62,20 +63,12 @@ export interface UglifierStats {
     functions: { [_: string]: number }
 }
 
-declare let M: Materialbox
 declare global {
     interface Window {
         forceProduction: boolean,
-        discordAccount: DiscordOAuthUserInfo,
-        discordAvatar: string,
         modules: Object,
-        monaco_editor: {
-            getEditors: Function
-        },
-        stringEncode: {
-            str2buffer: Function,
-            buffer2str: Function
-        }
+        discordAccount: DiscordOAuthUserInfo,
+        discordAvatar: string
     }
 }
 

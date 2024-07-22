@@ -3,7 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const __1 = __importDefault(require(".."));
 const LocalStorage_1 = __importDefault(require("./LocalStorage"));
+const jquery_1 = __importDefault(require("jquery"));
 class Settings {
     config;
     _settings;
@@ -29,7 +31,7 @@ class Settings {
                 ["use_all_mathoperators_number_transform"]: false,
                 ["memoize_function_calls"]: false,
                 ["bytecode_watermark"]: "",
-                ["byte_string_type"]: "Hexadecimal",
+                ["byte_string_type"]: "Decimal",
                 ["no_decoder_functions"]: false,
                 ["returnwrap_code"]: false,
             }
@@ -41,14 +43,14 @@ class Settings {
             LocalStorage_1.default.Create(this.config.storage_key, this.config.default_settings);
         }
     }
-    init(reset) {
+    Init(reset) {
         if (reset) {
             LocalStorage_1.default.Clear(this.config.storage_key);
             LocalStorage_1.default.Create(this.config.storage_key, this.config.default_settings);
         }
         this._settings = LocalStorage_1.default.GetKey(this.config.storage_key, "settings");
         document.querySelectorAll(".setting").forEach(setting => {
-            const input = setting.querySelector("input"), setting_id = $(input).attr("id");
+            const input = setting.querySelector("input"), setting_id = (0, jquery_1.default)(input).attr("id");
             if (setting_id) {
                 input.addEventListener("input", (e) => {
                     const [setting_name, setting_id, value] = this.HandleInput(e, setting);
@@ -71,19 +73,17 @@ class Settings {
                         input.value = value;
                         break;
                     case "text":
-                        input.value = value;
-                        break;
                     case "password":
                         input.value = value;
                         break;
                     default:
-                        console.warn(`Invalid input type <${input.type}>`);
+                        console.warn(`[Settings]: Invalid input type <${input.type}>`);
                         break;
                 }
             }
             else {
                 if (input?.classList.contains("select-dropdown")) {
-                    let _dropdown_select = $(input).parent()[0].querySelector("select"), setting_id = _dropdown_select.getAttribute("id"), value = this._settings[setting_id];
+                    let _dropdown_select = (0, jquery_1.default)(input).parent()[0].querySelector("select"), setting_id = _dropdown_select.getAttribute("id"), value = this._settings[setting_id];
                     if (value === undefined) {
                         value = this.config.default_settings.settings[setting_id];
                         this._settings[setting_id] = value;
@@ -99,13 +99,13 @@ class Settings {
             }
         });
         document.querySelector("#resetdefault").addEventListener("click", (e) => {
-            this.init(true);
+            this.Init(true);
             console.log("Reseted settings to default", this.config.default_settings);
         });
+        console.log(`[Client]: Loaded Settings (took ${new Date().getTime() - __1.default.pageTime}ms).`);
     }
     HandleInput(e, setting) {
-        console.log(setting);
-        const name = setting.querySelector(".setting-name"), setting_id = $(setting.querySelector("input")).attr("id") || $(setting).children(".select-wrapper").children("select").attr("id"), input = setting.querySelector("input");
+        const name = setting.querySelector(".setting-name"), setting_id = (0, jquery_1.default)(setting.querySelector("input")).attr("id") || (0, jquery_1.default)(setting).children(".select-wrapper").children("select").attr("id"), input = setting.querySelector("input");
         let new_value;
         if (e.target instanceof HTMLInputElement && e.target.type === "range") {
             const range_text = setting.querySelector(".slider-value"), range_text_value = range_text.attributes.getNamedItem("value-type").value || "";
@@ -125,7 +125,6 @@ class Settings {
     }
     UpdateSetting(name, id, value) {
         LocalStorage_1.default.Edit(this.config.storage_key, "settings", id, value);
-        console.log(`Saved '${name}' setting to localStorage > ${value}`);
     }
 }
 exports.default = Settings;

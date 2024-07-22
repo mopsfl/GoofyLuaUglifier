@@ -5,53 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoofyLuaUglifier</title>
-    <link rel="stylesheet" href="./dist/css/style.css">
+    <meta property="og:title" content="GoofyLuaUglifier" />
+    <meta property="og:image" content="./images/icons/icon-144x144.png">
+    <meta property="og:description" content="A uglifier & obfuscator toolbox for the Lua programming language." />
+    <meta property="og:url" content="https://mopsfl.de/GoofyLuaUglifier/" />
+    <meta name="description" content="A uglifier & obfuscator toolbox for the Lua programming language." />
+    <meta name="keywords" content="mopsfl, flo, mops, mopsfi, lua, obfuscator, lua obfuscator, deobfuscator" />
+
     <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script type="module" src="./bower_components/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="./bower_components/pako/pako.js"></script>
-    <script type="text/javascript" src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/loader.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
-    <script>
-        require.config({
-            paths: {
-                vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@latest/min/vs'
-            }
-        });
-        require(['vs/editor/editor.main'], function (monaco) {
-            var editor = monaco.editor.create(document.querySelector('.monaco'), {
-                value: `local a = 123
-local b = 100
-local c = "Hello World!"
-local d = true
-local e = false
-local f = function() return {a, b, c, d, e} end
-local g = 100
-
-function _func(...)
-    local args = {...}
-    for _,v in pairs(f()) do print(_,v) end
-    return args[1] - args[2]
-end
-
-print(_func(a, b))
-print(b-g)`.trim(),
-                language: 'lua',
-                theme: 'vs-dark',
-                wordWrap: 'on',
-                wordBreak: 'off',
-                automaticLayout: true,
-                maxTokenizationLineLength: 1e5,
-                minimap: {
-                    enabled: true
-                }
-            });
-            window.monaco_editor = monaco.editor
-        });
-    </script>
+    <link rel="stylesheet" href="./dist/css/style.css">
+    <link rel="stylesheet" href="./dist/js/index.css">
     <script type="module" src="./dist/js/index.js" defer></script>
 </head>
 
@@ -117,22 +81,7 @@ print(b-g)`.trim(),
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="modal-close modal-trigger waves-light waves-effect btn green left btn-small presetsbtn" href="#presetsmodal">PRESETS</button>
                     <button href="#!" class="modal-close waves-light waves-effect btn green">OK</button>
-                </div>
-            </div>
-        </div>
-        <!-- Presets Info Modal -->
-        <div>
-            <div id="presetsmodal" class="modal">
-                <div class="modal-content">
-                    <h4>Presets</h4>
-                    <div class="info-content presets-content">
-                        <div class="preset hide"><code><span class="preset-name">bytestrings</span>: <span class="preset-funcs"></span></code></div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button href="#!" class="modal-close waves-light waves-effect btn green">CLOSE</button>
                 </div>
             </div>
         </div>

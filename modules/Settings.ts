@@ -1,5 +1,6 @@
-import { UglifierSettings } from "..";
+import index, { UglifierSettings } from "..";
 import LocalStorage from "./LocalStorage";
+import $ from "jquery";
 
 export default class Settings {
     constructor(
@@ -25,7 +26,7 @@ export default class Settings {
                     ["use_all_mathoperators_number_transform"]: false,
                     ["memoize_function_calls"]: false,
                     ["bytecode_watermark"]: "",
-                    ["byte_string_type"]: "Hexadecimal",
+                    ["byte_string_type"]: "Decimal",
                     ["no_decoder_functions"]: false,
                     ["returnwrap_code"]: false,
                 }
@@ -38,7 +39,7 @@ export default class Settings {
         }
     }
 
-    init(reset?: boolean) {
+    Init(reset?: boolean) {
         if (reset) {
             LocalStorage.Clear(this.config.storage_key)
             LocalStorage.Create(this.config.storage_key, this.config.default_settings)
@@ -71,13 +72,11 @@ export default class Settings {
                         input.value = value
                         break;
                     case "text":
-                        input.value = value
-                        break;
                     case "password":
                         input.value = value
                         break;
                     default:
-                        console.warn(`Invalid input type <${input.type}>`)
+                        console.warn(`[Settings]: Invalid input type <${input.type}>`)
                         break;
                 }
             } else {
@@ -102,13 +101,14 @@ export default class Settings {
         })
 
         document.querySelector("#resetdefault").addEventListener("click", (e) => {
-            this.init(true)
+            this.Init(true)
             console.log("Reseted settings to default", this.config.default_settings);
         })
+
+        console.log(`[Client]: Loaded Settings (took ${new Date().getTime() - index.pageTime}ms).`);
     }
 
     HandleInput(e: Event, setting: Element): [string, string, boolean | string | number] {
-        console.log(setting);
         const name: HTMLElement = setting.querySelector(".setting-name"),
             setting_id = $(setting.querySelector("input")).attr("id") || $(setting).children(".select-wrapper").children("select").attr("id"),
             input: HTMLInputElement = setting.querySelector("input")
@@ -132,6 +132,5 @@ export default class Settings {
 
     UpdateSetting(name: string, id: string, value: boolean | string | number) {
         LocalStorage.Edit(this.config.storage_key, "settings", id, value)
-        console.log(`Saved '${name}' setting to localStorage > ${value}`);
     }
 }

@@ -2,35 +2,58 @@ import index from "../index"
 import self from "./Editor"
 import LocalStorage from "./LocalStorage"
 import Utils from "./Utils"
+import * as monaco from "monaco-editor"
 
 export default {
-    Init() {
-        function WaitForEditor() {
-            if (typeof window.monaco_editor !== "undefined") {
-                if (index.settings._settings.save_editor_code === true) {
-                    window.monaco_editor.getEditors()[0].getModel().onDidChangeContent(() => {
-                        LocalStorage.Set(index.settings.config.storage_key, "mEditorValue", Utils.CompressData(self.GetValue()))
-                    })
-                    const mEditorValue = Utils.UncompressData(LocalStorage.GetKey("_goofyuglifier", "mEditorValue"))
-                    if (mEditorValue !== "%save_editor_code_DISABLED%") self.SetValue(mEditorValue)
-                } else {
-                    LocalStorage.Set(index.settings.config.storage_key, "mEditorValue", Utils.CompressData("%save_editor_code_DISABLED%"))
-                }
+    _defaultScript: `local a = 123
+local b = 100
+local c = "Hello World!"
+local d = true
+local e = false
+local f = function() return {a, b, c, d, e} end
+local g = 100
 
-                console.log(`[Client]: Loaded Monaco Editor (took ${new Date().getTime() - index.pageTime}ms).`);
-            }
-            else {
-                setTimeout(WaitForEditor, 250);
-            }
-        }; WaitForEditor()
+function _func(...)
+    local args = {...}
+    for _,v in pairs(f()) do print(_,v) end
+    return args[1] - args[2]
+end
+
+print(_func(a, b))
+print(b-g)`.trim(),
+
+    Init() {
+        index.editor = monaco.editor.create(document.querySelector(".monaco"), {
+            language: 'lua',
+            theme: 'vs-dark',
+            wordWrap: 'on',
+            wordBreak: 'normal',
+            automaticLayout: true,
+            maxTokenizationLineLength: 1e5,
+            minimap: { enabled: true }
+        }); index.editor.layout()
+
+        if (index.settings._settings.save_editor_code === true) {
+            index.editor.getModel().onDidChangeContent(() => {
+                LocalStorage.Set(index.settings.config.storage_key, "mEditorValue", Utils.CompressData(self.GetValue()))
+            })
+            const mEditorValue = Utils.UncompressData(LocalStorage.GetKey("_goofyuglifier", "mEditorValue"))
+            if (mEditorValue !== "%save_editor_code_DISABLED%") self.SetValue(mEditorValue)
+        } else {
+            LocalStorage.Set(index.settings.config.storage_key, "mEditorValue", Utils.CompressData("%save_editor_code_DISABLED%"))
+            index.editor.setValue(self._defaultScript)
+        }
+
+        console.log(`[Client]: Loaded Monaco Editor (took ${new Date().getTime() - index.pageTime}ms).`);
+
     },
 
     GetValue() {
-        return window.monaco_editor?.getEditors()[0].getValue()
+        return index.editor.getValue()
     },
 
     SetValue(value: string) {
-        return window.monaco_editor?.getEditors()[0].setValue(value)
+        return index.editor.setValue(value)
     },
 
     CopyValue() {
@@ -38,15 +61,16 @@ export default {
     },
 
     Clear() {
-        return window.monaco_editor?.getEditors()[0].setValue("")
+        console.log(monaco.editor.getEditors());
+        return index.editor.setValue("")
     },
 
     ToggleReadOnly(state = true) {
-        window.monaco_editor.getEditors()[0].updateOptions({ readOnly: state })
+        index.editor.updateOptions({ readOnly: state })
     },
 
     GetDomElement(): HTMLElement {
-        return window.monaco_editor?.getEditors()[0].getDomNode()
+        return index.editor.getDomNode()
     },
 
     ToggleLoading(loadingText: string = "Loading", noDots?: boolean, html?: boolean) {

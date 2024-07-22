@@ -8,8 +8,8 @@
     "typescript": "^5.1.6"
   },
   "scripts": {
-    "bundle": "esbuild ./dist/js/index.js ./dist/js/Docs.js style.css --bundle --minify --platform=browser --outdir=./dist --format=esm --allow-overwrite --splitting --entry-names=[ext]/[name]",
-    "bundledev": "esbuild index.ts Docs.ts style.css --bundle --platform=browser --outdir=./dist --format=esm --allow-overwrite --splitting --entry-names=[ext]/[name] --watch",
+    "bundle": "node esbuild.config.js",
+    "bundledev": "node esbuild.config.js --dev --watch",
     "build": "rimraf dist && npx tsc && npm run bundle",
     "dev": "rimraf dist && npm run bundledev"
   },
@@ -30,6 +30,8 @@
   "dependencies": {
     "@types/materialize-css": "^1.0.11",
     "@types/pako": "^2.0.3",
+    "jquery": "^3.7.1",
+    "materialize-css": "^1.0.0",
     "monaco-editor": "^0.50.0",
     "pako": "^2.1.0"
   }

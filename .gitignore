@@ -8,3 +8,5 @@ test.lua
 .vscode
 test.*
 archieve
+styleImport.js
+*style.js

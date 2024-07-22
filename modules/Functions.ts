@@ -1,3 +1,4 @@
+import $ from "jquery";
 import Editor from "./Editor"
 import self from "./Functions"
 import index from "../index"
@@ -87,6 +88,8 @@ export default {
                 }
             })
         })
+
+        console.log(`[Client]: Loaded Functions (took ${new Date().getTime() - index.pageTime}ms).`);
     },
 
     List: {
@@ -112,13 +115,13 @@ export default {
                 "icon_id": "tag",
                 "tooltip": "Encodes string constants into number tables that will be decoded by a implemented function.<br><br>e.g.: <code>'Hello'</code> &equals; <code>function({{176,4576,832}, {161,3381,2100}, ...})</code>"
             },
-            { divider: true },
             {
                 "name": "NonSense Strings",
                 "id": "nonsensestrings",
                 "icon_id": "question_mark",
                 "tooltip": "Turns strings into random non sense.<br><br>e.g.: <code>'Hello World'</code> &equals; <code>'?ƒ*/涮в+%癉ц飴'</code><br><br><small><b>EXPERIMENTAL</b> - Might break the script</small>"
             },
+            { divider: true },
             {
                 "name": "Numbers",
                 "id": "transformnums",
