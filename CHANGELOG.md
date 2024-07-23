@@ -2,6 +2,7 @@
 - fixed <code>TableLookup</code> function not transforming a single <code>MemberExpression</code> (e.g: <code>print(x.y)</code>) (nested <code>MemberExpressions</code> still don't work :/)
 - fixed <code>GLookup</code> function not transforming <code>MemberExpressions</code> like <code>game:GetService()</code>
 - other small fixes & improvements 
+- upgraded my vps to double speed (rip my money)
 
 ## 22.07.2024
 - frontend rework & performance and load time improvements
