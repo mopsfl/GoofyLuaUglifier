@@ -1,3 +1,7 @@
+## 23.07.2024
+- fixed <code>GLookup</code> function not transforming <code>MemberExpressions</code> like <code>game:GetService()</code>
+- other small fixes & improvements 
+
 ## 22.07.2024
 - frontend rework & performance and load time improvements
 - fixed </code>TableLookup</code> function not transforming <code>CallExpression</code> on a <code>MemberExpression</code> base. (e.g: <code>getgenv().xyz</code>)
