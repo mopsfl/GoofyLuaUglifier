@@ -201,8 +201,7 @@ export default {
                 "id": "globals_to_locals",
                 "icon_id": "transform",
                 "tooltip": "Turns all global usages into local declarations or puts all globals into a table.<br><br>e.g.: <code  class='multiline'>print(math.random(1, 5))</code> <br>&equals;<br> <code class='multiline'>local _random = math.random<br>local _print = print<br><br>_print(_random(1, 5))</code><br><br><small><b>EXPERIMENTAL</b> - Might break the script</small>"
-            },
-            { divider: true }
+            }
         ],
         ["Tester Functions"]: [
             {
