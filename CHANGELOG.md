@@ -1,3 +1,6 @@
+## 30.07.2024
+- fixed <code>Constant Chunk 2</code> being very broken due to broken constant indexing
+
 ## 28.07.2024
 - fixed <code>GLookup</code> transforming function calls to method calls
 
