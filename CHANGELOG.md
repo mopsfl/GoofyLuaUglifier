@@ -1,3 +1,6 @@
+## 05.08.2024
+- patched <code>Bytestrings</code> being easily dumped by hooking the <code>bit(bxor)</code> function
+
 ## 30.07.2024
 - fixed <code>Constant Chunk 2</code> being very broken due to broken constant indexing
 
