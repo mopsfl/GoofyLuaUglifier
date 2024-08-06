@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./dist/css/style.css">
     <link rel="stylesheet" href="./dist/js/index.css">
     <script type="module" src="./dist/js/index.js" defer></script>
+    <script src="./node_modules/@materializecss/materialize/dist/js/materialize.min.js" defer></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C5HDV7KFB"></script>
@@ -123,7 +124,7 @@
                             <span></span>
                         </label>
                     </div>
-                    <div class="setting input-field col s12">
+                    <div class="setting input-field select-dropdown col s12">
                         <span class="setting-name tooltipped" data-position="right" data-tooltip="For what lua version your script should be optimized for.">Target Lua Version</span>
                         <select id="target_lua_version">
                             <option value="0">5.1</option>
@@ -181,7 +182,7 @@
                         </label>
                     </div>
 
-                    <div class="setting input-field col s12">
+                    <div class="setting input-field select-dropdown col s12">
                         <span class="setting-name tooltipped" data-position="right" data-tooltip="The format for representing the bytes in the byte string.">Bytestring Byte Type</span>
                         <select id="byte_string_type">
                             <option value="0" selected>Hexadecimal</option>

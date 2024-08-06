@@ -80,10 +80,12 @@ export default class Settings {
                         break;
                 }
             } else {
-                if (input?.classList.contains("select-dropdown")) {
-                    let _dropdown_select = $(input).parent()[0].querySelector("select"),
+                // todo: fix select dropdown setting
+                /*if (setting?.classList.contains("select-dropdown")) {
+                    let _dropdown_select = setting.querySelector("select"),
                         setting_id = _dropdown_select.getAttribute("id"),
                         value = this._settings[setting_id]
+
                     if (value === undefined) {
                         value = this.config.default_settings.settings[setting_id];
                         this._settings[setting_id] = value
@@ -96,7 +98,7 @@ export default class Settings {
                         const [setting_name, setting_id, value] = this.HandleInput(e, setting)
                         this.UpdateSetting(setting_name, setting_id, value)
                     })
-                }
+                }*/
             }
         })
 
@@ -131,6 +133,7 @@ export default class Settings {
     }
 
     UpdateSetting(name: string, id: string, value: boolean | string | number) {
+        console.log(name, id, value);
         LocalStorage.Edit(this.config.storage_key, "settings", id, value)
     }
 }

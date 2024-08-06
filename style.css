@@ -1,6 +1,5 @@
 * {
     scrollbar-width: thin;
-    color: white;
 }
 
 ::-webkit-scrollbar {
@@ -35,6 +34,21 @@ body {
 
 main {
     overflow: none;
+}
+
+.btn {
+    --btn-height: 35px !important;
+    --btn-border-radius: 2px !important;
+    --btn-font-size: 12px !important
+}
+
+.material-tooltip {
+    background: #2e3133 !important;
+    color: white !important;
+}
+
+.material-tooltip>* {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
 }
 
 .code {
@@ -92,26 +106,6 @@ main {
     /*background-color: #1c1c1c !important;*/
 }
 
-.tooltip {
-    padding: 5px;
-    border-radius: 3px;
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color .3s;
-}
-
-.tooltip>.text {
-    margin: 0;
-    margin-left: 5px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    max-width: 50vw;
-    transform: translateX(0%);
-    transition: transform .3s;
-}
-
 .blur {
     filter: blur(2px);
 }
@@ -129,22 +123,6 @@ main {
     z-index: 99;
 }
 
-.material-tooltip {
-    line-height: 140% !important;
-}
-
-.tooltip {
-    overflow: hidden;
-    font-size: 25px;
-}
-
-.tooltip-icon {
-    margin-left: 5px;
-    cursor: pointer;
-    margin-bottom: auto;
-    cursor: pointer !important;
-    pointer-events: none
-}
 
 .toolbox-hidden {
     transform: translateX(-200%) !important;
@@ -159,6 +137,12 @@ a:hover {
     cursor: pointer !important;
     border-bottom: solid 1px rgb(0, 96, 206);
 }
+
+.modal {
+    --modal-border-radius: 5px !important;
+    padding-bottom: 5px !important;
+}
+
 
 .modal-trigger {
     cursor: pointer !important;
@@ -188,6 +172,7 @@ body.light~.select-dropdown {
 
 .setting>.input-field>input {
     height: 2.5rem !important;
+    padding-top: 0 !important;
 }
 
 .setting.input-field>.select-wrapper {
@@ -242,6 +227,7 @@ body.light~.select-dropdown {
 .infomodal-openbtn>.material-icons {
     font-size: 15px;
     margin-right: 0;
+    color: white;
 }
 
 .toast {
@@ -258,11 +244,6 @@ body.light~.select-dropdown {
 
 .setting {
     margin-top: 15px;
-}
-
-.setting>.input-field>input {
-    height: 29px !important;
-    font-size: 15px !important;
 }
 
 .setting-name {
@@ -308,15 +289,6 @@ body.light~.select-dropdown {
     min-width: 30px !important;
 }
 
-ul.dropdown-content.select-dropdown li span {
-    color: #000;
-    /* no need for !important :) */
-}
-
-.select-wrapper input.select-dropdown:focus {
-    border-bottom: 1px solid #9e9e9e !important;
-}
-
 .modal.modal-fixed-footer .modal-footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1) !important
 }
@@ -326,8 +298,9 @@ ul.dropdown-content.select-dropdown li span {
 }
 
 .seperator {
-    background-color: #3b3b3b;
+    border-bottom: solid 1px #3b3b3b;
     height: 1px;
+    padding-bottom: 5px;
 }
 
 .settings-grid>.seperator {
@@ -386,6 +359,10 @@ ul.dropdown-content.select-dropdown li span {
     margin-bottom: 5px
 }
 
+.info-content>small {
+    align-items: center;
+}
+
 .presetsbtn {
     margin-left: 10px !important;
 }
@@ -410,11 +387,12 @@ ul.dropdown-content.select-dropdown li span {
 }
 
 code {
-    background: #202020;
+    background: #1d1d1d;
     border-radius: 3px;
     padding: 2px;
     padding-left: 4px;
     padding-right: 4px;
+    color: white !important;
 }
 
 code.multiline {
@@ -432,6 +410,15 @@ code.multiline {
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+.function-btn>#function-icon {
+    font-size: 20px;
+}
+
+.function-btn>#function-name {
+    text-transform: uppercase !important;
+    font-size: 14px;
 }
 
 .function-settings {
@@ -464,7 +451,7 @@ code.multiline {
     }
 
     .material-tooltip {
-        display: none;
+        display: none !important;
     }
 }
 

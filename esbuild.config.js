@@ -34,9 +34,8 @@ const cssOptions = {
     logLevel: isDev ? 'info' : 'error'
 };
 
-
-esbuild.build(jsOptions).catch(() => process.exit(1));
-esbuild.build(cssOptions).catch(() => process.exit(1));
+esbuild.buildSync(jsOptions)
+esbuild.buildSync(cssOptions)
 
 if (isDev) {
     esbuild.context({ ...jsOptions }).then(r => r.watch())

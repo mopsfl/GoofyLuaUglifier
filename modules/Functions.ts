@@ -26,13 +26,18 @@ export default {
                     const functionBtn = _functionBtnTemplate.contents().clone(),
                         functionBtnIcon = functionBtn.find("#function-icon"),
                         functionBtnName = functionBtn.find("#function-name"),
-                        functionBtnHtmlElement: any = functionBtn.get(1)
+                        functionBtnTooltipContent = $(document.createElement("div"))
 
                     functionBtnName.text(categoryFunction.name)
                     functionBtnIcon.text(categoryFunction.icon_id)
-                    functionBtn.attr("data-tooltip", categoryFunction.tooltip)
+                    //functionBtn.attr("data-tooltip", categoryFunction.tooltip)
                     functionBtn.attr("data-function", categoryFunction.id)
                     functionBtn.appendTo(_sideBarButtons)
+
+                    functionBtnTooltipContent.html(categoryFunction.tooltip)
+                    functionBtn.attr("data-tooltip-id", "tooltip-content")
+                    functionBtnTooltipContent.attr("id", "tooltip-content").hide()
+                    functionBtn.append(functionBtnTooltipContent)
 
                     functionButtons.set(categoryFunction.id, { element: functionBtn, func: categoryFunction })
                 } else {
@@ -94,9 +99,10 @@ export default {
 
     List: {
         ["Quick Actions"]: [
+            //{ name: "Queue Test", id: "createQueue", icon_id: "queue", tooltip: "Creates a test queue job." },
             { name: "Quick Uglify", id: "uglify", icon_id: "draw", tooltip: "Uglify your script with the default methods.", quickActionsOverride: true },
             { name: "Obfuscate", id: "virtualize_testa9ec6a9h", icon_id: "draw", tooltip: "Obfuscates your script with many GoofyLuaUglifier functions and the IronBrew2 VM.", quickActionsOverride: true },
-            { name: "Virtualize", id: "virtualize", icon_id: "inventory", tooltip: "Virtualizes your script using IronBrew2 VM.<br><br><small>This function is currently using the luaobfuscator.com API, so the process might take a few seconds.</small>", quickActionsOverride: true },
+            { name: "Virtualize", id: "virtualize", icon_id: "inventory", tooltip: "Virtualizes your script using IronBrew2 VM.<br><br><br>This function is currently using the luaobfuscator.com API, so the process might take a few seconds.", quickActionsOverride: true },
             { name: "Minify", id: "minify", icon_id: "close_fullscreen", tooltip: "Minifies your script by renaming variables / globals and removing whitespaces.", quickActionsOverride: true },
             { name: "Copy", id: "copy", icon_id: "content_copy", tooltip: "Copies the current editor script." },
             { name: "Clear", id: "clear", icon_id: "delete", tooltip: "Clears the editor input." },
@@ -119,7 +125,7 @@ export default {
                 "name": "NonSense Strings",
                 "id": "nonsensestrings",
                 "icon_id": "question_mark",
-                "tooltip": "Turns strings into random non sense.<br><br>e.g.: <code>'Hello World'</code> &equals; <code>'?ƒ*/涮в+%癉ц飴'</code><br><br><small><b>EXPERIMENTAL</b> - Might break the script</small>"
+                "tooltip": "Turns strings into random non sense.<br><br>e.g.: <code>'Hello World'</code> &equals; <code>'?ƒ*/涮в+%癉ц飴'</code><br><br><br><b>EXPERIMENTAL</b> - Might break the script"
             },
             { divider: true },
             {
@@ -194,13 +200,13 @@ export default {
                 "name": "AnononymDecls",
                 "id": "anonymousdeclarations",
                 "icon_id": "functions",
-                "tooltip": "Transforms and anonymizes function declarations by using string-based keys and table lookups.<br><br>e.g.: <code class='multiline'>function x.y(a, b) return a,b end</code> &equals; <code class='multiline'>x['y'] = function(self, a, b) return self,a,b end</code><br><br><small><b>EXPERIMENTAL</b> - Might break the script</small>"
+                "tooltip": "Transforms and anonymizes function declarations by using string-based keys and table lookups.<br><br>e.g.: <code class='multiline'>function x.y(a, b) return a,b end</code> &equals; <code class='multiline'>x['y'] = function(self, a, b) return self,a,b end</code><br><br><br><b>EXPERIMENTAL</b> - Might break the script"
             },
             {
                 "name": "GlobalsToLocals",
                 "id": "globals_to_locals",
                 "icon_id": "transform",
-                "tooltip": "Turns all global usages into local declarations or puts all globals into a table.<br><br>e.g.: <code  class='multiline'>print(math.random(1, 5))</code> <br>&equals;<br> <code class='multiline'>local _random = math.random<br>local _print = print<br><br>_print(_random(1, 5))</code><br><br><small><b>EXPERIMENTAL</b> - Might break the script</small>"
+                "tooltip": "Turns all global usages into local declarations or puts all globals into a table.<br><br>e.g.: <code  class='multiline'>print(math.random(1, 5))</code> <br>&equals;<br> <code class='multiline'>local _random = math.random<br>local _print = print<br><br>_print(_random(1, 5))</code><br><br><br><b>EXPERIMENTAL</b> - Might break the script"
             }
         ],
         ["Tester Functions"]: [
@@ -226,7 +232,7 @@ export default {
                 "name": "Control Flow",
                 "id": "controlflow",
                 "icon_id": "quiz",
-                "tooltip": "Injects while loops into all possible blocks to alter the logical flow of the code<br>to make it harder to understand and analyze.<br><br><b><small>This is still in work and very buggy</small></b>"
+                "tooltip": "Injects while loops into all possible blocks to alter the logical flow of the code<br>to make it harder to understand and analyze.<br><br><b><br>This is still in work and very buggy</b>"
             },
             {
                 "name": "Fake Args",
@@ -293,7 +299,7 @@ export default {
                 "name": "Remove LuaU Types",
                 "id": "removeluautypes",
                 "icon_id": "",
-                "tooltip": "Removes all LuaU type declarations and annotations.<br><br>e.g.: <code class='multiline'>local a: number = nil<br>local b = nil :: number<br>local c: {} = {}</code> &equals; <code class='multiline'>local a = nil<br>local b = nil<br>local c = {}</code><br><br><small><b>EXPERIMENTAL</b> - Might break the script</small>"
+                "tooltip": "Removes all LuaU type declarations and annotations.<br><br>e.g.: <code class='multiline'>local a: number = nil<br>local b = nil :: number<br>local c: {} = {}</code> &equals; <code class='multiline'>local a = nil<br>local b = nil<br>local c = {}</code><br><br><br><b>EXPERIMENTAL</b> - Might break the script"
             },
             {
                 "name": "TableConcat Strings",
@@ -305,13 +311,19 @@ export default {
                 "name": "Args To Vararg",
                 "id": "argstovararg",
                 "icon_id": "",
-                "tooltip": "Turns all arguments in a function to a vararg call statement.<br><br>e.g.: <code class='multiline'>function _func(a,b,c) return a,b,c end</code> &equals; <code class='multiline'>function _func(...) return ({...})[1],({...})[2],({...})[3] end</code><br><br><small><b>EXPERIMENTAL</b> - Might break the script</small><br><small><b>Note:</b> AssignmentStatements to an argument won't work.</small>"
+                "tooltip": "Turns all arguments in a function to a vararg call statement.<br><br>e.g.: <code class='multiline'>function _func(a,b,c) return a,b,c end</code> &equals; <code class='multiline'>function _func(...) return ({...})[1],({...})[2],({...})[3] end</code><br><br><br><b>EXPERIMENTAL</b> - Might break the script<br><br><b>Note:</b> AssignmentStatements to an argument won't work."
             },
             {
                 "name": "Control Flow 2",
                 "id": "controlflow2",
                 "icon_id": "",
-                "tooltip": "controlflow2<br><small><b>EXPERIMENTAL</b> - Might break the script</small>"
+                "tooltip": "controlflow2<br><br><b>EXPERIMENTAL</b> - Might break the script"
+            },
+            {
+                "name": "Nonsense Strings 2",
+                "id": "nonsensestrings2",
+                "icon_id": "question_mark",
+                "tooltip": "Turns strings into random non sense.<br><br>e.g.: <code>'Hello World'</code> &equals; <code>'?ƒ*/涮в+%癉ц飴'</code><br><br><br><b>EXPERIMENTAL</b> - Might break the script<br><br><b>Note</b> - This is a work in progress remake of the old version and is not guaranteed to work yet.<br>I will replace it with the old one, once this is finished."
             },
             { divider: true }
         ]
@@ -320,7 +332,7 @@ export default {
     QuickAction_Callbacks: {
         ["copy"]: Editor.CopyValue,
         ["download"]: Utils.DownloadContent,
-        ["clear"]: Editor.Clear,
+        ["clear"]: Editor.Clear
     }
 }
 

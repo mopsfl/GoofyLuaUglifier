@@ -82,20 +82,25 @@ class Settings {
                 }
             }
             else {
-                if (input?.classList.contains("select-dropdown")) {
-                    let _dropdown_select = (0, jquery_1.default)(input).parent()[0].querySelector("select"), setting_id = _dropdown_select.getAttribute("id"), value = this._settings[setting_id];
+                // todo: fix select dropdown setting
+                /*if (setting?.classList.contains("select-dropdown")) {
+                    let _dropdown_select = setting.querySelector("select"),
+                        setting_id = _dropdown_select.getAttribute("id"),
+                        value = this._settings[setting_id]
+
                     if (value === undefined) {
                         value = this.config.default_settings.settings[setting_id];
-                        this._settings[setting_id] = value;
+                        this._settings[setting_id] = value
                         console.warn(`[Settings]: added missing setting > ${setting_id}`);
                     }
-                    input.value = value;
-                    _dropdown_select.value = value;
+
+                    input.value = value
+                    _dropdown_select.value = value
                     _dropdown_select.addEventListener("change", (e) => {
-                        const [setting_name, setting_id, value] = this.HandleInput(e, setting);
-                        this.UpdateSetting(setting_name, setting_id, value);
-                    });
-                }
+                        const [setting_name, setting_id, value] = this.HandleInput(e, setting)
+                        this.UpdateSetting(setting_name, setting_id, value)
+                    })
+                }*/
             }
         });
         document.querySelector("#resetdefault").addEventListener("click", (e) => {
@@ -124,6 +129,7 @@ class Settings {
         return [name.innerText, setting_id, new_value];
     }
     UpdateSetting(name, id, value) {
+        console.log(name, id, value);
         LocalStorage_1.default.Edit(this.config.storage_key, "settings", id, value);
     }
 }
