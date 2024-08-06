@@ -319,9 +319,6 @@ exports.default = {
     QuickAction_Callbacks: {
         ["copy"]: Editor_1.default.CopyValue,
         ["download"]: Utils_1.default.DownloadContent,
-        ["clear"]: Editor_1.default.Clear,
-        ["createQueue"]: async () => {
-            await fetch(`${index_1.default.options.api_url()}createQueue/bytestrings`, { method: "POST", credentials: "include", body: `print("Hello World")` });
-        }
+        ["clear"]: Editor_1.default.Clear
     }
 };

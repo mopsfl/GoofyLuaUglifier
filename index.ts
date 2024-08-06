@@ -6,6 +6,7 @@ import Settings from "./modules/Settings";
 import Functions from "./modules/Functions";
 import Utils from "./modules/Utils";
 import Info from "./modules/Info";
+import "@materializecss/materialize"
 import * as monaco from "monaco-editor"
 
 const settings = new Settings()
