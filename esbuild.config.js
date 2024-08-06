@@ -1,5 +1,6 @@
 const esbuild = require('esbuild');
 const { argv } = require('process');
+const fs = require("fs")
 
 const isDev = argv.includes('--dev');
 
@@ -36,6 +37,7 @@ const cssOptions = {
 
 esbuild.buildSync(jsOptions)
 esbuild.buildSync(cssOptions)
+fs.copyFileSync("./node_modules/@materializecss/materialize/dist/js/materialize.min.js", "./dist/js/materialize.min.js")
 
 if (isDev) {
     esbuild.context({ ...jsOptions }).then(r => r.watch())

@@ -6,7 +6,6 @@ import Settings from "./modules/Settings";
 import Functions from "./modules/Functions";
 import Utils from "./modules/Utils";
 import Info from "./modules/Info";
-import "@materializecss/materialize"
 import * as monaco from "monaco-editor"
 
 const settings = new Settings()
@@ -22,6 +21,8 @@ $(() => {
 $.readyException = (err => {
     console.error(err)
     Editor.ToggleLoading(`<div class="pageinit_error"><h5>Application error: a client-side exception has occurred!</h5><br><br><span>${err.name}: ${err.message}<br>Stack:<br>${err.stack.replace(/\s/gm, "<br>")}</span></div>`, true, true)
+    Editor.ToggleReadOnly(true)
+    Functions.blockFunctionTrigger = true
 })
 
 export default {
