@@ -14,8 +14,8 @@ $(() => {
     settings.Init()
     Functions.Init()
     Editor.Init()
-    Info.Init()
     M.AutoInit()
+    Info.Init()
 })
 
 $.readyException = (err => {

@@ -87,6 +87,7 @@ main {
     text-align: left;
     background-color: transparent;
     border-left: solid 1px #393939;
+    border-right: solid 1px #393939;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
@@ -213,7 +214,8 @@ body.light~.select-dropdown {
     margin-right: 5px !important;
 }
 
-.infomodal-openbtn {
+.infomodal-openbtn,
+.sidenav-openbtn {
     display: flex !important;
     justify-content: center;
     align-items: center;
@@ -224,7 +226,23 @@ body.light~.select-dropdown {
     height: 25px !important;
 }
 
-.infomodal-openbtn>.material-icons {
+.sidenav-openbtn:hover {
+    border: none;
+    box-shadow: none;
+}
+
+.leftmenu-sidebar>.user-view {
+    padding: 0 !important;
+}
+
+.account-info-background {
+    overflow: hidden;
+    height: 150px;
+    filter: blur(1px);
+}
+
+.infomodal-openbtn>.material-icons,
+.sidenav-openbtn>.material-icons {
     font-size: 15px;
     margin-right: 0;
     color: white;
@@ -312,7 +330,13 @@ body.light~.select-dropdown {
     height: 1px;
 }
 
-.sidebar-buttons>.seperator.text {
+.seperator-margin {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    margin-top: 15px !important;
+}
+
+.seperator.text {
     height: auto;
     background-color: transparent;
     border-bottom: solid 1px #3b3b3b;
@@ -343,16 +367,16 @@ body.light~.select-dropdown {
     margin-left: 5px;
 }
 
-#account_username,
 .acc_login {
     margin-right: 5px;
     margin-left: 5px;
 }
 
 #discord-avatar {
-    width: 20px;
+    width: 50px;
     margin-left: 5px;
-    border-radius: 1em;
+    border-radius: 5em;
+    box-shadow: 5px 5px 5px -3px black;
 }
 
 .info-content {
@@ -433,6 +457,131 @@ code.multiline {
 
 .divider {
     background-color: rgb(68, 68, 68) !important
+}
+
+.account-information {
+    display: flex;
+    justify-content: left;
+    align-content: center;
+    align-items: center;
+    align-content: center;
+    height: 150px;
+    margin-left: 5%;
+}
+
+#account-information-perms {
+    background-color: #698daf;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.account-information-user {
+    display: grid;
+    gap: 10px;
+}
+
+.account-information-user>li {
+    gap: 5px;
+}
+
+.account-information-name {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+#account_username,
+#account_id {
+    text-shadow: 0 0 20px #000, 0 0 8px #000, 0 0 8px #000, 0 0 8px #000;
+    margin-left: 10px;
+}
+
+#account_username {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#account_id {
+    font-size: 12px;
+}
+
+.account-logout,
+.account-login {
+    border-radius: 10em !important;
+    margin-left: auto;
+    margin-top: auto;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    width: 25px !important;
+    height: 25px !important;
+    box-shadow: none !important;
+}
+
+.account-login {
+    margin-left: 10px !important;
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.account-login>.material-icons {
+    font-size: 25px !important;
+}
+
+.account-logout:hover,
+.account-login {
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.account-logout>.material-icons,
+.account-login>.material-icons {
+    color: white;
+    font-size: 18px;
+}
+
+.glu-statistics {
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 5px;
+    font-size: 12px;
+    justify-content: left;
+    padding: 10px;
+}
+
+.glu-statistic {
+    font-family: monospace;
+    display: flex;
+}
+
+.glu-statistic-name {
+    margin-right: 5px;
+}
+
+.glu-statistic-value {
+    margin-left: auto;
+    outline: solid 1px #353535;
+    border-radius: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.sidenav-footer {
+    position: absolute;
+    bottom: 0;
+    margin: 10px;
+    width: 290px;
+}
+
+.sidenav-footer-content {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.copyrightthing {
+    margin-left: auto;
+    margin-right: 10px;
 }
 
 @media only screen and (max-width: 500px) {

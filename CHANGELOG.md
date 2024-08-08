@@ -1,3 +1,6 @@
+## 08.05.2024
+- added sexy sidebar to website (cooler updates soon, maybe)
+
 ## 05.08.2024
 - patched <code>Bytestrings</code> being easily dumped by hooking the <code>bit(bxor)</code> & <code>math.floor</code> function
 

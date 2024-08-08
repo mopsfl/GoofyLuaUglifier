@@ -13,7 +13,7 @@ export default {
     Init() {
         const _functionBtnTemplate = $(".function-btn-template"),
             _functionCategoryTitleTemplate = $(".function-category-title-template"),
-            _sideBarButtons = $(".sidebar-buttons")
+            _sideBarButtons = $("#functionbtns-sidebar")
 
         Object.keys(self.List).forEach((categoryName) => {
             const categoryFunctions: CategoryFunction[] = self.List[categoryName]
@@ -232,7 +232,7 @@ export default {
                 "name": "Control Flow",
                 "id": "controlflow",
                 "icon_id": "quiz",
-                "tooltip": "Injects while loops into all possible blocks to alter the logical flow of the code<br>to make it harder to understand and analyze.<br><br><b><br>This is still in work and very buggy</b>"
+                "tooltip": "Injects while loops into all possible blocks to alter the logical flow of the code<br>to make it harder to understand and analyze.<br><br><b>This is still in work and very buggy</b>"
             },
             {
                 "name": "Fake Args",
@@ -316,8 +316,8 @@ export default {
             {
                 "name": "Control Flow 2",
                 "id": "controlflow2",
-                "icon_id": "",
-                "tooltip": "controlflow2<br><br><b>EXPERIMENTAL</b> - Might break the script"
+                "icon_id": "quiz",
+                "tooltip": "Injects while loops into all possible blocks to alter the logical flow of the code<br>to make it harder to understand and analyze.<br><br><b>This version is work in progress and might not work as intended.</b>"
             },
             {
                 "name": "Nonsense Strings 2",

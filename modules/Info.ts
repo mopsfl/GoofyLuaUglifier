@@ -5,18 +5,27 @@ import Utils from "./Utils"
 
 export default {
     accountStateFetched: false,
+    autoFetchAccountInformation: true,
+
+    AccountPermission_Colors: {
+        basic: "#698daf",
+        tester: "#ac4a4a",
+        developer: "#5fac4a",
+    },
+
     Init() {
-        const infoModalBtn = $(".infomodal-openbtn")
-        infoModalBtn.on("click", () => {
+        if (self.autoFetchAccountInformation) self.UpdateAccoutState()
+
+        M.Sidenav.getInstance(document.querySelector(".leftmenu-sidebar")).options.onOpenStart = (e) => {
             self.UpdateStats()
             self.UpdateAccoutState()
-        })
+        }
 
-        $(".acc_login").on("click", async () => {
+        $(".account-login").on("click", async () => {
             location.replace(`${index.options.mopsfl_api_url()}oauth/login/discord`)
         })
 
-        $(".acc_logout").on("click", () => {
+        $(".account-logout").on("click", () => {
             $(".acc_logout").text("...").attr("disabled", "disabled")
             fetch(`${index.options.mopsfl_api_url()}oauth/account/logout`, { credentials: "include" }).then(res => {
                 self.ToggleLoginState(false)
@@ -48,13 +57,13 @@ export default {
         if (Utils.GetCookie("_ASID")) {
             fetch(`${index.options.mopsfl_api_url()}oauth/account/get`, { credentials: 'include' }).then(res => res.json()).then(async (res: OAuthGetResponse) => {
                 if (res.code === 0) {
-                    $(".acc_logout").hide()
-                    $("#account_username").text("Not logged in")
-                    $("#account_id").text("N/A")
-                    $("#discord-avatar").hide()
+                    console.log("res code 0. not logged in");
                 } else if (res.oauth === "discord") {
                     await fetch(`${index.options.api_url()}oauth/account/isTester`, { credentials: "include" }).then(res => res.json()).then(res => {
                         $("#tester_access").text(res == true ? "Yes" : "No")
+                        $("#account-information-perms").text(res == true ? "Tester" : "Basic")
+                            .css("background", res == true ? self.AccountPermission_Colors.tester : self.AccountPermission_Colors.basic)
+
                     })
                     window.discordAccount = res.user
                     window.discordAvatar = `https://cdn.discordapp.com/avatars/${res.user.id}/${res.user.avatar}`
@@ -66,18 +75,23 @@ export default {
 
     ToggleLoginState(state: boolean) {
         if (state === true) {
-            $(".acc_login").hide()
+            $(".account-login").hide()
+            $("#account-information-perms").show()
             $("#discord-avatar").show()
-            $(".acc_logout").show()
+            $(".account-logout").show()
             $("#account_username").text(window.discordAccount.username)
             $("#account_id").text(window.discordAccount.id)
             $("#discord-avatar").attr("src", window.discordAvatar)
+            $(".account-information-user").css("display", "grid")
         } else {
-            $(".acc_logout").hide()
-            $(".acc_login").show()
-            $("#account_username").text("Not logged in")
-            $("#account_id").text("N/A")
+            $(".account-logout").hide()
+            $(".account-login").show()
+            $("#account_username").text("Guest")
+            $("#account_id").text("You are not logged in.")
             $("#discord-avatar").hide()
+            $(".account-information-user").css("display", "flex")
+            $("#account-information-perms").text("Basic")
+                .css("background", self.AccountPermission_Colors.basic)
         }
     }
 }

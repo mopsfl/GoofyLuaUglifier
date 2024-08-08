@@ -36,13 +36,48 @@
     <!-- Loading Text -->
     <span class="loadingtext hide">Loading...</span>
     <div class="main">
+        <!-- Left Sidenav -->
+        <div class="sidenav z-depth-5 leftmenu-sidebar" id="slide-out">
+            <div class="user-view z-depth-2">
+                <div class="account-information">
+                    <div class="account-info-background background"><img src="images/code-background2.PNG"></div>
+                    <div class="account-information-user">
+                        <img src="" alt="avatar" id="discord-avatar">
+                        <li>
+                            <div class="account-information-name">
+                                <span id="account_username">Loading...</span>
+                                <span id="account-information-perms" class="tooltipped" data-tooltip="The access level of your account." data-position="right">Loading...</span>
+                            </div>
+                            <span id="account_id">Loading...</span>
+                        </li>
+                        <a class="btn-floating waves-effect waves-light transparent account-login tooltipped" data-tooltip="Login" data-position="right"><i class="material-icons">login</i></a>
+                    </div>
+                    <a class="btn-floating waves-effect waves-light transparent account-logout tooltipped" data-tooltip="Logout" data-position="right"><i class="material-icons">logout</i></a>
+                </div>
+            </div>
+            <div class="seperator text tooltipped seperator-margin" data-position="right" data-tooltip="Some statistics about GoofyLuaUglifier.">
+                <span>Statistics</span>
+            </div>
+            <div class="info-content glu-statistics">
+                <div class="glu-statistic tooltipped" data-tooltip="Total count of API requests." data-position="right"><span class="glu-statistic-name">Total Requests:</span><span id="total_requests" class="glu-statistic-value">Loading...</span></div>
+                <div class="glu-statistic tooltipped" data-tooltip="Total count of called functions." data-position="right"><span class="glu-statistic-name">Total Functions:</span><span id="total_functions_called" class="glu-statistic-value">Loading...</span></div>
+            </div>
+            <footer class="sidenav-footer">
+                <div class="sidenav-footer-content">
+                    <small style="font-family: monospace;"><a href="https://github.com/mopsfl/GoofyLuaUglifier" target="_blank">Github</a></small>
+                    <span>&bull;</span>
+                    <small style="font-family: monospace;"><a href="https://docs.mopsfl.de" target="_blank">API Documentation</a></small>
+                    <small style="font-family: monospace;" class="copyrightthing">&copy; 2024 mopsfl</small>
+                </div>
+            </footer>
+        </div>
         <!-- Monaco Editor Container -->
         <div class="code-area monaco"></div>
         <!-- Toolbox Sidebar -->
         <div class="sidebar">
             <!-- Functions -->
             <p class="sidebar-title">GoofyLuaUglifier</p>
-            <div class="sidebar-buttons">
+            <div class="sidebar-buttons" id="functionbtns-sidebar">
                 <template class="function-category-title-template">
                     <div class="seperator text tooltipped" data-position="left">
                         <span>N/A</span>
@@ -55,11 +90,11 @@
             </div>
         </div>
         <!-- Info Modal Button -->
-        <button class="waves-effect waves-light btn-floating modal-trigger btn-small transparent infomodal-openbtn tooltipped" data-position="right" data-tooltip="Info" href="#infomodal">
+        <!--<button class="waves-effect waves-light btn-floating modal-trigger btn-small transparent infomodal-openbtn tooltipped" data-position="right" data-tooltip="Info" href="#infomodal">
             <i class="material-icons center">info</i>
-        </button>
+        </button>-->
         <!-- Info Modal -->
-        <div>
+        <!--<div>
             <div id="infomodal" class="modal">
                 <div class="modal-content">
                     <h4>Info</h4>
@@ -68,11 +103,11 @@
                     </p>
                     <div class="divider"></div>
                     <br>
-                    <!--<div class="info-content">
+                    <div class="info-content">
                         <small style="font-family: monospace;">Roblox Constants Last Updated: <span id="rbxc_lastupdated">Loading...</span>
                             <div class="btn btn-small rbxc_update waves-effect waves-light tooltipped green" data-position="right" data-tooltip="Requests an update of the Roblox constants list to the server.">Update now</div>
                         </small>
-                    </div>-->
+                    </div>
                     <div class="info-content">
                         <small style="font-family: monospace; display: flex;">Account: <img src="" alt="" id="discord-avatar"><span id="account_username">Loading...</span> (<span id="account_id">N/A</span>)
                             <div class="btn btn-small waves-effect waves-light green acc_login">Login</div>
@@ -97,7 +132,7 @@
                     <button href="#!" class="modal-close waves-light waves-effect btn green">OK</button>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!-- Settings Modal -->
         <div id="settingsmodal" class="modal bottom-sheet modal-fixed-footer">
             <div class="modal-content">
@@ -259,7 +294,7 @@
                         </label>
                     </div>-->
                     <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds a watermark to your bytecode when using <code>CChunk3</code>. (keep empty to disable) <b>(EXPERIMENTAL)</b>">Bytecode Watermark</span>
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds a watermark to your bytecode when using Constant Chunk 2. (keep empty to disable) (EXPERIMENTAL)">Bytecode Watermark</span>
                         <div class="input-field">
                             <input placeholder="Watermark" id="bytecode_watermark" type="text" class="validate">
                         </div>
@@ -268,7 +303,7 @@
                     <div class="seperator"></div>
 
                     <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Memoizes expensive function calls and caches them to avoid redundant computations. <b>(EXPERIMENTAL)</b>">Memoize Functions Calls</span>
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Memoizes expensive function calls and caches them to avoid redundant computations. (EXPERIMENTAL)">Memoize Functions Calls</span>
                         <label>
                             <input type="checkbox" class="filled-in" id="memoize_function_calls" checked="true" />
                             <span></span>
@@ -298,6 +333,8 @@
                 <button href="#!" class="modal-close waves-light waves-effect btn-flat white-text" id="close">Close</button>
             </div>
         </div>
+        <!-- Left Sidenav Button -->
+        <a class="waves-effect waves-light btn-floating btn-small transparent sidenav-openbtn tooltipped sidenav-trigger" data-tooltip="Menu" data-position="right" data-target="slide-out"><i class="material-icons">menu</i></a>
     </div>
 </body>
 

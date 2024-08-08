@@ -9,16 +9,23 @@ const Info_1 = __importDefault(require("./Info"));
 const Utils_1 = __importDefault(require("./Utils"));
 exports.default = {
     accountStateFetched: false,
+    autoFetchAccountInformation: true,
+    AccountPermission_Colors: {
+        basic: "#698daf",
+        tester: "#ac4a4a",
+        developer: "#5fac4a",
+    },
     Init() {
-        const infoModalBtn = (0, jquery_1.default)(".infomodal-openbtn");
-        infoModalBtn.on("click", () => {
+        if (Info_1.default.autoFetchAccountInformation)
+            Info_1.default.UpdateAccoutState();
+        M.Sidenav.getInstance(document.querySelector(".leftmenu-sidebar")).options.onOpenStart = (e) => {
             Info_1.default.UpdateStats();
             Info_1.default.UpdateAccoutState();
-        });
-        (0, jquery_1.default)(".acc_login").on("click", async () => {
+        };
+        (0, jquery_1.default)(".account-login").on("click", async () => {
             location.replace(`${index_1.default.options.mopsfl_api_url()}oauth/login/discord`);
         });
-        (0, jquery_1.default)(".acc_logout").on("click", () => {
+        (0, jquery_1.default)(".account-logout").on("click", () => {
             (0, jquery_1.default)(".acc_logout").text("...").attr("disabled", "disabled");
             fetch(`${index_1.default.options.mopsfl_api_url()}oauth/account/logout`, { credentials: "include" }).then(res => {
                 Info_1.default.ToggleLoginState(false);
@@ -47,14 +54,13 @@ exports.default = {
         if (Utils_1.default.GetCookie("_ASID")) {
             fetch(`${index_1.default.options.mopsfl_api_url()}oauth/account/get`, { credentials: 'include' }).then(res => res.json()).then(async (res) => {
                 if (res.code === 0) {
-                    (0, jquery_1.default)(".acc_logout").hide();
-                    (0, jquery_1.default)("#account_username").text("Not logged in");
-                    (0, jquery_1.default)("#account_id").text("N/A");
-                    (0, jquery_1.default)("#discord-avatar").hide();
+                    console.log("res code 0. not logged in");
                 }
                 else if (res.oauth === "discord") {
                     await fetch(`${index_1.default.options.api_url()}oauth/account/isTester`, { credentials: "include" }).then(res => res.json()).then(res => {
                         (0, jquery_1.default)("#tester_access").text(res == true ? "Yes" : "No");
+                        (0, jquery_1.default)("#account-information-perms").text(res == true ? "Tester" : "Basic")
+                            .css("background", res == true ? Info_1.default.AccountPermission_Colors.tester : Info_1.default.AccountPermission_Colors.basic);
                     });
                     window.discordAccount = res.user;
                     window.discordAvatar = `https://cdn.discordapp.com/avatars/${res.user.id}/${res.user.avatar}`;
@@ -67,19 +73,24 @@ exports.default = {
     },
     ToggleLoginState(state) {
         if (state === true) {
-            (0, jquery_1.default)(".acc_login").hide();
+            (0, jquery_1.default)(".account-login").hide();
+            (0, jquery_1.default)("#account-information-perms").show();
             (0, jquery_1.default)("#discord-avatar").show();
-            (0, jquery_1.default)(".acc_logout").show();
+            (0, jquery_1.default)(".account-logout").show();
             (0, jquery_1.default)("#account_username").text(window.discordAccount.username);
             (0, jquery_1.default)("#account_id").text(window.discordAccount.id);
             (0, jquery_1.default)("#discord-avatar").attr("src", window.discordAvatar);
+            (0, jquery_1.default)(".account-information-user").css("display", "grid");
         }
         else {
-            (0, jquery_1.default)(".acc_logout").hide();
-            (0, jquery_1.default)(".acc_login").show();
-            (0, jquery_1.default)("#account_username").text("Not logged in");
-            (0, jquery_1.default)("#account_id").text("N/A");
+            (0, jquery_1.default)(".account-logout").hide();
+            (0, jquery_1.default)(".account-login").show();
+            (0, jquery_1.default)("#account_username").text("Guest");
+            (0, jquery_1.default)("#account_id").text("You are not logged in.");
             (0, jquery_1.default)("#discord-avatar").hide();
+            (0, jquery_1.default)(".account-information-user").css("display", "flex");
+            (0, jquery_1.default)("#account-information-perms").text("Basic")
+                .css("background", Info_1.default.AccountPermission_Colors.basic);
         }
     }
 };

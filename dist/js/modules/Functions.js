@@ -15,7 +15,7 @@ const functionButtons = new Map;
 exports.default = {
     blockFunctionTrigger: false,
     Init() {
-        const _functionBtnTemplate = (0, jquery_1.default)(".function-btn-template"), _functionCategoryTitleTemplate = (0, jquery_1.default)(".function-category-title-template"), _sideBarButtons = (0, jquery_1.default)(".sidebar-buttons");
+        const _functionBtnTemplate = (0, jquery_1.default)(".function-btn-template"), _functionCategoryTitleTemplate = (0, jquery_1.default)(".function-category-title-template"), _sideBarButtons = (0, jquery_1.default)("#functionbtns-sidebar");
         Object.keys(Functions_1.default.List).forEach((categoryName) => {
             const categoryFunctions = Functions_1.default.List[categoryName];
             const _functionCategoryTitle = _functionCategoryTitleTemplate.contents().clone();
@@ -220,7 +220,7 @@ exports.default = {
                 "name": "Control Flow",
                 "id": "controlflow",
                 "icon_id": "quiz",
-                "tooltip": "Injects while loops into all possible blocks to alter the logical flow of the code<br>to make it harder to understand and analyze.<br><br><b><br>This is still in work and very buggy</b>"
+                "tooltip": "Injects while loops into all possible blocks to alter the logical flow of the code<br>to make it harder to understand and analyze.<br><br><b>This is still in work and very buggy</b>"
             },
             {
                 "name": "Fake Args",
@@ -304,8 +304,8 @@ exports.default = {
             {
                 "name": "Control Flow 2",
                 "id": "controlflow2",
-                "icon_id": "",
-                "tooltip": "controlflow2<br><br><b>EXPERIMENTAL</b> - Might break the script"
+                "icon_id": "quiz",
+                "tooltip": "Injects while loops into all possible blocks to alter the logical flow of the code<br>to make it harder to understand and analyze.<br><br><b>This version is work in progress and might not work as intended.</b>"
             },
             {
                 "name": "Nonsense Strings 2",
