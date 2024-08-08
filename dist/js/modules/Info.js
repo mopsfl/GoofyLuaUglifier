@@ -9,7 +9,7 @@ const Info_1 = __importDefault(require("./Info"));
 const Utils_1 = __importDefault(require("./Utils"));
 exports.default = {
     accountStateFetched: false,
-    autoFetchAccountInformation: true,
+    autoFetchAccountInformation: false,
     AccountPermission_Colors: {
         basic: "#698daf",
         tester: "#ac4a4a",

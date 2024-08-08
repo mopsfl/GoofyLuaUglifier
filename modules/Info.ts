@@ -5,7 +5,7 @@ import Utils from "./Utils"
 
 export default {
     accountStateFetched: false,
-    autoFetchAccountInformation: true,
+    autoFetchAccountInformation: false,
 
     AccountPermission_Colors: {
         basic: "#698daf",
