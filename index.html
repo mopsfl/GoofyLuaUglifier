@@ -62,6 +62,20 @@
                 <div class="glu-statistic tooltipped" data-tooltip="Total count of API requests." data-position="right"><span class="glu-statistic-name">Total Requests:</span><span id="total_requests" class="glu-statistic-value">Loading...</span></div>
                 <div class="glu-statistic tooltipped" data-tooltip="Total count of called functions." data-position="right"><span class="glu-statistic-name">Total Functions:</span><span id="total_functions_called" class="glu-statistic-value">Loading...</span></div>
             </div>
+            <div class="seperator text tooltipped seperator-margin" data-position="right" data-tooltip="List of recent updates and changes.">
+                <span>Updates</span>
+            </div>
+            <div class="info-content glu-updates">
+                <small>Soon &trade;</small>
+                <template class="glu-update-item-template">
+                    <div class="glu-update-item">
+                        <span class="glu-update-date">xx.yy.zzzz</span>
+                        <div class="glu-update-content-list">
+                            <span class="glu-update-content">N/A</span>
+                        </div>
+                    </div>
+                </template>
+            </div>
             <footer class="sidenav-footer">
                 <div class="sidenav-footer-content">
                     <small style="font-family: monospace;"><a href="https://github.com/mopsfl/GoofyLuaUglifier" target="_blank">Github</a></small>
@@ -334,7 +348,7 @@
             </div>
         </div>
         <!-- Left Sidenav Button -->
-        <a class="waves-effect waves-light btn-floating btn-small transparent sidenav-openbtn tooltipped sidenav-trigger" data-tooltip="Menu" data-position="right" data-target="slide-out"><i class="material-icons">menu</i></a>
+        <a class="waves-effect waves-light btn-floating btn-small transparent sidenav-openbtn tooltipped sidenav-trigger" notif-count="0" data-tooltip="Menu" data-position="right" data-target="slide-out"><i class="material-icons">menu</i></a>
     </div>
 </body>
 

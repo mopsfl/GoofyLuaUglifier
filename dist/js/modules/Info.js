@@ -10,10 +10,10 @@ const Utils_1 = __importDefault(require("./Utils"));
 exports.default = {
     accountStateFetched: false,
     autoFetchAccountInformation: false,
-    AccountPermission_Colors: {
-        basic: "#698daf",
-        tester: "#ac4a4a",
-        developer: "#5fac4a",
+    AccountPermissions: {
+        basic: { name: "Basic", color: "#698daf" },
+        tester: { name: "Tester", color: "#ac4a4a" },
+        developer: { name: "Developer", color: "#5fac4a" },
     },
     Init() {
         if (Info_1.default.autoFetchAccountInformation)
@@ -58,9 +58,8 @@ exports.default = {
                 }
                 else if (res.oauth === "discord") {
                     await fetch(`${index_1.default.options.api_url()}oauth/account/isTester`, { credentials: "include" }).then(res => res.json()).then(res => {
-                        (0, jquery_1.default)("#tester_access").text(res == true ? "Yes" : "No");
-                        (0, jquery_1.default)("#account-information-perms").text(res == true ? "Tester" : "Basic")
-                            .css("background", res == true ? Info_1.default.AccountPermission_Colors.tester : Info_1.default.AccountPermission_Colors.basic);
+                        (0, jquery_1.default)("#account-information-perms").text(Info_1.default.AccountPermissions[res[2]].name)
+                            .css("background", Info_1.default.AccountPermissions[res[2]].color);
                     });
                     window.discordAccount = res.user;
                     window.discordAvatar = `https://cdn.discordapp.com/avatars/${res.user.id}/${res.user.avatar}`;
@@ -90,7 +89,7 @@ exports.default = {
             (0, jquery_1.default)("#discord-avatar").hide();
             (0, jquery_1.default)(".account-information-user").css("display", "flex");
             (0, jquery_1.default)("#account-information-perms").text("Basic")
-                .css("background", Info_1.default.AccountPermission_Colors.basic);
+                .css("background", Info_1.default.AccountPermissions.basic.color);
         }
     }
 };

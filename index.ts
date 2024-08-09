@@ -64,6 +64,11 @@ export interface UglifierStats {
     functions: { [_: string]: number }
 }
 
+export interface SessionInfo {
+    isTester?: boolean,
+    userId?: string
+}
+
 declare global {
     interface Window {
         forceProduction: boolean,

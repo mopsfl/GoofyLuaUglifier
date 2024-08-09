@@ -1,5 +1,5 @@
 import $ from "jquery";
-import index, { OAuthGetResponse, UglifierStats } from "../index"
+import index, { OAuthGetResponse, SessionInfo, UglifierStats } from "../index"
 import self from "./Info"
 import Utils from "./Utils"
 
@@ -7,10 +7,10 @@ export default {
     accountStateFetched: false,
     autoFetchAccountInformation: false,
 
-    AccountPermission_Colors: {
-        basic: "#698daf",
-        tester: "#ac4a4a",
-        developer: "#5fac4a",
+    AccountPermissions: {
+        basic: { name: "Basic", color: "#698daf" },
+        tester: { name: "Tester", color: "#ac4a4a" },
+        developer: { name: "Developer", color: "#5fac4a" },
     },
 
     Init() {
@@ -60,9 +60,8 @@ export default {
                     console.log("res code 0. not logged in");
                 } else if (res.oauth === "discord") {
                     await fetch(`${index.options.api_url()}oauth/account/isTester`, { credentials: "include" }).then(res => res.json()).then(res => {
-                        $("#tester_access").text(res == true ? "Yes" : "No")
-                        $("#account-information-perms").text(res == true ? "Tester" : "Basic")
-                            .css("background", res == true ? self.AccountPermission_Colors.tester : self.AccountPermission_Colors.basic)
+                        $("#account-information-perms").text(self.AccountPermissions[res[2]].name)
+                            .css("background", self.AccountPermissions[res[2]].color)
 
                     })
                     window.discordAccount = res.user
@@ -91,7 +90,7 @@ export default {
             $("#discord-avatar").hide()
             $(".account-information-user").css("display", "flex")
             $("#account-information-perms").text("Basic")
-                .css("background", self.AccountPermission_Colors.basic)
+                .css("background", self.AccountPermissions.basic.color)
         }
     }
 }
