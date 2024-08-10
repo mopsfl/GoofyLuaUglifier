@@ -23,13 +23,14 @@ exports.default = {
             Info_1.default.UpdateAccoutState();
         };
         (0, jquery_1.default)(".account-login").on("click", async () => {
+            (0, jquery_1.default)(".account-login").attr("disabled", "disabled");
             location.replace(`${index_1.default.options.mopsfl_api_url()}oauth/login/discord`);
         });
         (0, jquery_1.default)(".account-logout").on("click", () => {
-            (0, jquery_1.default)(".acc_logout").text("...").attr("disabled", "disabled");
+            (0, jquery_1.default)(".account-logout").attr("disabled", "disabled");
             fetch(`${index_1.default.options.mopsfl_api_url()}oauth/account/logout`, { credentials: "include" }).then(res => {
                 Info_1.default.ToggleLoginState(false);
-                (0, jquery_1.default)(".acc_logout").text("Logout").removeAttr("disabled");
+                (0, jquery_1.default)(".account-logout").removeAttr("disabled");
             });
         });
         console.log(`[Client]: Loaded Info Modal (took ${new Date().getTime() - index_1.default.pageTime}ms).`);
@@ -52,23 +53,27 @@ exports.default = {
             return;
         Info_1.default.accountStateFetched = true;
         if (Utils_1.default.GetCookie("_ASID")) {
-            fetch(`${index_1.default.options.mopsfl_api_url()}oauth/account/get`, { credentials: 'include' }).then(res => res.json()).then(async (res) => {
-                if (res.code === 0) {
-                    console.log("res code 0. not logged in");
+            await fetch(`${index_1.default.options.mopsfl_api_url()}oauth/account/get`, { credentials: 'include' }).then(res => res.json()).then(async (res) => {
+                if (res.code === 403) {
+                    Info_1.default.ToggleLoginState(false);
+                    (0, jquery_1.default)(".sidenav-loading").hide();
                 }
                 else if (res.oauth === "discord") {
                     await fetch(`${index_1.default.options.api_url()}oauth/account/isTester`, { credentials: "include" }).then(res => res.json()).then(res => {
-                        (0, jquery_1.default)("#account-information-perms").text(Info_1.default.AccountPermissions[res[2]].name)
-                            .css("background", Info_1.default.AccountPermissions[res[2]].color);
+                        (0, jquery_1.default)("#account-information-perms").text(Info_1.default.AccountPermissions[res[2]].name || "N/A")
+                            .css("background", Info_1.default.AccountPermissions[res[2]].color || Info_1.default.AccountPermissions.basic.color);
                     });
                     window.discordAccount = res.user;
                     window.discordAvatar = `https://cdn.discordapp.com/avatars/${res.user.id}/${res.user.avatar}`;
                     Info_1.default.ToggleLoginState(true);
                 }
             });
+            (0, jquery_1.default)(".sidenav-loading").hide();
         }
-        else
+        else {
             Info_1.default.ToggleLoginState(false);
+            (0, jquery_1.default)(".sidenav-loading").hide();
+        }
     },
     ToggleLoginState(state) {
         if (state === true) {

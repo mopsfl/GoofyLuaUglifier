@@ -650,6 +650,10 @@ code.multiline {
     border-radius: 3px;
 }
 
+.account-logout[disabled]>.material-icons {
+    filter: blur(1px);
+}
+
 @media only screen and (max-width: 500px) {
     .sidebar {
         width: 100%;

@@ -22,14 +22,15 @@ export default {
         }
 
         $(".account-login").on("click", async () => {
+            $(".account-login").attr("disabled", "disabled")
             location.replace(`${index.options.mopsfl_api_url()}oauth/login/discord`)
         })
 
         $(".account-logout").on("click", () => {
-            $(".acc_logout").text("...").attr("disabled", "disabled")
+            $(".account-logout").attr("disabled", "disabled")
             fetch(`${index.options.mopsfl_api_url()}oauth/account/logout`, { credentials: "include" }).then(res => {
                 self.ToggleLoginState(false)
-                $(".acc_logout").text("Logout").removeAttr("disabled")
+                $(".account-logout").removeAttr("disabled")
             })
         })
 
@@ -55,13 +56,14 @@ export default {
         if (self.accountStateFetched === true) return
         self.accountStateFetched = true
         if (Utils.GetCookie("_ASID")) {
-            fetch(`${index.options.mopsfl_api_url()}oauth/account/get`, { credentials: 'include' }).then(res => res.json()).then(async (res: OAuthGetResponse) => {
-                if (res.code === 0) {
-                    console.log("res code 0. not logged in");
+            await fetch(`${index.options.mopsfl_api_url()}oauth/account/get`, { credentials: 'include' }).then(res => res.json()).then(async (res: OAuthGetResponse) => {
+                if (res.code === 403) {
+                    self.ToggleLoginState(false)
+                    $(".sidenav-loading").hide()
                 } else if (res.oauth === "discord") {
                     await fetch(`${index.options.api_url()}oauth/account/isTester`, { credentials: "include" }).then(res => res.json()).then(res => {
-                        $("#account-information-perms").text(self.AccountPermissions[res[2]].name)
-                            .css("background", self.AccountPermissions[res[2]].color)
+                        $("#account-information-perms").text(self.AccountPermissions[res[2]].name || "N/A")
+                            .css("background", self.AccountPermissions[res[2]].color || self.AccountPermissions.basic.color)
 
                     })
                     window.discordAccount = res.user
@@ -69,7 +71,11 @@ export default {
                     self.ToggleLoginState(true)
                 }
             })
-        } else self.ToggleLoginState(false)
+            $(".sidenav-loading").hide()
+        } else {
+            self.ToggleLoginState(false)
+            $(".sidenav-loading").hide()
+        }
     },
 
     ToggleLoginState(state: boolean) {
