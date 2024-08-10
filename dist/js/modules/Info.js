@@ -24,7 +24,7 @@ exports.default = {
         };
         (0, jquery_1.default)(".account-login").on("click", async () => {
             (0, jquery_1.default)(".account-login").attr("disabled", "disabled");
-            location.replace(`${index_1.default.options.mopsfl_api_url()}oauth/login/discord`);
+            location.replace(`${index_1.default.options.mopsfl_api_url()}oauth/login/discord?r=${location.href}`);
         });
         (0, jquery_1.default)(".account-logout").on("click", () => {
             (0, jquery_1.default)(".account-logout").attr("disabled", "disabled");

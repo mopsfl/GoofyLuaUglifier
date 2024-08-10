@@ -23,7 +23,7 @@ export default {
 
         $(".account-login").on("click", async () => {
             $(".account-login").attr("disabled", "disabled")
-            location.replace(`${index.options.mopsfl_api_url()}oauth/login/discord`)
+            location.replace(`${index.options.mopsfl_api_url()}oauth/login/discord?r=${location.href}`)
         })
 
         $(".account-logout").on("click", () => {
