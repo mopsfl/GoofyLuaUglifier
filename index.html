@@ -40,7 +40,7 @@
         <div class="sidenav z-depth-5 leftmenu-sidebar" id="slide-out">
             <div class="user-view z-depth-2">
                 <div class="account-information">
-                    <div class="account-info-background background"><img src="images/code-background2.PNG"></div>
+                    <div class="account-info-background background"><img src="images/code-background2.PNG" loading="lazy"></div>
                     <div class="account-information-user">
                         <img src="" alt="avatar" id="discord-avatar">
                         <li>
@@ -66,15 +66,14 @@
                 <div class="glu-statistic tooltipped" data-tooltip="Total count of called functions." data-position="right"><span class="glu-statistic-name">Total Functions:</span><span id="total_functions_called" class="glu-statistic-value">Loading...</span></div>
             </div>
             <div class="seperator text tooltipped seperator-margin" data-position="right" data-tooltip="List of recent updates and changes.">
-                <span>Updates</span>
+                <span>Updates <span class="updates-new-label" notif-count="0"></span></span>
             </div>
             <div class="info-content glu-updates">
-                <small>Soon &trade;</small>
                 <template class="glu-update-item-template">
                     <div class="glu-update-item">
                         <span class="glu-update-date">xx.yy.zzzz</span>
                         <div class="glu-update-content-list">
-                            <span class="glu-update-content">N/A</span>
+                            <span class="glu-update-content hide">N/A</span>
                         </div>
                     </div>
                 </template>

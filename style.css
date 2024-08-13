@@ -233,11 +233,7 @@ body.light~.select-dropdown {
     box-shadow: none;
 }
 
-.sidenav-openbtn[notif-count="0"]:before {
-    display: none !important;
-}
-
-.sidenav-openbtn::before {
+*[notif-count]::before {
     content: attr(notif-count);
     position: absolute;
     bottom: 0;
@@ -257,6 +253,29 @@ body.light~.select-dropdown {
     user-select: none;
     overflow: hidden;
     text-wrap: wrap;
+}
+
+*[notif-count="0"]:before,
+.updates-new-label[notif-count="0"] {
+    display: none !important;
+}
+
+.updates-new-label {
+    content: attr(notif-count);
+    background: #4caf50 !important;
+    border-radius: 3em;
+    width: 15px;
+    height: 15px;
+    font-size: 11px;
+    position: absolute;
+    margin-left: 5px;
+    transform: translateY(-5px);
+    text-align: center;
+    align-content: center;
+}
+
+.leftmenu-sidebar {
+    overflow-x: hidden !important;
 }
 
 .leftmenu-sidebar>.user-view {
@@ -613,7 +632,7 @@ code.multiline {
 }
 
 .glu-updates {
-    max-height: 25em;
+    max-height: 35%;
     padding: 10px;
     overflow: hidden auto;
 }
@@ -626,6 +645,7 @@ code.multiline {
     text-align: left;
     text-decoration: underline;
     margin-bottom: 10px;
+    margin-top: 10px;
     font-weight: bold;
 }
 

@@ -10,7 +10,7 @@ exports.default = {
     async new(func, code, options, uglifier_options, clientSession) {
         const start_tick = new Date().getTime();
         console.log(`new function request`, func);
-        return await fetch(`${options.api_url()}${func}`, { method: "POST", body: code, credentials: "include", headers: { "uglifier-options": JSON.stringify(uglifier_options), "uglifier-session": clientSession } }).catch(error => {
+        return await fetch(`${options.api_url()}uglify/${func}`, { method: "POST", body: code, credentials: "include", headers: { "uglifier-options": JSON.stringify(uglifier_options), "uglifier-session": clientSession } }).catch(error => {
             const _error = error;
             Editor_1.default.SetValue(Request_1.default.CreateResponseError("lua", _error.message, Editor_1.default.GetValue()));
             Editor_1.default.ToggleLoading();

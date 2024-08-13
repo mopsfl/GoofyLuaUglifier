@@ -1,11 +1,16 @@
 import $ from "jquery";
-import index, { OAuthGetResponse, SessionInfo, UglifierStats } from "../index"
+import index, { OAuthGetResponse, SessionInfo, UglifierStats, UIDInfo } from "../index"
 import self from "./Info"
 import Utils from "./Utils"
+
+const updateItemTemplate = $(".glu-update-item-template"),
+    updateList = $(".glu-updates")
 
 export default {
     accountStateFetched: false,
     autoFetchAccountInformation: false,
+
+    _uidInfo: null,
 
     AccountPermissions: {
         basic: { name: "Basic", color: "#698daf" },
@@ -16,9 +21,28 @@ export default {
     Init() {
         if (self.autoFetchAccountInformation) self.UpdateAccoutState()
 
-        M.Sidenav.getInstance(document.querySelector(".leftmenu-sidebar")).options.onOpenStart = (e) => {
+        fetch(`${index.options.api_url()}uid`, { credentials: "include" }).then(async res => {
+            if (!res.ok) return console.error(res)
+            const uidInfo: UIDInfo = await res.json()
+            $(".sidenav-openbtn").attr("notif-count", uidInfo.uN)
+            $(".updates-new-label").attr("notif-count", uidInfo.uN)
+        })
+
+        M.Sidenav.getInstance(document.querySelector(".leftmenu-sidebar")).options.onOpenStart = async (e) => {
             self.UpdateStats()
             self.UpdateAccoutState()
+            self.UpdateChangeLog()
+
+            await fetch(`${index.options.api_url()}uid/update`, { credentials: "include", method: "POST" }).then(async res => {
+                if (!res.ok) return console.error(res)
+                const uidInfo: UIDInfo = await res.json()
+                self._uidInfo = uidInfo
+                $(".sidenav-openbtn").attr("notif-count", uidInfo.uN)
+            })
+        }
+
+        M.Sidenav.getInstance(document.querySelector(".leftmenu-sidebar")).options.onCloseEnd = async () => {
+            if (self._uidInfo) $(".updates-new-label").attr("notif-count", self._uidInfo.uN)
         }
 
         $(".account-login").on("click", async () => {
@@ -35,6 +59,32 @@ export default {
         })
 
         console.log(`[Client]: Loaded Info Modal (took ${new Date().getTime() - index.pageTime}ms).`)
+    },
+
+    async UpdateChangeLog() {
+        await fetch(`${index.options.api_url()}api/uglifier/updatelog`).then(res => res.json()).then(res => {
+            Object.keys(res).forEach(date => {
+                const updateData: Array<string> = res[date],
+                    item = updateItemTemplate.contents().clone()
+                item.find(".glu-update-date").text(date)
+
+                updateData.forEach(updateContent => {
+                    const span = $(document.createElement("span")),
+                        tooltipContent = $(document.createElement("div"))
+
+                    tooltipContent.attr("id", "tooltip-content").html(updateContent).hide()
+                    span.addClass("glu-update-content").addClass("tooltipped")
+                    span.attr("data-tooltip-id", "tooltip-content").attr("data-position", "right")
+
+                    span.html(updateContent).attr("title", updateContent.replace(/\<\/?\w+>/gm, ""))
+                    item.find(".glu-update-content-list").append(span).append(tooltipContent)
+
+                    //M.Tooltip.init(span)
+                })
+
+                item.appendTo(updateList)
+            })
+        })
     },
 
     async UpdateStats() {

@@ -1,5 +1,6 @@
 // todo: fully move settings to automated thing so i dont have to copy paste elements everytime i wanna make a new setting
 
+import self from ".";
 import $ from "jquery";
 import Editor from "./modules/Editor";
 import Settings from "./modules/Settings";
@@ -112,4 +113,11 @@ export interface UglifierSettings {
 
     memoize_function_calls: boolean,
     no_decoder_functions: boolean
+}
+
+export interface UIDInfo {
+    uN: number,
+    sN: Array<number>,
+    lu: number,
+    uid: string
 }

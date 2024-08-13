@@ -7,9 +7,11 @@ const jquery_1 = __importDefault(require("jquery"));
 const index_1 = __importDefault(require("../index"));
 const Info_1 = __importDefault(require("./Info"));
 const Utils_1 = __importDefault(require("./Utils"));
+const updateItemTemplate = (0, jquery_1.default)(".glu-update-item-template"), updateList = (0, jquery_1.default)(".glu-updates");
 exports.default = {
     accountStateFetched: false,
     autoFetchAccountInformation: false,
+    _uidInfo: null,
     AccountPermissions: {
         basic: { name: "Basic", color: "#698daf" },
         tester: { name: "Tester", color: "#ac4a4a" },
@@ -18,9 +20,28 @@ exports.default = {
     Init() {
         if (Info_1.default.autoFetchAccountInformation)
             Info_1.default.UpdateAccoutState();
-        M.Sidenav.getInstance(document.querySelector(".leftmenu-sidebar")).options.onOpenStart = (e) => {
+        fetch(`${index_1.default.options.api_url()}uid`, { credentials: "include" }).then(async (res) => {
+            if (!res.ok)
+                return console.error(res);
+            const uidInfo = await res.json();
+            (0, jquery_1.default)(".sidenav-openbtn").attr("notif-count", uidInfo.uN);
+            (0, jquery_1.default)(".updates-new-label").attr("notif-count", uidInfo.uN);
+        });
+        M.Sidenav.getInstance(document.querySelector(".leftmenu-sidebar")).options.onOpenStart = async (e) => {
             Info_1.default.UpdateStats();
             Info_1.default.UpdateAccoutState();
+            Info_1.default.UpdateChangeLog();
+            await fetch(`${index_1.default.options.api_url()}uid/update`, { credentials: "include", method: "POST" }).then(async (res) => {
+                if (!res.ok)
+                    return console.error(res);
+                const uidInfo = await res.json();
+                Info_1.default._uidInfo = uidInfo;
+                (0, jquery_1.default)(".sidenav-openbtn").attr("notif-count", uidInfo.uN);
+            });
+        };
+        M.Sidenav.getInstance(document.querySelector(".leftmenu-sidebar")).options.onCloseEnd = async () => {
+            if (Info_1.default._uidInfo)
+                (0, jquery_1.default)(".updates-new-label").attr("notif-count", Info_1.default._uidInfo.uN);
         };
         (0, jquery_1.default)(".account-login").on("click", async () => {
             (0, jquery_1.default)(".account-login").attr("disabled", "disabled");
@@ -34,6 +55,24 @@ exports.default = {
             });
         });
         console.log(`[Client]: Loaded Info Modal (took ${new Date().getTime() - index_1.default.pageTime}ms).`);
+    },
+    async UpdateChangeLog() {
+        await fetch(`${index_1.default.options.api_url()}api/uglifier/updatelog`).then(res => res.json()).then(res => {
+            Object.keys(res).forEach(date => {
+                const updateData = res[date], item = updateItemTemplate.contents().clone();
+                item.find(".glu-update-date").text(date);
+                updateData.forEach(updateContent => {
+                    const span = (0, jquery_1.default)(document.createElement("span")), tooltipContent = (0, jquery_1.default)(document.createElement("div"));
+                    tooltipContent.attr("id", "tooltip-content").html(updateContent).hide();
+                    span.addClass("glu-update-content").addClass("tooltipped");
+                    span.attr("data-tooltip-id", "tooltip-content").attr("data-position", "right");
+                    span.html(updateContent).attr("title", updateContent.replace(/\<\/?\w+>/gm, ""));
+                    item.find(".glu-update-content-list").append(span).append(tooltipContent);
+                    //M.Tooltip.init(span)
+                });
+                item.appendTo(updateList);
+            });
+        });
     },
     async UpdateStats() {
         await fetch(`${index_1.default.options.api_url()}api/uglifier/stats`, { cache: "no-store" }).then(async (res) => {

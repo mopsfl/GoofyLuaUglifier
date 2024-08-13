@@ -1,3 +1,6 @@
+## 13.08.2024
+- added notification thing on website for new updates
+
 ## 08.05.2024
 - added sexy sidebar to website (cooler updates soon, maybe)
 
