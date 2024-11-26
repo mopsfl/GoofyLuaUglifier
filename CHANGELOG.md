@@ -1,3 +1,7 @@
+## 26.11.2024
+- added experimental function <code>Shuffle Strings</code> (very buggy lol)
+- changelog list now clears on reload
+
 ## 19.08.2024
 - bug fixes
 - added some kind of anti hook (added this to the <code>Obfuscate</code> function for testing, don't expect it to work correctly- its still in work)

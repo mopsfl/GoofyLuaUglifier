@@ -319,11 +319,23 @@ export default {
                 "icon_id": "quiz",
                 "tooltip": "Injects while loops into all possible blocks to alter the logical flow of the code<br>to make it harder to understand and analyze.<br><br><b>This version is work in progress and might not work as intended.</b>"
             },
+            //{
+            //    "name": "Nonsense Strings 2",
+            //    "id": "nonsensestrings2",
+            //    "icon_id": "question_mark",
+            //    "tooltip": "Turns strings into random non sense.<br><br>e.g.: <code>'Hello World'</code> &equals; <code>'?ƒ*/涮в+%癉ц飴'</code><br><br><br><b>EXPERIMENTAL</b> - Might break the script<br><br><b>Note</b> - This is a work in progress remake of the old version and is not guaranteed to work yet.<br>I will replace it with the old one, once this is finished."
+            //},
+            //{
+            //    "name": "Anti Hook",
+            //    "id": "antihook",
+            //    "icon_id": "question_mark",
+            //    "tooltip": "Anti Hook"
+            //},
             {
-                "name": "Nonsense Strings 2",
-                "id": "nonsensestrings2",
-                "icon_id": "question_mark",
-                "tooltip": "Turns strings into random non sense.<br><br>e.g.: <code>'Hello World'</code> &equals; <code>'?ƒ*/涮в+%癉ц飴'</code><br><br><br><b>EXPERIMENTAL</b> - Might break the script<br><br><b>Note</b> - This is a work in progress remake of the old version and is not guaranteed to work yet.<br>I will replace it with the old one, once this is finished."
+                "name": "Shuffle Strings",
+                "id": "shufflestrings",
+                "icon_id": "low_priority",
+                "tooltip": "Shuffles the strings character into a random order."
             },
             { divider: true }
         ]

@@ -57,6 +57,7 @@ exports.default = {
         console.log(`[Client]: Loaded Info Modal (took ${new Date().getTime() - index_1.default.pageTime}ms).`);
     },
     async UpdateChangeLog() {
+        updateList.empty();
         await fetch(`${index_1.default.options.api_url()}api/uglifier/updatelog`).then(res => res.json()).then(res => {
             Object.keys(res).forEach(date => {
                 const updateData = res[date], item = updateItemTemplate.contents().clone();

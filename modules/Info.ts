@@ -62,6 +62,7 @@ export default {
     },
 
     async UpdateChangeLog() {
+        updateList.empty()
         await fetch(`${index.options.api_url()}api/uglifier/updatelog`).then(res => res.json()).then(res => {
             Object.keys(res).forEach(date => {
                 const updateData: Array<string> = res[date],
