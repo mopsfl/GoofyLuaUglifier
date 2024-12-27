@@ -32,8 +32,22 @@ const LocalStorage_1 = __importDefault(require("./LocalStorage"));
 const Utils_1 = __importDefault(require("./Utils"));
 const monaco = __importStar(require("monaco-editor"));
 exports.default = {
-    _defaultScript: `local Players = game:GetService("Players")
-print(Players.LocalPlayer:GetMouse())`.trim(),
+    _defaultScript: `local a = 123
+local b = 100
+local c = "Hello World!"
+local d = true
+local e = false
+local f = function() return {a, b, c, d, e} end
+local g = 100
+
+function _func(...)
+    local args = {...}
+    for _,v in pairs(f()) do print(_,v) end
+    return args[1] - args[2]
+end
+
+print(_func(a, b))
+print(b-g)`.trim(),
     Init() {
         index_1.default.editor = monaco.editor.create(document.querySelector(".monaco"), {
             language: 'lua',

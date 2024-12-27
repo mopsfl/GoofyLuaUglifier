@@ -5,8 +5,22 @@ import Utils from "./Utils"
 import * as monaco from "monaco-editor"
 
 export default {
-    _defaultScript: `local Players = game:GetService("Players")
-print(Players.LocalPlayer:GetMouse())`.trim(),
+    _defaultScript: `local a = 123
+local b = 100
+local c = "Hello World!"
+local d = true
+local e = false
+local f = function() return {a, b, c, d, e} end
+local g = 100
+
+function _func(...)
+    local args = {...}
+    for _,v in pairs(f()) do print(_,v) end
+    return args[1] - args[2]
+end
+
+print(_func(a, b))
+print(b-g)`.trim(),
 
     Init() {
         index.editor = monaco.editor.create(document.querySelector(".monaco"), {
