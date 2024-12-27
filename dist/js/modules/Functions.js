@@ -325,6 +325,12 @@ exports.default = {
                 "icon_id": "low_priority",
                 "tooltip": "Shuffles the strings character into a random order."
             },
+            {
+                "name": "Rick Roll Constants",
+                "id": "rickrollcons",
+                "icon_id": "celebration",
+                "tooltip": "Adds fake constants that are ignored by the string encryption. (to troll constant dumper bozos)"
+            },
             { divider: true }
         ]
     },

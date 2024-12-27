@@ -1,3 +1,7 @@
+## 28.12.2024
+- added <code>Rick Roll Constants</code> function (dont ask why, its just funny)
+- small bug fixes
+
 ## 26.11.2024
 - added experimental function <code>Shuffle Strings</code> (very buggy lol)
 - changelog list now clears on reload
