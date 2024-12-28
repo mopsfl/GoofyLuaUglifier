@@ -1,4 +1,5 @@
 ## 28.12.2024
+- (hopefully) fixed <code>GLookup</code> handling <code>LocalStatement</code> identifiers as <code>Globals</code>
 - added <code>Rick Roll Constants</code> function (dont ask why, its just funny)
 - small bug fixes
 
