@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://badgen.net/github/last-commit/mopsfl/GoofyLuaUglifier">
+  <img src="https://img.shields.io/github/last-commit/mopsfl/GoofyLuaUglifier">
   
   <br/><br/>
   
