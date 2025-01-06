@@ -199,7 +199,7 @@
                     <div class="seperator"></div>
 
                     <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Saved the editor code and loads it back when you open the page again.">Save Editor Code</span>
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Saves the editor code and loads it back when you open the page again.">Save Editor Code</span>
                         <label>
                             <input type="checkbox" class="filled-in" id="save_editor_code" checked="false" />
                             <span></span>
@@ -216,7 +216,7 @@
                         </label>
                     </div>
                     <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Ignore any encrypted byte like string. (e.g. bytestring encryption)">Ignore Bytestring</span>
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Ignore any encrypted byte like string. (e.g. string encryption)">Ignore Bytestring</span>
                         <label>
                             <input type="checkbox" class="filled-in" id="ignore_bytestring" checked="false" />
                             <span></span>
@@ -231,6 +231,13 @@
                             <input type="checkbox" class="filled-in" id="chinese_nonsense_characters" checked="false" />
                             <span></span>
                         </label>
+                    </div>
+
+                    <div class="setting">
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="The limit of how many strings can be created until it truncates.">Number Nonsense Length Limit</span>
+                        <div class="input-field">
+                            <input placeholder="Length" id="number_nonsense_length_limit" type="number" class="validate">
+                        </div>
                     </div>
 
                     <div class="setting input-field select-dropdown col s12">
@@ -290,7 +297,7 @@
                     <div class="setting">
                         <span class="setting-name tooltipped" data-position="right" data-tooltip="The length of the random transform offset number.">Number Transform Offset Length</span>
                         <div class="input-field">
-                            <input placeholder="Length" id="number_transform_offset_length" type="text" class="validate">
+                            <input placeholder="Length" id="number_transform_offset_length" type="number" class="validate">
                         </div>
                     </div>
 

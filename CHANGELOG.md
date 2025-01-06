@@ -1,3 +1,6 @@
+## 06.01.2025
+- added new function <code>Nonsense Numbers</code> (not 100% stable yet but should work most times)
+
 ## 28.12.2024
 - fixed compound operators not being parsed correctly (i hope this fix doesnt break anything .-.)
 - (hopefully) fixed <code>GLookup</code> handling <code>LocalStatement</code> identifiers as <code>Globals</code>
