@@ -1,4 +1,5 @@
 ## 06.01.2025
+- ! changes will be delayed because my server is doin some shit again. (update will get pushed when its fixed) !
 - added new function <code>Nonsense Numbers</code> (not 100% stable yet but should work most times)
 
 ## 28.12.2024
