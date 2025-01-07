@@ -144,7 +144,7 @@ export default {
                 "name": "NonSense Numbers",
                 "id": "nonsensenumbers",
                 "icon_id": "question_mark",
-                "tooltip": `Turns numbers into non sense string length operations.<br><br>e.g.: <code class='multiline'>a = 69<br>b = 169</code> &equals; <code class='multiline'>a = #"ц徿€纰#-鳟蘱,譕 ..."<br>b = #"譲涮珩変鷹<艒笰{錝? ..." + 69</code><br><br><b>Note:</b> By default, numbers greater than <code>100</code> will get truncated and the missing numbers will be added with <code>#"..." + x</code><br><small>This limit can be changed in the settings!</small>`
+                "tooltip": `Turns numbers into non sense string length operations.<br><br>e.g.: <code class='multiline'>a = 69<br>b = 169</code> &equals; <code class='multiline'>a = #"HI(Jqa^b!e(i=?tRx( ..."<br>b = #"+x^/!|?#!!([:)%= ..." + 69</code><br><br><b>Note:</b> By default, numbers greater than <code>100</code> will get truncated and the missing numbers will be added with <code>#"..." + x</code><br><small>This limit can be changed in the settings!</small>`
             },
             {
                 "name": "Booleans",
