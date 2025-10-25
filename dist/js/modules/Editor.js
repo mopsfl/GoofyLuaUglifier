@@ -27,7 +27,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = __importDefault(require("../index"));
-const Editor_1 = __importDefault(require("./Editor"));
 const LocalStorage_1 = __importDefault(require("./LocalStorage"));
 const Utils_1 = __importDefault(require("./Utils"));
 const monaco = __importStar(require("monaco-editor"));
@@ -61,15 +60,15 @@ print(b-g)`.trim(),
         index_1.default.editor.layout();
         if (index_1.default.settings._settings.save_editor_code === true) {
             index_1.default.editor.getModel().onDidChangeContent(() => {
-                LocalStorage_1.default.Set(index_1.default.settings.config.storage_key, "mEditorValue", Utils_1.default.CompressData(Editor_1.default.GetValue()));
+                LocalStorage_1.default.Set(index_1.default.settings.config.storage_key, "mEditorValue", Utils_1.default.CompressData(this.GetValue()));
             });
             const mEditorValue = Utils_1.default.UncompressData(LocalStorage_1.default.GetKey("_goofyuglifier", "mEditorValue"));
             if (mEditorValue !== "%save_editor_code_DISABLED%")
-                Editor_1.default.SetValue(mEditorValue);
+                this.SetValue(mEditorValue);
         }
         else {
             LocalStorage_1.default.Set(index_1.default.settings.config.storage_key, "mEditorValue", Utils_1.default.CompressData("%save_editor_code_DISABLED%"));
-            index_1.default.editor.setValue(Editor_1.default._defaultScript);
+            index_1.default.editor.setValue(this._defaultScript);
         }
         console.log(`[Client]: Loaded Monaco Editor (took ${new Date().getTime() - index_1.default.pageTime}ms).`);
     },
@@ -80,7 +79,7 @@ print(b-g)`.trim(),
         return index_1.default.editor.setValue(value);
     },
     CopyValue() {
-        navigator.clipboard.writeText(Editor_1.default.GetValue() || "");
+        navigator.clipboard.writeText(this.GetValue() || "");
     },
     Clear() {
         console.log(monaco.editor.getEditors());

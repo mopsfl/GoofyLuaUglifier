@@ -109,6 +109,9 @@ class Settings {
             this.Init(true);
             console.log("Reseted settings to default", this.config.default_settings);
         });
+        document.querySelector(".settings-open").addEventListener("click", () => {
+            new M.Modal(document.querySelector("#settingsmodal")).open();
+        });
         console.log(`[Client]: Loaded Settings (took ${new Date().getTime() - __1.default.pageTime}ms).`);
     }
     HandleInput(e, setting) {

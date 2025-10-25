@@ -45,6 +45,7 @@ export default class Settings {
             LocalStorage.Clear(this.config.storage_key)
             LocalStorage.Create(this.config.storage_key, this.config.default_settings)
         }
+
         this._settings = LocalStorage.GetKey(this.config.storage_key, "settings")
         document.querySelectorAll(".setting").forEach(setting => {
             const input: HTMLInputElement = setting.querySelector("input"),
@@ -107,6 +108,10 @@ export default class Settings {
         document.querySelector("#resetdefault").addEventListener("click", (e) => {
             this.Init(true)
             console.log("Reseted settings to default", this.config.default_settings);
+        })
+
+        document.querySelector(".settings-open").addEventListener("click", () => {
+            new M.Modal(document.querySelector("#settingsmodal")).open()
         })
 
         console.log(`[Client]: Loaded Settings (took ${new Date().getTime() - index.pageTime}ms).`);

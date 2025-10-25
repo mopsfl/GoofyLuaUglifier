@@ -228,6 +228,10 @@ body.light~.select-dropdown {
     overflow: visible !important;
 }
 
+.settings-open {
+    top: 30px;
+}
+
 .sidenav-openbtn:hover {
     border: none;
     box-shadow: none;

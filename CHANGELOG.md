@@ -1,3 +1,9 @@
+## 25.10.2025
+- moved open settings button to left sidenav thing
+- other small improvements
+- sorry that's all i did, i was bored :(
+- i don't have motivation to work on this anymore. also the backend is hella messy and shit written. i need to rewrite everything first before i can continue this project </3
+
 ## 07.01.2025
 - fixed / rewrote user session manager (OAuth) for better stability (basically it just saves everything in a database now instead of a file cache)
 

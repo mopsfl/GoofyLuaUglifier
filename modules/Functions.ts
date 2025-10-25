@@ -1,6 +1,5 @@
 import $ from "jquery";
 import Editor from "./Editor"
-import self from "./Functions"
 import index from "../index"
 import Request from "./Request"
 import LocalStorage from "./LocalStorage"
@@ -15,8 +14,8 @@ export default {
             _functionCategoryTitleTemplate = $(".function-category-title-template"),
             _sideBarButtons = $("#functionbtns-sidebar")
 
-        Object.keys(self.List).forEach((categoryName) => {
-            const categoryFunctions: CategoryFunction[] = self.List[categoryName]
+        Object.keys(this.List).forEach((categoryName) => {
+            const categoryFunctions: CategoryFunction[] = this.List[categoryName]
             const _functionCategoryTitle = _functionCategoryTitleTemplate.contents().clone()
             _functionCategoryTitle.text(categoryName)
             _functionCategoryTitle.appendTo(_sideBarButtons)
@@ -48,22 +47,11 @@ export default {
             })
         })
 
-        const settingsBtn = _functionBtnTemplate.contents().clone(),
-            settingsBtnIcon = settingsBtn.find("#function-icon"),
-            settingsBtnName = settingsBtn.find("#function-name")
-
-        settingsBtn.addClass("modal-trigger")
-        settingsBtn.attr("href", "#settingsmodal")
-        settingsBtnName.text("Settings")
-        settingsBtnIcon.text("settings")
-        settingsBtn.attr("data-function", "settings")
-        settingsBtn.appendTo(_sideBarButtons)
-
         functionButtons.forEach((functionData, functionName, map) => {
             functionData.element.on("click", async () => {
-                if (!self.List["Quick Actions"].find(qAction => qAction.id === functionName) || functionData.func.quickActionsOverride) {
-                    if (self.blockFunctionTrigger) return
-                    self.blockFunctionTrigger = true
+                if (!this.List["Quick Actions"].find(qAction => qAction.id === functionName) || functionData.func.quickActionsOverride) {
+                    if (this.blockFunctionTrigger) return
+                    this.blockFunctionTrigger = true
                     Editor.ToggleLoading("Processing")
                     Editor.ToggleReadOnly(true)
 
@@ -86,10 +74,10 @@ export default {
                     }).catch(console.error).finally(() => {
                         Editor.ToggleLoading()
                         Editor.ToggleReadOnly(false)
-                        self.blockFunctionTrigger = false
+                        this.blockFunctionTrigger = false
                     })
                 } else {
-                    if (self.QuickAction_Callbacks[functionName]) self.QuickAction_Callbacks[functionName]()
+                    if (this.QuickAction_Callbacks[functionName]) this.QuickAction_Callbacks[functionName]()
                 }
             })
         })
@@ -144,7 +132,7 @@ export default {
                 "name": "NonSense Numbers",
                 "id": "nonsensenumbers",
                 "icon_id": "question_mark",
-                "tooltip": `Turns numbers into non sense string length operations.<br><br>e.g.: <code class='multiline'>a = 69<br>b = 169</code> &equals; <code class='multiline'>a = #"HI(Jqa^b!e(i=?tRx( ..."<br>b = #"+x^/!|?#!!([:)%= ..." + 69</code><br><br><b>Note:</b> By default, numbers greater than <code>100</code> will get truncated and the missing numbers will be added with <code>#"..." + x</code><br><small>This limit can be changed in the settings!</small>`
+                "tooltip": `Turns numbers into non sense string length unary operators.<br><br>e.g.: <code class='multiline'>a = 69<br>b = 169</code> &equals; <code class='multiline'>a = #"{笐鲧変®[*ä闶譕栃 ..."<br>b = #"侔$ä觢譕癉-|>譲偣 ..." + 69</code><br><br><b>Note:</b> By default, numbers greater than <code>100</code> will get truncated and the missing numbers will be added with <code>#"..." + x</code><br><small>This limit can be changed in the settings!</small>`
             },
             {
                 "name": "Booleans",
@@ -348,8 +336,7 @@ export default {
                 "id": "rickrollcons",
                 "icon_id": "celebration",
                 "tooltip": "Adds fake constants that are ignored by the string encryption. (to troll constant dumper bozos)"
-            },
-            { divider: true }
+            }
         ]
     },
 

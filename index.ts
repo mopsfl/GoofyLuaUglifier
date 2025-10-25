@@ -1,6 +1,5 @@
 // todo: fully move settings to automated thing so i dont have to copy paste elements everytime i wanna make a new setting
 
-import self from ".";
 import $ from "jquery";
 import Editor from "./modules/Editor";
 import Settings from "./modules/Settings";

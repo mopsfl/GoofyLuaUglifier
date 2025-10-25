@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jquery_1 = __importDefault(require("jquery"));
 const Editor_1 = __importDefault(require("./Editor"));
-const Functions_1 = __importDefault(require("./Functions"));
 const index_1 = __importDefault(require("../index"));
 const Request_1 = __importDefault(require("./Request"));
 const LocalStorage_1 = __importDefault(require("./LocalStorage"));
@@ -16,8 +15,8 @@ exports.default = {
     blockFunctionTrigger: false,
     Init() {
         const _functionBtnTemplate = (0, jquery_1.default)(".function-btn-template"), _functionCategoryTitleTemplate = (0, jquery_1.default)(".function-category-title-template"), _sideBarButtons = (0, jquery_1.default)("#functionbtns-sidebar");
-        Object.keys(Functions_1.default.List).forEach((categoryName) => {
-            const categoryFunctions = Functions_1.default.List[categoryName];
+        Object.keys(this.List).forEach((categoryName) => {
+            const categoryFunctions = this.List[categoryName];
             const _functionCategoryTitle = _functionCategoryTitleTemplate.contents().clone();
             _functionCategoryTitle.text(categoryName);
             _functionCategoryTitle.appendTo(_sideBarButtons);
@@ -42,19 +41,12 @@ exports.default = {
                 }
             });
         });
-        const settingsBtn = _functionBtnTemplate.contents().clone(), settingsBtnIcon = settingsBtn.find("#function-icon"), settingsBtnName = settingsBtn.find("#function-name");
-        settingsBtn.addClass("modal-trigger");
-        settingsBtn.attr("href", "#settingsmodal");
-        settingsBtnName.text("Settings");
-        settingsBtnIcon.text("settings");
-        settingsBtn.attr("data-function", "settings");
-        settingsBtn.appendTo(_sideBarButtons);
         functionButtons.forEach((functionData, functionName, map) => {
             functionData.element.on("click", async () => {
-                if (!Functions_1.default.List["Quick Actions"].find(qAction => qAction.id === functionName) || functionData.func.quickActionsOverride) {
-                    if (Functions_1.default.blockFunctionTrigger)
+                if (!this.List["Quick Actions"].find(qAction => qAction.id === functionName) || functionData.func.quickActionsOverride) {
+                    if (this.blockFunctionTrigger)
                         return;
-                    Functions_1.default.blockFunctionTrigger = true;
+                    this.blockFunctionTrigger = true;
                     Editor_1.default.ToggleLoading("Processing");
                     Editor_1.default.ToggleReadOnly(true);
                     await Request_1.default.new(functionName, btoa(String.fromCharCode.apply(null, new Uint16Array(pako_1.default.gzip(Editor_1.default.GetValue())))), index_1.default.options, LocalStorage_1.default.GetKey(index_1.default.settings.config.storage_key, "settings"), index_1.default.clientSession).then(async (res) => {
@@ -74,12 +66,12 @@ exports.default = {
                     }).catch(console.error).finally(() => {
                         Editor_1.default.ToggleLoading();
                         Editor_1.default.ToggleReadOnly(false);
-                        Functions_1.default.blockFunctionTrigger = false;
+                        this.blockFunctionTrigger = false;
                     });
                 }
                 else {
-                    if (Functions_1.default.QuickAction_Callbacks[functionName])
-                        Functions_1.default.QuickAction_Callbacks[functionName]();
+                    if (this.QuickAction_Callbacks[functionName])
+                        this.QuickAction_Callbacks[functionName]();
                 }
             });
         });
@@ -132,7 +124,7 @@ exports.default = {
                 "name": "NonSense Numbers",
                 "id": "nonsensenumbers",
                 "icon_id": "question_mark",
-                "tooltip": `Turns numbers into non sense string length operations.<br><br>e.g.: <code class='multiline'>a = 69<br>b = 169</code> &equals; <code class='multiline'>a = #"HI(Jqa^b!e(i=?tRx( ..."<br>b = #"+x^/!|?#!!([:)%= ..." + 69</code><br><br><b>Note:</b> By default, numbers greater than <code>100</code> will get truncated and the missing numbers will be added with <code>#"..." + x</code><br><small>This limit can be changed in the settings!</small>`
+                "tooltip": `Turns numbers into non sense string length unary operators.<br><br>e.g.: <code class='multiline'>a = 69<br>b = 169</code> &equals; <code class='multiline'>a = #"{笐鲧変®[*ä闶譕栃 ..."<br>b = #"侔$ä觢譕癉-|>譲偣 ..." + 69</code><br><br><b>Note:</b> By default, numbers greater than <code>100</code> will get truncated and the missing numbers will be added with <code>#"..." + x</code><br><small>This limit can be changed in the settings!</small>`
             },
             {
                 "name": "Booleans",
@@ -336,8 +328,7 @@ exports.default = {
                 "id": "rickrollcons",
                 "icon_id": "celebration",
                 "tooltip": "Adds fake constants that are ignored by the string encryption. (to troll constant dumper bozos)"
-            },
-            { divider: true }
+            }
         ]
     },
     QuickAction_Callbacks: {

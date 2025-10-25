@@ -1,5 +1,4 @@
 import jQuery from "jquery";
-import { Materialbox } from "materialize-css";
 
 jQuery(async () => {
     M.AutoInit()

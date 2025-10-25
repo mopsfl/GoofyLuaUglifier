@@ -1,6 +1,5 @@
 import $ from "jquery";
 import index, { OAuthGetResponse, SessionInfo, UglifierStats, UIDInfo } from "../index"
-import self from "./Info"
 import Utils from "./Utils"
 
 const updateItemTemplate = $(".glu-update-item-template"),
@@ -19,7 +18,7 @@ export default {
     },
 
     Init() {
-        if (self.autoFetchAccountInformation) self.UpdateAccoutState()
+        if (this.autoFetchAccountInformation) this.UpdateAccoutState()
 
         fetch(`${index.options.api_url()}uid`, { credentials: "include" }).then(async res => {
             if (!res.ok) return console.error(res)
@@ -29,20 +28,20 @@ export default {
         })
 
         M.Sidenav.getInstance(document.querySelector(".leftmenu-sidebar")).options.onOpenStart = async (e) => {
-            self.UpdateStats()
-            self.UpdateAccoutState()
-            self.UpdateChangeLog()
+            this.UpdateStats()
+            this.UpdateAccoutState()
+            this.UpdateChangeLog()
 
             await fetch(`${index.options.api_url()}uid/update`, { credentials: "include", method: "POST" }).then(async res => {
                 if (!res.ok) return console.error(res)
                 const uidInfo: UIDInfo = await res.json()
-                self._uidInfo = uidInfo
+                this._uidInfo = uidInfo
                 $(".sidenav-openbtn").attr("notif-count", uidInfo.uN)
             })
         }
 
         M.Sidenav.getInstance(document.querySelector(".leftmenu-sidebar")).options.onCloseEnd = async () => {
-            if (self._uidInfo) $(".updates-new-label").attr("notif-count", self._uidInfo.uN)
+            if (this._uidInfo) $(".updates-new-label").attr("notif-count", this._uidInfo.uN)
         }
 
         $(".account-login").on("click", async () => {
@@ -53,7 +52,7 @@ export default {
         $(".account-logout").on("click", () => {
             $(".account-logout").attr("disabled", "disabled")
             fetch(`${index.options.mopsfl_api_url()}oauth/account/logout`, { credentials: "include" }).then(res => {
-                self.ToggleLoginState(false)
+                this.ToggleLoginState(false)
                 $(".account-logout").removeAttr("disabled")
             })
         })
@@ -104,27 +103,27 @@ export default {
     },
 
     async UpdateAccoutState() {
-        if (self.accountStateFetched === true) return
-        self.accountStateFetched = true
+        if (this.accountStateFetched === true) return
+        this.accountStateFetched = true
         if (Utils.GetCookie("_ASID")) {
             await fetch(`${index.options.mopsfl_api_url()}oauth/account/get`, { credentials: 'include' }).then(res => res.json()).then(async (res: OAuthGetResponse) => {
                 if (res.code === 403) {
-                    self.ToggleLoginState(false)
+                    this.ToggleLoginState(false)
                     $(".sidenav-loading").hide()
                 } else if (res.oauth === "discord") {
                     await fetch(`${index.options.api_url()}oauth/account/isTester`, { credentials: "include" }).then(res => res.json()).then(res => {
-                        $("#account-information-perms").text(self.AccountPermissions[res[2]].name || "N/A")
-                            .css("background", self.AccountPermissions[res[2]].color || self.AccountPermissions.basic.color)
+                        $("#account-information-perms").text(this.AccountPermissions[res[2]].name || "N/A")
+                            .css("background", this.AccountPermissions[res[2]].color || this.AccountPermissions.basic.color)
 
                     })
                     window.discordAccount = res.user
                     window.discordAvatar = `https://cdn.discordapp.com/avatars/${res.user.id}/${res.user.avatar}`
-                    self.ToggleLoginState(true)
+                    this.ToggleLoginState(true)
                 }
             })
             $(".sidenav-loading").hide()
         } else {
-            self.ToggleLoginState(false)
+            this.ToggleLoginState(false)
             $(".sidenav-loading").hide()
         }
     },
@@ -147,7 +146,7 @@ export default {
             $("#discord-avatar").hide()
             $(".account-information-user").css("display", "flex")
             $("#account-information-perms").text("Basic")
-                .css("background", self.AccountPermissions.basic.color)
+                .css("background", this.AccountPermissions.basic.color)
         }
     }
 }

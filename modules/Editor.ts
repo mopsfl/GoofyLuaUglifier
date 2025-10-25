@@ -1,5 +1,4 @@
 import index from "../index"
-import self from "./Editor"
 import LocalStorage from "./LocalStorage"
 import Utils from "./Utils"
 import * as monaco from "monaco-editor"
@@ -35,13 +34,13 @@ print(b-g)`.trim(),
 
         if (index.settings._settings.save_editor_code === true) {
             index.editor.getModel().onDidChangeContent(() => {
-                LocalStorage.Set(index.settings.config.storage_key, "mEditorValue", Utils.CompressData(self.GetValue()))
+                LocalStorage.Set(index.settings.config.storage_key, "mEditorValue", Utils.CompressData(this.GetValue()))
             })
             const mEditorValue = Utils.UncompressData(LocalStorage.GetKey("_goofyuglifier", "mEditorValue"))
-            if (mEditorValue !== "%save_editor_code_DISABLED%") self.SetValue(mEditorValue)
+            if (mEditorValue !== "%save_editor_code_DISABLED%") this.SetValue(mEditorValue)
         } else {
             LocalStorage.Set(index.settings.config.storage_key, "mEditorValue", Utils.CompressData("%save_editor_code_DISABLED%"))
-            index.editor.setValue(self._defaultScript)
+            index.editor.setValue(this._defaultScript)
         }
 
         console.log(`[Client]: Loaded Monaco Editor (took ${new Date().getTime() - index.pageTime}ms).`);
@@ -57,7 +56,7 @@ print(b-g)`.trim(),
     },
 
     CopyValue() {
-        navigator.clipboard.writeText(self.GetValue() || "")
+        navigator.clipboard.writeText(this.GetValue() || "")
     },
 
     Clear() {
