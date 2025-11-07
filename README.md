@@ -1,5 +1,7 @@
 <div align="center">
   <img src="https://img.shields.io/github/last-commit/mopsfl/GoofyLuaUglifier">
+
+  <h3>I'll finally rework the backend! This means much better performance and new updates in the future! :)</h3>
   
   <br/><br/>
   
