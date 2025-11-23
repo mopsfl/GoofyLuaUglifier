@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoofyLuaUglifier</title>
+    <meta property="og:title" content="GoofyLuaUglifier" />
+    <meta property="og:image" content="./src/images/glulogo.png">
+    <meta property="og:description" content="A uglifier & obfuscator toolbox for the Lua programming language." />
+    <meta property="og:url" content="https://mopsfl.de/GoofyLuaUglifier/" />
+    <meta name="description" content="A uglifier & obfuscator toolbox for the Lua programming language." />
+    <meta name="keywords" content="mopsfl, flo, mops, mopsfi, lua, obfuscator, lua obfuscator, deobfuscator" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" href="/src/images/glulogo.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./style.css">
+
+    <script>
+        window.onload = () => {
+            document.querySelectorAll(".tooblox-category-header").forEach(e => {
+                e.addEventListener("click", () => {
+                    e.parentElement.classList.toggle("minimized")
+                })
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <main>
+        <div class="ide">
+            <div class="editor"></div>
+            <div class="console">
+                <div class="resize-handle"></div>
+                <div class="console-content">
+                    <span class="console-output info-output" style="--timestamp: &quot;17:13:13.075 &quot;;">Welcome to GoofyLuaUglifier!</span>
+                    <span class="console-output warn-output" style="--timestamp: &quot;17:13:13.075 &quot;;">This is a warning!</span>
+                    <span class="console-output error-output" style="--timestamp: &quot;17:13:13.075 &quot;;">SyntaxError: [20:17] ')' expected near '&lt;eof&gt;'</span>
+                </div>
+            </div>
+        </div>
+        <div class="toolbox">
+            <div class="toolbox-header">
+                <span class="toolbox-title">GoofyLuaUglifier</span>
+            </div>
+            <div class="toolbox-categories">
+                <div class="toolbox-category">
+                    <span class="tooblox-category-header">
+                        <span class="toolbox-category-arrow"><i class="material-icons">chevron_right</i></span>
+                        <span class="tooblox-category-title">Quick Actions</span>
+                    </span>
+                    <div class="tooblox-category-functions">
+                        <div class="tooblox-category-functions-inner">
+                            <button class="tooblox-button">
+                                <i class="material-icons" id="function-icon">draw</i>
+                                <span id="function-name">Obfuscate</span>
+                                <div class="tooblox-button-seperator"></div>
+                            </button>
+                            <button class="tooblox-button">
+                                <i class="material-icons" id="function-icon">close_fullscreen</i>
+                                <span id="function-name">Minify</span>
+                                <div class="tooblox-button-seperator"></div>
+                            </button>
+                            <button class="tooblox-button">
+                                <i class="material-icons" id="function-icon">content_copy</i>
+                                <span id="function-name">Copy</span>
+                                <div class="tooblox-button-seperator"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="toolbox-category">
+                    <span class="tooblox-category-header">
+                        <span class="toolbox-category-arrow"><i class="material-icons">chevron_right</i></span>
+                        <span class="tooblox-category-title">Functions</span>
+                    </span>
+                    <div class="tooblox-category-functions">
+                        <div class="tooblox-category-functions-inner">
+                            <button class="tooblox-button">
+                                <i class="material-icons" id="function-icon">tag</i>
+                                <span id="function-name">Bytestrings</span>
+                                <div class="tooblox-button-seperator"></div>
+                            </button>
+                            <button class="tooblox-button">
+                                <i class="material-icons" id="function-icon">looks_one</i>
+                                <span id="function-name">Numbers</span>
+                                <div class="tooblox-button-seperator"></div>
+                            </button>
+                            <button class="tooblox-button">
+                                <i class="material-icons" id="function-icon">check_box</i>
+                                <span id="function-name">Booleans</span>
+                                <div class="tooblox-button-seperator"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="toolbox-category">
+                    <span class="tooblox-category-header">
+                        <span class="toolbox-category-arrow"><i class="material-icons">chevron_right</i></span>
+                        <span class="tooblox-category-title">Custom Presets</span>
+                    </span>
+                    <div class="tooblox-category-functions">
+                        <div class="tooblox-category-functions-inner">
+                            <button class="tooblox-button">
+                                <i class="material-icons" id="function-icon">tag</i>
+                                <span id="function-name">Custom preset 1</span>
+                                <div class="tooblox-button-seperator"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,387 @@
+/* THEMES */
+
+:root.dark {
+    --primaryBg: #1e1e1e;
+    --secondaryBg: #161616;
+    --borderPrimary: #393939;
+    --borderSecondary: #2d2d2d;
+
+    --primaryText: #e4e4e4;
+    --secondaryText: #d6d6d6;
+    --grayText: #808080;
+    --greenText: #4caf50;
+    --orangeText: #c57224;
+    --redText: #c83c3c;
+
+    --primaryBtn: #232323;
+    --hoverBtn: #282828;
+    --activeBtn: #2e2e2e;
+}
+
+:root.light {
+    --primaryBg: #ffffff;
+    --secondaryBg: #f2f2f2;
+    --borderPrimary: #d0d0d0;
+    --borderSecondary: #c2c2c2;
+
+    --primaryText: #1a1a1a;
+    --secondaryText: #3a3a3a;
+    --grayText: #5a5a5a;
+    --greenText: #2e7d32;
+    --orangeText: #a85a00;
+    --redText: #b12626;
+
+    --primaryBtn: #e5e5e5;
+    --hoverBtn: #dcdcdc;
+    --activeBtn: #d3d3d3;
+}
+
+:root.cyber {
+    --primaryBg: #0a0a0f;
+    --secondaryBg: #0f0f17;
+    --borderPrimary: #1f1f29;
+    --borderSecondary: #171721;
+
+    --primaryText: #e0e0e0;
+    --secondaryText: #bfbfbf;
+    --grayText: #8a8a8a;
+
+    --greenText: #39ff14;
+    --orangeText: #ff9f1c;
+    --redText: #ff0054;
+
+    --primaryBtn: #1a1a20;
+    --hoverBtn: #23232d;
+    --activeBtn: #2c2c35;
+}
+
+:root.deepspace {
+    --primaryBg: #0b0c1a;
+    --secondaryBg: #14152c;
+    --borderPrimary: #2a2b44;
+    --borderSecondary: #1e1f33;
+
+    --primaryText: #e0e0e0;
+    --secondaryText: #bfbfbf;
+    --grayText: #8a8a8a;
+
+    --greenText: #39ff14;
+    --orangeText: #ff9f1c;
+    --redText: #ff0054;
+
+    --primaryBtn: #1a1b33;
+    --hoverBtn: #212343;
+    --activeBtn: #292d55;
+}
+
+:root.darkplum {
+    --primaryBg: #1c0d1a;
+    --secondaryBg: #2a142c;
+    --borderPrimary: #3d203d;
+    --borderSecondary: #2f1830;
+
+    --primaryText: #e6e0eb;
+    --secondaryText: #cfc0d9;
+    --grayText: #9b8fa5;
+
+    --greenText: #39ff14;
+    --orangeText: #ffb347;
+    --redText: #ff4d6d;
+
+    --primaryBtn: #3a1f3d;
+    --hoverBtn: #47254f;
+    --activeBtn: #562a61;
+}
+
+:root.darkforest {
+    --primaryBg: #0a1a0f;
+    --secondaryBg: #102816;
+    --borderPrimary: #1f3a21;
+    --borderSecondary: #153020;
+
+    --primaryText: #e0e0d8;
+    --secondaryText: #cfcfc0;
+    --grayText: #8a8a7a;
+
+    --greenText: #39ff14;
+    --orangeText: #ff9f1c;
+    --redText: #ff0054;
+
+    --primaryBtn: #183322;
+    --hoverBtn: #214433;
+    --activeBtn: #2a5544;
+}
+
+:root.darkburgundy {
+    --primaryBg: #2a0a0f;
+    --secondaryBg: #3b141a;
+    --borderPrimary: #5c1f28;
+    --borderSecondary: #4a1a20;
+
+    --primaryText: #f0e0e0;
+    --secondaryText: #d9cfcf;
+    --grayText: #a58b8b;
+
+    --greenText: #39ff14;
+    --orangeText: #ffb347;
+    --redText: #ff4d6d;
+
+    --primaryBtn: #4c1d24;
+    --hoverBtn: #5b242d;
+    --activeBtn: #6a2c36;
+}
+
+/* CORE */
+
+* {
+    scrollbar-width: thin;
+}
+
+html,
+body {
+    font-family: Segoe UI;
+    color: var(--primaryText);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--primaryBg);
+}
+
+main {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    position: relative;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.ide {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    height: 100vh;
+    width: 100%;
+}
+
+.ide>.editor {
+    width: 100%;
+    overflow: hidden;
+    background-color: #1e1e1e;
+}
+
+/*TOOLBOX*/
+
+.toolbox {
+    background: var(--secondaryBg);
+    width: 250px;
+    padding: 10px;
+    border-left: solid 1px var(--borderPrimary);
+    border-right: solid 1px var(--borderPrimary);
+}
+
+.toolbox-header {
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: .75em;
+    padding-bottom: 5px;
+    border-bottom: solid 1px var(--borderPrimary);
+}
+
+.toolbox-categories {
+    display: flex;
+    gap: .5em;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.toolbox-category {
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+.tooblox-category-header {
+    display: block;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color: var(--primaryBtn);
+    color: var(--secondaryText);
+    border-bottom: solid 1px var(--borderPrimary);
+    user-select: none;
+    cursor: pointer;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition: background-color .15s, transform .15s;
+}
+
+.toolbox-category.minimized>.tooblox-category-header {
+    border-radius: 3px;
+    border-bottom: none;
+}
+
+.toolbox-category.minimized>.tooblox-category-header>.toolbox-category-arrow {
+    rotate: 0deg;
+}
+
+.toolbox-category.minimized>.tooblox-category-functions {
+    grid-template-rows: 0fr;
+}
+
+.toolbox-category-arrow {
+    rotate: 90deg;
+    position: absolute;
+    left: 0;
+    transition: rotate .25s;
+    height: 25px;
+    width: 25px;
+    top: .20em;
+}
+
+.tooblox-category-title {
+    font-size: 14px;
+}
+
+.tooblox-category-functions {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows .25s ease;
+}
+
+.tooblox-category-functions>.tooblox-category-functions-inner {
+    overflow: hidden;
+}
+
+.tooblox-button {
+    position: relative;
+    font-family: Segoe UI;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 10px;
+    background-color: var(--primaryBtn);
+    color: var(--primaryText);
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    justify-content: left;
+    align-items: center;
+    white-space: nowrap;
+    transition: background-color .15s, transform .15s, border-bottom .25s;
+}
+
+.tooblox-button-seperator {
+    position: absolute;
+    width: 95%;
+    left: .5em;
+    bottom: 0;
+    height: 1px;
+    background-color: var(--borderSecondary);
+}
+
+.tooblox-button>#function-icon {
+    position: absolute;
+    right: .5em;
+    font-size: 21px;
+    border-left: solid 1px var(--borderPrimary);
+    padding-left: 5px;
+}
+
+.tooblox-button>#function-name {
+    text-transform: uppercase !important;
+    font-size: 14px;
+    max-width: 12em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.tooblox-button:not(:last-child) {
+    padding-left: 10px;
+}
+
+.tooblox-button:last-child {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.tooblox-button:last-child>.tooblox-button-seperator {
+    display: none;
+}
+
+.tooblox-button:hover:not(.disabled),
+.tooblox-category-header:hover {
+    background-color: var(--hoverBtn);
+}
+
+.tooblox-button:active:not(.disabled),
+.tooblox-category-header:active {
+    background-color: var(--activeBtn);
+    transform: scale(0.97);
+}
+
+.tooblox-button:active:not(.disabled)>.tooblox-button-seperator {
+    background-color: transparent
+}
+
+.tooblox-button.disabled {
+    color: var(--borderPrimary);
+}
+
+.toolbox-categories.disabled>.toolbox-category>.tooblox-category-functions>.tooblox-button {
+    color: var(--borderPrimary);
+    pointer-events: none;
+}
+
+/*CONSOLE*/
+
+.console {
+    position: relative;
+    font-family: "Google Sans Code", monospace;
+    background: var(--secondaryBg);
+    height: 150px;
+    border-top: solid 1px var(--borderPrimary);
+    font-size: 12px;
+    overflow: auto;
+}
+
+.console>.console-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 3px 10px;
+}
+
+.console>.console-content>.console-output::before {
+    content: var(--timestamp, '00:00:00.000 ');
+    color: var(--grayText);
+}
+
+.console-content>.console-output.info-output {
+    color: var(--greenText);
+}
+
+.console-content>.console-output.warn-output {
+    color: var(--orangeText);
+}
+
+.console-content>.console-output.error-output {
+    color: var(--redText);
+}
+
+.resize-handle {
+    width: 100%;
+    height: 7px;
+    cursor: ns-resize;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+.resize-handle:active {
+    border-top: solid 1px var(--borderPrimary);
+}
