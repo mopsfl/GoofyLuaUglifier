@@ -6,16 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoofyLuaUglifier</title>
     <meta property="og:title" content="GoofyLuaUglifier" />
-    <meta property="og:image" content="./images/icons/icon-144x144.png">
+    <meta property="og:image" content="./src/images/glulogo.png">
     <meta property="og:description" content="A uglifier & obfuscator toolbox for the Lua programming language." />
     <meta property="og:url" content="https://mopsfl.de/GoofyLuaUglifier/" />
     <meta name="description" content="A uglifier & obfuscator toolbox for the Lua programming language." />
     <meta name="keywords" content="mopsfl, flo, mops, mopsfi, lua, obfuscator, lua obfuscator, deobfuscator" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" href="/src/images/glulogo.png">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./dist/css/style.css">
     <link rel="stylesheet" href="./dist/js/index.css">
+
     <script type="module" src="./dist/js/index.js" defer></script>
     <script src="./dist/js/materialize.min.js" defer></script>
 
@@ -33,6 +39,19 @@
 </head>
 
 <body>
+    <div class="updateclaimer modal">
+        <div class="modal-content">
+            <h3>Important Note</h3>
+            <p>This is a test version of the new GoofyLuaUglifier revamp update!</p>
+            <p>Nothing is finished yet and there are only a few functions available right now.</p>
+            <b><small>Expect bugs!</small></b>
+
+        </div>
+        <div class="modal-footer">
+            <a target="_blank" href="https://github.com/mopsfl/GoofyLuaUglifier/blob/main/CHANGELOG.md" class="waves-light waves-effect btn-flat blue-text">Open Changelog</a>
+            <button href="#!" class="modal-close waves-light waves-effect btn-flat white-text" id="close">Close</button>
+        </div>
+    </div>
     <!-- Loading Text -->
     <span class="loadingtext hide">Loading...</span>
     <div class="main">
@@ -40,7 +59,7 @@
         <div class="sidenav z-depth-5 leftmenu-sidebar" id="slide-out">
             <div class="user-view z-depth-2">
                 <div class="account-information">
-                    <div class="account-info-background background"><img src="images/code-background2.png" loading="lazy"></div>
+                    <div class="account-info-background background"><img src="/src/images/code-background.png" loading="lazy"></div>
                     <div class="account-information-user">
                         <img src="" alt="avatar" id="discord-avatar">
                         <li>
@@ -58,17 +77,19 @@
                     <div class="indeterminate"></div>
                 </div>
             </div>
-            <div class="seperator text tooltipped seperator-margin" data-position="right" data-tooltip="Some statistics about GoofyLuaUglifier.">
+            <div class="seperator text seperator-margin">
                 <span>Statistics</span>
             </div>
             <div class="info-content glu-statistics">
                 <div class="glu-statistic tooltipped" data-tooltip="Total count of API requests." data-position="right"><span class="glu-statistic-name">Total Requests:</span><span id="total_requests" class="glu-statistic-value">Loading...</span></div>
-                <div class="glu-statistic tooltipped" data-tooltip="Total count of called functions." data-position="right"><span class="glu-statistic-name">Total Functions:</span><span id="total_functions_called" class="glu-statistic-value">Loading...</span></div>
+                <div class="glu-statistic tooltipped" data-tooltip="Count of executed functions." data-position="right"><span class="glu-statistic-name">Executed Functions:</span><span id="total_functions_called" class="glu-statistic-value">Loading...</span></div>
             </div>
-            <div class="seperator text tooltipped seperator-margin" data-position="right" data-tooltip="List of recent updates and changes.">
+            <div class="seperator text seperator-margin">
                 <span>Updates <span class="updates-new-label" notif-count="0"></span></span>
+                <a class="material-icons center updatelogopen tooltipped" data-tooltip="Open Changelog" data-position="right" target="_blank" href="https://github.com/mopsfl/GoofyLuaUglifier/blob/main/CHANGELOG.md">open_in_new</a>
             </div>
             <div class="info-content glu-updates">
+                <p class="center loading">Loading...</p>
                 <template class="glu-update-item-template">
                     <div class="glu-update-item">
                         <span class="glu-update-date">xx.yy.zzzz</span>
@@ -83,12 +104,22 @@
                     <small style="font-family: monospace;"><a href="https://github.com/mopsfl/GoofyLuaUglifier" target="_blank">Github</a></small>
                     <span>&bull;</span>
                     <small style="font-family: monospace;"><a href="https://docs.mopsfl.de" target="_blank">API Documentation</a></small>
-                    <small style="font-family: monospace;" class="copyrightthing">&copy; 2025 mopsfl</small>
+                    <small style="font-family: monospace; color:gray" class="copyrightthing"><span class="gluversion">v2.0.5</span><br>&copy; 2025 mopsfl</small>
                 </div>
             </footer>
         </div>
-        <!-- Monaco Editor Container -->
-        <div class="code-area monaco"></div>
+        <div class="ide">
+            <!-- Monaco Editor Container -->
+            <div class="code-area monaco">
+                <div class="content-loading editor-loading">Loading Editor...</div>
+            </div>
+            <!-- Console -->
+            <div class="console">
+                <div class="resize-handle"></div>
+                <div class="content-loading console-loading">Loading Client...</div>
+                <div class="console-content"></div>
+            </div>
+        </div>
         <!-- Toolbox Sidebar -->
         <div class="sidebar">
             <!-- Functions -->
@@ -105,53 +136,30 @@
                 </template>
             </div>
         </div>
-        <!-- Info Modal Button -->
-        <!--<button class="waves-effect waves-light btn-floating modal-trigger btn-small transparent infomodal-openbtn tooltipped" data-position="right" data-tooltip="Info" href="#infomodal">
-            <i class="material-icons center">info</i>
-        </button>-->
-        <!-- Info Modal -->
-        <!--<div>
-            <div id="infomodal" class="modal">
-                <div class="modal-content">
-                    <h4>Info</h4>
-                    <p>GoofyLuaUglifier is currently only optimized for
-                        <b>Lua 5.3</b>. Any other versions below might not be fully compatible.
-                    </p>
-                    <div class="divider"></div>
-                    <br>
-                    <div class="info-content">
-                        <small style="font-family: monospace;">Roblox Constants Last Updated: <span id="rbxc_lastupdated">Loading...</span>
-                            <div class="btn btn-small rbxc_update waves-effect waves-light tooltipped green" data-position="right" data-tooltip="Requests an update of the Roblox constants list to the server.">Update now</div>
-                        </small>
-                    </div>
-                    <div class="info-content">
-                        <small style="font-family: monospace; display: flex;">Account: <img src="" alt="" id="discord-avatar"><span id="account_username">Loading...</span> (<span id="account_id">N/A</span>)
-                            <div class="btn btn-small waves-effect waves-light green acc_login">Login</div>
-                            <div class="btn btn-small waves-effect waves-light green acc_logout">Logout</div>
-                        </small>
-                    </div>
-                    <div class="info-content">
-                        <small style="font-family: monospace;">Tester Access: <span id="tester_access">No</span></small>
-                    </div>
-                    <br>
-                    <div class="divider"></div>
-                    <br>
-                    <div class="info-content">
-                        <small style="font-family: monospace;">Total Requests: <span id="total_requests">Loading...</span> |</small>
-                        <small style="font-family: monospace;">Total Functions Called: <span id="total_functions_called">Loading...</span></small>
-                    </div>
-                    <div class="api-info">
-                        <small style="font-family: monospace;"><a href="https://docs.mopsfl.de" target="_blank">API Documentation</a></small>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button href="#!" class="modal-close waves-light waves-effect btn green">OK</button>
+        <!-- Settings Modal -->
+        <div id="settingsmodal" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Settings</h4>
+                <div class="settings-grid">
+                    <template class="template-setting">
+                        <div class="setting">
+                            <span class="setting-name tooltipped" data-position="right" data-tooltip="">Name</span>
+                            <label class="setting-input" id="checkbox">
+                                <input type="checkbox" class="filled-in settinginput" id="setting_id" checked="true" />
+                                <span></span>
+                            </label>
+                            <div class="setting-input input-field" id="text">
+                                <input placeholder="placeholder" id="setting_id" type="text" class="validate settinginput" autocomplete="off">
+                            </div>
+                            <div class="setting-input input-field" id="dropdown">
+                                <select class="settinginput" id="setting_id"></select>
+                                <label>Materialize Select</label>
+                            </div>
+                        </div>
+                    </template>
                 </div>
             </div>
-        </div>-->
-        <!-- Settings Modal -->
-        <div id="settingsmodal" class="modal bottom-sheet modal-fixed-footer">
-            <div class="modal-content">
+            <!--<div class="modal-content">
                 <h4>Settings</h4>
                 <div class="settings-grid">
                     <div class="setting">
@@ -187,7 +195,7 @@
                         </select>
                         <label>Materialize Select</label>
                     </div>
-                    <!--<div class="setting">
+                    <div class="setting">
                         <span class="setting-name">test slider</span>
                         <label class="slider-setting">
                             <p class="range-field">
@@ -195,7 +203,7 @@
                             </p>
                             <span class="slider-value" value-type="%"></span>
                         </label>
-                    </div>-->
+                    </div>
                     <div class="seperator"></div>
 
                     <div class="setting">
@@ -302,20 +310,7 @@
                     </div>
 
                     <div class="seperator"></div>
-
-                    <!--<div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds a watermark to your script. (keep empty to disable)<br><br><b>! This is buggy and not finished yet !</b>">Watermark</span>
-                        <div class="input-field">
-                            <input placeholder="Watermark" id="watermark" type="text" class="validate">
-                        </div>
-                    </div>
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds protection to the watermark string to prevent it from being edited or deleted.">Protect Watermark</span>
-                        <label>
-                            <input type="checkbox" class="filled-in" id="protect_watermark" checked="true" />
-                            <span></span>
-                        </label>
-                    </div>-->
+                    
                     <div class="setting">
                         <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds a watermark to your bytecode when using Constant Chunk 2. (keep empty to disable) (EXPERIMENTAL)">Bytecode Watermark</span>
                         <div class="input-field">
@@ -340,19 +335,10 @@
                             <span></span>
                         </label>
                     </div>
-
-                    <!--<div class="seperator"></div>
-
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Your Tester access key.<br>Only given to a few people.">Tester Access Key</span>
-                        <div class="input-field">
-                            <input placeholder="Tester Access Key" id="tester_access_key" type="password" class="validate">
-                        </div>
-                    </div>-->
                 </div>
-            </div>
+            </div>-->
             <div class="modal-footer">
-                <button href="#!" class="waves-red waves-effect btn-flat red-text tooltipped" id="resetdefault" data-position="top" data-tooltip="Resets all settings to default. (This may fix some errors)">Reset to Default</button>
+                <button href="#!" class="waves-red waves-effect btn-flat red-text tooltipped" id="resetdefault" data-position="top" data-tooltip="Resets all settings to their default values.">Reset to Default</button>
                 <button href="#!" class="modal-close waves-light waves-effect btn-flat white-text" id="close">Close</button>
             </div>
         </div>

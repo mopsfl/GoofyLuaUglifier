@@ -1,45 +1,67 @@
-const esbuild = require('esbuild');
-const { argv } = require('process');
-const fs = require("fs")
+import esbuild from 'esbuild';
+import fse from 'fs-extra';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
 
-const isDev = argv.includes('--dev');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const isDev = process.argv.includes('--dev');
+
+const assetLoader = ['.ttf', '.svg', '.eot', '.woff', '.woff2'].reduce((acc, ext) => {
+    acc[ext] = 'file';
+    return acc;
+}, {});
 
 const jsOptions = {
-    entryPoints: ['./index.ts'],
+    entryPoints: ['./src/index.ts'],
     bundle: true,
     outdir: 'dist/js',
     format: 'esm',
     minify: true,
-    sourcemap: true,
-    loader: {
-        '.ts': 'ts',
-        '.tsx': 'tsx',
-        '.ttf': 'file',
-        '.svg': 'file',
-        '.eot': 'file',
-        '.woff': 'file',
-        '.woff2': 'file',
-    },
-    logLevel: isDev ? 'info' : 'error'
+    sourcemap: isDev,
+    loader: { '.ts': 'ts', '.tsx': 'tsx', ...assetLoader },
+    logLevel: isDev ? 'info' : 'error',
 };
 
 const cssOptions = {
-    entryPoints: ['./styleImport.js'],
+    entryPoints: ["styleImport.js"],
     bundle: true,
-    outdir: 'dist/css',
     minify: true,
-    loader: {
-        '.css': 'css',
-    },
+    sourcemap: isDev,
+    outdir: path.resolve(__dirname, 'dist/css'),
     entryNames: 'style',
-    logLevel: isDev ? 'info' : 'error'
+}
+
+const copyAssets = async () => {
+    fse.ensureDirSync(path.resolve(__dirname, 'dist/js'));
+    fs.copyFileSync(
+        'node_modules/@materializecss/materialize/dist/js/materialize.min.js',
+        'dist/js/materialize.min.js'
+    )
+
+    await fse.copy(
+        'node_modules/monaco-editor/esm/vs',
+        'dist/js/monaco-editor/vs'
+    )
 };
 
-esbuild.buildSync(jsOptions)
-esbuild.buildSync(cssOptions)
-fs.copyFileSync("./node_modules/@materializecss/materialize/dist/js/materialize.min.js", "./dist/js/materialize.min.js")
+const build = async (options, watch = false) => {
+    const ctx = await esbuild.context(options);
+    if (watch) {
+        await ctx.watch();
+        console.log(`Watching ${options.outdir}...`);
+    } else {
+        await ctx.rebuild();
+        await ctx.dispose();
+        console.log(`Built ${options.outdir}`);
+    }
+};
 
-if (isDev) {
-    esbuild.context({ ...jsOptions }).then(r => r.watch())
-    esbuild.context({ ...cssOptions }).then(r => r.watch())
-}
+(async () => {
+    await Promise.all([
+        build(jsOptions, isDev),
+        build(cssOptions, isDev),
+        copyAssets()
+    ]);
+})();

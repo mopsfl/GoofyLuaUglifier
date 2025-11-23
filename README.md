@@ -1,29 +1,25 @@
 <div align="center">
-  <img src="https://img.shields.io/github/last-commit/mopsfl/GoofyLuaUglifier">
-
-  <h3>I'll finally rework the backend! This means much better performance and new updates in the future! :)</h3>
-  
+  <img src="https://img.shields.io/github/last-commit/mopsfl/GoofyLuaUglifier" alt="last commit">
   <br/><br/>
-  
-  <span>__GoofyLuaUglifier - Website__</span>
-    
-  ```
-  This is some kind of Lua Uglifier and also bit Obfuscator, idk.
-  I'm just bored and doing some "obfuscation methods" or whatever you could call it.
-  ```
+  <img src="https://raw.githubusercontent.com/mopsfl/GoofyLuaUglifier/refs/heads/main/images/glulogo.png" width="150px" alt="mopsfl Logo"></img>
+  <h3>GoofyLuaUglifier — Website</h3>
+  <span>
+    A small, experimental Lua uglifier/obfuscator.
+  </span>
 </div>
 
-# Try Out
-- You can try it out on [my Website](https://mopsfl.de/GoofyLuaUglifier/)
-- Or you can use the [GoofyLuaUglifier API](https://mopsfl.de/GoofyLuaUglifier/docs)
+<br><br>
 
-# Website not working?
-- Check out the [Status](https://mopsfl.de/status) page
+## Try it out
+- Website: https://mopsfl.de/GoofyLuaUglifier/ 
+- API: https://docs.mopsfl.de
 
-# Changelog
-- All changes / updates can you find [here](https://github.com/mopsfl/GoofyLuaUglifier/blob/main/CHANGELOG.md)
+## What is this?
+**GoofyLuaUglifier** is a personal project I’ve been working on in my free time for a while. I created it to learn more about Lua obfuscation and the techniques behind it. Over time, it has grown with many features, and have decided to make it publicly available for everyone! The core source code is not public tho.
 
-# Notes
-###### Still in development, means some things dont work yet or might be broken!
-###### The source code of the actual "uglifier" is not open source. Maybe I'll make it in the future.
+## Features
+- Uglifies Lua code (minification + simple obfuscation)
+- Web UI for quick tests
+- HTTP API for automation / integrations
 
+###### yes, I used chatgpt for this :3

@@ -2,8 +2,10 @@
   "devDependencies": {
     "@types/jquery": "^3.5.16",
     "@types/lodash": "^4.14.195",
+    "@types/materialize-css": "^1.0.14",
+    "@types/pako": "^2.0.3",
     "bower": "^1.8.14",
-    "esbuild": "^0.18.12",
+    "esbuild": "^0.25.12",
     "rimraf": "^5.0.1",
     "typescript": "^5.1.6"
   },
@@ -15,6 +17,7 @@
   },
   "name": "goofyluauglifier-client",
   "version": "1.0.0",
+  "type": "module",
   "description": "Frontend Website for goofyluauglifier",
   "main": "index.js",
   "repository": {
@@ -22,6 +25,7 @@
     "url": "GoofyLuaUglifier"
   },
   "keywords": [
+    "obfuscator",
     "uglifier",
     "lua"
   ],
@@ -29,8 +33,7 @@
   "license": "ISC",
   "dependencies": {
     "@materializecss/materialize": "^2.1.0",
-    "@types/materialize-css": "^1.0.11",
-    "@types/pako": "^2.0.3",
+    "fs-extra": "^11.3.2",
     "jquery": "^3.7.1",
     "monaco-editor": "^0.50.0",
     "pako": "^2.1.0"
