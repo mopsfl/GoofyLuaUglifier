@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://img.shields.io/github/last-commit/mopsfl/GoofyLuaUglifier" alt="last commit">
   <br/><br/>
-  <img src="https://raw.githubusercontent.com/mopsfl/GoofyLuaUglifier/refs/heads/main/images/glulogo.png" width="150px" alt="mopsfl Logo"></img>
+  <img src="https://raw.githubusercontent.com/mopsfl/GoofyLuaUglifier/refs/heads/main/src/images/glulogo.png" width="150px" alt="mopsfl Logo"></img>
   <h3>GoofyLuaUglifier — Website</h3>
   <span>
     A small, experimental Lua uglifier/obfuscator.
