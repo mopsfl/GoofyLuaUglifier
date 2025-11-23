@@ -1,4 +1,4 @@
-## DATE
+## 23.11.2025
 ##### Frontend:
 - new settings system (less buggy and more organized, i guess?)
 - fixed monaco editor failing to create web worker and running on main thread

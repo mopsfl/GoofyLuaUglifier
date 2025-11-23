@@ -1268,4 +1268,3 @@ monaco-editor/esm/vs/basic-languages/swift/swift.js:
 pako/dist/pako.esm.mjs:
   (*! pako 2.1.0 https://github.com/nodeca/pako @license (MIT AND Zlib) *)
 */
-//# sourceMappingURL=index.js.map
