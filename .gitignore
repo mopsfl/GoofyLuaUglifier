@@ -1,0 +1,11 @@
+node_modules/
+.env
+package-lock.json
+.vscode/
+dist/css/*.js
+dist/css/*.map
+dist/js/modules/
+dist/js/monaco-editor/vs/platform/
+dist/js/monaco-editor/vs/basic-languages/
+dist/js/monaco-editor/vs/language/
+styleImport.js
