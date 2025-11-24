@@ -135,6 +135,11 @@
 
 * {
     scrollbar-width: thin;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    -webkit-touch-callout: none;
 }
 
 html,
