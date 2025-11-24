@@ -270,6 +270,9 @@ main {
 
 .toolbox-category.minimized>.toolbox-category-functions {
     grid-template-rows: 0fr;
+    opacity: 0;
+    scale: 0.8;
+    transform-origin: top center;
 }
 
 .toolbox-category-arrow {
@@ -289,7 +292,7 @@ main {
 .toolbox-category-functions {
     display: grid;
     grid-template-rows: 1fr;
-    transition: grid-template-rows .25s ease;
+    transition: grid-template-rows .3s ease, opacity .15s, scale .15s;
 }
 
 .toolbox-category-functions>.toolbox-category-functions-inner {
