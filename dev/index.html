@@ -29,15 +29,22 @@
                 })
             })
 
+            const console = document.querySelector(".console"),
+                toolbox = document.querySelector(".toolbox")
+
             document.querySelectorAll(".toolbox-tabs>.toolbox-button").forEach(e => {
                 e.addEventListener("click", () => {
                     if (e.id === "toolbox") {
-                        document.querySelector(".console").classList.remove("show")
-                        document.querySelector(".toolbox").classList.remove("hide")
+                        console.classList.remove("show")
+                        toolbox.classList.remove("hide")
+                        document.querySelector("#toolbox").classList.add("selected")
+                        document.querySelector("#console").classList.remove("selected")
                     } else if (e.id === "console") {
-                        document.querySelector(".toolbox").classList.add("hide")
-                        document.querySelector(".toolbox").classList.remove("show")
-                        document.querySelector(".console").classList.add("show")
+                        toolbox.classList.add("hide")
+                        toolbox.classList.remove("show")
+                        console.classList.add("show")
+                        document.querySelector("#toolbox").classList.remove("selected")
+                        document.querySelector("#console").classList.add("selected")
                     }
                 })
             })
@@ -62,6 +69,10 @@
         <div class="toolbox">
             <div class="toolbox-header">
                 <span class="toolbox-title">GoofyLuaUglifier</span>
+                <span class="toolbox-version">v.2.0.7 &bull; by mopsfl</span>
+                <div class="toolbox-header-buttons">
+                    <button class="round-button ripple-effect"><i class="material-icons">settings</i></button>
+                </div>
             </div>
             <div class="toolbox-categories">
                 <div class="toolbox-category">
@@ -142,7 +153,7 @@
                 <div class="toolbox-category disabled">
                     <span class="toolbox-category-header ripple-effect">
                         <span class="toolbox-category-arrow"><i class="material-icons">chevron_right</i></span>
-                        <span class="toolbox-category-title">disabled category</span>
+                        <span class="toolbox-category-title">Disabled Category</span>
                     </span>
                     <div class="toolbox-category-functions">
                         <div class="toolbox-category-functions-inner">
@@ -159,10 +170,30 @@
                         </div>
                     </div>
                 </div>
+                <div class="toolbox-category minimized">
+                    <span class="toolbox-category-header ripple-effect">
+                        <span class="toolbox-category-arrow"><i class="material-icons">chevron_right</i></span>
+                        <span class="toolbox-category-title">Minimized Category</span>
+                    </span>
+                    <div class="toolbox-category-functions">
+                        <div class="toolbox-category-functions-inner">
+                            <button class="toolbox-button ripple-effect">
+                                <i class="material-icons" id="function-icon">tag</i>
+                                <span id="function-name">i am mopsfl</span>
+                                <div class="toolbox-button-seperator"></div>
+                            </button>
+                            <button class="toolbox-button ripple-effect">
+                                <i class="material-icons" id="function-icon">tag</i>
+                                <span id="function-name">idk what to put here</span>
+                                <div class="toolbox-button-seperator"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="toolbox-tabs">
-            <button class="toolbox-button ripple-effect rounded" id="toolbox">
+            <button class="toolbox-button ripple-effect rounded selected" id="toolbox">
                 <i class="material-icons" id="toolbox-tab-icon">build</i>
                 <span id="toolbox-tab-value">Toolbox</span>
             </button>

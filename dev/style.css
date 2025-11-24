@@ -190,7 +190,7 @@ main {
 .toolbox {
     background: var(--secondaryBg);
     width: 15em;
-    padding: 10px;
+    padding: 5px 10px 10px 10px;
     border-left: solid 1px var(--borderPrimary);
     border-right: solid 1px var(--borderPrimary);
     overflow: auto;
@@ -199,12 +199,33 @@ main {
 }
 
 .toolbox-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
     font-weight: bold;
-    text-align: center;
-    font-size: 20px;
+    text-align: left;
     margin-bottom: .75em;
     padding-bottom: 5px;
     border-bottom: solid 1px var(--borderPrimary);
+}
+
+.toolbox-title {
+    font-size: 16px;
+}
+
+.toolbox-version {
+    font-family: "Google Sans Code", monospace;
+    color: var(--grayText);
+    font-size: 8px;
+    font-weight: 500;
+}
+
+.toolbox-header-buttons {
+    position: absolute;
+    display: flex;
+    right: 0;
+    top: .25em;
+    gap: .1em;
 }
 
 .toolbox-tabs {
@@ -212,7 +233,7 @@ main {
     padding: 10px;
     display: none;
     gap: 5px;
-    height: 1.75em;
+    height: 2em;
     border-top: solid 1px var(--borderPrimary);
 }
 
@@ -220,6 +241,12 @@ main {
     position: relative;
     justify-content: center;
     padding-left: 5px !important;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.toolbox-tabs>.toolbox-button.selected {
+    background-color: var(--activeBtn);
 }
 
 .toolbox-tabs>.toolbox-button>#toolbox-tab-icon {
@@ -301,22 +328,25 @@ main {
 
 .toolbox-button {
     position: relative;
-    font-family: Segoe UI;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    padding: 10px;
-    background-color: var(--primaryBtn);
-    color: var(--primaryText);
-    width: 100%;
     display: flex;
-    gap: 5px;
-    justify-content: left;
     align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    width: 100%;
+    padding: 10px;
     white-space: nowrap;
     user-select: none;
-    transition: background-color .15s, transform .15s, border-bottom .25s;
+    font-family: "Segoe UI", sans-serif;
+    font-weight: 600;
+    color: var(--primaryText);
+    background-color: var(--primaryBtn);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition:
+        background-color 0.15s,
+        transform 0.15s,
+        border-bottom 0.25s;
 }
 
 .toolbox-button.rounded {
@@ -353,20 +383,19 @@ main {
 }
 
 .toolbox-button:last-child {
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
+    border-radius: 0 0 3px 3px;
 }
 
 .toolbox-button:last-child>.toolbox-button-seperator {
     display: none;
 }
 
-.toolbox-button:hover:not(.disabled),
+.toolbox-button:hover:not(.disabled):not(.selected),
 .toolbox-category-header:hover {
     background-color: var(--hoverBtn);
 }
 
-.toolbox-button:active:not(.disabled),
+.toolbox-button:active:not(.disabled):not(.selected),
 .toolbox-category-header:active {
     transform: scale(0.97);
 }
@@ -377,15 +406,15 @@ main {
 }
 
 .toolbox-button:active:not(.disabled)>.toolbox-button-seperator {
-    background-color: transparent
+    background-color: transparent;
 }
 
 .toolbox-button.disabled {
     color: var(--borderPrimary);
 }
 
-.toolbox-categories.disabled>.toolbox-category>.toolbox-category-functions>.toolbox-category-functions-inner>.toolbox-button,
-.toolbox-category.disabled>.toolbox-category-functions>.toolbox-category-functions-inner>.toolbox-button {
+.toolbox-categories.disabled .toolbox-button,
+.toolbox-category.disabled .toolbox-button {
     color: var(--borderPrimary);
     pointer-events: none;
 }
@@ -439,6 +468,39 @@ main {
     border-top: solid 1px var(--borderPrimary);
 }
 
+/* ROUND BUTTON */
+
+.round-button {
+    position: relative;
+    cursor: pointer;
+    background: none;
+    outline: none;
+    border: none;
+    color: var(--primaryText);
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    border-radius: 10em;
+    transition: scale .15s;
+}
+
+.round-button:hover {
+    scale: 1.10;
+}
+
+.round-button:active {
+    scale: .95;
+}
+
+.round-button>.material-icons {
+    position: absolute;
+    left: 0;
+    top: .25em;
+    width: 100%;
+    height: 100%;
+    font-size: 17px;
+}
+
 /* BUTTON RIPPLE */
 
 .ripple-effect {
@@ -483,10 +545,10 @@ main {
 
     .toolbox {
         width: calc(100% - 20px);
-        height: 15em;
+        height: 13em;
         border-top: solid 1px var(--borderPrimary);
         border-left: none;
-        padding-bottom: 10px;
+        padding: 10px;
     }
 
     .toolbox-tabs {
@@ -499,6 +561,6 @@ main {
 
     .console {
         display: none;
-        height: 15em;
+        height: 13em;
     }
 }
