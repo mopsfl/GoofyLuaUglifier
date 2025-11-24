@@ -39,8 +39,8 @@
 :root.cyber {
     --primaryBg: #0a0a0f;
     --secondaryBg: #0f0f17;
-    --borderPrimary: #1f1f29;
-    --borderSecondary: #171721;
+    --borderPrimary: #2f2f3b;
+    --borderSecondary: #262630;
 
     --primaryText: #e0e0e0;
     --secondaryText: #bfbfbf;
@@ -96,12 +96,12 @@
 :root.darkforest {
     --primaryBg: #0a1a0f;
     --secondaryBg: #102816;
-    --borderPrimary: #1f3a21;
-    --borderSecondary: #153020;
+    --borderPrimary: rgb(37, 75, 40);
+    --borderSecondary: rgb(24, 60, 38);
 
     --primaryText: #e0e0d8;
     --secondaryText: #cfcfc0;
-    --grayText: #8a8a7a;
+    --grayText: #c9c9b1;
 
     --greenText: #39ff14;
     --orangeText: #ff9f1c;
@@ -146,7 +146,7 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: var(--primaryBg);
+    background-color: var(--secondaryBg);
 }
 
 main {
@@ -157,6 +157,14 @@ main {
     position: relative;
     flex-wrap: nowrap;
     flex-direction: row;
+}
+
+.show {
+    display: inline-block !important;
+}
+
+.hide {
+    display: none !important;
 }
 
 .ide {
@@ -176,10 +184,13 @@ main {
 
 .toolbox {
     background: var(--secondaryBg);
-    width: 250px;
+    width: 15em;
     padding: 10px;
     border-left: solid 1px var(--borderPrimary);
     border-right: solid 1px var(--borderPrimary);
+    overflow: auto;
+    scrollbar-width: none;
+    user-select: none;
 }
 
 .toolbox-header {
@@ -189,6 +200,31 @@ main {
     margin-bottom: .75em;
     padding-bottom: 5px;
     border-bottom: solid 1px var(--borderPrimary);
+}
+
+.toolbox-tabs {
+    background-color: var(--secondaryBg);
+    padding: 10px;
+    display: none;
+    gap: 5px;
+    height: 1.75em;
+    border-top: solid 1px var(--borderPrimary);
+}
+
+.toolbox-tabs>.toolbox-button {
+    position: relative;
+    justify-content: center;
+    padding-left: 5px !important;
+}
+
+.toolbox-tabs>.toolbox-button>#toolbox-tab-icon {
+    position: absolute;
+    left: 5px;
+    font-size: 14px;
+}
+
+.toolbox-tabs>.toolbox-button:last-child>#toolbox-tab-icon {
+    font-size: 18px;
 }
 
 .toolbox-categories {
@@ -205,30 +241,29 @@ main {
     width: 100%;
 }
 
-.tooblox-category-header {
+.toolbox-category-header {
     display: block;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     background-color: var(--primaryBtn);
     color: var(--secondaryText);
     border-bottom: solid 1px var(--borderPrimary);
-    user-select: none;
     cursor: pointer;
     padding-top: 5px;
     padding-bottom: 5px;
     transition: background-color .15s, transform .15s;
 }
 
-.toolbox-category.minimized>.tooblox-category-header {
+.toolbox-category.minimized>.toolbox-category-header {
     border-radius: 3px;
     border-bottom: none;
 }
 
-.toolbox-category.minimized>.tooblox-category-header>.toolbox-category-arrow {
+.toolbox-category.minimized>.toolbox-category-header>.toolbox-category-arrow {
     rotate: 0deg;
 }
 
-.toolbox-category.minimized>.tooblox-category-functions {
+.toolbox-category.minimized>.toolbox-category-functions {
     grid-template-rows: 0fr;
 }
 
@@ -242,21 +277,21 @@ main {
     top: .20em;
 }
 
-.tooblox-category-title {
+.toolbox-category-title {
     font-size: 14px;
 }
 
-.tooblox-category-functions {
+.toolbox-category-functions {
     display: grid;
     grid-template-rows: 1fr;
     transition: grid-template-rows .25s ease;
 }
 
-.tooblox-category-functions>.tooblox-category-functions-inner {
+.toolbox-category-functions>.toolbox-category-functions-inner {
     overflow: hidden;
 }
 
-.tooblox-button {
+.toolbox-button {
     position: relative;
     font-family: Segoe UI;
     font-weight: 600;
@@ -272,10 +307,15 @@ main {
     justify-content: left;
     align-items: center;
     white-space: nowrap;
+    user-select: none;
     transition: background-color .15s, transform .15s, border-bottom .25s;
 }
 
-.tooblox-button-seperator {
+.toolbox-button.rounded {
+    border-radius: 3px !important;
+}
+
+.toolbox-button-seperator {
     position: absolute;
     width: 95%;
     left: .5em;
@@ -284,7 +324,7 @@ main {
     background-color: var(--borderSecondary);
 }
 
-.tooblox-button>#function-icon {
+.toolbox-button>#function-icon {
     position: absolute;
     right: .5em;
     font-size: 21px;
@@ -292,7 +332,7 @@ main {
     padding-left: 5px;
 }
 
-.tooblox-button>#function-name {
+.toolbox-button>#function-name {
     text-transform: uppercase !important;
     font-size: 14px;
     max-width: 12em;
@@ -300,39 +340,44 @@ main {
     overflow: hidden;
 }
 
-.tooblox-button:not(:last-child) {
+.toolbox-button:not(:last-child) {
     padding-left: 10px;
 }
 
-.tooblox-button:last-child {
+.toolbox-button:last-child {
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
 }
 
-.tooblox-button:last-child>.tooblox-button-seperator {
+.toolbox-button:last-child>.toolbox-button-seperator {
     display: none;
 }
 
-.tooblox-button:hover:not(.disabled),
-.tooblox-category-header:hover {
+.toolbox-button:hover:not(.disabled),
+.toolbox-category-header:hover {
     background-color: var(--hoverBtn);
 }
 
-.tooblox-button:active:not(.disabled),
-.tooblox-category-header:active {
-    background-color: var(--activeBtn);
+.toolbox-button:active:not(.disabled),
+.toolbox-category-header:active {
     transform: scale(0.97);
 }
 
-.tooblox-button:active:not(.disabled)>.tooblox-button-seperator {
+.toolbox-button:active:not(.disabled):not(.ripple-effect),
+.toolbox-category-header:active {
+    background-color: var(--activeBtn);
+}
+
+.toolbox-button:active:not(.disabled)>.toolbox-button-seperator {
     background-color: transparent
 }
 
-.tooblox-button.disabled {
+.toolbox-button.disabled {
     color: var(--borderPrimary);
 }
 
-.toolbox-categories.disabled>.toolbox-category>.tooblox-category-functions>.tooblox-button {
+.toolbox-categories.disabled>.toolbox-category>.toolbox-category-functions>.toolbox-category-functions-inner>.toolbox-button,
+.toolbox-category.disabled>.toolbox-category-functions>.toolbox-category-functions-inner>.toolbox-button {
     color: var(--borderPrimary);
     pointer-events: none;
 }
@@ -343,7 +388,7 @@ main {
     position: relative;
     font-family: "Google Sans Code", monospace;
     background: var(--secondaryBg);
-    height: 150px;
+    height: 12.5em;
     border-top: solid 1px var(--borderPrimary);
     font-size: 12px;
     overflow: auto;
@@ -384,4 +429,68 @@ main {
 
 .resize-handle:active {
     border-top: solid 1px var(--borderPrimary);
+}
+
+/* BUTTON RIPPLE */
+
+.ripple-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect.disabled>.ripple {
+    display: none;
+}
+
+.ripple-effect .ripple {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 1.2s ease-out, opacity 0.5s ease-out;
+    pointer-events: none;
+    --ripple-scale: 3;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* RESPONSIVES */
+
+@media only screen and (min-width: 501px) {
+    .toolbox {
+        display: block !important;
+    }
+}
+
+
+@media only screen and (max-width: 500px) {
+    main {
+        flex-direction: column;
+    }
+
+    .toolbox {
+        width: calc(100% - 20px);
+        height: 15em;
+        border-top: solid 1px var(--borderPrimary);
+        border-left: none;
+        padding-bottom: 10px;
+    }
+
+    .toolbox-tabs {
+        display: flex;
+    }
+
+    .toolbox-header {
+        display: none;
+    }
+
+    .console {
+        display: none;
+        height: 15em;
+    }
 }

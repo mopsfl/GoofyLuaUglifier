@@ -23,13 +23,27 @@
 
     <script>
         window.onload = () => {
-            document.querySelectorAll(".tooblox-category-header").forEach(e => {
+            document.querySelectorAll(".toolbox-category-header").forEach(e => {
                 e.addEventListener("click", () => {
                     e.parentElement.classList.toggle("minimized")
                 })
             })
+
+            document.querySelectorAll(".toolbox-tabs>.toolbox-button").forEach(e => {
+                e.addEventListener("click", () => {
+                    if (e.id === "toolbox") {
+                        document.querySelector(".console").classList.remove("show")
+                        document.querySelector(".toolbox").classList.remove("hide")
+                    } else if (e.id === "console") {
+                        document.querySelector(".toolbox").classList.add("hide")
+                        document.querySelector(".toolbox").classList.remove("show")
+                        document.querySelector(".console").classList.add("show")
+                    }
+                })
+            })
         }
     </script>
+    <script defer src="./ripple.js"></script>
 </head>
 
 <body>
@@ -51,71 +65,111 @@
             </div>
             <div class="toolbox-categories">
                 <div class="toolbox-category">
-                    <span class="tooblox-category-header">
+                    <span class="toolbox-category-header ripple-effect">
                         <span class="toolbox-category-arrow"><i class="material-icons">chevron_right</i></span>
-                        <span class="tooblox-category-title">Quick Actions</span>
+                        <span class="toolbox-category-title">Quick Actions</span>
                     </span>
-                    <div class="tooblox-category-functions">
-                        <div class="tooblox-category-functions-inner">
-                            <button class="tooblox-button">
+                    <div class="toolbox-category-functions">
+                        <div class="toolbox-category-functions-inner">
+                            <button class="toolbox-button ripple-effect">
                                 <i class="material-icons" id="function-icon">draw</i>
                                 <span id="function-name">Obfuscate</span>
-                                <div class="tooblox-button-seperator"></div>
+                                <div class="toolbox-button-seperator"></div>
                             </button>
-                            <button class="tooblox-button">
+                            <button class="toolbox-button ripple-effect">
                                 <i class="material-icons" id="function-icon">close_fullscreen</i>
                                 <span id="function-name">Minify</span>
-                                <div class="tooblox-button-seperator"></div>
+                                <div class="toolbox-button-seperator"></div>
                             </button>
-                            <button class="tooblox-button">
+                            <button class="toolbox-button ripple-effect">
                                 <i class="material-icons" id="function-icon">content_copy</i>
                                 <span id="function-name">Copy</span>
-                                <div class="tooblox-button-seperator"></div>
+                                <div class="toolbox-button-seperator"></div>
                             </button>
                         </div>
                     </div>
                 </div>
                 <div class="toolbox-category">
-                    <span class="tooblox-category-header">
+                    <span class="toolbox-category-header ripple-effect">
                         <span class="toolbox-category-arrow"><i class="material-icons">chevron_right</i></span>
-                        <span class="tooblox-category-title">Functions</span>
+                        <span class="toolbox-category-title">Functions</span>
                     </span>
-                    <div class="tooblox-category-functions">
-                        <div class="tooblox-category-functions-inner">
-                            <button class="tooblox-button">
+                    <div class="toolbox-category-functions">
+                        <div class="toolbox-category-functions-inner">
+                            <button class="toolbox-button ripple-effect">
                                 <i class="material-icons" id="function-icon">tag</i>
                                 <span id="function-name">Bytestrings</span>
-                                <div class="tooblox-button-seperator"></div>
+                                <div class="toolbox-button-seperator"></div>
                             </button>
-                            <button class="tooblox-button">
+                            <button class="toolbox-button ripple-effect">
                                 <i class="material-icons" id="function-icon">looks_one</i>
                                 <span id="function-name">Numbers</span>
-                                <div class="tooblox-button-seperator"></div>
+                                <div class="toolbox-button-seperator"></div>
                             </button>
-                            <button class="tooblox-button">
+                            <button class="toolbox-button ripple-effect">
                                 <i class="material-icons" id="function-icon">check_box</i>
                                 <span id="function-name">Booleans</span>
-                                <div class="tooblox-button-seperator"></div>
+                                <div class="toolbox-button-seperator"></div>
+                            </button>
+                            <button class="toolbox-button ripple-effect disabled">
+                                <i class="material-icons" id="function-icon">tag</i>
+                                <span id="function-name">disabled function</span>
+                                <div class="toolbox-button-seperator"></div>
                             </button>
                         </div>
                     </div>
                 </div>
                 <div class="toolbox-category">
-                    <span class="tooblox-category-header">
+                    <span class="toolbox-category-header ripple-effect">
                         <span class="toolbox-category-arrow"><i class="material-icons">chevron_right</i></span>
-                        <span class="tooblox-category-title">Custom Presets</span>
+                        <span class="toolbox-category-title">Custom Presets</span>
                     </span>
-                    <div class="tooblox-category-functions">
-                        <div class="tooblox-category-functions-inner">
-                            <button class="tooblox-button">
+                    <div class="toolbox-category-functions">
+                        <div class="toolbox-category-functions-inner">
+                            <button class="toolbox-button ripple-effect">
                                 <i class="material-icons" id="function-icon">tag</i>
                                 <span id="function-name">Custom preset 1</span>
-                                <div class="tooblox-button-seperator"></div>
+                                <div class="toolbox-button-seperator"></div>
+                            </button>
+                            <button class="toolbox-button ripple-effect">
+                                <i class="material-icons" id="function-icon">tag</i>
+                                <span id="function-name">Custom preset 2</span>
+                                <div class="toolbox-button-seperator"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="toolbox-category disabled">
+                    <span class="toolbox-category-header ripple-effect">
+                        <span class="toolbox-category-arrow"><i class="material-icons">chevron_right</i></span>
+                        <span class="toolbox-category-title">disabled category</span>
+                    </span>
+                    <div class="toolbox-category-functions">
+                        <div class="toolbox-category-functions-inner">
+                            <button class="toolbox-button ripple-effect">
+                                <i class="material-icons" id="function-icon">tag</i>
+                                <span id="function-name">disabled test 1</span>
+                                <div class="toolbox-button-seperator"></div>
+                            </button>
+                            <button class="toolbox-button ripple-effect">
+                                <i class="material-icons" id="function-icon">tag</i>
+                                <span id="function-name">disabled test 2</span>
+                                <div class="toolbox-button-seperator"></div>
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="toolbox-tabs">
+            <button class="toolbox-button ripple-effect rounded" id="toolbox">
+                <i class="material-icons" id="toolbox-tab-icon">build</i>
+                <span id="toolbox-tab-value">Toolbox</span>
+            </button>
+            <button class="toolbox-button ripple-effect rounded" id="console">
+                <i class="material-icons" id="toolbox-tab-icon">code</i>
+                <span id="toolbox-tab-value">Console</span>
+            </button>
         </div>
     </main>
 </body>
