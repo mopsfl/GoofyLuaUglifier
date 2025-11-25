@@ -40,6 +40,11 @@
                 })
             })
 
+            document.querySelector(".modal-overlay").addEventListener("click", () => {
+                document.querySelectorAll(".modal").forEach(m => m.classList.add("hide"))
+                document.querySelector(".modal-overlay").classList.add("hide")
+            })
+
             document.querySelectorAll(".modal-close").forEach(b => {
                 b.addEventListener("click", () => {
                     document.querySelector(`.modal#${b.id}`)?.classList.add("hide")
@@ -64,7 +69,7 @@
             })
 
 
-            document.querySelectorAll(".toolbox-tabs>.btn").forEach(e => {
+            document.querySelectorAll(".toolbox-tabs>.btn-group>.btn").forEach(e => {
                 e.addEventListener("click", () => {
                     if (e.id === "toolbox") {
                         consoleDiv.classList.remove("show")
@@ -88,7 +93,7 @@
 <body>
     <main>
         <div class="ide">
-            <div class="editor"></div>
+            <div class="editor">.monaco-editor</div>
             <div class="console">
                 <div class="resize-handle"></div>
                 <div class="console-content">
@@ -274,18 +279,20 @@
                 </div>
             </div>
         </div>
-        <div class="toolbox-tabs btn-group btn-group-nogap">
-            <button class="btn btn-full ripple-effect rounded selected" id="toolbox">
-                <i class="material-icons" id="toolbox-tab-icon">build</i>
-                <span id="toolbox-tab-value">Toolbox</span>
-            </button>
-            <button class="btn btn-full ripple-effect rounded" id="console">
-                <i class="material-icons" id="toolbox-tab-icon">code</i>
-                <span id="toolbox-tab-value">Console</span>
-            </button>
-            <button class="btn btn-small ripple-effect rounded modal-open separator-border" id="settings-modal">
-                <i class="material-icons" id="toolbox-tab-icon">settings</i>
-            </button>
+        <div class="toolbox-tabs">
+            <div class="btn-group flex nogap">
+                <button class="btn btn-full ripple-effect rounded selected" id="toolbox">
+                    <i class="material-icons" id="toolbox-tab-icon">build</i>
+                    <span id="toolbox-tab-value">Toolbox</span>
+                </button>
+                <button class="btn btn-full ripple-effect rounded" id="console">
+                    <i class="material-icons" id="toolbox-tab-icon">code</i>
+                    <span id="toolbox-tab-value">Console</span>
+                </button>
+                <button class="btn btn-small ripple-effect rounded modal-open separator-border" id="settings-modal">
+                    <i class="material-icons" id="toolbox-tab-icon">settings</i>
+                </button>
+            </div>
         </div>
 
         <!-- SETTINGS MODAL -->
@@ -316,9 +323,12 @@
                 <span>.modal-content</span>
             </div>
             <div class="modal-footer">
-                <div class="modal-footer-right">
+                <div class="modal-footer-right btn-group btn-seperators nogap">
                     <button class="btn center red-text ripple-effect">Reset to Default</button>
-                    <button class="btn center ripple-effect modal-close" id="settings-modal">Close</button>
+                    <button class="btn center btn-medium ripple-effect modal-close" id="settings-modal">Close</button>
+                </div>
+                <div class="modal-footer-left">
+
                 </div>
             </div>
         </div>
