@@ -33,6 +33,20 @@
                 })
             })
 
+            document.querySelectorAll(".modal-open").forEach(b => {
+                b.addEventListener("click", () => {
+                    document.querySelector(`.modal#${b.id}`)?.classList.remove("hide")
+                    document.querySelector(".modal-overlay").classList.remove("hide")
+                })
+            })
+
+            document.querySelectorAll(".modal-close").forEach(b => {
+                b.addEventListener("click", () => {
+                    document.querySelector(`.modal#${b.id}`)?.classList.add("hide")
+                    document.querySelector(".modal-overlay").classList.add("hide")
+                })
+            })
+
             document.querySelectorAll(".btn.function-btn").forEach(btn => {
                 btn.addEventListener("click", () => {
                     if (btn.classList.contains("disabled")) return
@@ -89,7 +103,7 @@
                 <span class="toolbox-title">GoofyLuaUglifier</span>
                 <span class="toolbox-version">v.2.0.7 &bull; by mopsfl</span>
                 <div class="toolbox-header-buttons">
-                    <button class="round-button ripple-effect"><i class="material-icons">settings</i></button>
+                    <button class="round-button ripple-effect modal-open" id="settings-modal"><i class="material-icons">settings</i></button>
                 </div>
             </div>
             <div class="toolbox-categories">
@@ -269,20 +283,42 @@
                 <i class="material-icons" id="toolbox-tab-icon">code</i>
                 <span id="toolbox-tab-value">Console</span>
             </button>
+            <button class="btn btn-small ripple-effect rounded modal-open separator-border" id="settings-modal">
+                <i class="material-icons" id="toolbox-tab-icon">settings</i>
+            </button>
         </div>
 
         <!-- SETTINGS MODAL -->
-        <div class="modal hide">
+        <div class="modal hide" id="settings-modal">
             <div class="modal-header">
                 <span class="modal-title">Settings</span>
             </div>
             <div class="modal-content">
                 <span>.modal-content</span>
+                <p>.modal-content</p>
+                <p>.modal-content</p>
+                <p>.modal-content</p>
+                <p>.modal-content</p>
+                <p>.modal-content</p>
+                <p>.modal-content</p>
+                <p>.modal-content</p>
+                <p>.modal-content</p>
+                <p>.modal-content</p>
+                <p>.modal-content</p>
+                <p>.modal-content</p>
+                <p>.modal-content</p>
+                <p>.modal-content</p>
+                <p>.modal-content</p>
+                <p>.modal-content</p>
+                <p>.modal-content</p>
+                <p>.modal-content</p>
+                <p>.modal-content</p>
+                <span>.modal-content</span>
             </div>
             <div class="modal-footer">
                 <div class="modal-footer-right">
-                    <button class="btn btn-medium center red-text ripple-effect">Reset to Default</button>
-                    <button class="btn btn-medium center ripple-effect">Close</button>
+                    <button class="btn center red-text ripple-effect">Reset to Default</button>
+                    <button class="btn center ripple-effect modal-close" id="settings-modal">Close</button>
                 </div>
             </div>
         </div>
