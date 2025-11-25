@@ -141,6 +141,7 @@
 
 /*just temp REMOVED ON PROD*/
 .editor {
+    user-select: none;
     font-size: 10px;
     display: flex;
     justify-content: center;
@@ -368,6 +369,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    min-width: max-content;
     border-radius: 3px;
     gap: 5px;
     padding: 10px;
@@ -625,13 +627,6 @@ main {
     will-change: scale, opacity;
 }
 
-.modal.hide {
-    display: flex !important;
-    scale: 0.5 !important;
-    opacity: 0;
-    transform-origin: center 80%;
-}
-
 .modal-content {
     padding: 1.5em;
     max-height: 100%;
@@ -687,6 +682,14 @@ main {
     pointer-events: all;
     transition: opacity 250ms ease-out;
     will-change: opacity;
+}
+
+.modal.hide {
+    pointer-events: none;
+    display: flex !important;
+    scale: 0.5 !important;
+    opacity: 0;
+    transform-origin: center 80%;
 }
 
 .modal-overlay.hide {
