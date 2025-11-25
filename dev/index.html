@@ -23,26 +23,44 @@
 
     <script>
         window.onload = () => {
+            const consoleDiv = document.querySelector(".console"),
+                toolboxDiv = document.querySelector(".toolbox"),
+                toolboxCategories = document.querySelector(".toolbox-categories")
+
             document.querySelectorAll(".toolbox-category-header").forEach(e => {
                 e.addEventListener("click", () => {
                     e.parentElement.classList.toggle("minimized")
                 })
             })
 
-            const console = document.querySelector(".console"),
-                toolbox = document.querySelector(".toolbox")
+            document.querySelectorAll(".btn.function-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    if (btn.classList.contains("disabled")) return
+                    const loader = document.createElement("div")
+                    loader.classList.add("loader")
 
-            document.querySelectorAll(".toolbox-tabs>.toolbox-button").forEach(e => {
+                    btn.appendChild(loader)
+                    toolboxCategories.classList.add("disabled")
+
+                    setTimeout(() => {
+                        toolboxCategories.classList.remove("disabled")
+                        loader.remove()
+                    }, 1000);
+                })
+            })
+
+
+            document.querySelectorAll(".toolbox-tabs>.btn").forEach(e => {
                 e.addEventListener("click", () => {
                     if (e.id === "toolbox") {
-                        console.classList.remove("show")
-                        toolbox.classList.remove("hide")
+                        consoleDiv.classList.remove("show")
+                        toolboxDiv.classList.remove("hide")
                         document.querySelector("#toolbox").classList.add("selected")
                         document.querySelector("#console").classList.remove("selected")
                     } else if (e.id === "console") {
-                        toolbox.classList.add("hide")
-                        toolbox.classList.remove("show")
-                        console.classList.add("show")
+                        toolboxDiv.classList.add("hide")
+                        toolboxDiv.classList.remove("show")
+                        consoleDiv.classList.add("show")
                         document.querySelector("#toolbox").classList.remove("selected")
                         document.querySelector("#console").classList.add("selected")
                     }
@@ -80,22 +98,22 @@
                         <span class="toolbox-category-arrow"><i class="material-icons">chevron_right</i></span>
                         <span class="toolbox-category-title">Quick Actions</span>
                     </span>
-                    <div class="toolbox-category-functions">
-                        <div class="toolbox-category-functions-inner">
-                            <button class="toolbox-button ripple-effect">
+                    <div class="toolbox-category-functions btn-group">
+                        <div class="toolbox-category-functions-inner inner">
+                            <button class="btn ripple-effect function-btn">
                                 <i class="material-icons" id="function-icon">draw</i>
                                 <span id="function-name">Obfuscate</span>
-                                <div class="toolbox-button-seperator"></div>
+                                <div class="btn-seperator"></div>
                             </button>
-                            <button class="toolbox-button ripple-effect">
+                            <button class="btn ripple-effect function-btn">
                                 <i class="material-icons" id="function-icon">close_fullscreen</i>
                                 <span id="function-name">Minify</span>
-                                <div class="toolbox-button-seperator"></div>
+                                <div class="btn-seperator"></div>
                             </button>
-                            <button class="toolbox-button ripple-effect">
+                            <button class="btn ripple-effect function-btn">
                                 <i class="material-icons" id="function-icon">content_copy</i>
                                 <span id="function-name">Copy</span>
-                                <div class="toolbox-button-seperator"></div>
+                                <div class="btn-seperator"></div>
                             </button>
                         </div>
                     </div>
@@ -105,27 +123,27 @@
                         <span class="toolbox-category-arrow"><i class="material-icons">chevron_right</i></span>
                         <span class="toolbox-category-title">Functions</span>
                     </span>
-                    <div class="toolbox-category-functions">
-                        <div class="toolbox-category-functions-inner">
-                            <button class="toolbox-button ripple-effect">
+                    <div class="toolbox-category-functions btn-group">
+                        <div class="toolbox-category-functions-inner inner">
+                            <button class="btn ripple-effect">
                                 <i class="material-icons" id="function-icon">tag</i>
                                 <span id="function-name">Bytestrings</span>
-                                <div class="toolbox-button-seperator"></div>
+                                <div class="btn-seperator"></div>
                             </button>
-                            <button class="toolbox-button ripple-effect">
+                            <button class="btn ripple-effect">
                                 <i class="material-icons" id="function-icon">looks_one</i>
                                 <span id="function-name">Numbers</span>
-                                <div class="toolbox-button-seperator"></div>
+                                <div class="btn-seperator"></div>
                             </button>
-                            <button class="toolbox-button ripple-effect">
+                            <button class="btn ripple-effect">
                                 <i class="material-icons" id="function-icon">check_box</i>
                                 <span id="function-name">Booleans</span>
-                                <div class="toolbox-button-seperator"></div>
+                                <div class="btn-seperator"></div>
                             </button>
-                            <button class="toolbox-button ripple-effect disabled">
+                            <button class="btn ripple-effect disabled">
                                 <i class="material-icons" id="function-icon">tag</i>
                                 <span id="function-name">disabled function</span>
-                                <div class="toolbox-button-seperator"></div>
+                                <div class="btn-seperator"></div>
                             </button>
                         </div>
                     </div>
@@ -135,73 +153,140 @@
                         <span class="toolbox-category-arrow"><i class="material-icons">chevron_right</i></span>
                         <span class="toolbox-category-title">Custom Presets</span>
                     </span>
-                    <div class="toolbox-category-functions">
-                        <div class="toolbox-category-functions-inner">
-                            <button class="toolbox-button ripple-effect">
+                    <div class="toolbox-category-functions btn-group">
+                        <div class="toolbox-category-functions-inner inner">
+                            <button class="btn ripple-effect">
                                 <i class="material-icons" id="function-icon">tag</i>
                                 <span id="function-name">Custom preset 1</span>
-                                <div class="toolbox-button-seperator"></div>
+                                <div class="btn-seperator"></div>
                             </button>
-                            <button class="toolbox-button ripple-effect">
+                            <button class="btn ripple-effect">
                                 <i class="material-icons" id="function-icon">tag</i>
                                 <span id="function-name">Custom preset 2</span>
-                                <div class="toolbox-button-seperator"></div>
+                                <div class="btn-seperator"></div>
                             </button>
                         </div>
                     </div>
                 </div>
                 <div class="toolbox-category disabled">
-                    <span class="toolbox-category-header ripple-effect">
+                    <span class="toolbox-category-header ripple-effect function-btn">
                         <span class="toolbox-category-arrow"><i class="material-icons">chevron_right</i></span>
                         <span class="toolbox-category-title">Disabled Category</span>
                     </span>
-                    <div class="toolbox-category-functions">
-                        <div class="toolbox-category-functions-inner">
-                            <button class="toolbox-button ripple-effect">
+                    <div class="toolbox-category-functions btn-group">
+                        <div class="toolbox-category-functions-inner inner">
+                            <button class="btn ripple-effect function-btn">
                                 <i class="material-icons" id="function-icon">tag</i>
                                 <span id="function-name">disabled test 1</span>
-                                <div class="toolbox-button-seperator"></div>
+                                <div class="btn-seperator"></div>
                             </button>
-                            <button class="toolbox-button ripple-effect">
+                            <button class="btn ripple-effect function-btn">
                                 <i class="material-icons" id="function-icon">tag</i>
                                 <span id="function-name">disabled test 2</span>
-                                <div class="toolbox-button-seperator"></div>
+                                <div class="btn-seperator"></div>
                             </button>
                         </div>
                     </div>
                 </div>
                 <div class="toolbox-category minimized">
-                    <span class="toolbox-category-header ripple-effect">
+                    <span class="toolbox-category-header ripple-effect function-btn">
                         <span class="toolbox-category-arrow"><i class="material-icons">chevron_right</i></span>
                         <span class="toolbox-category-title">Minimized Category</span>
                     </span>
-                    <div class="toolbox-category-functions">
-                        <div class="toolbox-category-functions-inner">
-                            <button class="toolbox-button ripple-effect">
+                    <div class="toolbox-category-functions btn-group">
+                        <div class="toolbox-category-functions-inner inner">
+                            <button class="btn ripple-effect">
                                 <i class="material-icons" id="function-icon">tag</i>
                                 <span id="function-name">i am mopsfl</span>
-                                <div class="toolbox-button-seperator"></div>
+                                <div class="btn-seperator"></div>
                             </button>
-                            <button class="toolbox-button ripple-effect">
+                            <button class="btn ripple-effect function-btn">
                                 <i class="material-icons" id="function-icon">tag</i>
                                 <span id="function-name">idk what to put here</span>
-                                <div class="toolbox-button-seperator"></div>
+                                <div class="btn-seperator"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="toolbox-category minimized">
+                    <span class="toolbox-category-header ripple-effect function-btn">
+                        <span class="toolbox-category-arrow"><i class="material-icons">chevron_right</i></span>
+                        <span class="toolbox-category-title">Many Buttons</span>
+                    </span>
+                    <div class="toolbox-category-functions btn-group">
+                        <div class="toolbox-category-functions-inner inner">
+                            <button class="btn ripple-effect function-btn">
+                                <i class="material-icons" id="function-icon">tag</i>
+                                <span id="function-name">i am mopsfl</span>
+                                <div class="btn-seperator"></div>
+                            </button>
+                            <button class="btn ripple-effect function-btn">
+                                <i class="material-icons" id="function-icon">tag</i>
+                                <span id="function-name">idk what to put here</span>
+                                <div class="btn-seperator"></div>
+                            </button>
+                            <button class="btn ripple-effect">
+                                <i class="material-icons" id="function-icon">tag</i>
+                                <span id="function-name">i am mopsfl</span>
+                                <div class="btn-seperator"></div>
+                            </button>
+                            <button class="btn ripple-effect">
+                                <i class="material-icons" id="function-icon">tag</i>
+                                <span id="function-name">idk what to put here</span>
+                                <div class="btn-seperator"></div>
+                            </button>
+                            <button class="btn ripple-effect">
+                                <i class="material-icons" id="function-icon">tag</i>
+                                <span id="function-name">i am mopsfl</span>
+                                <div class="btn-seperator"></div>
+                            </button>
+                            <button class="btn ripple-effect">
+                                <i class="material-icons" id="function-icon">tag</i>
+                                <span id="function-name">idk what to put here</span>
+                                <div class="btn-seperator"></div>
+                            </button>
+                            <button class="btn ripple-effect">
+                                <i class="material-icons" id="function-icon">tag</i>
+                                <span id="function-name">i am mopsfl</span>
+                                <div class="btn-seperator"></div>
+                            </button>
+                            <button class="btn ripple-effect">
+                                <i class="material-icons" id="function-icon">tag</i>
+                                <span id="function-name">idk what to put here</span>
+                                <div class="btn-seperator"></div>
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="toolbox-tabs">
-            <button class="toolbox-button ripple-effect rounded selected" id="toolbox">
+        <div class="toolbox-tabs btn-group btn-group-nogap">
+            <button class="btn btn-full ripple-effect rounded selected" id="toolbox">
                 <i class="material-icons" id="toolbox-tab-icon">build</i>
                 <span id="toolbox-tab-value">Toolbox</span>
             </button>
-            <button class="toolbox-button ripple-effect rounded" id="console">
+            <button class="btn btn-full ripple-effect rounded" id="console">
                 <i class="material-icons" id="toolbox-tab-icon">code</i>
                 <span id="toolbox-tab-value">Console</span>
             </button>
         </div>
+
+        <!-- SETTINGS MODAL -->
+        <div class="modal hide">
+            <div class="modal-header">
+                <span class="modal-title">Settings</span>
+            </div>
+            <div class="modal-content">
+                <span>.modal-content</span>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-footer-right">
+                    <button class="btn btn-medium center red-text ripple-effect">Reset to Default</button>
+                    <button class="btn btn-medium center ripple-effect">Close</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-overlay hide"></div>
     </main>
 </body>
 

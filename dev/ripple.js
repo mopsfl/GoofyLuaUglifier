@@ -1,6 +1,7 @@
 document.querySelectorAll('.ripple-effect').forEach(button => {
     const startRipple = (e) => {
         if (e.pointerType === "mouse" && e.button !== 0) return
+        if (button.classList.contains("disabled")) return
 
         const rect = button.getBoundingClientRect()
         const size = Math.max(rect.width, rect.height)
@@ -12,11 +13,11 @@ document.querySelectorAll('.ripple-effect').forEach(button => {
         ripple.style.width = ripple.style.height = size + "px"
         ripple.style.left = x + "px"
         ripple.style.top = y + "px"
-
         ripple.style.setProperty("--ripple-scale", 3)
 
         button.appendChild(ripple)
         button._activeRipple = ripple
+        button.style.setProperty("transform-origin", `${(e.offsetX / button.clientWidth) * 100}% center`)
 
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
