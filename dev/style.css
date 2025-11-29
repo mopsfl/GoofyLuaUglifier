@@ -319,12 +319,15 @@ main {
     cursor: pointer;
     padding-top: 5px;
     padding-bottom: 5px;
-    transition: background-color .15s, transform .15s;
+    transition:
+        background-color .15s,
+        transform .15s,
+        border-bottom .2s;
 }
 
 .toolbox-category.minimized>.toolbox-category-header {
     border-radius: 3px;
-    border-bottom: none;
+    border-bottom: solid 1px transparent;
 }
 
 .toolbox-category.minimized>.toolbox-category-header>.toolbox-category-arrow {
@@ -456,23 +459,23 @@ main {
     grid-auto-flow: column;
 }
 
-.btn-group.vertical:has(.nogap)>.btn,
-.btn-group.vertical:has(.nogap)>.inner>.btn {
+.btn-group.vertical.nogap>.btn,
+.btn-group.vertical.nogap>.inner>.btn {
     border-radius: 0;
 }
 
-.btn-group.vertical:has(.nogap)>.btn:last-child,
-.btn-group.vertical:has(.nogap)>.inner>.btn:last-child {
+.btn-group.vertical.nogap>.btn:last-child,
+.btn-group.vertical.nogap>.inner>.btn:last-child {
     border-radius: 0 0 3px 3px;
 }
 
-.btn-group.horizontal:has(.nogap)>.btn:first-child,
-.btn-group.horizontal:has(.nogap)>.inner>.btn:first-child {
+.btn-group.horizontal.nogap>.btn:first-child,
+.btn-group.horizontal.nogap>.inner>.btn:first-child {
     border-radius: 3px 0 0 3px;
 }
 
-.btn-group.horizontal:has(.nogap)>.btn:last-child,
-.btn-group.horizontal:has(.nogap)>.inner>.btn:last-child {
+.btn-group.horizontal.nogap>.btn:last-child,
+.btn-group.horizontal.nogap>.inner>.btn:last-child {
     border-radius: 0 3px 3px 0;
 }
 
@@ -487,16 +490,6 @@ main {
 .btn-group.nogap>.btn:not(:first-child):not(:last-child),
 .btn-group.nogap>.inner>.btn:not(:first-child):not(:last-child) {
     border-radius: 0 !important;
-}
-
-.btn-group.nogap>.btn:first-child,
-.btn-group.nogap>.inner>.btn:first-child {
-    border-radius: 3px 0 0 3px !important;
-}
-
-.btn-group.nogap>.btn:last-child,
-.btn-group.nogap>.inner>.btn:last-child {
-    border-radius: 0 3px 3px 0 !important;
 }
 
 .btn-group>.btn.separator-border:first-child,
@@ -530,6 +523,7 @@ main {
 .btn:active:not(.disabled):not(.noscaleanim),
 .toolbox-category-header:active:not(.noscaleanim) {
     transform: scale(0.97);
+    border-bottom: solid 1px transparent;
 }
 
 .btn:active:not(.disabled):not(.ripple-effect),
