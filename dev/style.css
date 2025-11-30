@@ -1,14 +1,15 @@
 /* THEMES */
 
 :root {
-    --rippleColor: rgba(255, 255, 255, 0.25)
+    --rippleColor: rgba(255, 255, 255, 0.2);
+    --editorColor: #1e1e1e;
 }
 
 :root.dark {
     --primaryBg: #1e1e1e;
     --secondaryBg: #161616;
     --borderPrimary: #393939;
-    --borderSecondary: #2d2d2d;
+    --borderSecondary: #313131;
 
     --primaryText: #e4e4e4;
     --secondaryText: #d6d6d6;
@@ -64,8 +65,8 @@
 :root.deepspace {
     --primaryBg: #0b0c1a;
     --secondaryBg: #14152c;
-    --borderPrimary: #2a2b44;
-    --borderSecondary: #1e1f33;
+    --borderPrimary: #343553;
+    --borderSecondary: #262741;
 
     --primaryText: #e0e0e0;
     --secondaryText: #bfbfbf;
@@ -83,8 +84,8 @@
 :root.darkplum {
     --primaryBg: #1c0d1a;
     --secondaryBg: #2a142c;
-    --borderPrimary: #3d203d;
-    --borderSecondary: #2f1830;
+    --borderPrimary: #683868;
+    --borderSecondary: #502c50;
 
     --primaryText: #e6e0eb;
     --secondaryText: #cfc0d9;
@@ -121,8 +122,8 @@
 :root.darkburgundy {
     --primaryBg: #2a0a0f;
     --secondaryBg: #3b141a;
-    --borderPrimary: #5c1f28;
-    --borderSecondary: #4a1a20;
+    --borderPrimary: #742733;
+    --borderSecondary: #5f2029;
 
     --primaryText: #f0e0e0;
     --secondaryText: #d9cfcf;
@@ -202,7 +203,7 @@ main {
 .ide>.editor {
     width: 100%;
     overflow: hidden;
-    background-color: #1e1e1e;
+    background-color: var(--editorColor);
 }
 
 .red-text {
@@ -303,13 +304,13 @@ main {
     align-items: center;
 }
 
-.toolbox-category {
+.btn-group-category {
     position: relative;
     text-align: center;
     width: 100%;
 }
 
-.toolbox-category-header {
+.btn-group-header {
     display: block;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
@@ -325,23 +326,28 @@ main {
         border-bottom .2s;
 }
 
-.toolbox-category.minimized>.toolbox-category-header {
+.btn-group-category:has(.btn-group>.btn:not(.disabled):first-child:active) .btn-group-header,
+.btn-group-category:has(.btn-group>.inner>.btn:not(.disabled):first-child:active) .btn-group-header {
+    border-bottom: solid 1px transparent;
+}
+
+.btn-group-category.minimized>.btn-group-header {
     border-radius: 3px;
     border-bottom: solid 1px transparent;
 }
 
-.toolbox-category.minimized>.toolbox-category-header>.toolbox-category-arrow {
+.btn-group-category.minimized>.btn-group-header>.category-arrow {
     rotate: 0deg;
 }
 
-.toolbox-category.minimized>.toolbox-category-functions {
+.btn-group-category.minimized>.btn-group {
     grid-template-rows: 0fr;
     opacity: 0;
     scale: 0.8;
     transform-origin: top center;
 }
 
-.toolbox-category-arrow {
+.btn-group-header>.category-arrow {
     rotate: 90deg;
     position: absolute;
     left: 0;
@@ -351,7 +357,7 @@ main {
     top: .20em;
 }
 
-.toolbox-category-title {
+.btn-group-header>.category-title {
     font-size: 14px;
 }
 
@@ -516,18 +522,18 @@ main {
 }
 
 .btn:hover:not(.disabled),
-.toolbox-category-header:hover {
+.btn-group-header:hover {
     background-color: var(--hoverBtn);
 }
 
 .btn:active:not(.disabled):not(.noscaleanim),
-.toolbox-category-header:active:not(.noscaleanim) {
+.btn-group-header:active:not(.noscaleanim) {
     transform: scale(0.97);
     border-bottom: solid 1px transparent;
 }
 
 .btn:active:not(.disabled):not(.ripple-effect),
-.toolbox-category-header:active {
+.btn-group-header:active {
     background-color: var(--activeBtn);
 }
 
@@ -541,12 +547,13 @@ main {
     filter: blur(0.5px);
 }
 
-.toolbox-category:has(.toolbox-category-header:active) .toolbox-category-functions>.toolbox-category-functions-inner>:first-child {
+.btn-group-category:has(.btn-group-header:active) .btn-group>:first-child,
+.btn-group-category:has(.btn-group-header:active) .btn-group>.inner>:first-child {
     border-radius: 3px 3px 0 0;
 }
 
 .toolbox-categories.disabled .btn,
-.toolbox-category.disabled .btn {
+.btn-group-category.disabled .btn {
     color: var(--borderPrimary);
     pointer-events: none;
     filter: blur(0.5px);
@@ -633,7 +640,7 @@ main {
 }
 
 .modal-content {
-    margin: 5px;
+    margin: 5px 3px;
     padding: 1em;
     max-height: 100%;
     overflow: auto;
