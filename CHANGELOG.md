@@ -1,3 +1,6 @@
+## 11.01.2025
+- fixed `Obfuscate` function not working due to missing _ENV local (sorryy)
+
 ## 23.11.2025
 ##### Frontend:
 - new settings system (less buggy and more organized, i guess?)
