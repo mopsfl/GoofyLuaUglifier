@@ -1,3 +1,10 @@
+## 28.01.2025
+- full frontend rework
+  - completely new style (self made, no libary anymore!!)
+  - improved mobile responsive support (cool tab feature to switch between toolbox and console)
+- the login feature will come back soon, i guess
+- enjoy :)
+
 ## 11.01.2025
 - fixed `Obfuscate` function not working due to missing _ENV local (sorryy)
 

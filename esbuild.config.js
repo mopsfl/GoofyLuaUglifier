@@ -25,7 +25,7 @@ const jsOptions = {
 };
 
 const cssOptions = {
-    entryPoints: ["styleImport.js"],
+    entryPoints: ["./src/style.css"],
     bundle: true,
     minify: true,
     sourcemap: isDev,
@@ -35,10 +35,6 @@ const cssOptions = {
 
 const copyAssets = async () => {
     fse.ensureDirSync(path.resolve(__dirname, 'dist/js'));
-    fs.copyFileSync(
-        'node_modules/@materializecss/materialize/dist/js/materialize.min.js',
-        'dist/js/materialize.min.js'
-    )
 
     await fse.copy(
         'node_modules/monaco-editor/esm/vs',

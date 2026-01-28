@@ -1,5 +1,5 @@
 import pako from "pako"
-import Editor from "./Editor";
+import Editor from "../Editor";
 
 export default {
     CompressData: (data: string, encode: boolean = true): string => encode ? encodeURIComponent(btoa(String.fromCharCode(...pako.gzip(new TextEncoder().encode(data))))) : btoa(String.fromCharCode(...pako.gzip(new TextEncoder().encode(data)))),
@@ -26,4 +26,6 @@ export default {
         document.body.removeChild(link)
         URL.revokeObjectURL(url)
     },
+
+    ToCamelKey: (text: string): string => text.trim().toLowerCase().replace(/[^a-z0-9]+(.)/g, (_, c) => c.toUpperCase())
 }

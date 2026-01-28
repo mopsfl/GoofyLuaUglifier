@@ -1,5 +1,8 @@
+import $ from "jquery";
 import Client from "./Client"
 import * as monaco from "monaco-editor"
+
+let initialized = false
 
 export default {
     errorHighlightCollection: null,
@@ -25,8 +28,12 @@ print(calculateDifference(numA, numB))
 print(numB - numG)`.trim(),
 
     Init() {
-        const initTime = Date.now()
-        Client.editor = monaco.editor.create(document.querySelector(".monaco"), {
+        if (initialized) throw Error("Editor module is already initialized!")
+
+        const initTime = Date.now(),
+            monacoElement = $(".monaco")
+
+        Client.editor = monaco.editor.create(monacoElement.get(0), {
             language: "lua",
             theme: "vs-dark",
             wordWrap: "on",
@@ -39,50 +46,29 @@ print(numB - numG)`.trim(),
         })
 
         Client.editor.layout()
+        monacoElement.find(".loading").remove()
+
+        initialized = true
         console.log(`Loaded Monaco Editor. (took ${Date.now() - initTime}ms)`);
     },
 
-    GetValue() {
-        return Client.editor.getValue()
-    },
+    GetValue: () => Client.editor.getValue(),
+    SetValue: (value: string) => Client.editor.setValue(value),
+    Clear: () => Client.editor.setValue(""),
+    ToggleReadOnly: (state = true) => Client.editor.updateOptions({ readOnly: state }),
+    GetDomElement: () => Client.editor.getDomNode(),
 
-    SetValue(value: string) {
-        return Client.editor.setValue(value)
+    ToggleBlur(state?: boolean) {
+        $(this.GetDomElement()).toggleClass("blur", state)
     },
 
     CopyValue() {
         this.GetValue() && navigator.clipboard.writeText(this.GetValue())
     },
 
-    Clear() {
-        Client.editor.setValue("")
-    },
-
-    ToggleReadOnly(state = true) {
-        Client.editor.updateOptions({ readOnly: state })
-    },
-
-    GetDomElement(): HTMLElement {
-        return Client.editor.getDomNode()
-    },
-
-    ToggleLoading(loadingText: string = "Loading", noDots?: boolean, html?: boolean) {
-        const loadingTextElement: HTMLElement = document.querySelector(".loadingtext")
-
-        document.querySelector(".monaco").classList.toggle("blur")
-        document.querySelector(".sidebar").classList.toggle("blur")
-        !html ? loadingTextElement.innerText = `${loadingText}${!noDots ? "..." : ""}` : loadingTextElement.innerHTML = `${loadingText}${!noDots ? "..." : ""}`
-        loadingTextElement.classList.toggle("hide")
-    },
-
-    SetLoadingText(loadingText: string = "Loading", noDots?: boolean, html?: boolean) {
-        const loadingTextElement: HTMLElement = document.querySelector(".loadingtext")
-        !html ? loadingTextElement.innerText = `${loadingText}${!noDots ? "..." : ""}` : loadingTextElement.innerHTML = `${loadingText}${!noDots ? "..." : ""}`
-    },
-
     HighlightRange(range: monaco.Range, message: string) {
-        if (!range) return;
-
+        if (!range) throw new Error("missing argument <range: monaco.Range>")
+        if (typeof range !== "object") throw new Error(`expected argument <range: monaco.Range> but got <${typeof range}>`)
         if (this.errorHighlightCollection) this.errorHighlightCollection.clear()
 
         this.errorHighlightCollection = Client.editor.createDecorationsCollection([
@@ -108,7 +94,6 @@ print(numB - numG)`.trim(),
         const lineLength = Client.editor.getModel().getLineMaxColumn(line) - 1
         column = Math.min(column, lineLength)
         const endCol = column < lineLength ? column + 1 : column
-
         return new monaco.Range(line, column, line, endCol + 1)
     }
 }

@@ -1,6 +1,8 @@
-import { CustomEvents } from "./CustomEvents"
-import LocalStorage from "./LocalStorage"
+import { CustomEvents } from "./Misc/CustomEvents"
+import LocalStorage from "./Misc/LocalStorage"
 import $ from "jquery"
+
+let initialized = false
 
 export default class Settings {
     _data: UglifierSettings = null
@@ -8,9 +10,10 @@ export default class Settings {
     _inputs = new Map<string, JQuery<HTMLInputElement>>()
     _events = new Map<string, CustomEvent>()
 
-    settingsModal = $("#settingsmodal")
-    settingsContent = $("#settingsmodal>.modal-content")
+    settingsModal = $("#settings-modal")
+    settingsContent = $("#settings-modal>.modal-content")
     settingTemplateElement = $(".template-setting")
+    settingsResetDefault = $("#settings-reset-default")
 
     constructor(
         public storageKey = "_GLUStorage"
@@ -23,7 +26,10 @@ export default class Settings {
     }
 
     Init() {
+        if (initialized) throw Error("Settings module is already initialized!")
+
         const initTime = Date.now()
+
         this._data = LocalStorage.Get<UglifierSettings>(this.storageKey, "settings", this.defaultSettings)
         this._lastdata = this._data
 
@@ -74,17 +80,12 @@ export default class Settings {
             }
 
             element.appendTo(this.settingsContent)
-
+            console.log(this.settingsContent);
             this._inputs.set(setting.id, input)
             this._events.set(setting.id, CustomEvents.CreateEvent(setting.id))
         })
 
-
-        $(".settings-open").on("click", () => {
-            new M.Modal(document.querySelector("#settingsmodal")).open()
-        })
-
-        $("#resetdefault").on("click", () => {
+        this.settingsResetDefault.on("click", () => {
             Object.keys(this.defaultSettings).forEach(key => {
                 const setting = this.settingsList.find(setting => setting.id === key)
                 if (!setting) return
@@ -93,6 +94,7 @@ export default class Settings {
             })
         })
 
+        initialized = true
         console.log(`Loaded Settings. (took ${Date.now() - initTime}ms)`);
         return this
     }
@@ -158,7 +160,7 @@ export default class Settings {
         remove_type_annotations: false,
         number_transform_offset: 999999,
         vm_watermark: "GLU",
-        hide_disabled_functions: false,
+        hide_console: false,
         test3: 0,
     }
 
@@ -168,7 +170,7 @@ export default class Settings {
         { name: "Number Transform Offset", id: "number_transform_offset", type: "number", description: "test" },
         { name: "VM Watermark", id: "vm_watermark", type: "text", description: "The watermark which is placed infront of the VM Bytecode." },
         { name: "Dropdown", id: "test3", type: "dropdown", description: "test", values: ["value1", "value2"] },
-        { name: "Hide Disabled Function", id: "hide_disabled_functions", type: "checkbox", description: "Hides disabled function from the toolbox." },
+        { name: "Hide Output Console (Soon)", id: "hide_console", type: "checkbox", description: "Hides the output console." },
     ]
 }
 
@@ -185,6 +187,6 @@ export type UglifierSettings = {
     remove_type_annotations: boolean,
     number_transform_offset: number,
     vm_watermark: string,
-    hide_disabled_functions: boolean,
+    hide_console: boolean,
     test3: number,
 }

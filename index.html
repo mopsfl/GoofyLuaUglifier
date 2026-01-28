@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" theme="dark">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -22,330 +22,318 @@
     <link rel="stylesheet" href="./dist/css/style.css">
     <link rel="stylesheet" href="./dist/js/index.css">
 
-    <script type="module" src="./dist/js/index.js" defer></script>
-    <script src="./dist/js/materialize.min.js" defer></script>
+    <script type="module" src="./dist/js/index.js"></script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C5HDV7KFB"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
+    <!--<script>
+        window.onload = () => {
+            const consoleDiv = document.querySelector(".console"),
+                toolboxDiv = document.querySelector(".toolbox"),
+                toolboxCategories = document.querySelector(".toolbox-categories")
+
+            document.querySelectorAll(".btn-group-header").forEach(e => {
+                e.addEventListener("click", () => {
+                    e.parentElement.classList.toggle("minimized")
+                })
+            })
+
+            document.querySelectorAll(".modal-open").forEach(b => {
+                b.addEventListener("click", () => {
+                    document.querySelector(`.modal#${b.id}`)?.classList.remove("hide")
+                    document.querySelector(".modal-overlay").classList.remove("hide")
+                })
+            })
+
+            document.querySelector(".modal-overlay").addEventListener("click", () => {
+                document.querySelectorAll(".modal").forEach(m => m.classList.add("hide"))
+                document.querySelector(".modal-overlay").classList.add("hide")
+            })
+
+            document.querySelectorAll(".modal-close").forEach(b => {
+                b.addEventListener("click", () => {
+                    document.querySelector(`.modal#${b.id}`)?.classList.add("hide")
+                    document.querySelector(".modal-overlay").classList.add("hide")
+                })
+            })
+
+            document.querySelectorAll(".btn.function-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    if (btn.classList.contains("disabled")) return
+                    const loader = document.createElement("div")
+                    loader.classList.add("loader")
+
+                    btn.appendChild(loader)
+                    toolboxCategories.classList.add("disabled")
+
+                    setTimeout(() => {
+                        toolboxCategories.classList.remove("disabled")
+                        loader.remove()
+                    }, 1000);
+                })
+            })
+
+
+            document.querySelectorAll(".toolbox-tabs>.btn-group>.btn").forEach(e => {
+                e.addEventListener("click", () => {
+                    if (e.id === "toolbox") {
+                        consoleDiv.classList.remove("show")
+                        toolboxDiv.classList.remove("hide")
+                        document.querySelector("#toolbox").classList.add("selected")
+                        document.querySelector("#console").classList.remove("selected")
+                    } else if (e.id === "console") {
+                        toolboxDiv.classList.add("hide")
+                        toolboxDiv.classList.remove("show")
+                        consoleDiv.classList.add("show")
+                        document.querySelector("#toolbox").classList.remove("selected")
+                        document.querySelector("#console").classList.add("selected")
+                    }
+                })
+            })
         }
-
-        gtag('js', new Date());
-        gtag('config', 'G-6C5HDV7KFB');
-    </script>
+    </script>-->
 </head>
 
 <body>
-    <div class="updateclaimer modal">
-        <div class="modal-content">
-            <h3>Important Note</h3>
-            <p>This is a test version of the new GoofyLuaUglifier revamp update!</p>
-            <p>Nothing is finished yet and there are only a few functions available right now.</p>
-            <b><small>Expect bugs!</small></b>
-
-        </div>
-        <div class="modal-footer">
-            <a target="_blank" href="https://github.com/mopsfl/GoofyLuaUglifier/blob/main/CHANGELOG.md" class="waves-light waves-effect btn-flat blue-text">Open Changelog</a>
-            <button href="#!" class="modal-close waves-light waves-effect btn-flat white-text" id="close">Close</button>
-        </div>
-    </div>
-    <!-- Loading Text -->
-    <span class="loadingtext hide">Loading...</span>
-    <div class="main">
-        <!-- Left Sidenav -->
-        <div class="sidenav z-depth-5 leftmenu-sidebar" id="slide-out">
-            <div class="user-view z-depth-2">
-                <div class="account-information">
-                    <div class="account-info-background background"><img src="/src/images/code-background.png" loading="lazy"></div>
-                    <div class="account-information-user">
-                        <img src="" alt="avatar" id="discord-avatar">
-                        <li>
-                            <div class="account-information-name">
-                                <span id="account_username">N/A</span>
-                                <span id="account-information-perms" class="tooltipped" data-tooltip="The access level of your account." data-position="right">N/A</span>
-                            </div>
-                            <span id="account_id">N/A</span>
-                        </li>
-                        <a class="btn-floating waves-effect waves-light transparent account-login tooltipped" data-tooltip="Login" data-position="right"><i class="material-icons">login</i></a>
-                    </div>
-                    <a class="btn-floating waves-effect waves-light transparent account-logout tooltipped" data-tooltip="Logout" data-position="right"><i class="material-icons">logout</i></a>
-                </div>
-                <div class="sidenav-loading progress">
-                    <div class="indeterminate"></div>
-                </div>
-            </div>
-            <div class="seperator text seperator-margin">
-                <span>Statistics</span>
-            </div>
-            <div class="info-content glu-statistics">
-                <div class="glu-statistic tooltipped" data-tooltip="Total count of API requests." data-position="right"><span class="glu-statistic-name">Total Requests:</span><span id="total_requests" class="glu-statistic-value">Loading...</span></div>
-                <div class="glu-statistic tooltipped" data-tooltip="Count of executed functions." data-position="right"><span class="glu-statistic-name">Executed Functions:</span><span id="total_functions_called" class="glu-statistic-value">Loading...</span></div>
-            </div>
-            <div class="seperator text seperator-margin">
-                <span>Updates <span class="updates-new-label" notif-count="0"></span></span>
-                <a class="material-icons center updatelogopen tooltipped" data-tooltip="Open Changelog" data-position="right" target="_blank" href="https://github.com/mopsfl/GoofyLuaUglifier/blob/main/CHANGELOG.md">open_in_new</a>
-            </div>
-            <div class="info-content glu-updates">
-                <p class="center loading">Loading...</p>
-                <template class="glu-update-item-template">
-                    <div class="glu-update-item">
-                        <span class="glu-update-date">xx.yy.zzzz</span>
-                        <div class="glu-update-content-list">
-                            <span class="glu-update-content hide">N/A</span>
-                        </div>
-                    </div>
-                </template>
-            </div>
-            <footer class="sidenav-footer">
-                <div class="sidenav-footer-content">
-                    <small style="font-family: monospace;"><a href="https://github.com/mopsfl/GoofyLuaUglifier" target="_blank">Github</a></small>
-                    <span>&bull;</span>
-                    <small style="font-family: monospace;"><a href="https://docs.mopsfl.de" target="_blank">API Documentation</a></small>
-                    <small style="font-family: monospace; color:gray" class="copyrightthing"><span class="gluversion">v2.0.5</span><br>&copy; 2025 mopsfl</small>
-                </div>
-            </footer>
-        </div>
+    <main>
         <div class="ide">
-            <!-- Monaco Editor Container -->
-            <div class="code-area monaco">
-                <div class="content-loading editor-loading">Loading Editor...</div>
+            <div class="editor monaco">
+                <div class="loading">Loading Monaco Editor...</div>
             </div>
-            <!-- Console -->
             <div class="console">
                 <div class="resize-handle"></div>
-                <div class="content-loading console-loading">Loading Client...</div>
                 <div class="console-content"></div>
             </div>
         </div>
-        <!-- Toolbox Sidebar -->
-        <div class="sidebar">
-            <!-- Functions -->
-            <p class="sidebar-title">GoofyLuaUglifier</p>
-            <div class="sidebar-buttons" id="functionbtns-sidebar">
-                <template class="function-category-title-template">
-                    <div class="seperator text tooltipped" data-position="left">
-                        <span>N/A</span>
-                    </div>
-                </template>
-                <template class="function-btn-template">
-                    <button class="function-btn waves-effect waves-light btn no-padding tooltipped green" data-position="left">
-                        <i class="material-icons center" id="function-icon">N/A</i><span id="function-name">N/A</span></button>
-                </template>
+        <div class="toolbox">
+            <div class="toolbox-header">
+                <span class="toolbox-title">GoofyLuaUglifier</span>
+                <span class="toolbox-version">v.2.1.0 &bull; by <a class="link" href="https://github.com/mopsfl" target="_blank">mopsfl</a></span>
+                <div class="toolbox-header-buttons">
+                    <button class="round-button ripple-effect modal-open" id="settings-modal"><i class="material-icons">settings</i></button>
+                </div>
+            </div>
+            <div class="toolbox-categories"></div>
+        </div>
+        <div class="toolbox-tabs">
+            <div class="btn-group flex nogap horizontal">
+                <button class="btn btn-full ripple-effect selected" id="toolbox">
+                    <i class="material-icons" id="toolbox-tab-icon">build</i>
+                    <span id="toolbox-tab-value">Toolbox</span>
+                </button>
+                <button class="btn btn-full ripple-effect" id="console">
+                    <i class="material-icons" id="toolbox-tab-icon">code</i>
+                    <span id="toolbox-tab-value">Console</span>
+                </button>
+                <button class="btn btn-small ripple-effect modal-open separator-border" id="settings-modal">
+                    <i class="material-icons" id="toolbox-tab-icon">settings</i>
+                </button>
             </div>
         </div>
-        <!-- Settings Modal -->
-        <div id="settingsmodal" class="modal modal-fixed-footer">
+
+        <!-- SETTINGS MODAL -->
+        <div class="modal hide" id="settings-modal">
+            <div class="modal-header">
+                <span class="modal-title">Settings</span>
+            </div>
             <div class="modal-content">
-                <h4>Settings</h4>
-                <div class="settings-grid">
-                    <template class="template-setting">
-                        <div class="setting">
-                            <span class="setting-name tooltipped" data-position="right" data-tooltip="">Name</span>
-                            <label class="setting-input" id="checkbox">
-                                <input type="checkbox" class="filled-in settinginput" id="setting_id" checked="true" />
-                                <span></span>
-                            </label>
-                            <div class="setting-input input-field" id="text">
-                                <input placeholder="placeholder" id="setting_id" type="text" class="validate settinginput" autocomplete="off">
-                            </div>
-                            <div class="setting-input input-field" id="dropdown">
-                                <select class="settinginput" id="setting_id"></select>
-                                <label>Materialize Select</label>
-                            </div>
+                <template class="template-setting">
+                    <div class="setting">
+                        <span class="setting-name tooltipped" data-position="right" data-tooltip="">Name</span>
+                        <label class="setting-input" id="checkbox">
+                            <input type="checkbox" class="filled-in settinginput" id="setting_id" checked="true" />
+                            <span class="checkmark"></span>
+                        </label>
+                        <div class="setting-input" id="text">
+                            <input placeholder="" id="setting_id" type="text" class="validate settinginput" autocomplete="off">
                         </div>
-                    </template>
-                </div>
+                        <div class="setting-input" id="dropdown">
+                            <select class="settinginput" id="setting_id"></select>
+                        </div>
+                    </div>
+                </template>
             </div>
-            <!--<div class="modal-content">
-                <h4>Settings</h4>
-                <div class="settings-grid">
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Minifies the output code after the uglification.">Minify Output</span>
-                        <label>
-                            <input type="checkbox" class="filled-in" id="minify_output" checked="true" />
-                            <span></span>
-                        </label>
-                    </div>
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Beautifies the output code after the uglification.">Beautify Output</span>
-                        <label>
-                            <input type="checkbox" class="filled-in" id="beautify_output" checked="true" />
-                            <span></span>
-                        </label>
-                    </div>
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Wraps your output code into a return statement.">Wrap Code</span>
-                        <label>
-                            <input type="checkbox" class="filled-in" id="returnwrap_code" checked="false" />
-                            <span></span>
-                        </label>
-                    </div>
-                    <div class="setting input-field select-dropdown col s12">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="For what lua version your script should be optimized for.">Target Lua Version</span>
-                        <select id="target_lua_version">
-                            <option value="0">5.1</option>
-                            <option value="1">5.2</option>
-                            <option value="2" selected>5.3</option>
-                            <option value="3">5.4</option>
-                            <option value="4">LuaU</option>
-                            <option value="5">LuaJIT</option>
-                        </select>
-                        <label>Materialize Select</label>
-                    </div>
-                    <div class="setting">
-                        <span class="setting-name">test slider</span>
-                        <label class="slider-setting">
-                            <p class="range-field">
-                                <input type="range" id="test_slider" min="0" max="100" value="50"/>
-                            </p>
-                            <span class="slider-value" value-type="%"></span>
-                        </label>
-                    </div>
-                    <div class="seperator"></div>
-
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Saves the editor code and loads it back when you open the page again.">Save Editor Code</span>
-                        <label>
-                            <input type="checkbox" class="filled-in" id="save_editor_code" checked="false" />
-                            <span></span>
-                        </label>
-                    </div>
-
-                    <div class="seperator"></div>
-
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Ignore any Bytecode like string. (e.g. string encryption)">Ignore Bytecode</span>
-                        <label>
-                            <input type="checkbox" class="filled-in" id="ignore_bytecode" checked="false" />
-                            <span></span>
-                        </label>
-                    </div>
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Ignore any encrypted byte like string. (e.g. string encryption)">Ignore Bytestring</span>
-                        <label>
-                            <input type="checkbox" class="filled-in" id="ignore_bytestring" checked="false" />
-                            <span></span>
-                        </label>
-                    </div>
-
-                    <div class="seperator"></div>
-
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="If the <code>Nonsense Strings</code> function should use chinese characters.">Chinese Nonsense Characters</span>
-                        <label>
-                            <input type="checkbox" class="filled-in" id="chinese_nonsense_characters" checked="false" />
-                            <span></span>
-                        </label>
-                    </div>
-
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="The limit of how many strings can be created until it truncates.">Number Nonsense Length Limit</span>
-                        <div class="input-field">
-                            <input placeholder="Length" id="number_nonsense_length_limit" type="number" class="validate">
-                        </div>
-                    </div>
-
-                    <div class="setting input-field select-dropdown col s12">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="The format for representing the bytes in the byte string.">Bytestring Byte Type</span>
-                        <select id="byte_string_type">
-                            <option value="0" selected>Hexadecimal</option>
-                            <option value="1">Decimal</option>
-                        </select>
-                        <label>Materialize Select</label>
-                    </div>
-
-                    <div class="seperator"></div>
-
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="If the function <code>ByteEncrypt</code> should encrypt all constant types except of only strings.">ByteEncrypt All Constants</span>
-                        <label>
-                            <input type="checkbox" class="filled-in" id="byte_encrypt_all_constants" checked="false" />
-                            <span></span>
-                        </label>
-                    </div>
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="If global function names should be renamed by the <code>Identifiers</code> method.<br><br>Turning this on, might break the script when using string encryptions & GLookup!">Rename Global Functions</span>
-                        <label>
-                            <input type="checkbox" class="filled-in" id="rename_global_functions" checked="false" />
-                            <span></span>
-                        </label>
-                    </div>
-
-                    <div class="seperator"></div>
-
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds your given strings into the <code>Table Length</code> values.">Table Length Number - Memestrings</span>
-                        <div class="input-field">
-                            <input placeholder="e.g.: Hello, World, ..." id="table_length_number_memestrings" type="text" class="validate">
-                        </div>
-                    </div>
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Rate of the random table values for the <code>Table Length</code> method.">Table Length Number - Rate</span>
-                        <label class="slider-setting">
-                            <p class="range-field">
-                                <input type="range" id="table_length_number_rate" min="0" max="100" value="25" />
-                            </p>
-                            <span class="slider-value" value-type="%"></span>
-                        </label>
-                    </div>
-
-                    <div class="seperator"></div>
-
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Use all math operators for the number transform (<code>/</code> & <code>*</code>). <b>(very unstable)</b>">All Number Transform Math Operators</span>
-                        <label>
-                            <input type="checkbox" class="filled-in" id="use_all_mathoperators_number_transform" checked="false" />
-                            <span></span>
-                        </label>
-                    </div>
-
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="The length of the random transform offset number.">Number Transform Offset Length</span>
-                        <div class="input-field">
-                            <input placeholder="Length" id="number_transform_offset_length" type="number" class="validate">
-                        </div>
-                    </div>
-
-                    <div class="seperator"></div>
-                    
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Adds a watermark to your bytecode when using Constant Chunk 2. (keep empty to disable) (EXPERIMENTAL)">Bytecode Watermark</span>
-                        <div class="input-field">
-                            <input placeholder="Watermark" id="bytecode_watermark" type="text" class="validate">
-                        </div>
-                    </div>
-
-                    <div class="seperator"></div>
-
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Memoizes expensive function calls and caches them to avoid redundant computations. (EXPERIMENTAL)">Memoize Functions Calls</span>
-                        <label>
-                            <input type="checkbox" class="filled-in" id="memoize_function_calls" checked="true" />
-                            <span></span>
-                        </label>
-                    </div>
-
-                    <div class="setting">
-                        <span class="setting-name tooltipped" data-position="right" data-tooltip="Won't inject decoder functions after specific functions were applied. (e.g: ByteStrings, NumberStrings, ...)">No Decoder Functions</span>
-                        <label>
-                            <input type="checkbox" class="filled-in" id="no_decoder_functions" checked="false" />
-                            <span></span>
-                        </label>
-                    </div>
-                </div>
-            </div>-->
             <div class="modal-footer">
-                <button href="#!" class="waves-red waves-effect btn-flat red-text tooltipped" id="resetdefault" data-position="top" data-tooltip="Resets all settings to their default values.">Reset to Default</button>
-                <button href="#!" class="modal-close waves-light waves-effect btn-flat white-text" id="close">Close</button>
+                <div class="modal-footer-right btn-group horizontal btn-seperators nogap">
+                    <button class="btn center red-text ripple-effect" id="settings-reset-default">Reset to Default</button>
+                    <button class="btn center btn-medium ripple-effect modal-close" id="settings-modal">Close</button>
+                </div>
+                <div class="modal-footer-left" id="misc-settings-info">
+                    <!--<span id="last-updated">Last Update: N/A</span>-->
+                </div>
             </div>
         </div>
-        <!-- Left Sidenav Buttons -->
-        <a class="waves-effect waves-light btn-floating btn-small transparent sidenav-openbtn tooltipped sidenav-trigger" notif-count="0" data-tooltip="Menu" data-position="right" data-target="slide-out"><i class="material-icons">menu</i></a>
-        <a class="waves-effect waves-light btn-floating btn-small transparent sidenav-openbtn tooltipped modal-trigger settings-open" href="#settingsmodal" data-tooltip="Settings" data-position="right" data-target="slide-out"><i class="material-icons">settings</i></a>
-    </div>
+
+        <div class="modal-overlay hide"></div>
+    </main>
 </body>
 
 </html>
+
+<!--
+
+<div class="btn-group-category">
+    <span class="btn-group-header ripple-effect">
+        <span class="category-arrow"><i class="material-icons">chevron_right</i></span>
+        <span class="category-title">Quick Actions</span>
+    </span>
+    <div class="toolbox-category-functions btn-group vertical grid nogap">
+        <div class="toolbox-category-functions-inner inner">
+            <button class="btn ripple-effect function-btn">
+                <i class="material-icons" id="function-icon">draw</i>
+                <span id="function-name">Obfuscate</span>
+                <div class="btn-seperator"></div>
+            </button>
+            <button class="btn ripple-effect function-btn">
+                <i class="material-icons" id="function-icon">close_fullscreen</i>
+                <span id="function-name">Minify</span>
+                <div class="btn-seperator"></div>
+            </button>
+            <button class="btn ripple-effect function-btn">
+                <i class="material-icons" id="function-icon">content_copy</i>
+                <span id="function-name">Copy</span>
+                <div class="btn-seperator"></div>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="btn-group-category">
+    <span class="btn-group-header ripple-effect">
+        <span class="category-arrow"><i class="material-icons">chevron_right</i></span>
+        <span class="category-title">Functions</span>
+    </span>
+    <div class="toolbox-category-functions btn-group vertical grid nogap">
+        <div class="toolbox-category-functions-inner inner">
+            <button class="btn ripple-effect">
+                <i class="material-icons" id="function-icon">tag</i>
+                <span id="function-name">Bytestrings</span>
+                <div class="btn-seperator"></div>
+            </button>
+            <button class="btn ripple-effect">
+                <i class="material-icons" id="function-icon">looks_one</i>
+                <span id="function-name">Numbers</span>
+                <div class="btn-seperator"></div>
+            </button>
+            <button class="btn ripple-effect">
+                <i class="material-icons" id="function-icon">check_box</i>
+                <span id="function-name">Booleans</span>
+                <div class="btn-seperator"></div>
+            </button>
+            <button class="btn ripple-effect disabled">
+                <i class="material-icons" id="function-icon">tag</i>
+                <span id="function-name">disabled function</span>
+                <div class="btn-seperator"></div>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="btn-group-category">
+    <span class="btn-group-header ripple-effect">
+        <span class="category-arrow"><i class="material-icons">chevron_right</i></span>
+        <span class="category-title">Custom Presets</span>
+    </span>
+    <div class="toolbox-category-functions btn-group vertical grid nogap">
+        <div class="toolbox-category-functions-inner inner">
+            <button class="btn ripple-effect">
+                <i class="material-icons" id="function-icon">tag</i>
+                <span id="function-name">Custom preset 1</span>
+                <div class="btn-seperator"></div>
+            </button>
+            <button class="btn ripple-effect">
+                <i class="material-icons" id="function-icon">tag</i>
+                <span id="function-name">Custom preset 2</span>
+                <div class="btn-seperator"></div>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="btn-group-category disabled">
+    <span class="btn-group-header ripple-effect function-btn">
+        <span class="category-arrow"><i class="material-icons">chevron_right</i></span>
+        <span class="category-title">Disabled Category</span>
+    </span>
+    <div class="toolbox-category-functions btn-group vertical grid nogap">
+        <div class="toolbox-category-functions-inner inner">
+            <button class="btn ripple-effect function-btn">
+                <i class="material-icons" id="function-icon">tag</i>
+                <span id="function-name">disabled test 1</span>
+                <div class="btn-seperator"></div>
+            </button>
+            <button class="btn ripple-effect function-btn">
+                <i class="material-icons" id="function-icon">tag</i>
+                <span id="function-name">disabled test 2</span>
+                <div class="btn-seperator"></div>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="btn-group-category minimized">
+    <span class="btn-group-header ripple-effect function-btn">
+        <span class="category-arrow"><i class="material-icons">chevron_right</i></span>
+        <span class="category-title">Minimized Category</span>
+    </span>
+    <div class="toolbox-category-functions btn-group vertical grid nogap">
+        <div class="toolbox-category-functions-inner inner">
+            <button class="btn ripple-effect">
+                <i class="material-icons" id="function-icon">tag</i>
+                <span id="function-name">i am mopsfl</span>
+                <div class="btn-seperator"></div>
+            </button>
+            <button class="btn ripple-effect function-btn">
+                <i class="material-icons" id="function-icon">tag</i>
+                <span id="function-name">idk what to put here</span>
+                <div class="btn-seperator"></div>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="btn-group-category minimized">
+    <span class="btn-group-header ripple-effect function-btn">
+        <span class="category-arrow"><i class="material-icons">chevron_right</i></span>
+        <span class="category-title">Many Buttons</span>
+    </span>
+    <div class="toolbox-category-functions btn-group vertical grid nogap">
+        <div class="toolbox-category-functions-inner inner">
+            <button class="btn ripple-effect function-btn">
+                <i class="material-icons" id="function-icon">tag</i>
+                <span id="function-name">i am mopsfl</span>
+                <div class="btn-seperator"></div>
+            </button>
+            <button class="btn ripple-effect function-btn">
+                <i class="material-icons" id="function-icon">tag</i>
+                <span id="function-name">idk what to put here</span>
+                <div class="btn-seperator"></div>
+            </button>
+            <button class="btn ripple-effect">
+                <i class="material-icons" id="function-icon">tag</i>
+                <span id="function-name">i am mopsfl</span>
+                <div class="btn-seperator"></div>
+            </button>
+            <button class="btn ripple-effect">
+                <i class="material-icons" id="function-icon">tag</i>
+                <span id="function-name">idk what to put here</span>
+                <div class="btn-seperator"></div>
+            </button>
+            <button class="btn ripple-effect">
+                <i class="material-icons" id="function-icon">tag</i>
+                <span id="function-name">i am mopsfl</span>
+                <div class="btn-seperator"></div>
+            </button>
+            <button class="btn ripple-effect">
+                <i class="material-icons" id="function-icon">tag</i>
+                <span id="function-name">idk what to put here</span>
+                <div class="btn-seperator"></div>
+            </button>
+            <button class="btn ripple-effect">
+                <i class="material-icons" id="function-icon">tag</i>
+                <span id="function-name">i am mopsfl</span>
+                <div class="btn-seperator"></div>
+            </button>
+            <button class="btn ripple-effect">
+                <i class="material-icons" id="function-icon">tag</i>
+                <span id="function-name">idk what to put here</span>
+                <div class="btn-seperator"></div>
+            </button>
+        </div>
+    </div>
+</div>
+
+-->

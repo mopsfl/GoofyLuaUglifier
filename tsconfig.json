@@ -1,15 +1,16 @@
 {
-    "compilerOptions": {
-      "target": "es2020",
-      "module": "esnext",
-      "moduleResolution": "bundler",
-      "outDir": "./dist/js",
-      "esModuleInterop": true,
-      "paths": {
-        "lodash": ["/static/js/lodash.min.js"],
-      }
-    },
-    "skipLibCheck": true,
-    "compileOnSave": true,
-    "exclude": ["node_modules","materialize-css"]
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "outDir": "./dist/js",
+    "rootDir": "./src",
+    "esModuleInterop": true,
+    "paths": {
+      "lodash": ["/static/js/lodash.min.js"]
+    }
+  },
+  "skipLibCheck": true,
+  "compileOnSave": true,
+  "exclude": ["node_modules", "old"]
 }
