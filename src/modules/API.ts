@@ -5,7 +5,7 @@ import Utils from "./Misc/Utils"
 import { ToolboxFunction } from "./Toolbox"
 
 export default {
-    async uglify(func: ToolboxFunction, code: string, options?: object, session?: string): Promise<any> {
+    async uglify(func: ToolboxFunction, code: string, options?: object): Promise<any> {
         if (!func?.id) throw new Error("missing function id!")
 
         const response = await fetch(
@@ -16,7 +16,7 @@ export default {
                 credentials: "include",
                 headers: {
                     "uglifier-options": btoa(JSON.stringify(options)),
-                    "uglifier-session": session,
+                    "uglifier-session": Client.session,
                     "uglifier-token": Client.token
                 }
             }).catch(error => {

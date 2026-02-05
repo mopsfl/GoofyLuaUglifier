@@ -1,3 +1,6 @@
+## 05.02.2026
+- fixed `Undo` not working
+
 ## 28.01.2025
 - full frontend rework
   - completely new style (self made, no libary anymore!!)
