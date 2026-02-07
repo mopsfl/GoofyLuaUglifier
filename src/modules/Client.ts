@@ -17,7 +17,8 @@ export default {
 
     async Init() {
         const initTime = Date.now(),
-            consoleDiv = $(".console")
+            consoleDiv = $(".console"),
+            consoleResizeHandle = consoleDiv.find(".resize-handle")
 
         this.endpoints.goofyLuaUglifierApi = location.hostname === "localhost" ? "http://localhost:6968/api/" : "https://goofyluauglifier.mopsfl.de/api/"
         this.endpoints.mopsflApi = location.hostname === "localhost" ? "http://localhost:6969/v1/" : "https://api.mopsfl.de/v1/"
@@ -25,24 +26,25 @@ export default {
         await this.UpdateCsfrToken()
         await this.FetchAccount()
 
-        consoleDiv.find(".resize-handle").on("mousedown", (e) => {
+
+        consoleResizeHandle.on("pointerdown", (e) => {
             e.preventDefault()
 
             const startY = e.clientY
-            const startHeight = consoleDiv.height()
+            const startHeight = consoleDiv.height()!
 
-            function onMouseMove(e: MouseEvent) {
+            function onPointerMove(e: PointerEvent) {
                 const dy = e.clientY - startY
-                consoleDiv.css("height", Math.max(startHeight - dy, 10) + 'px')
+                consoleDiv.css("height", Math.max(startHeight - dy, 10) + "px")
             }
 
-            function onMouseUp() {
-                document.removeEventListener('mousemove', onMouseMove)
-                document.removeEventListener('mouseup', onMouseUp)
+            function onPointerUp() {
+                document.removeEventListener("pointermove", onPointerMove)
+                document.removeEventListener("pointerup", onPointerUp)
             }
 
-            document.addEventListener('mousemove', onMouseMove)
-            document.addEventListener('mouseup', onMouseUp)
+            document.addEventListener("pointermove", onPointerMove)
+            document.addEventListener("pointerup", onPointerUp)
         })
 
         Console.log(`Welcome to GoofyLuaUglifier${this.account ? `, ${this.account.user.username}!` : "!"}`, "info")

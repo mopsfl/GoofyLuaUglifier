@@ -936,6 +936,37 @@ main {
     font-size: 17px;
 }
 
+/* TOOLTIP */
+
+.tooltip {
+    background: var(--hoverBtn);
+    color: #fff;
+    padding: 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    max-width: 300px;
+    position: absolute;
+    opacity: 0;
+    transform: translateX(6px);
+    transition: opacity .35s, transform 0.15s ease;
+    will-change: opacity, transform;
+}
+
+.tooltip>code {
+    background: var(--editorColor);
+    border-radius: 3px;
+    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    color: white !important;
+}
+
+.tooltip>code.multiline {
+    width: 97%;
+    display: inline-block;
+    margin-top: 5px;
+}
+
 /* BUTTON RIPPLE */
 
 .ripple-effect {

@@ -5,8 +5,8 @@ import $ from "jquery"
 let initialized = false
 
 export default class Settings {
-    _data: UglifierSettings = null
-    _lastdata: UglifierSettings = null
+    _data: UglifierSettings | null = null
+    _lastdata: UglifierSettings | null = null
     _inputs = new Map<string, JQuery<HTMLInputElement>>()
     _events = new Map<string, CustomEvent>()
 
@@ -90,7 +90,7 @@ export default class Settings {
                 const setting = this.settingsList.find(setting => setting.id === key)
                 if (!setting) return
 
-                this.UpdateSetting(setting, this._inputs.get(setting.id), true)
+                this.UpdateSetting(setting, this._inputs.get(setting.id)!, true)
             })
         })
 
@@ -143,7 +143,7 @@ export default class Settings {
     GetSettings(id?: string) {
         const parsedSettings = {}
 
-        Object.keys(this._data).forEach(key => {
+        Object.keys(this._data ?? {}).forEach(key => {
             const setting = this.settingsList.find(setting => setting.id === key)
             if (!setting) return
 
@@ -177,7 +177,7 @@ export default class Settings {
 export type Setting = {
     name: string
     id: string
-    description?: string
+    description: string
     type: "text" | "number" | "checkbox" | "dropdown",
     values?: string[],
 }

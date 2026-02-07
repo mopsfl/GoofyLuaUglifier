@@ -23,73 +23,6 @@
     <link rel="stylesheet" href="./dist/js/index.css">
 
     <script type="module" src="./dist/js/index.js"></script>
-
-    <!--<script>
-        window.onload = () => {
-            const consoleDiv = document.querySelector(".console"),
-                toolboxDiv = document.querySelector(".toolbox"),
-                toolboxCategories = document.querySelector(".toolbox-categories")
-
-            document.querySelectorAll(".btn-group-header").forEach(e => {
-                e.addEventListener("click", () => {
-                    e.parentElement.classList.toggle("minimized")
-                })
-            })
-
-            document.querySelectorAll(".modal-open").forEach(b => {
-                b.addEventListener("click", () => {
-                    document.querySelector(`.modal#${b.id}`)?.classList.remove("hide")
-                    document.querySelector(".modal-overlay").classList.remove("hide")
-                })
-            })
-
-            document.querySelector(".modal-overlay").addEventListener("click", () => {
-                document.querySelectorAll(".modal").forEach(m => m.classList.add("hide"))
-                document.querySelector(".modal-overlay").classList.add("hide")
-            })
-
-            document.querySelectorAll(".modal-close").forEach(b => {
-                b.addEventListener("click", () => {
-                    document.querySelector(`.modal#${b.id}`)?.classList.add("hide")
-                    document.querySelector(".modal-overlay").classList.add("hide")
-                })
-            })
-
-            document.querySelectorAll(".btn.function-btn").forEach(btn => {
-                btn.addEventListener("click", () => {
-                    if (btn.classList.contains("disabled")) return
-                    const loader = document.createElement("div")
-                    loader.classList.add("loader")
-
-                    btn.appendChild(loader)
-                    toolboxCategories.classList.add("disabled")
-
-                    setTimeout(() => {
-                        toolboxCategories.classList.remove("disabled")
-                        loader.remove()
-                    }, 1000);
-                })
-            })
-
-
-            document.querySelectorAll(".toolbox-tabs>.btn-group>.btn").forEach(e => {
-                e.addEventListener("click", () => {
-                    if (e.id === "toolbox") {
-                        consoleDiv.classList.remove("show")
-                        toolboxDiv.classList.remove("hide")
-                        document.querySelector("#toolbox").classList.add("selected")
-                        document.querySelector("#console").classList.remove("selected")
-                    } else if (e.id === "console") {
-                        toolboxDiv.classList.add("hide")
-                        toolboxDiv.classList.remove("show")
-                        consoleDiv.classList.add("show")
-                        document.querySelector("#toolbox").classList.remove("selected")
-                        document.querySelector("#console").classList.add("selected")
-                    }
-                })
-            })
-        }
-    </script>-->
 </head>
 
 <body>
@@ -167,8 +100,6 @@
 </body>
 
 </html>
-
-<!--
 
 <div class="btn-group-category">
     <span class="btn-group-header ripple-effect">

@@ -5,6 +5,7 @@ import Client from "./modules/Client";
 import Toolbox from "./modules/Toolbox";
 import Ripple from "./modules/UI/Ripple";
 import Modal from "./modules/UI/Modal";
+import Tooltip from "./modules/UI/Tooltip";
 
 $(async () => {
     self.MonacoEnvironment = {
@@ -21,4 +22,5 @@ $(async () => {
     Editor.Init()
     Ripple.Init()
     Modal.Init()
+    Tooltip.Init()
 }) 

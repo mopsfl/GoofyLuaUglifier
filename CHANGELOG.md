@@ -1,3 +1,7 @@
+## 07.02.2026
+- added back tooltips
+- some other small changes/improvements
+
 ## 05.02.2026
 - fixed `Undo` not working
 

@@ -6,6 +6,7 @@
     "outDir": "./dist/js",
     "rootDir": "./src",
     "esModuleInterop": true,
+    "strict": false,
     "paths": {
       "lodash": ["/static/js/lodash.min.js"]
     }

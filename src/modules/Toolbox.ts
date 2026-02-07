@@ -18,7 +18,7 @@ export default {
         const initTime = Date.now(),
             consoleDiv = $(".console"),
             toolboxDiv = $(".toolbox"),
-            categoryStates: { [categoryId: string]: boolean } = LocalStorage.Get(Client.settings.storageKey, "categories")
+            categoryStates: { [categoryId: string]: boolean } = LocalStorage.Get(Client.settings.storageKey, "categories") ?? {}
 
         Object.keys(this.Buttons).forEach(categoryName => {
             const functionButtons: ToolboxFunction[] = this.Buttons[categoryName],
@@ -30,6 +30,10 @@ export default {
 
                 if (func.disabled) {
                     functionButton.addClass("disabled")
+                }
+
+                if (func.tooltip) {
+                    functionButton.attr("tooltip-content", func.tooltip)
                 }
 
                 functionButton.on("click", () => {
@@ -108,7 +112,7 @@ export default {
     },
 
     createFunctionElement(name: string, icon: string) {
-        return $('<button class="btn ripple-effect function-btn">').append(
+        return $(`<button class="btn ripple-effect function-btn tooltipped">`).append(
             $('<i class="material-icons" id="function-icon">').text(icon),
             $('<span id="function-name">').text(name),
             $('<div class="btn-seperator">')
@@ -116,7 +120,7 @@ export default {
     },
 
     saveCategoryState(categoryId: string, state: boolean) {
-        const states = LocalStorage.Get(Client.settings.storageKey, "categories", {})
+        const states = LocalStorage.Get<any>(Client.settings.storageKey, "categories", {})
 
         states[categoryId] = state
         LocalStorage.Set(Client.settings.storageKey, "categories", states)
@@ -210,6 +214,10 @@ export default {
                 icon_id: "more_horiz",
                 tooltip: "Turns all arguments in a function to a vararg call statement.<br><br>Example: <code class='multiline'>function _func(a,b)<br>&nbsp;&nbsp;return a,b,c<br>end</code> &equals; <code class='multiline'>function _func(...)<br>&nbsp;&nbsp;return ({...})[1],({...})[2]<br>end</code><br><br><b>NOTE:</b> assignment statements will be ignored!<br><br><b>EXPERIMENTAL</b> - Might break the script"
             }
+        ],
+        ["Roblox Functions"]: [
+            { name: "Vector3 Numbers", id: "vector3numbers", icon_id: "looks_one", tooltip: "Comming Soon", disabled: true },
+            { name: "CFrame Numbers", id: "cframenumbers", icon_id: "looks_one", disabled: true },
         ],
         ["Custom Preset"]: [
             { name: "Comming Soon", id: "67", disabled: true }
