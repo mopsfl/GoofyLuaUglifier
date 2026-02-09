@@ -45,7 +45,12 @@ export default class Settings {
                 return
             }
 
-            element.find(".setting-name").attr("data-tooltip", setting.description).text(setting.name)
+            element.find(".setting-name")
+                .addClass("tooltipped")
+                .attr("tooltip-align", "right")
+                .attr("tooltip-content", setting.description)
+                .text(setting.name)
+
             input.attr("id", setting.id)
             input.on(setting.type === "dropdown" ? "change" : "input", () => this.UpdateSetting(setting, input))
             this._data[setting.id] ??= this.defaultSettings[setting.id]
@@ -167,7 +172,7 @@ export default class Settings {
     settingsList: Setting[] = [
         { name: "Minify Output", id: "minify_output", type: "checkbox", description: "Automatically minifies your code to make it as compact as possible." },
         { name: "Remove Type Annotations", id: "remove_type_annotations", type: "checkbox", description: "Automatically removes all LuaU type annotations to prevent syntax errors." },
-        { name: "Number Transform Offset", id: "number_transform_offset", type: "number", description: "test" },
+        { name: "Number Transform Offset", id: "number_transform_offset", type: "number", description: "Maximum random offset applied when transforming numbers." },
         { name: "VM Watermark", id: "vm_watermark", type: "text", description: "The watermark which is placed infront of the VM Bytecode." },
         { name: "Dropdown", id: "test3", type: "dropdown", description: "test", values: ["value1", "value2"] },
         { name: "Hide Output Console (Soon)", id: "hide_console", type: "checkbox", description: "Hides the output console." },

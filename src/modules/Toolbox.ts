@@ -216,7 +216,7 @@ export default {
             }
         ],
         ["Roblox Functions"]: [
-            { name: "Vector3 Numbers", id: "vector3numbers", icon_id: "looks_one", tooltip: "Comming Soon", disabled: true },
+            { name: "Vector3 Numbers", id: "vector3numbers", icon_id: "looks_one", tooltip: `Converts numbers into a LuaU Vector3 based arithmetic expression.<br><br>Example:<br><code class="multiline">100</code><br>&equals;<br><code class="multiline">Vector3.new(...).Z + Vector3.new(...).Y - Vector3.new(...).X</code><br><br><b>Only works with LuaU (Roblox)</b><br><b>EXPERIMENTAL</b>` },
             { name: "CFrame Numbers", id: "cframenumbers", icon_id: "looks_one", disabled: true },
         ],
         ["Custom Preset"]: [

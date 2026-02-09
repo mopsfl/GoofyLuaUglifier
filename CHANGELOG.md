@@ -1,3 +1,8 @@
+## 09.02.2026
+- new method `Vector3 Numbers` for LuaU (Roblox)
+- added tooltips for settings
+- other small changes/improvements 
+
 ## 07.02.2026
 - added back tooltips
 - some other small changes/improvements
@@ -81,7 +86,7 @@
 ## 13.08.2024
 - added notification thing on website for new updates
 
-## 08.05.2024
+## 08.08.2024
 - added sexy sidebar to website (cooler updates soon, maybe)
 
 ## 05.08.2024
