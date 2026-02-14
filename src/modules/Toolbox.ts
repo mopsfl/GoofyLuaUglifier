@@ -135,7 +135,7 @@ export default {
             { name: "Minify", id: "minify", icon_id: "close_fullscreen", tooltip: "Minifies your script by renaming variables / globals and removing whitespaces." },
             { name: "Undo", id: "undo", icon_id: "undo", tooltip: "Undo the last change." },
         ],
-        ["Functions"]: [
+        ["Methods"]: [
             {
                 name: "Bytestrings",
                 id: "bytestrings",
@@ -215,9 +215,13 @@ export default {
                 tooltip: "Turns all arguments in a function to a vararg call statement.<br><br>Example: <code class='multiline'>function _func(a,b)<br>&nbsp;&nbsp;return a,b,c<br>end</code> &equals; <code class='multiline'>function _func(...)<br>&nbsp;&nbsp;return ({...})[1],({...})[2]<br>end</code><br><br><b>NOTE:</b> assignment statements will be ignored!<br><br><b>EXPERIMENTAL</b> - Might break the script"
             }
         ],
-        ["Roblox Functions"]: [
+        ["Roblox Methods"]: [
             { name: "Vector3 Numbers", id: "vector3numbers", icon_id: "looks_one", tooltip: `Converts numbers into a LuaU Vector3 based arithmetic expression.<br><br>Example:<br><code class="multiline">100</code><br>&equals;<br><code class="multiline">Vector3.new(...).Z + Vector3.new(...).Y - Vector3.new(...).X</code><br><br><b>Only works with LuaU (Roblox)</b><br><b>EXPERIMENTAL</b>` },
             { name: "CFrame Numbers", id: "cframenumbers", icon_id: "looks_one", disabled: true },
+        ],
+        ["Experimental Methods"]: [
+            { name: "Proxy Globals", id: "proxyglobals", icon_id: "public", tooltip: `Wraps all global variables in a local proxy environment.` },
+            { name: "Control Flow", id: "controlflow", icon_id: "question_mark", tooltip: `no`, disabled: true },
         ],
         ["Custom Preset"]: [
             { name: "Comming Soon", id: "67", disabled: true }

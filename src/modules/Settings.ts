@@ -85,7 +85,7 @@ export default class Settings {
             }
 
             element.appendTo(this.settingsContent)
-            console.log(this.settingsContent);
+
             this._inputs.set(setting.id, input)
             this._events.set(setting.id, CustomEvents.CreateEvent(setting.id))
         })

@@ -1,3 +1,13 @@
+## 14.02.2026
+- improved `Vector3 Numbers` method:
+  - randomized number of Vector3 expressions
+- added new experimental method `Proxy Globals`
+- bug fixes for `Globals To Locals` method:
+  - fix self reference  issues
+  - fix chain break issues
+  - nested properties are now ignored
+  - only call bases are localized
+
 ## 09.02.2026
 - new method `Vector3 Numbers` for LuaU (Roblox)
 - added tooltips for settings
