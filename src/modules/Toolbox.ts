@@ -37,7 +37,7 @@ export default {
                 }
 
                 functionButton.on("click", () => {
-                    if (!this.canCallFunction) return
+                    if (!this.canCallFunction || !func.id) return
                     this.canCallFunction = false
 
                     Console.log(`applying function '${func.id}'...`)
@@ -130,12 +130,12 @@ export default {
 
     Buttons: {
         ["Quick Actions"]: [
-            { name: "Obfuscate", id: "obfuscate", icon_id: "draw", tooltip: "Obfuscates your script with many GoofyLuaUglifier functions and the IronBrew2 VM." },
-            { name: "Virtualize", id: "virtualize", icon_id: "inventory", tooltip: "Virtualizes your script using IronBrew2 VM.<br><br><br>This function is currently using the luaobfuscator.com API, so the process might take a few seconds." },
+            { name: "Obfuscate", disabled: true, id: "obfuscate", icon_id: "draw", tooltip: "Obfuscates your script with many GoofyLuaUglifier functions and the IronBrew2 VM." },
+            { name: "Virtualize", disabled: true, id: "virtualize", icon_id: "inventory", tooltip: "Virtualizes your script using IronBrew2 VM.<br><br><br>This function is currently using the luaobfuscator.com API, so the process might take a few seconds." },
             { name: "Minify", id: "minify", icon_id: "close_fullscreen", tooltip: "Minifies your script by renaming variables / globals and removing whitespaces." },
             { name: "Undo", id: "undo", icon_id: "undo", tooltip: "Undo the last change." },
         ],
-        ["Methods"]: [
+        ["Universal Methods"]: [
             {
                 name: "Bytestrings",
                 id: "bytestrings",
@@ -224,7 +224,8 @@ export default {
             { name: "Control Flow", id: "controlflow", icon_id: "question_mark", tooltip: `no`, disabled: true },
         ],
         ["Custom Preset"]: [
-            { name: "Comming Soon", id: "67", disabled: true }
+            //{ name: "Create New", icon_id: "add", tooltip: "Create a new custom preset." }
+            { name: "Comming Soon", disabled: true, tooltip: "Create a new custom preset." }
         ]
     },
 }

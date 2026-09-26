@@ -48,6 +48,7 @@ export default {
         })
 
         Console.log(`Welcome to GoofyLuaUglifier${this.account ? `, ${this.account.user.username}!` : "!"}`, "info")
+        Console.log(`NOTE: "Obfuscate" and "Virtualize" methods are currently unavailable!`, "error")
         console.log(`Loaded Client (took ${Date.now() - initTime}ms).`)
     },
 
