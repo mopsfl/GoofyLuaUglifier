@@ -1,3 +1,9 @@
+## 02.10.2026
+- improved `Booleans` method:
+  - added more possible expressions
+- added new experimental method `Nested Numbers`
+  - basically just like `Numbers` method but with more variety and more randomized expressions
+
 ## 14.02.2026
 - improved `Vector3 Numbers` method:
   - randomized number of Vector3 expressions

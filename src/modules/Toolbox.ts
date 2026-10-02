@@ -221,6 +221,7 @@ export default {
         ],
         ["Experimental Methods"]: [
             { name: "Proxy Globals", id: "proxyglobals", icon_id: "public", tooltip: `Wraps all global variables in a local proxy environment.` },
+            { name: "Nested Numbers", id: "nestednumbers", icon_id: "looks_one", tooltip: `Recursively wraps numbers in randomized equivalent expressions.<br>Just like <b>Numbers</b> method but cooler.` },
             { name: "Control Flow", id: "controlflow", icon_id: "question_mark", tooltip: `no`, disabled: true },
         ],
         ["Custom Preset"]: [
